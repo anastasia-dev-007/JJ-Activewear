@@ -8,25 +8,36 @@ import lp1 from "./assets/lp1.jpg";
 import lp2 from "./assets/lp2.jpg";
 import lp3 from "./assets/lp3.jpg";
 import pop1 from "./assets/pop1.jpg"
+import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
     return (
         <div>
-            <nav className="navBar">
-                <img src={logo1} alt="logo1" />
-                <img src={logo2} alt="logo2" />
-                <input type="text" placeholder='Search' />
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-regular fa-user"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <select id="language">
-                    <option value="EN">EN<img src={EN} alt="EN" /></option> {/**flag is not displayed((( */}
-                    <option value="RO">RO<img src={RO} alt="RO" /></option>{/**flag is not displayed((( */}
-                </select>
+            <nav className={styles.navBarContainer}>
+                <div className='navBarRight'>
+                    <img style={{ width: '60px' }} src={logo1} alt="logo1" />
+                    <img style={{ width: '400px' }} src={logo2} alt="logo2" />
+                </div>
+
+                <div className={styles.navBarLeft}>
+                    <div className={styles.searchContainer}>
+                        <input className={styles.searchInput} type="text" placeholder='Search' />
+                        <div className={styles.searchIcon} >
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <select id="language">
+                        <option value="EN">EN<img src={EN} alt="EN" /></option> {/**flag is not displayed((( */}
+                        <option value="RO">RO<img src={RO} alt="RO" /></option>{/**flag is not displayed((( */}
+                    </select>
+                </div>
             </nav>
 
-            <div className="productsList">
+            <div className={styles.productList}>
                 <ul style={{ listStyle: 'none' }}>
                     <li>NEW ARRIVALS</li>
                     <li>ACTIVEWEAR</li>
@@ -189,15 +200,15 @@ const LandingPage = () => {
                         </ul>
                     </div>
 
-                    
+
                 </div>
 
                 <div className="socialMedia">
-                        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-                    </div>
+                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                </div>
 
                 <div className="downFooter">
                     <p>Copyrights 2023 Tataru Anastasia</p>

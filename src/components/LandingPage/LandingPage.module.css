@@ -1,0 +1,44 @@
+i,
+select,
+img {
+    cursor: pointer;
+}
+
+.navBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.navBarLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(92, 91, 91);
+}
+
+.searchContainer {
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.searchInput {
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.productList ul {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 20px;
+    cursor: pointer;
+}
+
