@@ -4,9 +4,10 @@ import logo2 from "./assets/logo2.png";
 import logo3 from "./assets/logo3.png";
 import EN from "./assets/EN.png";
 import RO from "./assets/RO.png";
-import pop1 from "./assets/pop1.jpg"
 import styles from './LandingPage.module.css';
 import Carousel from '../Carousel/Carousel';
+import PopularProducts from '../PopularProducts/PopularProducts';
+import Reviews from "../Reviews/Reviews"
 
 const LandingPage = () => {
     return (
@@ -53,93 +54,11 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            <Carousel/>
+            <Carousel />
 
-            <div className="popularProducts">
-                <div>
-                    <img src={pop1} alt="pop1" />
-                    <p>Popular</p>
-                    <ul>
-                        <li>XXS</li>
-                        <li>XS</li>
-                        <li>S</li>
-                        <li>M</li>
-                        <li>L</li>
-                    </ul>
-                    <div>
-                        <header>Matching Set</header>
-                        <p>Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette</p>
-                        <p>$80</p>
-                        <div>
-                            <button>Add to cart</button>
-                            <button>Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <PopularProducts />
 
-            <div className="reviewsContainer">
-                <header className="reviewsHeader">
-                    <p>Ultimate Workout Experience</p>
-                    <p>Reviews</p>
-                    <p>Everything to love about JJ Activewear</p>
-                </header>
-
-                <div className="reviewCards">
-                    <header>What are our customers saying?</header>
-
-                    <div className="reviewCard">
-                        <div>
-                            <img src="" alt="client1" />
-                            <div>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-
-
-                    </div>
-
-                    <div className="reviewCard">
-                        <div>
-                            <img src="" alt="client1" />
-                            <div>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-
-
-                    </div>
-
-                    <div className="reviewCard">
-                        <div>
-                            <img src="" alt="client1" />
-                            <div>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
+            <Reviews />
 
             <div className="chooseJJContainer">
                 <header>

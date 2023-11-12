@@ -54,10 +54,14 @@
   font-weight: 1000;
 }
 
+.landingText img {
+  width: clamp(200px, 400px);
+}
+
 .onCarouselElements i {
-  margin-top: 5%;
   font-size: 60px;
   color: rgb(183, 180, 180);
+  align-self: center;
 }
 
 .carouselBullets {

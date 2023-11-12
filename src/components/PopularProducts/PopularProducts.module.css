@@ -1,0 +1,18 @@
+.popularProductsContainer {
+    height: 30%;
+    object-fit: cover;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.popularProductsContainer img {
+    width: 20%;
+    object-fit: cover;
+}
+
+.popularProductsContainer i {
+    font-size: 60px;
+    color: rgb(183, 180, 180);
+    align-self: center;
+}
