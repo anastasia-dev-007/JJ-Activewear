@@ -4,15 +4,13 @@ import logo2 from "./assets/logo2.png";
 import logo3 from "./assets/logo3.png";
 import EN from "./assets/EN.png";
 import RO from "./assets/RO.png";
-import lp1 from "./assets/lp1.jpg";
-import lp2 from "./assets/lp2.jpg";
-import lp3 from "./assets/lp3.jpg";
 import pop1 from "./assets/pop1.jpg"
 import styles from './LandingPage.module.css';
+import Carousel from '../Carousel/Carousel';
 
 const LandingPage = () => {
     return (
-        <div>
+        <div className={styles.mainContainer}>
             <nav className={styles.navBarContainer}>
                 <div className='navBarRight'>
                     <img style={{ width: '60px' }} src={logo1} alt="logo1" />
@@ -47,22 +45,15 @@ const LandingPage = () => {
                 </ul>
             </div>
 
-            <div className="carousel">
-                <img src={lp1} alt="lp1" />
-                <img src={lp2} alt="lp2" />
-                <img src={lp3} alt="lp3" />
-                <i class="fa-solid fa-circle"></i>
-                <i class="fa-regular fa-circle"></i>
-                <i class="fa-regular fa-circle"></i>
-                <div className="landingText">
-                    <header>
-                        <img src={logo3} alt="logo3" />
-                    </header>
-                    <p>DO YOU SERACH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?</p>
-                    <p>Discover the ultimate workout experience with JJ Activewear’s premium activewear collection. Our trendy and functional designs are made with high-quality materials to help you achive your fitness goals in style.</p>
-                    <a href='#'>SHOP NOW</a>
+            <div className={styles.carouselContainer}>
+                <div className={styles.carouselWindow}>
+                    <div className={styles.item1}></div>
+                    <div className={styles.item2}></div>
+                    <div className={styles.item3}></div>
                 </div>
             </div>
+
+            <Carousel/>
 
             <div className="popularProducts">
                 <div>
@@ -217,5 +208,6 @@ const LandingPage = () => {
         </div>
     )
 }
+
 
 export default LandingPage;
