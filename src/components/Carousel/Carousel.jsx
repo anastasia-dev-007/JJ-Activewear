@@ -31,27 +31,32 @@ const Carousel = () => {
           ))}
         </div>
 
-        <div className="onCarouselWindow">
-          <div className="carouselArrows">
-            <i class="fa-solid fa-chevron-left"></i>
+        <div className={styles.onCarouselWindow}>
+          <div className={styles.onCarouselElements}>
+            <i class="fa-solid fa-chevron-left" ></i>
+
+            <div className={styles.landingText}>
+              <header>
+                <img src={logo3} alt="logo3" width='400px' />
+              </header>
+
+              <p className={styles.question}>DO YOU SERACH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?</p>
+              <p>Discover the ultimate workout experience with JJ Activewear premium activewear collection. Our trendy and functional designs are made with high-quality materials to help you achive your fitness goals in style.</p>
+              <a href='#'>SHOP NOW</a>
+            </div>
+
             <i class="fa-solid fa-chevron-right"></i>
           </div>
 
-          <div className="carouselBullets">
+
+          <div className={styles.carouselBullets}>
             <i class="fa-solid fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
           </div>
         </div>
 
-        <div className="landingText">
-          <header>
-            <img src={logo3} alt="logo3" />
-          </header>
-          <p>DO YOU SERACH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?</p>
-          <p>Discover the ultimate workout experience with JJ Activewear premium activewear collection. Our trendy and functional designs are made with high-quality materials to help you achive your fitness goals in style.</p>
-          <a href='#'>SHOP NOW</a>
-        </div>
+
       </div>
 
     </div>
