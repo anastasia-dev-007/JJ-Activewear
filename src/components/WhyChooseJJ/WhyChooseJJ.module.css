@@ -15,3 +15,17 @@
 .chooseJJContainer h1 {
     margin-bottom: 20px;
 }
+
+.cardsChooseJJ {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 50px;
+    font-size: 10px;
+    text-align: center;
+    width: 60%;
+}
+
+.cardChooseJJ {
+    width: 25%;
+}
