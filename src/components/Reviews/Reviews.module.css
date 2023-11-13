@@ -1,5 +1,8 @@
 .reviewsContainer {
 padding: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
 }
 
 .reviewsHeader {
@@ -8,7 +11,7 @@ padding: 20px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../LandingPage/assets/lp1.jpg");
+    background-image: url("../../components/assets/lp1.jpg");
     background-position: center;
     background-size: cover;
     height: 200px;

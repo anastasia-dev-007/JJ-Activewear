@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "../Reviews/Reviews.module.css"
-import pop1 from "../LandingPage/assets/pop1.jpg"
+import pop1 from "../../components/assets/pop1.jpg"
 
 
 const Reviews = () => {
@@ -55,6 +55,8 @@ const Reviews = () => {
 
 <div className={styles.arrows}> <i class="fa-solid fa-chevron-right" ></i></div>
       </div>
+      
+      <button>Leave a Review</button>
     </div>
   )
 }

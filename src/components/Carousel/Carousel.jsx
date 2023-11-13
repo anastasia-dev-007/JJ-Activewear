@@ -1,8 +1,8 @@
 import React from 'react';
-import lp1 from "../LandingPage/assets/lp2.jpg";
-import lp2 from "../LandingPage/assets/lp1.jpg";
-import lp3 from "../LandingPage/assets/lp3.jpg";
-import logo3 from "../LandingPage/assets/logo3.png";
+import lp1 from "../../components/assets/lp1.jpg";
+import lp2 from "../../components/assets/lp2.jpg";
+import lp3 from "../../components/assets/lp3.jpg";
+import logo3 from "../../components/assets/logo3.png";
 import styles from './Carousel.module.css'
 
 const Carousel = () => {

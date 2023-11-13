@@ -16,14 +16,12 @@
 
 .carouselWindow img {
   height: 600px;
-  width: 100%;
-
+  width: auto;
 }
 
 .onCarouselWindow {
   position: absolute;
   padding: 0px 20px;
-
 }
 
 .onCarouselElements {
@@ -38,7 +36,6 @@
   margin-top: 7%;
   text-align: center;
   margin-bottom: 45px;
-
 }
 
 .question {
