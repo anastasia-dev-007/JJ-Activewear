@@ -6,6 +6,28 @@
     margin-bottom: 20px;
 }
 
+.navBarLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 15px;
+    font-size: 25px;
+    letter-spacing: 21px;
+    font-weight: 800;
+    padding: 0;
+    margin: 0;
+}
+
+.navBarLogo img {
+    width: 65px;
+    
+}
+
+.navBarLogo p {
+    padding: 0;
+    margin: 0;
+}
+
 .navBarLeft {
     display: flex;
     align-items: center;

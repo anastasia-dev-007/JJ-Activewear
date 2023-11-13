@@ -5,6 +5,13 @@
   font-family: 'Poppins';
 }
 
+button {
+  background-color: #015e6d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
 .App {
   text-align: center;
 }

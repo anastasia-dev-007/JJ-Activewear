@@ -2,7 +2,7 @@ import React from 'react';
 import lp1 from "../../components/assets/lp1.jpg";
 import lp2 from "../../components/assets/lp2.jpg";
 import lp3 from "../../components/assets/lp3.jpg";
-import logo3 from "../../components/assets/logo3.png";
+import logo1wh from "../../components/assets/logo1wh.png";
 import styles from './Carousel.module.css'
 
 const Carousel = () => {
@@ -37,7 +37,8 @@ const Carousel = () => {
 
             <div className={styles.landingText}>
               <header>
-                <img src={logo3} alt="logo3" width='400px' />
+                <img src={logo1wh} alt="logo3" width='100px' />
+                <h1>ACTIVEWEAR</h1>
               </header>
 
               <p className={styles.question}>DO YOU SERACH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?</p>

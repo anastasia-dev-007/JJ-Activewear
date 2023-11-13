@@ -28,6 +28,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
 .landingText {
@@ -38,6 +39,12 @@
   margin-bottom: 45px;
 }
 
+.landingText header {
+  margin-bottom: 40px;
+  font-size: 14px;
+  letter-spacing: 25px;
+}
+
 .question {
   font-size: 18px;
   margin-bottom: 10px;
@@ -46,7 +53,7 @@
 
 .landingText a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-size: 22px;
   font-weight: 1000;
 }
@@ -63,6 +70,7 @@
 
 .carouselBullets {
   margin-left: 50%;
+  color: white;
 }
 
 .carouselBullets i {
