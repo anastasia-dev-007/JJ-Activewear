@@ -8,7 +8,7 @@
 }
 
 .carouselWindow {
-  width: 600%;
+  width: 300%; /* Adjust the width based on the number of images */
   object-fit: cover;
   flex-wrap: nowrap;
   overflow: hidden;
