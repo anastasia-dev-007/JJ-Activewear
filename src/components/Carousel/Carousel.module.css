@@ -21,6 +21,12 @@
   object-position: center;
 }
 
+/*Radu Reco*/
+.carouselImage {
+  height: 500px;
+  object-fit: cover;
+}
+
 .onCarouselWindow {
   position: absolute;
   padding: 0px 20px;

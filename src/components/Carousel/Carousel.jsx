@@ -5,7 +5,7 @@ import lp1 from "../../components/assets/lp1.jpg";
 import lp2 from "../../components/assets/lp2.jpg";
 import lp3 from "../../components/assets/lp3.jpg";
 import logo1wh from "../../components/assets/logo1wh.png";
-import styles from './Carousel.module.css'; // Assuming your CSS file is named Carousel.module.css
+import styles from './Carousel.module.css';
 
 const MyCarousel = () => {
   const images = [lp1, lp2, lp3];
@@ -15,7 +15,7 @@ const MyCarousel = () => {
       <Carousel className={styles.carouselWindow}>
         {images.map((image, index) => (
           <Carousel.Item key={index}>
-            <img className="d-block w-100" src={image} alt={`Slide ${index + 1}`} />
+            <img className={`d-block w-100 ${styles.carouselImage}`} src={image} alt={`Slide ${index + 1}`} />
             <Carousel.Caption className={`${styles.onCarouselElements} ${styles.onCarouselWindow}`}>
               <img src={logo1wh} alt="logo3" width='100px' />
               <h1>ACTIVEWEAR</h1>
