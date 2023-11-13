@@ -8,15 +8,17 @@
 }
 
 .carouselWindow {
-  width: 100%;
+  width: 600%;
   object-fit: cover;
   flex-wrap: nowrap;
   overflow: hidden;
 }
 
 .carouselWindow img {
-  height: 600px;
-  width: auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;  
+  object-position: center;
 }
 
 .onCarouselWindow {
