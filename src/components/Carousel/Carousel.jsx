@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import lp1 from "../../components/assets/lp1.jpg";
-import lp2 from "../../components/assets/lp2.jpg";
-import lp3 from "../../components/assets/lp3.jpg";
-import logo1wh from "../../components/assets/logo1wh.png";
+import lp1 from "../../assets/lp1.jpg";
+import lp2 from "../../assets/lp2.jpg";
+import lp3 from "../../assets/lp3.jpg";
+import logo1wh from "../../assets/logo1wh.png";
 import styles from './Carousel.module.css';
 
 const MyCarousel = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import pop1 from "../../components/assets/pop1.jpg"
+import pop1 from "../../assets/pop1.jpg"
 import styles from "./PopularProducts.module.css"
 
 

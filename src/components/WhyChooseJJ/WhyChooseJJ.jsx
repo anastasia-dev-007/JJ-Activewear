@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from "./WhyChooseJJ.module.css"
-import sculpt from "../assets/sculpt.png"
-import durability from "../assets/durability.png"
-import fashion from "../assets/fashion.png"
-import guarantee from "../assets/guarantee.png"
+import sculpt from "../../assets/sculpt.png"
+import durability from "../../assets/durability.png"
+import fashion from "../../assets/fashion.png"
+import guarantee from "../../assets/guarantee.png"
 
 const WhyChooseJJ = () => {
     const reasonsToChooseJJ = [

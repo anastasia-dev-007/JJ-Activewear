@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from "./NavBar.module.css"
-import logo1 from "../../components/assets/logo1.png";
-import EN from "../../components/assets/EN.png";
-import RO from "../../components/assets/RO.png";
+import logo1 from "../../assets/logo1.png";
+import EN from "../../assets/EN.png";
+import RO from "../../assets/RO.png";
 
 const NavBar = () => {
     return (
