@@ -15,7 +15,7 @@ const LandingPage = () => {
 
             <NavBar />
             <Menu />
-            <Carousel />
+            {/* <Carousel /> */}
             <PopularProducts />
             <Reviews />
             <ChooseJJ/>
