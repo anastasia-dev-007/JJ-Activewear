@@ -4,16 +4,18 @@ import logo1 from "../../assets/logo1.png";
 import EN from "../../assets/EN.png";
 import RO from "../../assets/RO.png";
 import lp1 from "../../assets/lp1.jpg";
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
         <nav className={styles.fullNavBarContainer}>
             <div className={styles.navBarContainer}>
-                <div className={styles.navBarLogo}>
-                    <img src={logo1} alt="logo1" />
+                <Link to="/" className={styles.navBarLogo}>
+                    <div className={styles.navBarLogo}>
+                        <img src={logo1} alt="logo1" />
 
-                    <p>ACTIVEWEAR</p>
-                </div>
+                        <p>ACTIVEWEAR</p>
+                    </div></Link>
 
                 <div className={styles.navBarLeft}>
                     <div className={styles.searchContainer}>
@@ -41,16 +43,23 @@ const NavBar = () => {
                         <div className={styles.dropDownMenu}>
                             <span>ACTIVEWEAR</span>
                             <div className={styles.dropDownMenuList}>
-                                <ul>
-                                    <li>Tops & Sport Bras</li>
-                                    <li>T-shirts</li>
-                                    <li>Long-sleeve workout tops</li>
-                                    <li>Tennis Shorts</li>
-                                    <li>Leggings & Yoga Pants</li>
-                                    <li>Matching Sets</li>
-                                </ul>
+                                <div styles={styles.dropDownMenuContainer}>
+                                    <div>
+                                        <ul>
+                                            <li>Tops & Sport Bras</li>
+                                            <li>T-shirts</li>
+                                            <li>Long-sleeve workout tops</li>
+                                            <li>Tennis Shorts</li>
+                                            <li>Leggings & Yoga Pants</li>
+                                            <li>Matching Sets</li>
+                                            <li>
+                                                <Link to="/product-list">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                <img width='100px' src={lp1} alt="" />
+                                    <div><img width='20%' src={lp1} alt="" /></div>
+                                </div>
                             </div>
                         </div>
                     </li>

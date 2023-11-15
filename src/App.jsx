@@ -13,25 +13,24 @@ import Login from './routes/Login/Login';
 
 function App() {
   return (
-    <div>
-      <NavBar />
+    <BrowserRouter>
+      <div>
+        <NavBar />
 
-      <BrowserRouter>
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/product-list' element={<ProductListing />} />
-          <Route path='/login' element={<Login/>}/>
+          <Route path='/login' element={<Login />} />
           <Route path='/product-details' element={<ProductDetails />} />
           <Route path='/shopping-cart' element={<ShoppingCart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />
           <Route path='*' element={<>Page not found</>}></Route>
         </Routes>
-      </BrowserRouter>
+      </div>
 
       <Footer />
-    </div>
-
+    </BrowserRouter>
   );
 }
 
