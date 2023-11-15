@@ -26,22 +26,31 @@ const MyCarousel = () => {
       </Carousel>
 
       <div className={styles.onCarouselWindow}>
-        <header>
-        <img src={logo1wh} alt="logo3" width='100px' />
-        <h1>ACTIVEWEAR</h1>
-        </header>
+        
 
         <div className={styles.textContainer}>
-          <p className= {styles.question}>
-            DO YOU SEARCH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?
-          </p>
 
-          <p className={styles.carouselText}>
-            Discover the ultimate workout experience with JJ Activewear's premium activewear collection.
-            Our trendy and functional designs are made with high-quality materials to help you achieve your fitness goals in style.
-          </p>
+        <div>
+          <img src={logo1wh} alt="logo3" width='100px' />
+          <h1>ACTIVEWEAR</h1>
+        </div>
+        
+          <div className={styles.question}>
+            <p>
+              DO YOU SEARCH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?
+            </p>
+          </div>
 
-          <a href='#'>SHOP NOW</a>
+          <div className={styles.carouselText}>
+            <p>
+              Discover the ultimate workout experience with JJ Activewear's premium activewear collection.
+              Our trendy and functional designs are made with high-quality materials to help you achieve your fitness goals in style.
+            </p>
+          </div>
+
+          <div>
+            <a href='#'>SHOP NOW</a>
+          </div>
         </div>
       </div>
     </div>
