@@ -6,6 +6,7 @@ import lp2 from "../../assets/lp2.jpg";
 import lp3 from "../../assets/lp3.jpg";
 import logo1wh from "../../assets/logo1wh.png";
 import styles from './Carousel.module.css';
+import { Link } from 'react-router-dom';
 
 const MyCarousel = () => {
   const [index, setIndex] = useState(0);
@@ -48,9 +49,9 @@ const MyCarousel = () => {
             </p>
           </div>
 
-          <div>
+          <Link to="/product-list">
             <a href='#'>SHOP NOW</a>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

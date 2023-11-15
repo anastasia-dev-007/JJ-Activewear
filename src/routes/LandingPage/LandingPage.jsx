@@ -11,7 +11,6 @@ import Footer from '../../components/Footer/Footer';
 const LandingPage = () => {
     return (
         <div className={styles.mainContainer}>
-
             <Menu />
             <Carousel />
             <PopularProducts />
