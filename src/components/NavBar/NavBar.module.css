@@ -5,13 +5,18 @@
     width: 100%;
     top: 0;
     z-index: 1000;
+    padding: 10px 20px;
+}
+
+.placeholder {
+   height: 99px;
+   width: 100%;
 }
 
 .navBarContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px 0px;
     margin-bottom: 20px;
 }
 
@@ -66,16 +71,15 @@
     border-radius: 5px;
 }
 
-
 /**/
 .productList .productListItems {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    padding: 0px 20px 0px;
     margin-bottom: 10px;
     cursor: pointer;
     list-style: none;
+    margin-left: -30px; /*can't find where padding comes from, so resolved it with margin*/
 }
 
 .dropDownMenu {
