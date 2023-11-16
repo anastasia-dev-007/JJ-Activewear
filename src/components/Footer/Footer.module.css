@@ -8,14 +8,14 @@
    justify-content: center;
     color: white;
 }
-.footerColumn1 {
+.footerColumn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-.footerColumn1 p{
+.footerColumn p{
 font-size: 15px;
 letter-spacing: 10px;
 }

@@ -6,11 +6,11 @@ const Footer = () => {
   return (
     <footer className={styles.footerContainer}>
                 <div className={styles.mainFooterContainer}>
-                    <div className={styles.footerColumn1}>
+                    <div className={styles.footerColumn}>
                         <img width='100px' src={logo1wh} alt="logo3" />
                         <p>ACTIVEWEAR</p>
                     </div>
-                    <div className={styles.column1}>
+                    <div className={styles.footerColumn}>
                         <h4>Company</h4>
                         <ul>
                             <li>About us</li>
@@ -21,7 +21,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className={styles.footerColumn2}>
+                    <div className={styles.footerColumn}>
                         <h4>Products</h4>
                         <ul>
                             <li><a href="#">Furniture</a></li>
@@ -32,7 +32,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div footerColumn3>
+                    <div className={styles.footerColumn}>
                         <h4>Contacts</h4>
                         <ul>
                             <li>+373 79 888 888</li>

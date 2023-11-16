@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Menu from '../../components/Menu/Menu';
 import ChooseJJ from "../../components/WhyChooseJJ/WhyChooseJJ";
 import Footer from '../../components/Footer/Footer';
+import ClientsPhotos from '../../components/ClientsPhotos/ClientsPhotos';
 
 const LandingPage = () => {
     return (
@@ -15,6 +16,7 @@ const LandingPage = () => {
             <Carousel />
             <PopularProducts />
             <Reviews />
+            <ClientsPhotos/>
             <ChooseJJ/>
         </div>
     )
