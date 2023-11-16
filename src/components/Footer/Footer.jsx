@@ -49,7 +49,7 @@ const Footer = () => {
                 </div>
 
                 <div className={styles.pageBottom}>
-                    <p>© 2023 Tataru Anastasia</p>
+                    <p>© 2023 JJ Activewear Limited || Powered by Anastasia Tataru</p>
                 </div>
             </footer>
   )

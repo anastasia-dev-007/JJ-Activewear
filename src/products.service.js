@@ -563,3 +563,45 @@ const products = [
         availability: 'available',
     },
 ];
+
+export const getProducts = () => {
+    return products;
+}
+
+//cream structura generala pentru a adauga aici produse noi
+export const getProductById = (id) => {
+    const foundItem = products.find(product => product.id === id);
+    const defaultItem = {
+        id: null,
+        title: '',
+        color: '',
+        category: '',
+        size: '',
+        status: '',
+        currency: '$',
+        price: '',
+        availability: '',
+    };
+    return foundItem ? foundItem : defaultItem;
+}
+
+//cream o functie care va adauga produse in lista initiala, dar va si modifica produsul existent daca este cazul. Acum trebuie sa verificam daca produsul are id, atunci trebuie sa il gasim si sa rescriem proprietatile lui cu ceea ce primim aici, ceea ce insemana ca el a fost modificat, iar daca id este null, atunci trebuie sa setam un nou atribut id si sa il adaugam in lista
+export const saveProduct = (product) => {
+    if (!product.id) {//daca nu avem asa produs
+        product.id = products.length + 1;
+        products.push(product);
+    } else {
+        const productIndex = products.findIndex(item => item.id === product.id);
+
+        products[productIndex] = product;
+    }
+}
+
+//aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
+export const deleteProduct = (id) => {
+    const foundIndex = products.findIndex(product => product.id === id);
+
+    if (foundIndex > -1) {
+        products.splice(foundIndex, 1);
+    }
+}
