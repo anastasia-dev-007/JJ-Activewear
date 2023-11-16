@@ -1,6 +1,8 @@
-const products = [
+export const products = [
     {
         id: 1,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 1',
         color: 'black',
         category: 'Leggings',
@@ -12,6 +14,7 @@ const products = [
     },
     {
         id: 2,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 2',
         color: 'cream',
         category: 'Matching Sets',
@@ -23,6 +26,7 @@ const products = [
     },
     {
         id: 3,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 3',
         color: 'mint',
         category: 'Top',
@@ -34,6 +38,7 @@ const products = [
     },
     {
         id: 4,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 4',
         color: 'peach',
         category: 'Sport Bras',
@@ -45,6 +50,7 @@ const products = [
     },
     {
         id: 5,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 5',
         color: 'purple',
         category: 'Tennis Shorts',
@@ -56,6 +62,7 @@ const products = [
     },
     {
         id: 6,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 6',
         color: 'blue',
         category: 'Long-sleeve top',
@@ -67,6 +74,7 @@ const products = [
     },
     {
         id: 7,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 7',
         color: 'white',
         category: 'Yoga-pants',
@@ -79,6 +87,7 @@ const products = [
     // Continue with the next 93 products
     {
         id: 8,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 8',
         color: 'orange',
         category: 'Running Socks',
@@ -90,6 +99,7 @@ const products = [
     },
     {
         id: 9,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 9',
         color: 'grey',
         category: 'Shorts',
@@ -101,6 +111,7 @@ const products = [
     },
     {
         id: 10,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 10',
         color: 'pink',
         category: 'T-shirts Tops',
@@ -114,6 +125,7 @@ const products = [
 
     {
         id: 11,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 11',
         color: 'indigo',
         category: 'Leggings',
@@ -125,6 +137,7 @@ const products = [
     },
     {
         id: 12,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 12',
         color: 'yellow',
         category: 'Yoga Pants',
@@ -136,6 +149,7 @@ const products = [
     },
     {
         id: 13,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 13',
         color: 'green',
         category: 'Sport Bras',
@@ -147,6 +161,7 @@ const products = [
     },
     {
         id: 14,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 14',
         color: 'blue',
         category: 'Matching Sets',
@@ -160,6 +175,7 @@ const products = [
 
     {
         id: 15,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 15',
         color: 'pink',
         category: 'Long-sleeve workout tops',
@@ -171,6 +187,7 @@ const products = [
     },
     {
         id: 16,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 16',
         color: 'orange',
         category: 'Corset',
@@ -182,6 +199,7 @@ const products = [
     },
     {
         id: 17,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 17',
         color: 'cream',
         category: 'Swimwear',
@@ -193,6 +211,7 @@ const products = [
     },
     {
         id: 18,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 18',
         color: 'black',
         category: 'Gym Bags',
@@ -205,6 +224,7 @@ const products = [
 
     {
         id: 19,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 19',
         color: 'purple',
         category: 'Shorts',
@@ -216,6 +236,7 @@ const products = [
     },
     {
         id: 20,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 20',
         color: 'mint',
         category: 'Running Socks',
@@ -227,6 +248,7 @@ const products = [
     },
     {
         id: 21,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 21',
         color: 'grey',
         category: 'T-shirts Tops',
@@ -240,6 +262,7 @@ const products = [
 
     {
         id: 22,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 22',
         color: 'blue',
         category: 'Yoga Pants',
@@ -251,6 +274,7 @@ const products = [
     },
     {
         id: 23,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 23',
         color: 'green',
         category: 'Sport Bras',
@@ -262,6 +286,7 @@ const products = [
     },
     {
         id: 24,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 24',
         color: 'indigo',
         category: 'Tennis Shorts',
@@ -273,6 +298,7 @@ const products = [
     },
     {
         id: 25,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 25',
         color: 'orange',
         category: 'Long-sleeve top',
@@ -284,6 +310,7 @@ const products = [
     },
     {
         id: 26,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 26',
         color: 'cream',
         category: 'Gym Bags',
@@ -295,6 +322,7 @@ const products = [
     },
     {
         id: 27,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 27',
         color: 'pink',
         category: 'Shorts',
@@ -306,6 +334,7 @@ const products = [
     },
     {
         id: 28,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 28',
         color: 'black',
         category: 'Long-sleeve workout tops',
@@ -317,6 +346,7 @@ const products = [
     },
     {
         id: 29,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 29',
         color: 'purple',
         category: 'Yoga Pants',
@@ -328,6 +358,7 @@ const products = [
     },
     {
         id: 30,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 30',
         color: 'orange',
         category: 'Sport Bras',
@@ -339,6 +370,7 @@ const products = [
     },
     {
         id: 31,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 31',
         color: 'blue',
         category: 'Running Socks',
@@ -350,6 +382,7 @@ const products = [
     },
     {
         id: 32,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 32',
         color: 'white',
         category: 'T-shirts Tops',
@@ -361,6 +394,7 @@ const products = [
     },
     {
         id: 33,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 33',
         color: 'yellow',
         category: 'Matching Sets',
@@ -374,6 +408,7 @@ const products = [
 
     {
         id: 34,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 34',
         color: 'mint',
         category: 'Leggings',
@@ -385,6 +420,7 @@ const products = [
     },
     {
         id: 35,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 35',
         color: 'black',
         category: 'Sport Bras',
@@ -396,6 +432,7 @@ const products = [
     },
     {
         id: 36,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 36',
         color: 'purple',
         category: 'Gym Bags',
@@ -407,6 +444,7 @@ const products = [
     },
     {
         id: 37,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 37',
         color: 'pink',
         category: 'Shorts',
@@ -421,6 +459,7 @@ const products = [
 
     {
         id: 38,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 38',
         color: 'blue',
         category: 'Long-sleeve workout tops',
@@ -432,6 +471,7 @@ const products = [
     },
     {
         id: 39,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 39',
         color: 'orange',
         category: 'Yoga Pants',
@@ -443,6 +483,7 @@ const products = [
     },
     {
         id: 40,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 40',
         color: 'green',
         category: 'Sport Bras',
@@ -454,6 +495,7 @@ const products = [
     },
     {
         id: 41,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 41',
         color: 'indigo',
         category: 'Swimwear',
@@ -465,6 +507,7 @@ const products = [
     },
     {
         id: 42,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 42',
         color: 'yellow',
         category: 'Matching Sets',
@@ -476,6 +519,7 @@ const products = [
     },
     {
         id: 43,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 43',
         color: 'grey',
         category: 'Shorts',
@@ -487,6 +531,7 @@ const products = [
     },
     {
         id: 44,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 44',
         color: 'mint',
         category: 'T-shirts Tops',
@@ -498,6 +543,7 @@ const products = [
     },
     {
         id: 45,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 45',
         color: 'white',
         category: 'Gym Bags',
@@ -509,6 +555,7 @@ const products = [
     },
     {
         id: 46,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 46',
         color: 'pink',
         category: 'Long-sleeve top',
@@ -520,6 +567,7 @@ const products = [
     },
     {
         id: 47,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 47',
         color: 'orange',
         category: 'Running Socks',
@@ -531,6 +579,7 @@ const products = [
     },
     {
         id: 48,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 48',
         color: 'cream',
         category: 'T-shirts Tops',
@@ -542,6 +591,7 @@ const products = [
     },
     {
         id: 49,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 49',
         color: 'green',
         category: 'Swimwear',
@@ -553,6 +603,7 @@ const products = [
     },
     {
         id: 50,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: 'Product 50',
         color: 'grey',
         category: 'Sport Bag',
@@ -573,6 +624,7 @@ export const getProductById = (id) => {
     const foundItem = products.find(product => product.id === id);
     const defaultItem = {
         id: null,
+        img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
         title: '',
         color: '',
         category: '',
