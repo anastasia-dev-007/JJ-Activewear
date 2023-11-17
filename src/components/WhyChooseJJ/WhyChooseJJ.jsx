@@ -10,26 +10,26 @@ const WhyChooseJJ = () => {
         {
             id: 1,
             icon: fashion,
-            title: 'Fashion and Style',
-            description: 'Beyond functionality, JJ Activewear follows  trend and offers a range of stylish and trendy options for their fitness routines.',
+            title: 'Versatile Style',
+            description: 'Beyond functionality, JJ Activewear are designed with a sleek and stylish aesthetic, making them suitable for both exercise and casual wear. You can effortlessly transition from the gym to running errands while looking fashionable.',
         },
         {
             id: 2,
             icon: durability,
-            title: 'Durability and Longevity',
-            description: 'Clothing is more durable and has a longer lifespan perfect for regular and intense workouts associated with active lifestyles.',
+            title: 'Tightening effect',
+            description: 'Our products have the ability to provide a firm and sculpted appearance to your legs and waist. These leggings are designed with specialized compression fabric that offers optimal support and shaping, helping to smooth out and tighten your silhouette. Enjoy a confident and streamlined look with our tightening effect leggings.',
         },
         {
             id: 3,
             icon: sculpt,
-            title: 'Body Sculpting Design',
-            description: 'Activewear specifically tailored for body sculpting, helping to create a flattering silhouette. boosting confidence and motivation during workouts.',
+            title: 'Enhanced Push-Up Effect',
+            description: 'Our leggings are designed with special contouring to provide a flattering push-up effect, giving you a more defined and lifted appearance.',
         },
         {
             id: 4,
             icon: guarantee,
-            title: '30 days  Guarantee',
-            description: 'A 30-day warranty allows you to return product  for a refund or replacement at the request, to build trust and confidence in the brand.',
+            title: 'Superior Comfort',
+            description: 'Our leggings and longsleeve are crafted from high-quality, breathable fabrics that offer excellent stretch and support, allowing for unrestricted movement during workouts or everyday wear.',
         },
     ];
 

@@ -13,7 +13,7 @@ const ProductListing = () => {
     setProducts(data);
   }, []);
 
-  const categoryAccordionData = [
+  const AccordionsData = [
     {
       id: 1,
       title: 'Activewear',
@@ -31,14 +31,47 @@ const ProductListing = () => {
       list: [
         { id: 1, title: 'Sport Bags' },
         { id: 2, title: 'Corsets' },
-        { id: 3, title: 'Running Sock' }
+        { id: 3, title: 'Resistance Bands' }
       ]
     },
     {
       id: 3,
       title: 'Swimwear',
       list: [{ id: 1, title: 'Swimwear' },]
-    }
+    },
+    {
+      id: 4,
+      title: 'Size',
+      list: [
+        { id: 1, title: 'S' },
+        { id: 2, title: 'M' },
+        { id: 3, title: 'L' },
+      ]
+    },
+    {
+      id: 5,
+      title: 'Availability',
+      list: [
+        { id: 1, title: 'Available' },
+        { id: 2, title: 'Out of stock' },
+      ]
+    },
+    {
+      id: 6,
+      title: 'Colors',
+      list: [
+        { id: 1, title: '#ffffff' },
+        { id: 2, title: '#dea18e' },
+        { id: 3, title: '#e7d682' },
+        { id: 4, title: '#aabbb1' },
+        { id: 5, title: '#f34221' },
+        { id: 6, title: '#0e0f13' },
+        { id: 7, title: '#c8c6eb' },
+        { id: 8, title: '#438ad0' },
+        { id: 9, title: '#7d888a' },
+        { id: 10, title: '#dc3e79' },
+      ],
+    },
   ];
 
   //toggleAccordion function is responsible for managing which accordions are open and which ones are closed.
@@ -51,7 +84,7 @@ const ProductListing = () => {
   };
 
   return (
-    <div>
+    <div className={styles.productListingContainer}>
       <header>
         <div className='path'>
           <p>Home | Page with title of category selected by user</p>
@@ -64,60 +97,60 @@ const ProductListing = () => {
 
       <div className='sortByPrice'></div>
 
-      {/* to copy style from Aimo */}
-      <div className='filterContainer'>
-        <div className='categoryAccordion'>
-          {categoryAccordionData.map(item => (
-            <div key={item.id} className="accordionItem">
-              <div className="accordionTitle" onClick={() => toggleAccordion(item.id)}>
-                <div>{item.title}</div>
-                <div>{openAccordions.includes(item.id) ? '-' : '+'}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
-              </div>
-              {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
-                <div className="accordionList">
-                  {item.list.map(listItem => (
-                    <div key={listItem.id}>{listItem.title}</div>
-                  ))}
+      <div className={styles.filterAndCardsContainer}>
+        {/* to copy style from Aimo */}
+        <div className={styles.filterContainer}>
+          <div className={styles.Accordions}>
+            {AccordionsData.map(item => (
+              <div key={item.id} className={styles.accordionItem}>
+                <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
+                  <div>{item.title}</div>
+                  <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-down"></i>) : (<i class="fa-solid fa-chevron-up"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className='colorsAccordions'></div>
-        <div className='sizeAcordeon'></div>
-        <div className='priceRuler'></div>
-      </div>
-
-      <div className={styles.ProductCardContainer}>
-        {
-          products.map(item => (
-            <div key={item.id}>
-              <header>
-                <img src={item.img} alt="" />
-              </header>
-
-              <div className='label'>{item.status}</div>
-
-              <p>{item.title}</p>
-              <p>{item.currency} {item.price}</p>
-
-              <div>
-                <button>Add to cart</button>
-
-                <button>
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-
-                <button>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
+                {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
+                  <div className={styles.accordionList}>
+                    {item.list.map(listItem => (
+                      <div key={listItem.id}>{listItem.title}</div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))
-        }
+            ))}
+          </div>
+          <div className='priceRangeSlider'></div>
+        </div>
+
+        <div className={styles.ProductCardsContainer}>
+          {
+            products.map(item => (
+              <div key={item.id} className={styles.productCard}>
+                <header>
+                  <img src={item.img} alt="" />
+                </header>
+
+                <div className='label'>{item.status}</div>
+
+                <p>{item.title}</p>
+                <p>{item.currency} {item.price}</p>
+
+                <div>
+                  <button>Add to cart</button>
+
+                  <button>
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+
+                  <button>
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
 
-      <button>More</button>
+      <button className={styles.BtnMore}>More</button>
 
       <div className='recentlyViewed'>
         <h3>Recently Viewed Products</h3>

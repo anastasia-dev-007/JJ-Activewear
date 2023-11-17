@@ -1,8 +1,50 @@
-img {
-    width: 100px;
+.productListingContainer {
+padding: 50px 20px 20px 20px;
 }
 
-.ProductCardContainer {
+.filterAndCardsContainer {
+    display: flex;
+}
+
+.filterContainer {
+    width: 20%;
+    margin-right: 1%;
+}
+
+.ProductCardsContainer {
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
+    gap: 3.5%;
+}
+
+.ProductCardsContainer img {
+    width: 17vw;
+    height: 24vw;
+    object-fit: cover;
+}
+
+.productCard {
+    margin-bottom: 15px;
+}
+
+.BtnMore {
+    display: block; /* Ensure it's a block-level element for margin: 0 auto; to work */
+    margin: 0 auto;
+}
+
+.accordionItem {
+    margin-bottom: 20px;
+}
+
+.accordionHeader {
+display: flex;
+justify-content: space-between;
+border-bottom: solid 1px;
+font-weight: 600;
+padding-right: 10px;
+}
+
+.accordionList {
+    padding-left: 15px;
 }
