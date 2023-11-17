@@ -72,6 +72,14 @@ const ProductListing = () => {
         { id: 10, title: '#dc3e79' },
       ],
     },
+    {
+      id: 7,
+      title: 'Price',
+      list: [
+        { id: 1, title: '#ffffff' },
+        { id: 2, title: '#dea18e' },
+      ]
+    }
   ];
 
   //toggleAccordion function is responsible for managing which accordions are open and which ones are closed.
@@ -95,10 +103,16 @@ const ProductListing = () => {
         </div>
       </header>
 
-      <div className='sortByPrice'></div>
+      <div className={styles.sortByPrice}>
+        <label for="sortByPrice">Sort by price: </label>
+        <select id="sortByPrice" name="sortByPrice">
+        <option value="blank"></option>
+          <option value="Ascending order">Ascending order</option>
+          <option value="Descending order">Descending order</option>
+        </select>
+      </div>
 
       <div className={styles.filterAndCardsContainer}>
-        {/* to copy style from Aimo */}
         <div className={styles.filterContainer}>
           <div className={styles.Accordions}>
             {AccordionsData.map(item => (
@@ -117,7 +131,9 @@ const ProductListing = () => {
               </div>
             ))}
           </div>
-          <div className='priceRangeSlider'></div>
+          <div className='priceFilter'>
+          
+          </div>
         </div>
 
         <div className={styles.ProductCardsContainer}>
