@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getProducts } from '../../products.service';
 import styles from "../ProductListing/ProductListing.module.css"
+import { Link } from 'react-router-dom';
 
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
@@ -106,7 +107,7 @@ const ProductListing = () => {
       <div className={styles.sortByPrice}>
         <label for="sortByPrice">Sort by price: </label>
         <select id="sortByPrice" name="sortByPrice">
-        <option value="blank"></option>
+          <option value="blank"></option>
           <option value="Ascending order">Ascending order</option>
           <option value="Descending order">Descending order</option>
         </select>
@@ -119,7 +120,7 @@ const ProductListing = () => {
               <div key={item.id} className={styles.accordionItem}>
                 <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
                   <div>{item.title}</div>
-                  <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-down"></i>) : (<i class="fa-solid fa-chevron-up"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
+                  <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
                 {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
                   <div className={styles.accordionList}>
@@ -131,36 +132,38 @@ const ProductListing = () => {
               </div>
             ))}
           </div>
-          <div className='priceFilter'>
-          
-          </div>
+          {/* <div className='priceFilter'>
+          </div> */}
         </div>
 
         <div className={styles.ProductCardsContainer}>
           {
             products.map(item => (
-              <div key={item.id} className={styles.productCard}>
+              <Link to={'product-details/' + item.id} key={item.id} className={styles.productCard}>
                 <header>
                   <img src={item.img} alt="" />
                 </header>
 
-                <div className='label'>{item.status}</div>
+                <div className={styles.label}>{item.status}</div>
 
-                <p>{item.title}</p>
-                <p>{item.currency} {item.price}</p>
-
-                <div>
-                  <button>Add to cart</button>
-
-                  <button>
+                <div className={styles.favorites}>
+                  <div>
                     <i class="fa-regular fa-heart"></i>
-                  </button>
+                  </div>
 
-                  <button>
-                    <i class="fa-solid fa-heart"></i>
+                  <div>
+                    <i style={{ display: 'none' }} class="fa-solid fa-heart"></i>
+                  </div>
+                </div>
+
+                <div style={{ fontWeight: '600px' }}>{item.title}</div>
+                <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price}</div>
+
+                <div className={styles.addToCartAndFavorites}>
+                  <button className={styles.addToCartBtn}>Add to cart <i class="fa-solid fa-cart-shopping"></i>
                   </button>
                 </div>
-              </div>
+              </Link>
             ))
           }
         </div>

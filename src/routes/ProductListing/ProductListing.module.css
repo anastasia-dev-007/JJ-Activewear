@@ -20,12 +20,52 @@
 
 .ProductCardsContainer img {
     width: 17vw;
-    height: 24vw;
+    height: 23vw;
     object-fit: cover;
 }
 
 .productCard {
     margin-bottom: 15px;
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    background-color: rgba(255, 255, 255, 0.621);
+    padding: 0 5px;
+    border-radius: 5px;
+    color: rgb(96, 95, 95);
+}
+
+.addToCartAndFavorites {
+    display: flex;
+    justify-content: space-around;
+}
+
+.favorites i {
+   color: rgb(140, 131, 131);
+   font-size: 18px;
+   border: solid 2px;
+   padding: 5px 6px;
+   border-radius: 50%;
+   border-style: none;
+ background-color:  rgba(255, 255, 255, 0.621);
+   position: absolute;
+   top: 2%;
+   right: 4%;
+}
+
+.addToCartBtn {
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: small;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+    opacity: 70%;
 }
 
 .BtnMore {
@@ -59,6 +99,6 @@
 }
 
 .sortByPrice label {
-position: absolute;
-padding-left: 5px;
+    position: absolute;
+    padding-left: 5px;
 }

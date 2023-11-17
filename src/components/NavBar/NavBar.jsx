@@ -40,7 +40,7 @@ const NavBar = () => {
                     <ul className={styles.productListItems}>
                         <li>NEW ARRIVALS</li>
 
-                        <li>CATALOGUE</li>
+                        <li><Link to="/products-list" style={{ textDecoration: 'none', color: 'black' }}>CATALOGUE</Link></li>
 
                         <li className={styles.activewearList}>
                             <div className={styles.dropDownMenu}>
@@ -56,7 +56,7 @@ const NavBar = () => {
                                                 <li>Leggings & Yoga Pants</li>
                                                 <li>Matching Sets</li>
                                                 <li>
-                                                    <Link to="/product-list">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                                    <Link to="/products-list">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link>
                                                 </li>
                                             </ul>
                                         </div>

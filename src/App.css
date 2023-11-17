@@ -5,8 +5,13 @@
   font-family: 'Poppins';
 }
 
+/* declare of variables in css */
+:root {
+  --brand-color: #015e6d;
+}
+
 button {
-  background-color: #015e6d;
+  background-color: var(--brand-color);/* use of variables in css */
   color: white;
   border: none;
   border-radius: 5px;
