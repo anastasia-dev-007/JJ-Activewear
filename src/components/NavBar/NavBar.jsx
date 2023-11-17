@@ -40,6 +40,8 @@ const NavBar = () => {
                     <ul className={styles.productListItems}>
                         <li>NEW ARRIVALS</li>
 
+                        <li>CATALOGUE</li>
+
                         <li className={styles.activewearList}>
                             <div className={styles.dropDownMenu}>
                                 <span>ACTIVEWEAR</span>

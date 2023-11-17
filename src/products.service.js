@@ -9,7 +9,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -21,7 +21,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -33,7 +33,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'out of stock',
     },
     {
@@ -45,7 +45,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'out of stock',
     },
     {
@@ -57,7 +57,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -69,7 +69,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -81,7 +81,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     // Continue with the next 93 products
@@ -94,7 +94,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 45,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -106,7 +106,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 35,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -118,7 +118,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 25,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     // ... (previous array)
@@ -132,7 +132,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -144,7 +144,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 40,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -156,7 +156,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 60,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -168,7 +168,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 70,
+        price: '50.00',
         availability: 'available',
     },
     // ... (previous array)
@@ -182,7 +182,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -194,7 +194,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 30,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -206,7 +206,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 65,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -218,7 +218,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 80,
+        price: '50.00',
         availability: 'available',
     },
 
@@ -231,7 +231,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 45,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -243,7 +243,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 30,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -255,7 +255,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 25,
+        price: '50.00',
         availability: 'available',
     },
     // ... (previous array)
@@ -269,7 +269,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -281,7 +281,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 40,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -293,7 +293,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 70,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -305,7 +305,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 45,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -317,7 +317,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 80,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -329,7 +329,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 60,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -341,7 +341,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -353,7 +353,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -365,7 +365,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 65,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -377,7 +377,7 @@ export const products = [
         size: 'L',
         status: 'Best Seller',
         currency: '$',
-        price: 35,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -389,7 +389,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 75,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -401,7 +401,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 40,
+        price: '50.00',
         availability: 'available',
     },
     // ... (previous array)
@@ -415,7 +415,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 60,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -427,7 +427,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -439,7 +439,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 70,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -451,7 +451,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 45,
+        price: '50.00',
         availability: 'available',
     },
 
@@ -466,7 +466,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 75,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -478,7 +478,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 40,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -490,7 +490,7 @@ export const products = [
         size: 'L',
         status: 'Best Seller',
         currency: '$',
-        price: 50,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -502,7 +502,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 65,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -514,7 +514,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 55,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -526,7 +526,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 30,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -538,7 +538,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 45,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -550,7 +550,7 @@ export const products = [
         size: 'M',
         status: null,
         currency: '$',
-        price: 70,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -562,7 +562,7 @@ export const products = [
         size: 'S',
         status: null,
         currency: '$',
-        price: 60,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -574,7 +574,7 @@ export const products = [
         size: 'M',
         status: 'Best Seller',
         currency: '$',
-        price: 35,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -586,7 +586,7 @@ export const products = [
         size: 'L',
         status: null,
         currency: '$',
-        price: 40,
+        price: '50.00',
         availability: 'Out of Stock',
     },
     {
@@ -598,7 +598,7 @@ export const products = [
         size: 'S',
         status: 'Best Seller',
         currency: '$',
-        price: 80,
+        price: '50.00',
         availability: 'available',
     },
     {
@@ -610,7 +610,7 @@ export const products = [
         size: null,
         status: 'Best Seller',
         currency: '$',
-        price: 80,
+        price: '50.00',
         availability: 'available',
     },
 ];
@@ -631,7 +631,7 @@ export const getProductById = (id) => {
         size: '',
         status: '',
         currency: '$',
-        price: '',
+        price: '50.00',
         availability: '',
     };
     return foundItem ? foundItem : defaultItem;
