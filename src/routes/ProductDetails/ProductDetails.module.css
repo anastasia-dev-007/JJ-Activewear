@@ -2,8 +2,26 @@
     width: 30vw;
     height: 20vw;
     object-fit: cover;
+    position: relative;
 }
 
+.favoritesBtn {
+    position: absolute;
+    z-index: 2;
+    right: 5%;
+    top: 5%
+}
+
+.favoritesBtn button {
+    color: rgb(140, 131, 131);
+    font-size: 25px;
+    border: solid 2px;
+    padding: 10px;
+    width: 60px;
+    border-radius: 50%;
+    border-style: none;
+    background-color: rgba(255, 255, 255, 0.595);
+}
 
 .productInfoContainer {
     display: flex;
@@ -19,11 +37,123 @@
 .allPhotos {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .photo {
     width: 150px;
     height: 200px;
     background-color: var(--brand-color);
+    /*temporary*/
+    display: flex;
+    /*temporary*/
+    align-items: center;
+    /*temporary*/
+    color: white;
+    /*temporary*/
+    text-align: center;
+    /*temporary*/
+    padding: 5px;
+}
+
+.productTitle {
+    font-size: 30px;
+    border-bottom: 1px solid;
+    border-color: rgb(216, 216, 216);
+
+}
+
+.itemCode {
+    font-size: 13px;
+}
+
+.price {
+    border-bottom: 0.1px solid;
+    border-color: rgb(216, 216, 216);
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+
+.sizes,
+.colors,
+.quantity {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 0.1px solid;
+    border-color: rgb(216, 216, 216);
+}
+
+.sizes button {
+    padding: 5px 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    width: 45px;
+    background-color: white;
+    border: solid rgb(205, 205, 205) 1px;
+    color: rgb(68, 68, 68);
+}
+
+.colors button {
+    padding: 10px 10px;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: solid rgb(215, 215, 215) 1px;
+}
+
+.quantityPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.quantityInput {
+    text-align: center;
+    padding-left: 8px;
+    border: none;
+}
+
+.quantity button {
+    padding: 0 8px;
+    background-color: white;
+    color: rgb(68, 68, 68);
+    font-size: 20px;
+    border-right: 1px solid;
+    border-left: 1px solid;
+}
+
+.addToCardBtn {
+    margin: 30px 0;
+}
+
+.addToCardBtn button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(228, 228, 228, 0.321);
+    color: rgb(74, 74, 74);
+    border: 2px solid;
+    border-color: rgb(198, 198, 198);
+}
+
+
+.accordionItem {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px;
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+.accordionList {
+    padding-left: 15px;
+    font-size: 14px;
 }

@@ -27,6 +27,13 @@
 .productCard {
     margin-bottom: 15px;
     position: relative;
+    text-decoration: none;
+    color: black;
+}
+
+.productCard:hover {
+    text-decoration: none;
+    color: black;
 }
 
 .label {

@@ -146,10 +146,10 @@ const ProductListing = () => {
               //Noi ne aflam pe pagina /
               // De pe acea pagina noi am facut redirect pe edit. Practic el la / a adaugat edit si intr-un final a fost /edit
               // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
-              <Link to={'/product-details/' + item.id} key={item.id} className={styles.productCard}>
-                <header>
+              <div key={item.id} className={styles.productCard}>
+                <Link to={'/product-details/' + item.id}>
                   <img src={item.img} alt="" />
-                </header>
+                </Link>
 
                 <div className={styles.label}>{item.status}</div>
 
@@ -163,14 +163,14 @@ const ProductListing = () => {
                   </div>
                 </div>
 
-                <div style={{ fontWeight: '600px' }}>{item.title}</div>
+                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price}</div>
 
                 <div className={styles.addToCartAndFavorites}>
                   <button className={styles.addToCartBtn}>Add to cart <i class="fa-solid fa-cart-shopping"></i>
                   </button>
                 </div>
-              </Link>
+              </div>
             ))
           }
         </div>
