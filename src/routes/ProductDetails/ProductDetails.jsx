@@ -10,19 +10,22 @@ const ProductDetails = () => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
   }, [id]);
 
+   // Check if product is null before rendering
+   if (!product) {
+    return <div>Loading...</div>; 
+  }
+
   return (
     <div>
       <header>
         <Link to={"/"}>Home | Activewear | Leggings | Workout Premium Push-Up Set</Link>
       </header>
 
-      {
-        products.map(item => (
-          <div key={item.id}>
-            <div className='productGallery'>{item.img}</div>
+          <div key={product.id}>
+            <div className='productGallery'>{product.img}</div>
 
             <div className='productDetails'>
-              <header>{item.title}</header>
+              <header>{product.title}</header>
               <p>Item code: LF028</p>
               <p>$ 50.00</p>
               <div className='sizes'>
@@ -49,7 +52,7 @@ const ProductDetails = () => {
                 </button>
               </div>
 
-              <div className='productDescription'> {/*To make tgis section scroling but fixed in size like at Moonglow */}
+              <div className='productDescription'> {/*To make this section scroling but fixed in size like on Moonglow webpage*/}
                 <header>Product description</header>
                 <div>
                   Get ready to flaunt your curves with our Premium Push-Up Set. Our push-up technology and sculpting leggings will give you a flattering silhouette that is perfect for any activity.
@@ -61,8 +64,6 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-        ))
-      }
 
       <div className='similarProducts'>
         <header>You might also like</header>
