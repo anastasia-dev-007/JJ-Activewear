@@ -1,0 +1,29 @@
+.mainPhoto {
+    width: 30vw;
+    height: 20vw;
+    object-fit: cover;
+}
+
+
+.productInfoContainer {
+    display: flex;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.productGallery {
+    display: flex;
+    gap: 30px;
+}
+
+.allPhotos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.photo {
+    width: 150px;
+    height: 200px;
+    background-color: var(--brand-color);
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { getProductById, products } from '../../products.service';
+import { getProductById } from '../../products.service';
+import styles from '../ProductDetails/ProductDetails.module.css';
+import ReactImageMagnify from 'react-image-magnify';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -16,16 +18,43 @@ const ProductDetails = () => {
         <Link to={"/"}>Home | Activewear | Leggings | Workout Premium Push-Up Set</Link>
       </header>
 
-         { ////product && ( ) - insemnca ca noi afisam ceva doar daca studentul exista!
-          product && (
-            <div key={product.id}>
-            <div className='productGallery'>{product.img}</div>
+      { ////product && ( ) - insemnca ca noi afisam ceva doar daca produsul exista!
+        product && (
+          <div key={product.id} className={styles.productInfoContainer}>
+            <div className={styles.productGallery}>
+              <div className={styles.allPhotos}>
+                <div className={styles.photo}></div>
+                <div className={styles.photo}></div>
+                <div className={styles.photo}></div>
+              </div>
+              <div className={styles.mainPhoto}>
+                {/* https://www.npmjs.com/package/react-image-magnify
+                https://www.youtube.com/watch?app=desktop&v=onUH6Op5GKQ */}
+                <ReactImageMagnify {...{
+                  smallImage: {
+                    alt: 'Wristwatch by Ted Baker London',
+                    isFluidWidth: true,
+                    src: product.img,
+                  },
+                  largeImage: {
+                    src: product.img,
+                    width: 1200,
+                    height: 1800
+                  },
+                  isHintEnabled: true,
+                  enlargedImageContainerDimensions: {
+                    width: '180%',
+                    height: '100%'
+                },
+                }} />
+                </div>
+            </div>
 
-            <div className='productDetails'>
+            <div className={styles.productDetails}>
               <header>{product.title}</header>
               <p>Item code: LF028</p>
               <p>$ 50.00</p>
-              <div className='sizes'>
+              <div className={styles.sizes}>
                 <header>Size</header>
                 <div>S</div>
                 <div>M</div>
@@ -33,7 +62,7 @@ const ProductDetails = () => {
                 <p>Size Guide</p>
               </div>
 
-              <div className='colors'>
+              <div className={styles.colors}>
                 <header>Color</header>
                 <div className='colorCircles'></div>
               </div>
@@ -61,8 +90,8 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          )
-         }
+        )
+      }
 
       <div className='similarProducts'>
         <header>You might also like</header>
