@@ -10,11 +10,6 @@ const ProductDetails = () => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
   }, [id]);
 
-   // Check if product is null before rendering
-   if (!product) {
-    return <div>Loading...</div>; 
-  }
-
   return (
     <div>
       <header>
