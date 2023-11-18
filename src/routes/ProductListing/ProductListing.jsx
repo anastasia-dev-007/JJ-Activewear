@@ -139,7 +139,14 @@ const ProductListing = () => {
         <div className={styles.ProductCardsContainer}>
           {
             products.map(item => (
-              <Link to={'product-details/' + item.id} key={item.id} className={styles.productCard}>
+              //Link-ul lucreaza in felul urmator:
+              //Daca ai slash in fata, la <Link to= - el face redirect pe pagina aia
+              // Daca nu ai slash in fata, el adauga acel link la linkul existent
+              ////In exemplul cu students lucra din motiv ca:
+              //Noi ne aflam pe pagina /
+              // De pe acea pagina noi am facut redirect pe edit. Practic el la / a adaugat edit si intr-un final a fost /edit
+              // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
+              <Link to={'/product-details/' + item.id} key={item.id} className={styles.productCard}>
                 <header>
                   <img src={item.img} alt="" />
                 </header>
