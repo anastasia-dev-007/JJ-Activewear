@@ -63,8 +63,8 @@ const ProductDetails = () => {
   };
 
   return (
-    <div>
-      <header>
+    <div className={styles.productDetailsContainer}>
+      <header className={styles.productDetailsHeader}>
         <Link to={"/"}>Home | Activewear | Leggings | Workout Premium Push-Up Set</Link>
       </header>
 
@@ -73,9 +73,9 @@ const ProductDetails = () => {
           <div key={product.id} className={styles.productInfoContainer}>
             <div className={styles.productGallery}>
               <div className={styles.allPhotos}>
-                <div className={styles.photo}>Here will be image</div>
-                <div className={styles.photo}>Here will be image</div>
-                <div className={styles.photo}>Here will be image</div>
+                <div className={styles.photo}><img src={product.img2} alt="" /></div>
+                <div className={styles.photo}><img src={product.img3} alt="" /></div>
+                <div className={styles.photo}><img src={product.img4} alt="" /></div>
               </div>
               <div className={styles.mainPhoto}>
                 <div className={styles.favoritesBtn}>
@@ -97,7 +97,7 @@ const ProductDetails = () => {
                   },
                   largeImage: {
                     src: product.img,
-                    width: 1200,
+                    width: 1400,
                     height: 1800
                   },
                   isHintEnabled: true,
@@ -172,7 +172,7 @@ const ProductDetails = () => {
       }
 
       <div className='similarProducts'>
-        <header>You might also like</header>
+        <h3>You might also like</h3>
         <PopularProducts/>
       </div>
 

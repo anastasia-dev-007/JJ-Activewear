@@ -35,12 +35,6 @@ const MyCarousel = () => {
           <img src={logo1wh} alt="logo3" width='100px' />
           <h1>ACTIVEWEAR</h1>
         </div>
-        
-          <div className={styles.question}>
-            <p>
-              DO YOU SEARCH FOR HIGH-QUALITY SCULPTING ACTIVEWEAR?
-            </p>
-          </div>
 
           <div className={styles.carouselText}>
             <p>

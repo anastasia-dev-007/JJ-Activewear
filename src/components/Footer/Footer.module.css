@@ -2,12 +2,14 @@
     padding: 20px;
     background-color: #015e6d;
 }
+
 .mainFooterContainer {
     display: flex;
     gap: 7%;
-   justify-content: center;
+    justify-content: center;
     color: white;
 }
+
 .footerColumn {
     display: flex;
     flex-direction: column;
@@ -15,9 +17,9 @@
     gap: 15px;
 }
 
-.footerColumn p{
-font-size: 15px;
-letter-spacing: 10px;
+.footerColumn p {
+    font-size: 15px;
+    letter-spacing: 10px;
 }
 
 .mainFooterContainer ul {

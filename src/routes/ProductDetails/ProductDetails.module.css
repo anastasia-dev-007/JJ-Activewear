@@ -1,5 +1,15 @@
+.productDetailsContainer {
+    margin-top: 30px;
+}
+
+.productDetailsHeader {
+    margin-left: 20px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
 .mainPhoto {
-    width: 30vw;
+    width: 32vw;
     height: 20vw;
     object-fit: cover;
     position: relative;
@@ -43,17 +53,12 @@
 .photo {
     width: 150px;
     height: 200px;
-    background-color: var(--brand-color);
-    /*temporary*/
-    display: flex;
-    /*temporary*/
-    align-items: center;
-    /*temporary*/
-    color: white;
-    /*temporary*/
-    text-align: center;
-    /*temporary*/
-    padding: 5px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+ 
 }
 
 .productTitle {
