@@ -21,7 +21,9 @@ const ProductDetails = () => {
         <Link to={"/"}>Home | Activewear | Leggings | Workout Premium Push-Up Set</Link>
       </header>
 
-          <div key={product.id}>
+         { ////product && ( ) - insemnca ca noi afisam ceva doar daca studentul exista!
+          product && (
+            <div key={product.id}>
             <div className='productGallery'>{product.img}</div>
 
             <div className='productDetails'>
@@ -64,6 +66,8 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+          )
+         }
 
       <div className='similarProducts'>
         <header>You might also like</header>
