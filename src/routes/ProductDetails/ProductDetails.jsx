@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { getProductById } from '../../products.service';
+import { getProductById, products } from '../../products.service';
 import styles from '../ProductDetails/ProductDetails.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
+import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-
+  // const [selectedSize, setSelectedSize] = useState(null);
+  // const [selectedColor, setSelectedColor] = useState(null);
+  // const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -43,7 +46,7 @@ const ProductDetails = () => {
       content: [
         "Delivery is made within 24 hours."
       ],
-    }, 
+    },
     {
       id: 3,
       title: 'Characteristics',
@@ -62,6 +65,35 @@ const ProductDetails = () => {
     }
   };
 
+  // const addToCart = () => {
+  //   if (!selectedSize) {
+  //     alert('Please select a size before adding to the cart');
+  //     return;
+  //   }
+    
+  //   const cartItem = {
+  //     id: product.id,
+  //     img: product.img,
+  //     img2: product.img2,
+  //     img3: product.img3,
+  //     img4: product.img4,
+  //     title: product.title,
+  //     color: product.color,
+  //     category: product.category,
+  //     subcategory: product.subcategory,
+  //     availableSizeS: 10,
+  //     availableSizeM: 5,
+  //     availableSizeL: 2,
+  //     status: product.status,
+  //     currency: product.currency,
+  //     price: product.price,
+  //     availability: product.availability,
+  // },
+
+  // setCart([...cart, cartItem]);
+
+  // }
+
   return (
     <div className={styles.productDetailsContainer}>
       <header className={styles.productDetailsHeader}>
@@ -78,15 +110,6 @@ const ProductDetails = () => {
                 <div className={styles.photo}><img src={product.img4} alt="" /></div>
               </div>
               <div className={styles.mainPhoto}>
-                <div className={styles.favoritesBtn}>
-                  <button>
-                    <i class="fa-regular fa-heart"></i>
-                  </button>
-                  <button style={{ display: 'none' }}>
-                    <i class="fa-solid fa-heart"></i>
-                  </button>
-
-                </div>
                 {/* https://www.npmjs.com/package/react-image-magnify
                 https://www.youtube.com/watch?app=desktop&v=onUH6Op5GKQ */}
                 <ReactImageMagnify {...{
@@ -111,12 +134,17 @@ const ProductDetails = () => {
 
             <div className={styles.productDetails}>
               <div className={styles.productTitle}>{product.title}</div>
+
               <div className={styles.itemCode}>Item code: LF028</div>
+
               <h3 className={styles.price}>$ 50.00</h3>
 
               <div className={styles.sizes}>
                 <header>Size</header>
                 <div>
+                  {/* <button onClick={() => setSelectedSize('S')} className={selectedSize === 'S' ? styles.selectedSize : ''}>S</button>
+                  <button onClick={() => setSelectedSize('M')} className={selectedSize === 'M' ? styles.selectedSize : ''}>M</button>
+                  <button onClick={() => setSelectedSize('L')} className={selectedSize === 'L' ? styles.selectedSize : ''}>L</button> */}
                   <button>S</button>
                   <button>M</button>
                   <button>L</button>
@@ -145,8 +173,19 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className={styles.addToCardBtn}>
-                <button>Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+              <div className={styles.addToCartBtnAndFavorites}>
+                <Link to={'/shopping-cart/' + product.id}>
+                  <button className={styles.addToCartBtn} >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                </Link>
+                <div className={styles.favoritesBtn}>
+                  <button>
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                  <button style={{ display: 'none' }}>
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+
+                </div>
               </div>
 
               <div className={styles.Accordions}>
@@ -173,15 +212,12 @@ const ProductDetails = () => {
 
       <div className='similarProducts'>
         <h3>You might also like</h3>
-        <PopularProducts/>
+        <PopularProducts />
       </div>
 
-      <div className='recentlyViewed'>
-        <h3>Recently Viewed Products</h3>
-        <div className='fiveCards'></div>
-      </div>
+      <MightLikeProducts />
 
-      <WhyChooseJJ/>
+      <WhyChooseJJ />
     </div>
   )
 }

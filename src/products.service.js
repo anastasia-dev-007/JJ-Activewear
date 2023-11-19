@@ -868,6 +868,8 @@ export const getProductById = (id) => {
     const defaultItem = {
         id: null,
         img: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/280215095_946063639401235_8011289012380031177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fVN55iNyKhEAX-RLDmX&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfASTM5Ge1lHQEjSu-NKDuSXwKtJRpgAnSq0gGPlBywwKw&oe=655AD6C4',
+        img2: '',
+        img3: '',
         title: '',
         color: '',
         category: 'Activewear',
@@ -879,7 +881,7 @@ export const getProductById = (id) => {
         availability: '',
     };
     return foundItem ? foundItem : defaultItem;
-}
+};
 
 //cream o functie care va adauga produse in lista initiala, dar va si modifica produsul existent daca este cazul. Acum trebuie sa verificam daca produsul are id, atunci trebuie sa il gasim si sa rescriem proprietatile lui cu ceea ce primim aici, ceea ce insemana ca el a fost modificat, iar daca id este null, atunci trebuie sa setam un nou atribut id si sa il adaugam in lista
 export const saveProduct = (product) => {
@@ -891,7 +893,7 @@ export const saveProduct = (product) => {
 
         products[productIndex] = product;
     }
-}
+};
 
 //aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
 export const deleteProduct = (id) => {
@@ -900,4 +902,4 @@ export const deleteProduct = (id) => {
     if (foundIndex > -1) {
         products.splice(foundIndex, 1);
     }
-}
+};

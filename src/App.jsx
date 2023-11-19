@@ -9,6 +9,7 @@ import ShoppingCart from './routes/ShoppingCart/ShoppingCart';
 import Checkout from './routes/Checkout/Checkout';
 import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Login from './routes/Login/Login';
+import Favorites from './routes/Favorites/Favorites';
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
           <Route path='/products-list' element={<ProductListing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
-          <Route path='/shopping-cart' element={<ShoppingCart />} />
+          <Route path='/favorites/:id' element={<Favorites />} />
+          <Route path='/shopping-cart/:id' element={<ShoppingCart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />
           <Route path='*' element={<>Page not found</>}></Route>
