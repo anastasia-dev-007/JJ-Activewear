@@ -89,15 +89,21 @@
 
 .dropDownMenuList {
     display: none;
-    position: absolute;
-    background-color: #f1f1f1;
+    position: fixed; /* Change position to fixed */
+    background-color: #ffffff;
     width: 100vw;
-    height: 30vw;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    left: -170px;
-    /* move it to the left */
-    top: 100%;
+    left: 0; /* Start from the left edge of the page */
+    padding: 20px;
+    height: 50%;
+    transition: height 2s;
+    transition-timing-function: linear;
+
+}
+
+.dropDownMenu:hover .dropDownMenuList {
+    display: block;
 }
 
 .dropDownMenuList ul {
@@ -105,23 +111,11 @@
     width: 100vw;
 }
 
-.dropDownMenu:hover .dropDownMenuList {
-    display: block;
-}
-
 .dropDownMenuContainer {
     display: flex;
+    flex-direction: row;
     gap: 20px;
-    /* Adjust the gap based on your preference */
 }
-
-.dropDownMenuContainer div {
-    flex: 1;
-    /* Each column takes up equal width */
+.menuImage img {
+    width: 20%; 
 }
-
-.dropDownMenuContainer img {
-    width: 20%;
-    /* Set the width of the image */
-}
-

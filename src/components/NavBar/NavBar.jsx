@@ -40,40 +40,64 @@ const NavBar = () => {
                     <ul className={styles.productListItems}>
                         <li>NEW ARRIVALS</li>
 
-                        <li><Link to="/products-list" style={{ textDecoration: 'none', color: 'black' }}>CATALOGUE</Link></li>
-
-                        <li className={styles.activewearList}>
+                        <li>
                             <div className={styles.dropDownMenu}>
                                 <span>ACTIVEWEAR</span>
+
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
-                                        <div>
                                             <ul>
-                                                <li>Tops & Sport Bras</li>
-                                                <li>T-shirts</li>
-                                                <li>Long-sleeve workout tops</li>
-                                                <li>Tennis Shorts</li>
-                                                <li>Leggings & Yoga Pants</li>
-                                                <li>Matching Sets</li>
-                                                <li>
-                                                    <Link to="/products-list">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link>
-                                                </li>
+                                                <li><Link to="/products-list/Activewear/Tops & Sport Bras">Tops & Sport Bras</Link></li>
+                                                <li><Link to="/products-list/Activewear/T-shirts">T-shirts</Link></li>
+                                                <li><Link to="/products-list/Activewear/Long-sleeve workout tops">Long-sleeve workout tops</Link></li>
+                                                <li><Link to="/products-list/Activewear/Tennis Shorts">Tennis Shorts</Link></li>
+                                                <li><Link to="/products-list/Activewear/Leggings & Yoga Pants">Leggings & Yoga Pants</Link></li>
+                                                <li><Link to="/products-list/Activewear/Matching Sets">Matching Sets</Link></li>
+                                                <li><Link to="/products-list/Activewear/All">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link></li>
                                             </ul>
-                                        </div>
-
-                                        <div><img width='20%' src={lp1} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li>SWIMWEAR</li>
-                        <li>ACCESSORIES</li>
+                        <li>
+                            <div className={styles.dropDownMenu}>
+                                <span>SWIMWEAR</span>
+
+                                <div className={styles.dropDownMenuList}>
+                                    <div styles={styles.dropDownMenuContainer}>
+                                        <ul>
+                                            <li>
+                                                <Link to="/products-list/Swimwear">All Swimwear <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className={styles.dropDownMenu}>
+                                <span>ACCESSORIES</span>
+
+                                <div className={styles.dropDownMenuList}>
+                                    <div styles={styles.dropDownMenuContainer}>
+                                        <ul>
+                                            <li><Link to="/products-list/Accessories/Sport Bags">Sport Bags</Link></li>
+                                            <li><Link to="/products-list/Accessories/Sport Bags">Corsets</Link></li>
+                                            <li><Link to="/products-list/Accessories/Resistance Bands">Resistance Bands</Link></li>
+                                            <li>
+                                                <Link to="/products-list/Accessories">All Accessories <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li style={{ color: 'red' }}>OFFERS</li>
                     </ul>
                 </div>
             </div>
 
-{/* Placeholder will ensure normal display of the following component to not be covered */}
+            {/* Placeholder will ensure normal display of the following component to not be covered */}
             <div className={styles.placeholder}></div>
         </nav>
     )
