@@ -3,10 +3,10 @@ import { getProducts } from '../../products.service';
 import styles from "../ProductListing/ProductListing.module.css"
 import { Link, useParams } from 'react-router-dom';
 
-const ProductListing = () => {
+const ProductListing = ({ newArrivalFilter, promoFilter }) => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const {category, subcategory} = useParams();
+  const {category, subcategory, newArrival, promo } = useParams();
 
   useEffect(() => {
     // Fetch products data
@@ -24,10 +24,19 @@ const ProductListing = () => {
       // If subcategory is selected, filter by subcategory
       filteredProducts = filteredProducts.filter(item => item.subcategory === subcategory);
     }
+
+    if (newArrivalFilter === 'Y') {
+      // If newArrivalFilter is 'Y', filter by newArrival
+      filteredProducts = filteredProducts.filter(item => item.newArrival === 'Y');
+    }
+
+    if(promoFilter === 'Y') {
+      filteredProducts = filteredProducts.filter(item => item.promo === 'Y');
+    }
   
     // Update state with filtered products
     setProducts(filteredProducts);
-  }, [category, subcategory]);
+  }, [category, subcategory, newArrival, promo]);
 
   const AccordionsData = [
     {
@@ -180,7 +189,7 @@ const ProductListing = () => {
 
                 <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
                 <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
-                <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price}</div>
+                <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
                 <div className={styles.addToCartAndFavorites}>
                   <button className={styles.addToCartBtn}>Add to cart <i class="fa-solid fa-cart-shopping"></i>

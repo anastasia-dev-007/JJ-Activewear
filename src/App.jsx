@@ -22,6 +22,8 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/products-list' element={<ProductListing />} />
           <Route path='/products-list/:category' element={<ProductListing />} />
+          <Route path='/products-list/newArrival' element={<ProductListing newArrivalFilter="Y" />} /> {/**I didn't know about this construction, but 'newArrivalFilter' is a prop defined in ProductListing component to filter products based on the condition item.newArrival === 'Y'. Chat GPT says that there is no predefined prop named newArrivalFilter in your ProductListing component. You should stick to using newArrival directly. */}
+          <Route path='/products-list/promo' element={<ProductListing promoFilter="Y"/>}/>
           <Route path='/products-list/:category/:subcategory' element={<ProductListing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />

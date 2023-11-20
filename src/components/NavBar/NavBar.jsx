@@ -40,7 +40,7 @@ const NavBar = () => {
 
                 <div className={styles.productList}>
                     <ul className={styles.productListItems}>
-                        <li>NEW ARRIVALS</li>
+                        <li><Link to="/products-list/newArrival">NEW ARRIVALS</Link></li>
 
                         <li><Link to='/products-list'>CATALOGUE</Link></li>
 
@@ -96,7 +96,7 @@ const NavBar = () => {
                                 </div>
                             </div>
                         </li>
-                        <li style={{ color: 'red' }}>OFFERS</li>
+                        <li style={{ color: 'red' }}><Link to="/products-list/promo">OFFERS</Link></li>
                     </ul>
                 </div>
             </div>
