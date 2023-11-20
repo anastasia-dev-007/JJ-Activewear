@@ -48,14 +48,15 @@ const NavBar = () => {
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
-                                        <ul>
-                                            {products.map(item =>
-                                                item.category === "Activewear" && (
-                                                    <li key={item.subcategory}>{item.subcategory}</li>
-                                                )
-                                            )}
-                                            <li>All Activewear</li>
-                                        </ul>
+                                    <ul>
+                                                <li><Link to="/products-list/Activewear/Tops & Sport Bras">Tops & Sport Bras</Link></li>
+                                                <li><Link to="/products-list/Activewear/T-shirts">T-shirts</Link></li>
+                                                <li><Link to="/products-list/Activewear/Long-sleeve workout tops">Long-sleeve workout tops</Link></li>
+                                                <li><Link to="/products-list/Activewear/Tennis Shorts">Tennis Shorts</Link></li>
+                                                <li><Link to="/products-list/Activewear/Leggings & Yoga Pants">Leggings & Yoga Pants</Link></li>
+                                                <li><Link to="/products-list/Activewear/Matching Sets">Matching Sets</Link></li>
+                                                <li><Link to="/products-list/Activewear">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link></li>
+                                            </ul>
                                     </div>
                                 </div>
                             </div>
