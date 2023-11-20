@@ -15,8 +15,7 @@ const ProductListing = () => {
     // Filter products based on category and subcategory
     const filteredProducts = data.filter(item => {
       return (
-        (item.category === category) &&
-        (item.subcategory === subcategory)
+        (item.category === category)
       );
     });
 
