@@ -11,17 +11,23 @@ const ProductListing = () => {
   useEffect(() => {
     // Fetch products data
     const data = getProducts();
-
+  
     // Filter products based on category and subcategory
-    const filteredProducts = data.filter(item => {
-      return (
-        (item.category === category)
-      );
-    });
-
+    let filteredProducts = data;
+  
+    if (category) {
+      // If category is selected, filter by category
+      filteredProducts = filteredProducts.filter(item => item.category === category);
+    }
+  
+    if (subcategory) {
+      // If subcategory is selected, filter by subcategory
+      filteredProducts = filteredProducts.filter(item => item.subcategory === subcategory);
+    }
+  
     // Update state with filtered products
     setProducts(filteredProducts);
-  }, [category, subcategory]); // Trigger the effect whenever category or subcategory changes
+  }, [category, subcategory]);
 
   const AccordionsData = [
     {
