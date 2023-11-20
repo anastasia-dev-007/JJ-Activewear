@@ -7,7 +7,6 @@ import lp1 from "../../assets/lp1.jpg";
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>
@@ -45,7 +44,7 @@ const NavBar = () => {
 
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span>ACTIVEWEAR</span>
+                                <span><Link to='/products-list?category=Activewear'>ACTIVEWEAR</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
@@ -65,7 +64,7 @@ const NavBar = () => {
                         </li>
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span>SWIMWEAR</span>
+                                <span><Link to='/products-list?category=Swimwear'>SWIMWEAR</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
@@ -80,7 +79,7 @@ const NavBar = () => {
                         </li>
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span>ACCESSORIES</span>
+                                <span><Link to='/products-list?category=Accessories'>ACCESSORIES</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
