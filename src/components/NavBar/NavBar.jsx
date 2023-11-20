@@ -8,19 +8,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { products } from '../../products.service';
 
 const NavBar = () => {
-    const navigate = useNavigate();
-
-    const applyFilter = (category) => {
-        const filteredProducts = products.filter(product => product.category === category);
-        return filteredProducts;
-    };
-
-    const handleMenuClick = (category) => {
-        const filteredProducts = applyFilter(category);
-        // Now, you can do something with the filtered products, such as navigating to a new page.
-        // For example, if you are using React Router, you can navigate like this:
-        navigate(`/products-list/${category}/All`, { filteredProducts });
-    };
 
     return (
         <nav >
@@ -62,13 +49,12 @@ const NavBar = () => {
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li id='Tops & Sport Bras'><Link to="/products-list/Activewear/Tops & Sport Bras">Tops & Sport Bras</Link></li>
-                                            <li id='T-shirts'><Link to="/products-list/Activewear/T-shirts">T-shirts</Link></li>
-                                            <li id='Long-sleeve workout tops'><Link to="/products-list/Activewear/Long-sleeve workout tops">Long-sleeve workout tops</Link></li>
-                                            <li id='Tennis Shorts'><Link to="/products-list/Activewear/Tennis Shorts">Tennis Shorts</Link></li>
-                                            <li id='Leggings & Yoga Pants'><Link to="/products-list/Activewear/Leggings & Yoga Pants">Leggings & Yoga Pants</Link></li>
-                                            <li id='Matching Sets'><Link to="/products-list/Activewear/Matching Sets">Matching Sets</Link></li>
-                                            <li id='Activewear' onClick={() => handleMenuClick('Activewear')}><Link to="/products-list/Activewear/All">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link></li>
+                                            {products.map(item =>
+                                                item.category === "Activewear" && (
+                                                    <li key={item.subcategory}>{item.subcategory}</li>
+                                                )
+                                            )}
+                                            <li>All Activewear</li>
                                         </ul>
                                     </div>
                                 </div>

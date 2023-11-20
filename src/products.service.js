@@ -848,7 +848,7 @@ export const products = [
         img4: 'https://scontent.fkiv1-1.fna.fbcdn.net/v/t39.30808-6/283443486_956654591675473_5865502572727448404_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=zLveizEgxzAAX_5qUwp&_nc_oc=AQkKGG0u_lAiAG_tu9D1CfHEHvdnuYZAjq0jtr3jAdyWMnLbSryiKqj3CWeLGLvW2qY&_nc_ht=scontent.fkiv1-1.fna&oh=00_AfD-lcfAwxi83jRIkEH22mgugskTj-rUumZcuTJxODq4Eg&oe=655D13EC',
         title: 'Product 50',
         color: 'grey',
-        category: 'Activewear',
+        category: 'Accessories',
         subcategory: 'Sport Bag',
         size: null,
         status: 'Best Seller',
