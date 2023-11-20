@@ -1,42 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { getProducts } from '../../products.service';
 import styles from "../ProductListing/ProductListing.module.css"
-import { Link, useParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
-const ProductListing = ({ newArrivalFilter, promoFilter }) => {
+const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const {category, subcategory, newArrival, promo } = useParams();
+
+  const [queryParams] = useSearchParams();
+
+  const filters = {
+    category: queryParams.get('category'),
+    subcategory: queryParams.get('subcategory'),
+  };
 
   useEffect(() => {
-    // Fetch products data
-    const data = getProducts();
+    const data = getProducts(); //fetch products data
   
-    // Filter products based on category and subcategory
-    let filteredProducts = data;
-  
-    if (category) {
-      // If category is selected, filter by category
-      filteredProducts = filteredProducts.filter(item => item.category === category);
-    }
-  
-    if (subcategory) {
-      // If subcategory is selected, filter by subcategory
-      filteredProducts = filteredProducts.filter(item => item.subcategory === subcategory);
-    }
-
-    if (newArrivalFilter === 'Y') {
-      // If newArrivalFilter is 'Y', filter by newArrival
-      filteredProducts = filteredProducts.filter(item => item.newArrival === 'Y');
-    }
-
-    if(promoFilter === 'Y') {
-      filteredProducts = filteredProducts.filter(item => item.promo === 'Y');
-    }
-  
-    // Update state with filtered products
-    setProducts(filteredProducts);
-  }, [category, subcategory, newArrival, promo]);
+    setProducts(data);//updated state
+  }, []);
 
   const AccordionsData = [
     {
