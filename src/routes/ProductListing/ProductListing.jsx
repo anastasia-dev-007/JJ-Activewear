@@ -7,18 +7,29 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
 
-  const [queryParams] = useSearchParams();
+  const [queryParams, setQueryParams] = useSearchParams();
 
   const filters = {
     category: queryParams.get('category'),
     subcategory: queryParams.get('subcategory'),
+    promo: queryParams.get('promo'),
+    newArrival: queryParams.get('newArrival'),
   };
 
+  //usage of filters
   useEffect(() => {
-    const data = getProducts(); //fetch products data
+    const data = getProducts(); // Fetch products data
   
-    setProducts(data);//updated state
-  }, []);
+    setProducts(data.filter(product => {
+      // Filter products based on query parameters
+      return (
+        (!filters.category || product.category === filters.category) &&
+        (!filters.subcategory || product.subcategory === filters.subcategory) &&
+        (!filters.promo || product.promo === filters.promo) &&
+        (!filters.newArrival || product.newArrival === filters.newArrival)
+      );
+    }));
+  }, [filters]);
 
   const AccordionsData = [
     {
@@ -102,7 +113,7 @@ const ProductListing = () => {
     <div className={styles.productListingContainer}>
       <header>
         <div className='path'>
-          <p>Home | Page with title of category selected by user</p>
+          <p>Home | Page with title of category selected by user</p> 
         </div>
 
         <div className='title'>
