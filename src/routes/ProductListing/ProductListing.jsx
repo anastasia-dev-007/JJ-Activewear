@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { getProducts } from '../../products.service';
 import styles from "../ProductListing/ProductListing.module.css"
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
-  const { category, subcategory } = useParams();
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
 
   useEffect(() => {
     // Used the `getProducts` function to fetch products data and update the state.
     const data = getProducts();
-    const filteredProducts = data.filter(product => product.category === category && product.subcategory === subcategory);
 
-    setProducts(filteredProducts);
-  }, [category, subcategory]);
+    setProducts(data);
+  }, []);
 
   const AccordionsData = [
     {

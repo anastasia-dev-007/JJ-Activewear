@@ -4,9 +4,24 @@ import logo1 from "../../assets/logo1.png";
 import EN from "../../assets/EN.png";
 import RO from "../../assets/RO.png";
 import lp1 from "../../assets/lp1.jpg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { products } from '../../products.service';
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
+    const applyFilter = (category) => {
+        const filteredProducts = products.filter(product => product.category === category);
+        return filteredProducts;
+    };
+
+    const handleMenuClick = (category) => {
+        const filteredProducts = applyFilter(category);
+        // Now, you can do something with the filtered products, such as navigating to a new page.
+        // For example, if you are using React Router, you can navigate like this:
+        navigate(`/products-list/${category}/All`, { filteredProducts });
+    };
+
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>
@@ -46,15 +61,15 @@ const NavBar = () => {
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
-                                            <ul>
-                                                <li><Link to="/products-list/Activewear/Tops & Sport Bras">Tops & Sport Bras</Link></li>
-                                                <li><Link to="/products-list/Activewear/T-shirts">T-shirts</Link></li>
-                                                <li><Link to="/products-list/Activewear/Long-sleeve workout tops">Long-sleeve workout tops</Link></li>
-                                                <li><Link to="/products-list/Activewear/Tennis Shorts">Tennis Shorts</Link></li>
-                                                <li><Link to="/products-list/Activewear/Leggings & Yoga Pants">Leggings & Yoga Pants</Link></li>
-                                                <li><Link to="/products-list/Activewear/Matching Sets">Matching Sets</Link></li>
-                                                <li><Link to="/products-list/Activewear/All">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link></li>
-                                            </ul>
+                                        <ul>
+                                            <li id='Tops & Sport Bras'><Link to="/products-list/Activewear/Tops & Sport Bras">Tops & Sport Bras</Link></li>
+                                            <li id='T-shirts'><Link to="/products-list/Activewear/T-shirts">T-shirts</Link></li>
+                                            <li id='Long-sleeve workout tops'><Link to="/products-list/Activewear/Long-sleeve workout tops">Long-sleeve workout tops</Link></li>
+                                            <li id='Tennis Shorts'><Link to="/products-list/Activewear/Tennis Shorts">Tennis Shorts</Link></li>
+                                            <li id='Leggings & Yoga Pants'><Link to="/products-list/Activewear/Leggings & Yoga Pants">Leggings & Yoga Pants</Link></li>
+                                            <li id='Matching Sets'><Link to="/products-list/Activewear/Matching Sets">Matching Sets</Link></li>
+                                            <li id='Activewear' onClick={() => handleMenuClick('Activewear')}><Link to="/products-list/Activewear/All">All Activewear <i class="fa-solid fa-arrow-right-long"></i></Link></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +81,7 @@ const NavBar = () => {
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li>
+                                            <li id='Swimwear'>
                                                 <Link to="/products-list/Swimwear">All Swimwear <i class="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
@@ -81,10 +96,10 @@ const NavBar = () => {
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li><Link to="/products-list/Accessories/Sport Bags">Sport Bags</Link></li>
-                                            <li><Link to="/products-list/Accessories/Sport Bags">Corsets</Link></li>
-                                            <li><Link to="/products-list/Accessories/Resistance Bands">Resistance Bands</Link></li>
-                                            <li>
+                                            <li id='Sport Bags'><Link to="/products-list/Accessories/Sport Bags">Sport Bags</Link></li>
+                                            <li id='Corsets'><Link to="/products-list/Accessories/Corsets">Corsets</Link></li>
+                                            <li id='Resistance Bands'><Link to="/products-list/Accessories/Resistance Bands">Resistance Bands</Link></li>
+                                            <li id='Accessories'>
                                                 <Link to="/products-list/Accessories">All Accessories <i class="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
