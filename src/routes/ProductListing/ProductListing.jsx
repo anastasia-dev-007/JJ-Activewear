@@ -7,7 +7,7 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
 
-  const [queryParams, setQueryParams] = useSearchParams();
+  const [queryParams] = useSearchParams();
 
   const filters = {
     category: queryParams.get('category'),
