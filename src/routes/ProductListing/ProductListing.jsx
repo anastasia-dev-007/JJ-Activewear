@@ -6,7 +6,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-
+  const [checkboxStates, setCheckboxStates] = useState({});
   const [queryParams] = useSearchParams();
 
   const filters = {
@@ -19,7 +19,7 @@ const ProductListing = () => {
   //usage of filters
   useEffect(() => {
     const data = getProducts(); // Fetch products data
-  
+
     setProducts(data.filter(product => {
       // Filter products based on query parameters
       return (
@@ -109,15 +109,84 @@ const ProductListing = () => {
     }
   };
 
+  const initializeCheckboxStates = () => {
+    const initialStates = {};
+    AccordionsData.forEach((item) => {
+      const accordionId = item.id;
+      initialStates[accordionId] = {};
+      item.list.forEach((listItem) => {
+        initialStates[accordionId][listItem.id] = false;
+      });
+    });
+    setCheckboxStates(initialStates);
+  };
+
+  useEffect(() => {
+    initializeCheckboxStates();
+  }, []); // Run only once when the component mounts
+
+
+  const currentFilters = {
+    color: '',
+    category: '',
+    subcategory: '',
+    bestSellerStatus: '',
+    newArrival: '',
+    price: '',
+    promo: '',
+    promoPrice: '',
+    size: '',
+  }
+
+  const applyFilters = () => {
+    return products.filter(product => {
+      let isAvailable = true;
+
+      if (currentFilters.category) {
+        isAvailable = isAvailable && product.category === currentFilters.category;
+      }
+
+      if (currentFilters.subcategory) {
+        isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
+      }
+
+      if (currentFilters.availability) {
+        isAvailable = isAvailable && product.availability === currentFilters.availability;
+      }
+
+      if (currentFilters.color) {
+        isAvailable = isAvailable && product.color === currentFilters.color;
+      }
+
+      if (currentFilters.minPrice && currentFilters.maxPrice) {
+        isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
+      }
+
+      return isAvailable;
+    });
+  };
+
+  const handleCheckboxChange = (event, accordionId, itemId) => {
+    setCheckboxStates((prevStates) => ({
+      ...prevStates,
+      [accordionId]: {
+        ...prevStates[accordionId],
+        [itemId]: event.target.checked,
+      },
+    }));
+
+    applyFilters();
+  };
+
   return (
     <div className={styles.productListingContainer}>
       <header>
         <div className='path'>
-          <p>Home | Page with title of category selected by user</p> 
+          <p><Link to='/#'>Home</Link> | Page with title of category selected by user </p>
         </div>
 
         <div className='title'>
-          <h2>Title of category selected by user</h2>
+          <h2> Title of category selected by user </h2>
         </div>
       </header>
 
@@ -142,15 +211,25 @@ const ProductListing = () => {
                 {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
                   <div className={styles.accordionList}>
                     {item.list.map(listItem => (
-                      <div key={listItem.id}>{listItem.title}</div>
+                      <div key={listItem.id}>
+                        <input type='checkbox'
+                          checked={checkboxStates[item.id][listItem.id] || false}
+                          onChange={(event) => handleCheckboxChange(event, item.id, listItem.id)}/>
+                        <span>{listItem.title}</span>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
             ))}
           </div>
-          {/* <div className='priceFilter'>
-          </div> */}
+          <div className='priceFilter'>
+            <h6>Price Filter</h6>
+            <span>from</span>
+            <input type="text" name='minPrice' id='minPrice' style={{ width: '30px' }} />
+            <span>to</span>
+            <input type="text" name='maxPrice' id='maxPrice' style={{ width: '30px' }} />
+          </div>
         </div>
 
         <div className={styles.ProductCardsContainer}>
@@ -168,7 +247,7 @@ const ProductListing = () => {
                   <img src={item.img} alt="" />
                 </Link>
 
-                <div className={styles.label}>{item.status}</div>
+                <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
                   <div>
