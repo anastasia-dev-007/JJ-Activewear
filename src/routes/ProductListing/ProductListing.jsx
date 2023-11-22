@@ -6,7 +6,6 @@ import { Link, useSearchParams } from 'react-router-dom';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const [checkboxStates, setCheckboxStates] = useState({});
   const [queryParams] = useSearchParams();
 
   const filters = {
@@ -109,23 +108,6 @@ const ProductListing = () => {
     }
   };
 
-  const initializeCheckboxStates = () => {
-    const initialStates = {};
-    AccordionsData.forEach((item) => {
-      const accordionId = item.id;
-      initialStates[accordionId] = {};
-      item.list.forEach((listItem) => {
-        initialStates[accordionId][listItem.id] = false;
-      });
-    });
-    setCheckboxStates(initialStates);
-  };
-
-  useEffect(() => {
-    initializeCheckboxStates();
-  }, []); // Run only once when the component mounts
-
-
   const currentFilters = {
     color: '',
     category: '',
@@ -166,18 +148,6 @@ const ProductListing = () => {
     });
   };
 
-  const handleCheckboxChange = (event, accordionId, itemId) => {
-    setCheckboxStates((prevStates) => ({
-      ...prevStates,
-      [accordionId]: {
-        ...prevStates[accordionId],
-        [itemId]: event.target.checked,
-      },
-    }));
-
-    applyFilters();
-  };
-
   return (
     <div className={styles.productListingContainer}>
       <header>
@@ -213,8 +183,8 @@ const ProductListing = () => {
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
                         <input type='checkbox'
-                          checked={checkboxStates[item.id][listItem.id] || false}
-                          onChange={(event) => handleCheckboxChange(event, item.id, listItem.id)}/>
+                          checked={() => {}}
+                          onChange={() => {}}/>
                         <span>{listItem.title}</span>
                       </div>
                     ))}

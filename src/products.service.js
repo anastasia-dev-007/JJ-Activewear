@@ -94,8 +94,8 @@ export const products = [
         newArrival: 'Y',
         currency: '$',
         price: 50,
-        promo: 'N',
-        promoPrice: null,
+        promo: 'Y',
+        promoPrice: 45,
         availability: 'Available',
     },
     {
@@ -274,8 +274,8 @@ export const products = [
         newArrival: 'N',
         currency: '$',
         price: 50,
-        promo: 'N',
-        promoPrice: null,
+        promo: 'Y',
+        promoPrice: 45,
         availability: 'Available',
     },
     {
@@ -294,8 +294,8 @@ export const products = [
         newArrival: 'N',
         currency: '$',
         price: 50,
-        promo: 'N',
-        promoPrice: null,
+        promo: 'Y',
+        promoPrice: 45,
         availability: 'Available',
     },
     {
@@ -334,8 +334,8 @@ export const products = [
         newArrival: 'N',
         currency: '$',
         price: 50,
-        promo: 'N',
-        promoPrice: null,
+        promo: 'Y',
+        promoPrice: 45,
         availability: 'Out of Stock',
     },
     {
