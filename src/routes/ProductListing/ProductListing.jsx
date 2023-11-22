@@ -109,34 +109,74 @@ const ProductListing = () => {
     }
   };
 
+  const initializeCheckboxStates = () => {
+    const initialStates = {};
+    AccordionsData.forEach((item) => {
+      const accordionId = item.id;
+      initialStates[accordionId] = {};
+      item.list.forEach((listItem) => {
+        initialStates[accordionId][listItem.id] = false;
+      });
+    });
+    setCheckboxStates(initialStates);
+  };
 
-  // const applyFilters = () => {
-  //   return products.filter(product => {
-  //     let isAvailable = true;
+  useEffect(() => {
+    initializeCheckboxStates();
+  }, []); // Run only once when the component mounts
 
-  //     if (currentFilters.category) {
-  //       isAvailable = isAvailable && product.category === currentFilters.category;
-  //     }
 
-  //     if (currentFilters.subcategory) {
-  //       isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
-  //     }
+  const currentFilters = {
+    color: '',
+    category: '',
+    subcategory: '',
+    bestSellerStatus: '',
+    newArrival: '',
+    price: '',
+    promo: '',
+    promoPrice: '',
+    size: '',
+  }
 
-  //     if (currentFilters.availability) {
-  //       isAvailable = isAvailable && product.availability === currentFilters.availability;
-  //     }
+  const applyFilters = () => {
+    return products.filter(product => {
+      let isAvailable = true;
 
-  //     if (currentFilters.color) {
-  //       isAvailable = isAvailable && product.color === currentFilters.color;
-  //     }
+      if (currentFilters.category) {
+        isAvailable = isAvailable && product.category === currentFilters.category;
+      }
 
-  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
-  //       isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
-  //     }
+      if (currentFilters.subcategory) {
+        isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
+      }
 
-  //     return isAvailable;
-  //   });
-  // };
+      if (currentFilters.availability) {
+        isAvailable = isAvailable && product.availability === currentFilters.availability;
+      }
+
+      if (currentFilters.color) {
+        isAvailable = isAvailable && product.color === currentFilters.color;
+      }
+
+      if (currentFilters.minPrice && currentFilters.maxPrice) {
+        isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
+      }
+
+      return isAvailable;
+    });
+  };
+
+  const handleCheckboxChange = (event, accordionId, itemId) => {
+    setCheckboxStates((prevStates) => ({
+      ...prevStates,
+      [accordionId]: {
+        ...prevStates[accordionId],
+        [itemId]: event.target.checked,
+      },
+    }));
+
+    applyFilters();
+  };
 
   return (
     <div className={styles.productListingContainer}>
@@ -173,8 +213,8 @@ const ProductListing = () => {
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
                         <input type='checkbox'
-                          checked={() => {}}
-                          onChange={() => {}}/>
+                          checked={checkboxStates[item.id][listItem.id] || false}
+                          onChange={(event) => handleCheckboxChange(event, item.id, listItem.id)}/>
                         <span>{listItem.title}</span>
                       </div>
                     ))}
