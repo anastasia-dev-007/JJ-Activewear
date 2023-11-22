@@ -109,74 +109,34 @@ const ProductListing = () => {
     }
   };
 
-  const initializeCheckboxStates = () => {
-    const initialStates = {};
-    AccordionsData.forEach((item) => {
-      const accordionId = item.id;
-      initialStates[accordionId] = {};
-      item.list.forEach((listItem) => {
-        initialStates[accordionId][listItem.id] = false;
-      });
-    });
-    setCheckboxStates(initialStates);
-  };
 
-  useEffect(() => {
-    initializeCheckboxStates();
-  }, []); // Run only once when the component mounts
+  // const applyFilters = () => {
+  //   return products.filter(product => {
+  //     let isAvailable = true;
 
+  //     if (currentFilters.category) {
+  //       isAvailable = isAvailable && product.category === currentFilters.category;
+  //     }
 
-  const currentFilters = {
-    color: '',
-    category: '',
-    subcategory: '',
-    bestSellerStatus: '',
-    newArrival: '',
-    price: '',
-    promo: '',
-    promoPrice: '',
-    size: '',
-  }
+  //     if (currentFilters.subcategory) {
+  //       isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
+  //     }
 
-  const applyFilters = () => {
-    return products.filter(product => {
-      let isAvailable = true;
+  //     if (currentFilters.availability) {
+  //       isAvailable = isAvailable && product.availability === currentFilters.availability;
+  //     }
 
-      if (currentFilters.category) {
-        isAvailable = isAvailable && product.category === currentFilters.category;
-      }
+  //     if (currentFilters.color) {
+  //       isAvailable = isAvailable && product.color === currentFilters.color;
+  //     }
 
-      if (currentFilters.subcategory) {
-        isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
-      }
+  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
+  //       isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
+  //     }
 
-      if (currentFilters.availability) {
-        isAvailable = isAvailable && product.availability === currentFilters.availability;
-      }
-
-      if (currentFilters.color) {
-        isAvailable = isAvailable && product.color === currentFilters.color;
-      }
-
-      if (currentFilters.minPrice && currentFilters.maxPrice) {
-        isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
-      }
-
-      return isAvailable;
-    });
-  };
-
-  const handleCheckboxChange = (event, accordionId, itemId) => {
-    setCheckboxStates((prevStates) => ({
-      ...prevStates,
-      [accordionId]: {
-        ...prevStates[accordionId],
-        [itemId]: event.target.checked,
-      },
-    }));
-
-    applyFilters();
-  };
+  //     return isAvailable;
+  //   });
+  // };
 
   return (
     <div className={styles.productListingContainer}>
@@ -213,8 +173,8 @@ const ProductListing = () => {
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
                         <input type='checkbox'
-                          checked={checkboxStates[item.id][listItem.id] || false}
-                          onChange={(event) => handleCheckboxChange(event, item.id, listItem.id)}/>
+                          checked={() => {}}
+                          onChange={() => {}}/>
                         <span>{listItem.title}</span>
                       </div>
                     ))}
