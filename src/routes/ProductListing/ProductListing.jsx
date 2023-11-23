@@ -89,14 +89,6 @@ const ProductListing = () => {
         { id: 10, title: '#dc3e79' },
       ],
     },
-    {
-      id: 7,
-      title: 'Price',
-      list: [
-        { id: 1, title: '#ffffff' },
-        { id: 2, title: '#dea18e' },
-      ]
-    }
   ];
 
   //toggleAccordion function is responsible for managing which accordions are open and which ones are closed.
@@ -108,45 +100,45 @@ const ProductListing = () => {
     }
   };
 
-  const currentFilters = {
-    color: '',
-    category: '',
-    subcategory: '',
-    bestSellerStatus: '',
-    newArrival: '',
-    price: '',
-    promo: '',
-    promoPrice: '',
-    size: '',
-  }
+  // const currentFilters = {
+  //   color: '',
+  //   category: '',
+  //   subcategory: '',
+  //   bestSellerStatus: '',
+  //   newArrival: '',
+  //   price: '',
+  //   promo: '',
+  //   promoPrice: '',
+  //   size: '',
+  // }
 
-  const applyFilters = () => {
-    return products.filter(product => {
-      let isAvailable = true;
+  // const applyFilters = () => {
+  //   return products.filter(product => {
+  //     let isAvailable = true;
 
-      if (currentFilters.category) {
-        isAvailable = isAvailable && product.category === currentFilters.category;
-      }
+  //     if (currentFilters.category) {
+  //       isAvailable = isAvailable && product.category === currentFilters.category;
+  //     }
 
-      if (currentFilters.subcategory) {
-        isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
-      }
+  //     if (currentFilters.subcategory) {
+  //       isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
+  //     }
 
-      if (currentFilters.availability) {
-        isAvailable = isAvailable && product.availability === currentFilters.availability;
-      }
+  //     if (currentFilters.availability) {
+  //       isAvailable = isAvailable && product.availability === currentFilters.availability;
+  //     }
 
-      if (currentFilters.color) {
-        isAvailable = isAvailable && product.color === currentFilters.color;
-      }
+  //     if (currentFilters.color) {
+  //       isAvailable = isAvailable && product.color === currentFilters.color;
+  //     }
 
-      if (currentFilters.minPrice && currentFilters.maxPrice) {
-        isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
-      }
+  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
+  //       isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
+  //     }
 
-      return isAvailable;
-    });
-  };
+  //     return isAvailable;
+  //   });
+  // };
 
   return (
     <div className={styles.productListingContainer}>
@@ -182,9 +174,10 @@ const ProductListing = () => {
                   <div className={styles.accordionList}>
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
-                        <input type='checkbox'
+                        <input type='checkbox' />
+                        {/* <input type='checkbox'
                           checked={() => {}}
-                          onChange={() => {}}/>
+                          onChange={() => {}}/> */}
                         <span>{listItem.title}</span>
                       </div>
                     ))}
@@ -193,12 +186,31 @@ const ProductListing = () => {
               </div>
             ))}
           </div>
-          <div className='priceFilter'>
-            <h6>Price Filter</h6>
-            <span>from</span>
-            <input type="text" name='minPrice' id='minPrice' style={{ width: '30px' }} />
-            <span>to</span>
-            <input type="text" name='maxPrice' id='maxPrice' style={{ width: '30px' }} />
+
+          {/**Price Filter */}
+          <div className={styles.accordionItem}>
+            <div
+              className={styles.accordionHeader}
+              onClick={() => toggleAccordion('price-filter')}
+            >
+              <div>Price Filter</div>
+              <div>
+                {openAccordions.includes('price-filter') ? (
+                  <i className="fa-solid fa-chevron-up"></i>
+                ) : (
+                  <i className="fa-solid fa-chevron-down"></i>
+                )}
+              </div>
+            </div>
+            {openAccordions.includes('price-filter') && (
+              <div className={styles.accordionList}>
+                <h6>Price Filter</h6>
+                <span>from</span>
+                <input type="text" name="minPrice" id="minPrice" style={{ width: '30px' }} />
+                <span>to</span>
+                <input type="text" name="maxPrice" id="maxPrice" style={{ width: '30px' }} />
+              </div>
+            )}
           </div>
         </div>
 
