@@ -91,7 +91,7 @@ const ProductListing = () => {
     },
   ];
 
-  //toggleAccordion function is responsible for managing which accordions are open and which ones are closed.
+  //toggleAccordion function is responsible for managing which accordions are open and which are closed.
   const toggleAccordion = (id) => {
     if (openAccordions.includes(id)) { //  // Check if the accordion with this id is already in the openAccordions array
       setOpenAccordions(openAccordions.filter(acc => acc !== id));  // If it is already open, close it by updating openAccordions to exclude the current id. If the accordion is already open ('includes' returns 'true'), it removes that id from the openAccordions array. It uses the 'filter' function to create a new array that includes all the items from openAccordions except the one with the id clicked on.
@@ -99,6 +99,19 @@ const ProductListing = () => {
       setOpenAccordions([...openAccordions, id]); //If the accordion is closed ('includes' returns 'false'), means it's opening. So, it sets the openAccordions array to a new array that contains all the existing items from openAccordions ([...openAccordions]) and adds the new id to it.
     }
   };
+//  but if I would want to close the rest of the open accordions when opening a new one I would use this function:
+// const toggleAccordion = (id) => {
+//   if (openAccordions.includes(id)) {
+//     // If the accordion with this id is already open, close all accordions.
+//     setOpenAccordions([]);
+//   } else {
+//     // If the accordion is closed, close all accordions and open the selected one.
+//     setOpenAccordions([id]);
+//   }
+// };
+
+
+
 
   // const currentFilters = {
   //   color: '',
@@ -166,7 +179,8 @@ const ProductListing = () => {
           <div className={styles.Accordions}>
             {AccordionsData.map(item => (
               <div key={item.id} className={styles.accordionItem}>
-                <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
+                <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}> 
+                {/* //The purpose of passing item.id as an argument is to uniquely identify this accordion, toggleAccordion function keeps track of which accordions are open and which are closed. By passing an identifier, the function knows specifically which accordion should be toggled. */}
                   <div>{item.title}</div>
                   <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
@@ -191,18 +205,18 @@ const ProductListing = () => {
           <div className={styles.accordionItem}>
             <div
               className={styles.accordionHeader}
-              onClick={() => toggleAccordion('price-filter')}
+              onClick={() => toggleAccordion('priceFilter')} //WHY HERE I PUT STRING?
             >
-              <div>Price Filter</div>
+              <div>Price</div>
               <div>
-                {openAccordions.includes('price-filter') ? (
+                {openAccordions.includes('priceFilter') ? (//WHY HERE I PUT A STRING?
                   <i className="fa-solid fa-chevron-up"></i>
                 ) : (
                   <i className="fa-solid fa-chevron-down"></i>
-                )}
+                )} {/** dynamic rendering of icon up|down based on whether the 'price-filter' accordion is open or closed, this line is checking if the 'price-filter' is present in the openAccordions array. */}
               </div>
             </div>
-            {openAccordions.includes('price-filter') && (
+            {openAccordions.includes('priceFilter') && ( //this line checks if the 'price-filter' accordion is open and if true, it renders the content of accordion.
               <div className={styles.accordionList}>
                 <h6>Price Filter</h6>
                 <span>from</span>
