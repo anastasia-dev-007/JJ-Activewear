@@ -6,9 +6,10 @@ import { Link, useSearchParams } from 'react-router-dom';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const [queryParams] = useSearchParams();
+  const [queryParams] = useSearchParams(); //for links from NavBar to ProductDetails
   const [selectedFilteringCriteria, setSelectedFilteringCriteria] = useState(null);
 
+  //for links from NavBar to ProductDetails
   const filters = {
     category: queryParams.get('category'),
     subcategory: queryParams.get('subcategory'),
@@ -16,7 +17,7 @@ const ProductListing = () => {
     newArrival: queryParams.get('newArrival'),
   };
 
-  //usage of filters
+  //usage of filters for links from NavBar to ProductDetails
   useEffect(() => {
     const data = getProducts(); // Fetch products data
 
