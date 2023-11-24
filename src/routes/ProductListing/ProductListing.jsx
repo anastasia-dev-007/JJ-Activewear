@@ -16,7 +16,7 @@ const ProductListing = () => {
     color: '',
     minPrice: '',
     maxPrice: '',
-  })
+  });
 
   //for links from NavBar to ProductDetails
   const filters = {
@@ -55,7 +55,8 @@ const ProductListing = () => {
         { id: 3, title: 'Long-sleeve workout tops' },
         { id: 4, title: 'Tennis Shorts' },
         { id: 5, title: 'Leggings & Yoga Pants' },
-        { id: 6, title: 'Matching Sets' }]
+        { id: 6, title: 'Matching Sets' },
+        { id: 7, title: 'All Activewear' }]
     },
     {
       id: 2,
@@ -63,13 +64,16 @@ const ProductListing = () => {
       list: [
         { id: 1, title: 'Sport Bags' },
         { id: 2, title: 'Corsets' },
-        { id: 3, title: 'Resistance Bands' }
+        { id: 3, title: 'Resistance Bands' },
+        { id: 4, title: 'All Accessories' }
       ]
     },
     {
       id: 3,
       accordionTitle: 'Swimwear',
-      list: [{ id: 1, title: 'Swimwear' },]
+      list: [
+        { id: 1, title: 'Swimwear' },
+      { id: 2, title: 'All Swimwear' }]
     },
     {
       id: 4,

@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./NavBar.module.css"
 import { Link } from 'react-router-dom';
+import { products } from '../../products.service';
 
 const NavBar = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
+
+    const handleSearchClick = () => {
+        const result = products.filter(product =>
+            product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.subcategory.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        setFilteredProducts(result); // Update the filtered products
+    };
+
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>
@@ -16,9 +31,14 @@ const NavBar = () => {
 
                     <div className={styles.navBarLeft}>
                         <div className={styles.searchContainer}>
-                            <input className={styles.searchInput} type="text" placeholder='Search' />
+                            <input
+                                className={styles.searchInput}
+                                type="text"
+                                placeholder='Search'
+                                value={searchQuery}
+                                onInput={(event) => { setSearchQuery(event.target.value) }} />
                             <div className={styles.searchIcon} >
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-magnifying-glass" onClick={handleSearchClick}></i>
                             </div>
                         </div>
 
