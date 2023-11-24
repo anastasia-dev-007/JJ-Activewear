@@ -105,9 +105,9 @@ const ProductDetails = () => {
           <div key={product.id} className={styles.productInfoContainer}>
             <div className={styles.productGallery}>
               <div className={styles.allPhotos}>
-                <div className={styles.photo}><img src={product.img2} alt="" /></div>
-                <div className={styles.photo}><img src={product.img3} alt="" /></div>
-                <div className={styles.photo}><img src={product.img4} alt="" /></div>
+                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[1]}` : ''} alt="" /></div>
+                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[2]}` : ''} alt="" /></div>
+                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[3]}` : ''} alt="" /></div>
               </div>
               <div className={styles.mainPhoto}>
                 {/* https://www.npmjs.com/package/react-image-magnify
@@ -116,10 +116,10 @@ const ProductDetails = () => {
                   smallImage: {
                     alt: 'Wristwatch by Ted Baker London',
                     isFluidWidth: true,
-                    src: product.img,
+                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[0]}` : '',
                   },
                   largeImage: {
-                    src: product.img,
+                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[0]}` : '',
                     width: 1400,
                     height: 1800
                   },

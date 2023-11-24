@@ -1,5 +1,4 @@
 import React from 'react'
-import logo1wh from "../../assets/logo1wh.png";
 import styles from "./Footer.module.css"
 
 const Footer = () => {
@@ -7,7 +6,7 @@ const Footer = () => {
         <footer className={styles.footerContainer}>
             <div className={styles.mainFooterContainer}>
                 <div className={styles.footerColumn}>
-                    <img width='100px' src={logo1wh} alt="logo3" />
+                    <img width='100px' src='"/assets/logo1wh.png"' alt="logo3" />
                     <p>ACTIVEWEAR</p>
                 </div>
                 <div className={styles.footerColumn}>

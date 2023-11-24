@@ -7,6 +7,7 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   const [queryParams] = useSearchParams();
+  const [selectedFilteringCriteria, setSelectedFilteringCriteria] = useState(null);
 
   const filters = {
     category: queryParams.get('category'),
@@ -28,7 +29,7 @@ const ProductListing = () => {
         (!filters.newArrival || product.newArrival === filters.newArrival)
       );
     }));
-  }, [filters]);
+  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
   const AccordionsData = [
     {
@@ -99,19 +100,16 @@ const ProductListing = () => {
       setOpenAccordions([...openAccordions, id]); //If the accordion is closed ('includes' returns 'false'), means it's opening. So, it sets the openAccordions array to a new array that contains all the existing items from openAccordions ([...openAccordions]) and adds the new id to it.
     }
   };
-//  but if I would want to close the rest of the open accordions when opening a new one I would use this function:
-// const toggleAccordion = (id) => {
-//   if (openAccordions.includes(id)) {
-//     // If the accordion with this id is already open, close all accordions.
-//     setOpenAccordions([]);
-//   } else {
-//     // If the accordion is closed, close all accordions and open the selected one.
-//     setOpenAccordions([id]);
-//   }
-// };
-
-
-
+  //  but if I would want to close the rest of the open accordions when opening a new one I would use this function:
+  // const toggleAccordion = (id) => {
+  //   if (openAccordions.includes(id)) {
+  //     // If the accordion with this id is already open, close all accordions.
+  //     setOpenAccordions([]);
+  //   } else {
+  //     // If the accordion is closed, close all accordions and open the selected one.
+  //     setOpenAccordions([id]);
+  //   }
+  // };
 
   // const currentFilters = {
   //   color: '',
@@ -153,6 +151,60 @@ const ProductListing = () => {
   //   });
   // };
 
+  //-----InputFilter------
+  const [query, setQuery] = useState('');
+
+  const handleInputChange = event => {
+    setQuery(event.target.value);
+  }
+  const filteredItems = products.filter(product => product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase() !== -1)
+  );
+
+  //-----Checkbox Filter------
+  const handleCheckboxChange = (event) => {
+    const value = event.target?.value; // ?. (optional chaining) operator helps prevent the error if event.target is null or undefined.
+
+    if (value !== undefined) {
+      setSelectedFilteringCriteria((prevSelected) => {
+        if (prevSelected.includes(value)) {
+          return prevSelected.filter((item) => item !== value);
+        } else {
+          return [...prevSelected, value];
+        }
+      });
+    }
+  };
+
+  //-----Main Filter Function------
+  const applyFiltering = (products, selected, query) => {
+    let filteredProducts = products;
+
+    //-----Filtering Input Items------
+    if (query) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    // Selected Filters
+    if (selected && selected.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        selected.some((criteria) =>
+          typeof product.price === 'number'
+            ? product.price.toString() === criteria
+            : product.category === criteria ||
+            product.size === criteria ||
+            product.availability === criteria ||
+            product.color === criteria ||
+            product.title === criteria
+        )
+      );
+    }
+
+    return filteredProducts;
+  };
+
+
   return (
     <div className={styles.productListingContainer}>
       <header>
@@ -176,11 +228,16 @@ const ProductListing = () => {
 
       <div className={styles.filterAndCardsContainer}>
         <div className={styles.filterContainer}>
+          <input
+            type="text"
+            placeholder='Search'
+            onChange={handleInputChange} />
+
           <div className={styles.Accordions}>
             {AccordionsData.map(item => (
               <div key={item.id} className={styles.accordionItem}>
-                <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}> 
-                {/* //The purpose of passing item.id as an argument is to uniquely identify this accordion, toggleAccordion function keeps track of which accordions are open and which are closed. By passing an identifier, the function knows specifically which accordion should be toggled. */}
+                <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
+                  {/* //The purpose of passing item.id as an argument is to uniquely identify this accordion, toggleAccordion function keeps track of which accordions are open and which are closed. By passing an identifier, the function knows specifically which accordion should be toggled. */}
                   <div>{item.accordionTitle}</div>
                   <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
@@ -188,10 +245,11 @@ const ProductListing = () => {
                   <div className={styles.accordionList}>
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
-                        <input type='checkbox' />
-                        {/* <input type='checkbox'
-                          checked={() => {}}
-                          onChange={() => {}}/> */}
+                        <input type='checkbox'
+                          value={listItem.title}
+                          checked={selectedFilteringCriteria && selectedFilteringCriteria.includes(listItem.title)}
+                          onChange={(event) => { handleCheckboxChange(event.target.value) }} />
+
                         <span>{listItem.title}</span>
                       </div>
                     ))}
@@ -226,6 +284,10 @@ const ProductListing = () => {
               </div>
             )}
           </div>
+
+          <button>Apply Filters</button>
+          <button>Reset Filters</button>
+
         </div>
 
         <div className={styles.ProductCardsContainer}>
@@ -240,7 +302,7 @@ const ProductListing = () => {
               // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
               <div key={item.id} className={styles.productCard}>
                 <Link to={'/product-details/' + item.id}>
-                  <img src={item.img} alt="" />
+                <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
                 </Link>
 
                 <div className={styles.label}>{item.bestSellerStatus}</div>

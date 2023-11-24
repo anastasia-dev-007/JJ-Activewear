@@ -1,33 +1,29 @@
 import React from 'react'
 import styles from "./WhyChooseJJ.module.css"
-import sculpt from "../../assets/sculpt.png"
-import durability from "../../assets/durability.png"
-import fashion from "../../assets/fashion.png"
-import guarantee from "../../assets/guarantee.png"
 
 const WhyChooseJJ = () => {
     const reasonsToChooseJJ = [
         {
             id: 1,
-            icon: fashion,
+            icon: "/assets/fashion.png",
             title: 'Versatile Style',
             description: 'Beyond functionality, JJ Activewear are designed with a sleek and stylish aesthetic, making them suitable for both exercise and casual wear. You can effortlessly transition from the gym to running errands while looking fashionable.',
         },
         {
             id: 2,
-            icon: durability,
+            icon: "/assets/durability.png",
             title: 'Tightening effect',
             description: 'Our products have the ability to provide a firm and sculpted appearance to your legs and waist. These leggings are designed with specialized compression fabric that offers optimal support and shaping, helping to smooth out and tighten your silhouette. Enjoy a confident and streamlined look with our tightening effect leggings.',
         },
         {
             id: 3,
-            icon: sculpt,
+            icon: "/assets/sculpt.png",
             title: 'Enhanced Push-Up Effect',
             description: 'Our leggings are designed with special contouring to provide a flattering push-up effect, giving you a more defined and lifted appearance.',
         },
         {
             id: 4,
-            icon: guarantee,
+            icon: "/assets/guarantee.png",
             title: 'Superior Comfort',
             description: 'Our leggings and longsleeve are crafted from high-quality, breathable fabrics that offer excellent stretch and support, allowing for unrestricted movement during workouts or everyday wear.',
         },

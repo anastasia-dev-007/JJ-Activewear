@@ -1,9 +1,5 @@
 import React from 'react'
 import styles from "./NavBar.module.css"
-import logo1 from "../../assets/logo1.png";
-import EN from "../../assets/EN.png";
-import RO from "../../assets/RO.png";
-import lp1 from "../../assets/lp1.jpg";
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -13,7 +9,7 @@ const NavBar = () => {
                 <div className={styles.navBarContainer}>
                     <Link to="/" className={styles.navBarLogo}>
                         <div className={styles.navBarLogo}>
-                            <img src={logo1} alt="logo1" />
+                            <img src="/assets/logo1.png" alt="logo1" />
 
                             <p>ACTIVEWEAR</p>
                         </div></Link>
@@ -30,8 +26,8 @@ const NavBar = () => {
                         <i class="fa-regular fa-heart"></i>
                         <i class="fa-solid fa-cart-shopping"></i>
                         <select id="language">
-                            <option value="EN">EN<img src={EN} alt="EN" /></option> {/**flag is not displayed((( */}
-                            <option value="RO">RO<img src={RO} alt="RO" /></option>{/**flag is not displayed((( */}
+                            <option value="EN">EN<img src="/assets/EN.png" alt="EN" /></option> {/**flag is not displayed((( */}
+                            <option value="RO">RO<img src="/assets/RO.png" alt="RO" /></option>{/**flag is not displayed((( */}
                         </select>
                     </div>
                 </div>

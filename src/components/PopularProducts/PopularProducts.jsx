@@ -1,5 +1,4 @@
 import React from 'react'
-import pop1 from "../../assets/pop1.jpg"
 import styles from "./PopularProducts.module.css"
 
 
@@ -7,7 +6,7 @@ const PopularProducts = () => {
     const popularProductsList = [
         {
             id: 1,
-            img: pop1,
+            img: "/assets/pop1.jpg",
             title: 'Matching Set',
             description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
             currency: '$',
@@ -15,7 +14,7 @@ const PopularProducts = () => {
         },
         {
             id: 2,
-            img: pop1,
+            img: "/assets/pop1.jpg",
             title: 'Matching Set',
             description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
             currency: '$',
@@ -23,7 +22,7 @@ const PopularProducts = () => {
         },
         {
             id: 3,
-            img: pop1,
+            img: "/assets/pop1.jpg",
             title: 'Matching Set',
             description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
             currency: '$',

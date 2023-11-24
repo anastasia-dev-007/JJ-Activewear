@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import lp1 from "../../assets/lp1.jpg";
-import lp2 from "../../assets/lp2.jpg";
-import lp3 from "../../assets/lp3.jpg";
-import logo1wh from "../../assets/logo1wh.png";
 import styles from './Carousel.module.css';
 import { Link } from 'react-router-dom';
 
 const MyCarousel = () => {
   const [index, setIndex] = useState(0);
-  const images = [lp1, lp2, lp3];
+  const images = ["/assets/lp1.jpg", "/assets/lp2.jpg", "/assets/lp3.jpg"];
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -32,7 +28,7 @@ const MyCarousel = () => {
         <div className={styles.textContainer}>
 
         <div>
-          <img src={logo1wh} alt="logo3" width='100px' />
+          <img src={"/assets/logo1wh.png"} alt="logo3" width='100px' />
           <h1>ACTIVEWEAR</h1>
         </div>
 

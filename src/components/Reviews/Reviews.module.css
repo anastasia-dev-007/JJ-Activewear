@@ -11,7 +11,7 @@ justify-content: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../../assets/lp1.jpg");
+    background-image: url("/public/assets/lp1.jpg");
     background-position: center;
     background-size: cover;
     height: 200px;
