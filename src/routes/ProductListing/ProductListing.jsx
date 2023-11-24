@@ -7,7 +7,7 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   const [queryParams] = useSearchParams(); //for links from NavBar to ProductDetails
-  const [selectedFilteringCriteria, setSelectedFilteringCriteria] = useState(null);
+  const [isChecked, setIsChecked] = useState({});
 
   //for links from NavBar to ProductDetails
   const filters = {
@@ -112,17 +112,13 @@ const ProductListing = () => {
   //   }
   // };
 
-  // const currentFilters = {
-  //   color: '',
-  //   category: '',
-  //   subcategory: '',
-  //   bestSellerStatus: '',
-  //   newArrival: '',
-  //   price: '',
-  //   promo: '',
-  //   promoPrice: '',
-  //   size: '',
-  // }
+  const currentFilters = {
+    subcategory: '',
+    size: '',
+    availability: '',
+    color: '',
+    price: '',
+  }
 
   // const applyFilters = () => {
   //   return products.filter(product => {
@@ -152,59 +148,14 @@ const ProductListing = () => {
   //   });
   // };
 
-  //-----InputFilter------
-  const [query, setQuery] = useState('');
-
-  const handleInputChange = event => {
-    setQuery(event.target.value);
-  }
-  const filteredItems = products.filter(product => product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase() !== -1)
-  );
-
-  //-----Checkbox Filter------
-  const handleCheckboxChange = (event) => {
-    const value = event.target?.value; // ?. (optional chaining) operator helps prevent the error if event.target is null or undefined.
-
-    if (value !== undefined) {
-      setSelectedFilteringCriteria((prevSelected) => {
-        if (prevSelected.includes(value)) {
-          return prevSelected.filter((item) => item !== value);
-        } else {
-          return [...prevSelected, value];
-        }
-      });
-    }
+  const handleCheckBoxChange = (accordionId, itemId) => {
+    setIsChecked((prevStates) => {
+      const accordionState = { ...prevStates[accordionId] };
+      accordionState[itemId] = !accordionState[itemId];
+      const newStates = { ...prevStates, [accordionId]: accordionState };
+      return newStates;
+    });
   };
-
-  //-----Main Filter Function------
-  const applyFiltering = (products, selected, query) => {
-    let filteredProducts = products;
-
-    //-----Filtering Input Items------
-    if (query) {
-      filteredProducts = filteredProducts.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase())
-      );
-    }
-
-    // Selected Filters
-    if (selected && selected.length > 0) {
-      filteredProducts = filteredProducts.filter((product) =>
-        selected.some((criteria) =>
-          typeof product.price === 'number'
-            ? product.price.toString() === criteria
-            : product.category === criteria ||
-            product.size === criteria ||
-            product.availability === criteria ||
-            product.color === criteria ||
-            product.title === criteria
-        )
-      );
-    }
-
-    return filteredProducts;
-  };
-
 
   return (
     <div className={styles.productListingContainer}>
@@ -229,11 +180,6 @@ const ProductListing = () => {
 
       <div className={styles.filterAndCardsContainer}>
         <div className={styles.filterContainer}>
-          <input
-            type="text"
-            placeholder='Search'
-            onChange={handleInputChange} />
-
           <div className={styles.Accordions}>
             {AccordionsData.map(item => (
               <div key={item.id} className={styles.accordionItem}>
@@ -247,9 +193,8 @@ const ProductListing = () => {
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
                         <input type='checkbox'
-                          value={listItem.title}
-                          checked={selectedFilteringCriteria && selectedFilteringCriteria.includes(listItem.title)}
-                          onChange={(event) => { handleCheckboxChange(event.target.value) }} />
+                          checked={isChecked[item.id] && isChecked[item.id][listItem.id]}
+                          onChange={() => handleCheckBoxChange(item.id, listItem.id)} />
 
                         <span>{listItem.title}</span>
                       </div>
@@ -278,10 +223,7 @@ const ProductListing = () => {
             {openAccordions.includes('priceFilter') && ( //this line checks if the 'price-filter' accordion is open and if true, it renders the content of accordion.
               <div className={styles.accordionList}>
                 <h6>Price Filter</h6>
-                <span>from</span>
-                <input type="text" name="minPrice" id="minPrice" style={{ width: '30px' }} />
-                <span>to</span>
-                <input type="text" name="maxPrice" id="maxPrice" style={{ width: '30px' }} />
+                <input type="range" id="priceRange" name="priceRange" min="0" max="5000" />
               </div>
             )}
           </div>
