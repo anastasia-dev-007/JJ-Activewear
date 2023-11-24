@@ -33,7 +33,7 @@ const ProductListing = () => {
   const AccordionsData = [
     {
       id: 1,
-      title: 'Activewear',
+      accordionTitle: 'Activewear',
       list: [
         { id: 1, title: 'Tops & Sport Bars' },
         { id: 2, title: 'T-shirts' },
@@ -44,7 +44,7 @@ const ProductListing = () => {
     },
     {
       id: 2,
-      title: 'Accessories',
+      accordionTitle: 'Accessories',
       list: [
         { id: 1, title: 'Sport Bags' },
         { id: 2, title: 'Corsets' },
@@ -53,12 +53,12 @@ const ProductListing = () => {
     },
     {
       id: 3,
-      title: 'Swimwear',
+      accordionTitle: 'Swimwear',
       list: [{ id: 1, title: 'Swimwear' },]
     },
     {
       id: 4,
-      title: 'Size',
+      accordionTitle: 'Size',
       list: [
         { id: 1, title: 'S' },
         { id: 2, title: 'M' },
@@ -67,7 +67,7 @@ const ProductListing = () => {
     },
     {
       id: 5,
-      title: 'Availability',
+      accordionTitle: 'Availability',
       list: [
         { id: 1, title: 'Available' },
         { id: 2, title: 'Out of stock' },
@@ -75,7 +75,7 @@ const ProductListing = () => {
     },
     {
       id: 6,
-      title: 'Colors',
+      accordionTitle: 'Colors',
       list: [
         { id: 1, title: '#ffffff' },
         { id: 2, title: '#dea18e' },
@@ -181,7 +181,7 @@ const ProductListing = () => {
               <div key={item.id} className={styles.accordionItem}>
                 <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}> 
                 {/* //The purpose of passing item.id as an argument is to uniquely identify this accordion, toggleAccordion function keeps track of which accordions are open and which are closed. By passing an identifier, the function knows specifically which accordion should be toggled. */}
-                  <div>{item.title}</div>
+                  <div>{item.accordionTitle}</div>
                   <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
                 {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
