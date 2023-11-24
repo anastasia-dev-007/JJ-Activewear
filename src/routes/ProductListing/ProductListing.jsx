@@ -8,6 +8,15 @@ const ProductListing = () => {
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   const [queryParams] = useSearchParams(); //for links from NavBar to ProductDetails
   const [isChecked, setIsChecked] = useState({});
+  const [currentFilters, setCurrentFilters] = useState({
+    category: '',
+    subcategory: '',
+    size: '',
+    availability: '',
+    color: '',
+    minPrice: '',
+    maxPrice: '',
+  })
 
   //for links from NavBar to ProductDetails
   const filters = {
@@ -27,10 +36,14 @@ const ProductListing = () => {
         (!filters.category || product.category === filters.category) &&
         (!filters.subcategory || product.subcategory === filters.subcategory) &&
         (!filters.promo || product.promo === filters.promo) &&
-        (!filters.newArrival || product.newArrival === filters.newArrival)
+        (!filters.newArrival || product.newArrival === filters.newArrival) &&
+        (!isChecked[1] || isChecked[1][product.subcategory]) &&
+        (!isChecked[1] || isChecked[1][product.size]) &&
+        (!isChecked[1] || isChecked[1][product.availability]) &&
+        (!isChecked[1] || isChecked[1][product.color])
       );
     }));
-  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+  }, [queryParams, isChecked]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
   const AccordionsData = [
     {
@@ -112,42 +125,6 @@ const ProductListing = () => {
   //   }
   // };
 
-  const currentFilters = {
-    subcategory: '',
-    size: '',
-    availability: '',
-    color: '',
-    price: '',
-  }
-
-  // const applyFilters = () => {
-  //   return products.filter(product => {
-  //     let isAvailable = true;
-
-  //     if (currentFilters.category) {
-  //       isAvailable = isAvailable && product.category === currentFilters.category;
-  //     }
-
-  //     if (currentFilters.subcategory) {
-  //       isAvailable = isAvailable && product.subcategory === currentFilters.subcategory;
-  //     }
-
-  //     if (currentFilters.availability) {
-  //       isAvailable = isAvailable && product.availability === currentFilters.availability;
-  //     }
-
-  //     if (currentFilters.color) {
-  //       isAvailable = isAvailable && product.color === currentFilters.color;
-  //     }
-
-  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
-  //       isAvailable = isAvailable && (product.price >= currentFilters.minPrice && product.price <= currentFilters.maxPrice);
-  //     }
-
-  //     return isAvailable;
-  //   });
-  // };
-
   const handleCheckBoxChange = (accordionId, itemId) => {
     setIsChecked((prevStates) => {
       const accordionState = { ...prevStates[accordionId] };
@@ -156,6 +133,49 @@ const ProductListing = () => {
       return newStates;
     });
   };
+
+  const applyFilters = () => {
+    return products.filter(product => {
+      let isAvailable = true;
+
+      if (currentFilters.category && product.category !== currentFilters.category) {
+        isAvailable = false;
+      }
+
+      if (currentFilters.subcategory && product.subcategory !== currentFilters.subcategory) {
+        isAvailable = false;
+      }
+
+      if (currentFilters.size && product.size !== currentFilters.size) {
+        isAvailable = false;
+      }
+
+      if (currentFilters.availability && product.availability !== currentFilters.availability) {
+        isAvailable = false;
+      }
+
+      if (currentFilters.color && product.color !== currentFilters.color) {
+        isAvailable = false;
+      }
+
+      if (currentFilters.minPrice && currentFilters.maxPrice) {
+        const productPrice = product.price || 0; // Assuming product.price is a number
+        const minPrice = parseFloat(currentFilters.minPrice);
+        const maxPrice = parseFloat(currentFilters.maxPrice);
+
+        isAvailable = isAvailable && (productPrice >= minPrice && productPrice <= maxPrice);
+      }
+
+      return isAvailable;
+    });
+  };
+
+  const handleFilterChange = (filterType, value) => {
+    setCurrentFilters(prevFilters => ({prevFilters, [filterType]: value}));
+
+    const filteredProducts = applyFilters();
+    setProducts(filteredProducts);
+  }
 
   return (
     <div className={styles.productListingContainer}>
@@ -228,7 +248,7 @@ const ProductListing = () => {
             )}
           </div>
 
-          <button>Apply Filters</button>
+          <button onClick={handleFilterChange}>Apply Filters</button>
           <button>Reset Filters</button>
 
         </div>
@@ -245,7 +265,7 @@ const ProductListing = () => {
               // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
               <div key={item.id} className={styles.productCard}>
                 <Link to={'/product-details/' + item.id}>
-                <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                  <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
                 </Link>
 
                 <div className={styles.label}>{item.bestSellerStatus}</div>
