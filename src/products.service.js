@@ -937,6 +937,7 @@ export const products = [
         color: 'grey',
         category: 'Accessories',
         subcategory: 'Sport Bag',
+        subcategoryCode: 'sport-bags',
         size: null,
         quantity: 10,
         bestSellerStatus: 'Best Seller',

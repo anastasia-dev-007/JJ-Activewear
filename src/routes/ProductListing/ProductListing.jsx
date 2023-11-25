@@ -26,7 +26,7 @@ const ProductListing = () => {
     newArrival: queryParams.get('newArrival'),
   };
 
-  //usage of filters for links from NavBar to ProductDetails
+  //usage of filters for links from NavBar to ProductListing
   useEffect(() => {
     const data = getProducts(); // Fetch products data
 
@@ -48,64 +48,61 @@ const ProductListing = () => {
   const AccordionsData = [
     {
       id: 1,
-      accordionTitle: 'Activewear',
+      category: 'Activewear',
       list: [
-        { id: 1, title: 'Tops & Sport Bars' },
-        { id: 2, title: 'T-shirts' },
-        { id: 3, title: 'Long-sleeve workout tops' },
-        { id: 4, title: 'Tennis Shorts' },
-        { id: 5, title: 'Leggings & Yoga Pants' },
-        { id: 6, title: 'Matching Sets' },
-        { id: 7, title: 'All Activewear' }]
+        { id: 1, subcategory: 'Tops & Sport Bars', subcategoryCodee: 'tops_and_sport_bras'},
+        { id: 2, subcategory: 'T-shirts', subcategoryCode: 'T-shirts'},
+        { id: 3, subcategory: 'Long-sleeve workout tops', subcategoryCode: 'long-sleeve_workout_tops' },
+        { id: 4, subcategory: 'Tennis Shorts', subcategoryCode: 'tennis_shorts' },
+        { id: 5, subcategory: 'Leggings & Yoga Pants', subcategoryCode: 'leggings_and_yoga_pants' },
+        { id: 6, subcategory: 'Matching Sets', subcategoryCode: 'matching_sets' }]
     },
     {
       id: 2,
-      accordionTitle: 'Accessories',
+      category: 'Accessories',
       list: [
-        { id: 1, title: 'Sport Bags' },
-        { id: 2, title: 'Corsets' },
-        { id: 3, title: 'Resistance Bands' },
-        { id: 4, title: 'All Accessories' }
+        { id: 1, subcategory: 'Sport Bags', subcategoryCode: 'sport_bags' },
+        { id: 2, subcategory: 'Corsets', subcategoryCode: 'corsets' },
+        { id: 3, subcategory: 'Resistance Bands', subcategoryCode: 'resistance_bands' }
       ]
     },
     {
       id: 3,
-      accordionTitle: 'Swimwear',
+      category: 'Swimwear',
       list: [
-        { id: 1, title: 'Swimwear' },
-      { id: 2, title: 'All Swimwear' }]
+        { id: 1, subcategory: 'Swimwear', subcategoryCode: 'swimwear' },]
     },
     {
       id: 4,
-      accordionTitle: 'Size',
+      category: 'Size',
       list: [
-        { id: 1, title: 'S' },
-        { id: 2, title: 'M' },
-        { id: 3, title: 'L' },
+        { id: 1, subcategory: 'S', subcategoryCode: 'S' },
+        { id: 2, subcategory: 'M', subcategoryCode:'M'  },
+        { id: 3, subcategory: 'L', subcategoryCode: 'L' },
       ]
     },
     {
       id: 5,
-      accordionTitle: 'Availability',
+      category: 'Availability',
       list: [
-        { id: 1, title: 'Available' },
-        { id: 2, title: 'Out of stock' },
+        { id: 1, subcategory: 'Available', subcategoryCode: 'available' },
+        { id: 2, subcategory: 'Out of stock', subcategoryCode: 'out_of_stock' },
       ]
     },
     {
       id: 6,
-      accordionTitle: 'Colors',
+      category: 'Colors',
       list: [
-        { id: 1, title: '#ffffff' },
-        { id: 2, title: '#dea18e' },
-        { id: 3, title: '#e7d682' },
-        { id: 4, title: '#aabbb1' },
-        { id: 5, title: '#f34221' },
-        { id: 6, title: '#0e0f13' },
-        { id: 7, title: '#c8c6eb' },
-        { id: 8, title: '#438ad0' },
-        { id: 9, title: '#7d888a' },
-        { id: 10, title: '#dc3e79' },
+        { id: 1, subcategory: '#ffffff', subcategoryCode: '#ffffff',},
+        { id: 2, subcategory: '#dea18e', subcategoryCode: '#dea18e',},
+        { id: 3, subcategory: '#e7d682', subcategoryCode: '#e7d682',},
+        { id: 4, subcategory: '#aabbb1', subcategoryCode: '#aabbb1',},
+        { id: 5, subcategory: '#f34221', subcategoryCode: '#f34221',},
+        { id: 6, subcategory: '#0e0f13', subcategoryCode: '#0e0f13',},
+        { id: 7, subcategory: '#c8c6eb', subcategoryCode: '#c8c6eb',},
+        { id: 8, subcategory: '#438ad0', subcategoryCode: '#438ad0',},
+        { id: 9, subcategory: '#7d888a', subcategoryCode: '#7d888a',},
+        { id: 10, subcategory: '#dc3e79', subcategoryCode: '#dc3e79' },
       ],
     },
   ];
@@ -130,55 +127,57 @@ const ProductListing = () => {
   // };
 
   const handleCheckBoxChange = (accordionId, itemId) => {
-    setIsChecked((prevStates) => {
-      const accordionState = { ...prevStates[accordionId] };
-      accordionState[itemId] = !accordionState[itemId];
-      const newStates = { ...prevStates, [accordionId]: accordionState };
-      return newStates;
-    });
+    console.log(accordionId, itemId);
+    // setIsChecked((prevStates) => {
+    //   const accordionState = { ...prevStates[accordionId] };
+    //   accordionState[itemId] = !accordionState[itemId];
+    //   const newStates = { ...prevStates, [accordionId]: accordionState };
+    //   return newStates;
+    // });
   };
 
-  const applyFilters = () => {
-    return products.filter(product => {
-      let isAvailable = true;
+  // const applyFilters = () => {
+  //   return products.filter(product => {
+  //     let isAvailable = true;
 
-      if (currentFilters.category && product.category !== currentFilters.category) {
-        isAvailable = false;
-      }
+  //     if (currentFilters.category && product.category !== currentFilters.category) {
+  //       isAvailable = false;
+  //     }
 
-      if (currentFilters.subcategory && product.subcategory !== currentFilters.subcategory) {
-        isAvailable = false;
-      }
+  //     if (currentFilters.subcategory && product.subcategory !== currentFilters.subcategory) {
+  //       isAvailable = false;
+  //     }
 
-      if (currentFilters.size && product.size !== currentFilters.size) {
-        isAvailable = false;
-      }
+  //     if (currentFilters.size && product.size !== currentFilters.size) {
+  //       isAvailable = false;
+  //     }
 
-      if (currentFilters.availability && product.availability !== currentFilters.availability) {
-        isAvailable = false;
-      }
+  //     if (currentFilters.availability && product.availability !== currentFilters.availability) {
+  //       isAvailable = false;
+  //     }
 
-      if (currentFilters.color && product.color !== currentFilters.color) {
-        isAvailable = false;
-      }
+  //     if (currentFilters.color && product.color !== currentFilters.color) {
+  //       isAvailable = false;
+  //     }
 
-      if (currentFilters.minPrice && currentFilters.maxPrice) {
-        const productPrice = product.price || 0; // Assuming product.price is a number
-        const minPrice = parseFloat(currentFilters.minPrice);
-        const maxPrice = parseFloat(currentFilters.maxPrice);
+  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
+  //       const productPrice = product.price || 0; // Assuming product.price is a number
+  //       const minPrice = parseFloat(currentFilters.minPrice);
+  //       const maxPrice = parseFloat(currentFilters.maxPrice);
 
-        isAvailable = isAvailable && (productPrice >= minPrice && productPrice <= maxPrice);
-      }
+  //       isAvailable = isAvailable && (productPrice >= minPrice && productPrice <= maxPrice);
+  //     }
 
-      return isAvailable;
-    });
-  };
+  //     return isAvailable;
+  //   });
+  // };
 
   const handleFilterChange = (filterType, value) => {
-    setCurrentFilters(prevFilters => ({prevFilters, [filterType]: value}));
+    console.log(filterType, value);
+    // setCurrentFilters(prevFilters => ({prevFilters, [filterType]: value}));
 
-    const filteredProducts = applyFilters();
-    setProducts(filteredProducts);
+    // const filteredProducts = applyFilters();
+    // setProducts(filteredProducts);
   }
 
   return (
@@ -209,7 +208,7 @@ const ProductListing = () => {
               <div key={item.id} className={styles.accordionItem}>
                 <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
                   {/* //The purpose of passing item.id as an argument is to uniquely identify this accordion, toggleAccordion function keeps track of which accordions are open and which are closed. By passing an identifier, the function knows specifically which accordion should be toggled. */}
-                  <div>{item.accordionTitle}</div>
+                  <div>{item.category}</div>
                   <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
                 </div>
                 {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
@@ -220,7 +219,7 @@ const ProductListing = () => {
                           checked={isChecked[item.id] && isChecked[item.id][listItem.id]}
                           onChange={() => handleCheckBoxChange(item.id, listItem.id)} />
 
-                        <span>{listItem.title}</span>
+                        <span>{listItem.subcategory}</span>
                       </div>
                     ))}
                   </div>
@@ -284,7 +283,7 @@ const ProductListing = () => {
                   </div>
                 </div>
 
-                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
+                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.subcategory}</Link>
                 <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
