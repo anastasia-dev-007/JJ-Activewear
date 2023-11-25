@@ -6,22 +6,23 @@ import Accordion from 'react-bootstrap/Accordion';
 
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
-  const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const [queryParams, setQueryParams] = useSearchParams({
-    category: '',
-    subcategoryCode: '',
-    size: '',
+  const [queryParams, setQueryParams] = useSearchParams({ //TOATE FILTRELE MERG PRIN QUERYPARAMS, CI NU PRIN STATE
+    category: [],
+    subcategoryCode: [],
+    size: [],
     availability: '',
-    color: '',
+    color: [],
     minPrice: '',
     maxPrice: '',
+    promo: '',
+    newArrival: '',
   }); //for links from NavBar to ProductDetails
-  const [isChecked, setIsChecked] = useState({});
-
+  
   //for links from NavBar to ProductDetails
-  const filters = {
+  const filters = { //valorile din acest filters se iau din queryParams
     category: queryParams.get('category'),
     subcategoryCode: queryParams.get('subcategoryCode'),
+    size: queryParams.get('size'),
     availability: queryParams.get('availability'),
     color: queryParams.get('color'),
     minPrice: queryParams.get('minPrice'),
@@ -36,18 +37,19 @@ const ProductListing = () => {
 
     setProducts(data.filter(product => {
       // Filter products based on query parameters
-      return (
+      return ( //aici doar are loc filtrarea
         (!filters.category || product.category === filters.category) &&
         (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+        (!filters.size || product.size === filters.size) &&
+        (!filters.availability || product.availability === filters.availability) &&
+        (!filters.color || product.color === filters.color) &&
+        (!filters.minPrice || product.minPrice === filters.minPrice) &&
+        (!filters.maxPrice || product.maxPrice === filters.maxPrice) &&
         (!filters.promo || product.promo === filters.promo) &&
-        (!filters.newArrival || product.newArrival === filters.newArrival) &&
-        (!isChecked[1] || isChecked[1][product.subcategoryCode]) &&
-        (!isChecked[1] || isChecked[1][product.size]) &&
-        (!isChecked[1] || isChecked[1][product.availability]) &&
-        (!isChecked[1] || isChecked[1][product.color])
+        (!filters.newArrival || product.newArrival === filters.newArrival)
       );
     }));
-  }, [queryParams, isChecked]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
   const AccordionsData = [
     {
@@ -111,38 +113,21 @@ const ProductListing = () => {
     },
   ];
 
-  //toggleAccordion function is responsible for managing which accordions are open and which are closed.
-  const toggleAccordion = (id) => {
-    if (openAccordions.includes(id)) { //  // Check if the accordion with this id is already in the openAccordions array
-      setOpenAccordions(openAccordions.filter(acc => acc !== id));  // If it is already open, close it by updating openAccordions to exclude the current id. If the accordion is already open ('includes' returns 'true'), it removes that id from the openAccordions array. It uses the 'filter' function to create a new array that includes all the items from openAccordions except the one with the id clicked on.
-    } else {
-      setOpenAccordions([...openAccordions, id]); //If the accordion is closed ('includes' returns 'false'), means it's opening. So, it sets the openAccordions array to a new array that contains all the existing items from openAccordions ([...openAccordions]) and adds the new id to it.
-    }
-  };
-  //  but if I would want to close the rest of the open accordions when opening a new one I would use this function:
-  // const toggleAccordion = (id) => {
-  //   if (openAccordions.includes(id)) {
-  //     // If the accordion with this id is already open, close all accordions.
-  //     setOpenAccordions([]);
-  //   } else {
-  //     // If the accordion is closed, close all accordions and open the selected one.
-  //     setOpenAccordions([id]);
-  //   }
-  // };
-
-  const handleCheckBoxChange = (accordionId, itemId) => {//cand vom da click pe checkbox vom seta noile query params din accordion
-    console.log(accordionId, itemId);
-    setQueryParams({
-      ...filters, //adaugam tot ce a fost n const filters + key: value
-      category: accordionId,
-      subcategoryCode: itemId,
+  
+  const handleCheckBoxChange = (itemCategory, itemSubcategoryCode, itemSize, itemAvailability, itemColor, itemMinPrice, itemMaxPrice, itemPromo, itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
+    console.log(itemCategory, itemSubcategoryCode);
+    setQueryParams({ //AICI SETEZ FILTERELE
+      ...filters, //adaugam tot ce a fost in const filters + key: value
+      category: itemCategory,
+      subcategoryCode: itemSubcategoryCode,
+      size: itemSize,
+      availability: itemAvailability,
+      color: itemColor,
+      minPrice: itemMinPrice,
+      maxPrice: itemMaxPrice,
+      promo: itemPromo,
+      newArrival: itemNewArrival
     })
-    // setIsChecked((prevStates) => {
-    //   const accordionState = { ...prevStates[accordionId] };
-    //   accordionState[itemId] = !accordionState[itemId];
-    //   const newStates = { ...prevStates, [accordionId]: accordionState };
-    //   return newStates;
-    // });
   };
 
   // const applyFilters = () => {
@@ -213,6 +198,7 @@ const ProductListing = () => {
       <div className={styles.filterAndCardsContainer}>
         <div className={styles.filterContainer}>
           <div className={styles.Accordions}>
+            {/* https://react-bootstrap.netlify.app/docs/components/accordion */}
             <Accordion alwaysOpen>
               {AccordionsData.map(item => (
                 <Accordion.Item eventKey={item.id}>
@@ -221,7 +207,7 @@ const ProductListing = () => {
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
                         <input type='checkbox'
-                          checked={isChecked[item.id] && isChecked[item.id][listItem.id]}
+                          checked={filters.category === item.category && filters.subcategoryCode === listItem.subcategoryCode} //acest functional face ca daca am ales ceva din NavBar, pai acea subcategorie va fi deja bifata automat in SideBar
                           onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)} />
 
                         <span>{listItem.subcategory}</span>
@@ -236,20 +222,8 @@ const ProductListing = () => {
           {/**Price Filter */}
           <Accordion defaultActiveKey={['7']} alwaysOpen>
             <Accordion.Item eventKey="priceFilter">
-              <Accordion.Header
-
-              >
-                <div>Price</div>
-                <div>
-                  {openAccordions.includes('priceFilter') ? (
-                    <i className="fa-solid fa-chevron-up"></i>
-                  ) : (
-                    <i className="fa-solid fa-chevron-down"></i>
-                  )}
-                </div>
-              </Accordion.Header>
+              <Accordion.Header>Price</Accordion.Header>
               <Accordion.Body>
-                <h6>Price Filter</h6>
                 <input type="range" id="priceRange" name="priceRange" min="0" max="5000" />
               </Accordion.Body>
             </Accordion.Item>
