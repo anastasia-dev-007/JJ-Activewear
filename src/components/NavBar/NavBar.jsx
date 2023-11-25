@@ -10,9 +10,9 @@ const NavBar = () => {
 
     const handleSearchClick = () => {
         const result = products.filter(product =>
-            product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.titleCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
             product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            product.subcategory.toLowerCase().includes(searchQuery.toLowerCase())
+            product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
         );
 
         setFilteredProducts(result); // Update the filtered products
@@ -65,12 +65,12 @@ const NavBar = () => {
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=Tops%20%26%20Sport%20Bras">Tops & Sport Bras</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=T-shirts">T-shirts</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=Long-sleeve%20workout%20tops">Long-sleeve workout tops</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=Tennis%20Shorts">Tennis Shorts</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=Leggings%20%26%20Yoga%20Pants">Leggings & Yoga Pants</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategory=Matching%20Sets">Matching Sets</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tops_and_sport_bras">Tops & Sport Bras</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=T-shirts">T-shirts</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=long-sleeve_workout_tops">Long-sleeve workout tops</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts">Tennis Shorts</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts">Leggings & Yoga Pants</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=matching_sets">Matching Sets</Link></li>
                                             <li><Link to="/products-list?category=Activewear">All Activewear <i className="fa-solid fa-arrow-right-long"></i></Link></li>
                                         </ul>
 
@@ -100,9 +100,9 @@ const NavBar = () => {
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li id='Sport Bags'><Link to="/products-list?category=Accessories&subcategory=Sport%20Bags">Sport Bags</Link></li>
-                                            <li id='Corsets'><Link to="/products-list?category=Accessories&subcategory=Corsets">Corsets</Link></li>
-                                            <li id='Resistance Bands'><Link to="/products-list?category=Accessories&subcategory=Resistance Bands">Resistance Bands</Link></li>
+                                            <li id='Sport Bags'><Link to="/products-list?category=Accessories&subcategoryCode=sport_bags">Sport Bags</Link></li>
+                                            <li id='Corsets'><Link to="/products-list?category=Accessories&subcategoryCode=corsets">Corsets</Link></li>
+                                            <li id='Resistance Bands'><Link to="/products-list?category=Accessories&subcategoryCode=resistance_bands">Resistance Bands</Link></li>
                                             <li id='Accessories'>
                                                 <Link to="/products-list?category=Accessories">All Accessories <i class="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>

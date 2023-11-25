@@ -6,11 +6,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  const [queryParams] = useSearchParams(); //for links from NavBar to ProductDetails
+  const [queryParams, setQueryParams] = useSearchParams(); //for links from NavBar to ProductDetails
   const [isChecked, setIsChecked] = useState({});
   const [currentFilters, setCurrentFilters] = useState({
     category: '',
-    subcategory: '',
+    subcategoryCode: '',
     size: '',
     availability: '',
     color: '',
@@ -21,7 +21,7 @@ const ProductListing = () => {
   //for links from NavBar to ProductDetails
   const filters = {
     category: queryParams.get('category'),
-    subcategory: queryParams.get('subcategory'),
+    subcategoryCode: queryParams.get('subcategoryCode'),
     promo: queryParams.get('promo'),
     newArrival: queryParams.get('newArrival'),
   };
@@ -34,10 +34,10 @@ const ProductListing = () => {
       // Filter products based on query parameters
       return (
         (!filters.category || product.category === filters.category) &&
-        (!filters.subcategory || product.subcategory === filters.subcategory) &&
+        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
         (!filters.promo || product.promo === filters.promo) &&
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
-        (!isChecked[1] || isChecked[1][product.subcategory]) &&
+        (!isChecked[1] || isChecked[1][product.subcategoryCode]) &&
         (!isChecked[1] || isChecked[1][product.size]) &&
         (!isChecked[1] || isChecked[1][product.availability]) &&
         (!isChecked[1] || isChecked[1][product.color])
@@ -50,7 +50,7 @@ const ProductListing = () => {
       id: 1,
       category: 'Activewear',
       list: [
-        { id: 1, subcategory: 'Tops & Sport Bars', subcategoryCodee: 'tops_and_sport_bras'},
+        { id: 1, subcategory: 'Tops & Sport Bars', subcategoryCode: 'tops_and_sport_bras'},
         { id: 2, subcategory: 'T-shirts', subcategoryCode: 'T-shirts'},
         { id: 3, subcategory: 'Long-sleeve workout tops', subcategoryCode: 'long-sleeve_workout_tops' },
         { id: 4, subcategory: 'Tennis Shorts', subcategoryCode: 'tennis_shorts' },
@@ -126,8 +126,13 @@ const ProductListing = () => {
   //   }
   // };
 
-  const handleCheckBoxChange = (accordionId, itemId) => {
+  const handleCheckBoxChange = (accordionId, itemId) => {//cand vom da click pe checkbox vom seta noile query params din accordion
     console.log(accordionId, itemId);
+    setQueryParams({
+      ...filters, //adaugam tot ce a fost n const filters + key: value
+      category: accordionId,
+      subcategoryCode: itemId,
+    })
     // setIsChecked((prevStates) => {
     //   const accordionState = { ...prevStates[accordionId] };
     //   accordionState[itemId] = !accordionState[itemId];
@@ -217,7 +222,7 @@ const ProductListing = () => {
                       <div key={listItem.id}>
                         <input type='checkbox'
                           checked={isChecked[item.id] && isChecked[item.id][listItem.id]}
-                          onChange={() => handleCheckBoxChange(item.id, listItem.id)} />
+                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)} />
 
                         <span>{listItem.subcategory}</span>
                       </div>
