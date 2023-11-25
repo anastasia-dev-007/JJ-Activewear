@@ -979,6 +979,25 @@ export const getProductById = (id) => {
     return foundItem ? foundItem : defaultItem;
 };
 
+export const filterProducts = (products, filters) => {
+    return products.filter(product => {
+      // Check each filter criterion
+      const categoryFilter = !filters.category || product.category === filters.category;
+      const subcategoryFilter = !filters.subcategory || product.subcategoryCode === filters.subcategory;
+      const colorFilter = !filters.color || product.color === filters.color;
+      const sizeFilter = !filters.size || product.size === filters.size;
+      const availabilityFilter = !filters.availability || product.availability === filters.availability;
+  
+      // Check price range if provided
+      const priceFilter = (!filters.minPrice || product.price >= filters.minPrice) &&
+                         (!filters.maxPrice || product.price <= filters.maxPrice);
+  
+      // Combine all filters with AND logic
+      return categoryFilter && subcategoryFilter && colorFilter && sizeFilter &&
+             availabilityFilter && priceFilter;
+    });
+  };
+
 //cream o functie care va adauga produse in lista initiala, dar va si modifica produsul existent daca este cazul. Acum trebuie sa verificam daca produsul are id, atunci trebuie sa il gasim si sa rescriem proprietatile lui cu ceea ce primim aici, ceea ce insemana ca el a fost modificat, iar daca id este null, atunci trebuie sa setam un nou atribut id si sa il adaugam in lista
 export const saveProduct = (product) => {
     if (!product.id) {//daca nu avem asa produs

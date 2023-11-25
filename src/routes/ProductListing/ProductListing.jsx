@@ -17,7 +17,7 @@ const ProductListing = () => {
     promo: '',
     newArrival: '',
   }); //for links from NavBar to ProductDetails
-  
+
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
     category: queryParams.get('category'),
@@ -30,25 +30,28 @@ const ProductListing = () => {
     promo: queryParams.get('promo'),
     newArrival: queryParams.get('newArrival'),
   };
+  console.log('const filters:', filters);
+
+
 
   //usage of filters for links from NavBar to ProductListing
-  useEffect(() => {
+  useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
     const data = getProducts(); // Fetch products data
 
-    setProducts(data.filter(product => {
-      // Filter products based on query parameters
-      return ( //aici doar are loc filtrarea
-        (!filters.category || product.category === filters.category) &&
-        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-        (!filters.size || product.size === filters.size) &&
-        (!filters.availability || product.availability === filters.availability) &&
-        (!filters.color || product.color === filters.color) &&
-        (!filters.minPrice || product.minPrice === filters.minPrice) &&
-        (!filters.maxPrice || product.maxPrice === filters.maxPrice) &&
-        (!filters.promo || product.promo === filters.promo) &&
-        (!filters.newArrival || product.newArrival === filters.newArrival)
-      );
-    }));
+    const filteredProducts = data.filter(product => (
+      (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+      (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+      (!filters.size || product.size === filters.size) &&
+      (!filters.availability || product.availability === filters.availability) &&
+      (!filters.color || product.color === filters.color) &&
+      (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
+      (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+      (!filters.promo || product.promo === filters.promo) &&
+      (!filters.newArrival || product.newArrival === filters.newArrival)
+    ));
+
+    console.log('Filtered products:', filteredProducts);
+    setProducts(filteredProducts);
   }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
   const AccordionsData = [
@@ -113,9 +116,21 @@ const ProductListing = () => {
     },
   ];
 
-  
-  const handleCheckBoxChange = (itemCategory, itemSubcategoryCode, itemSize, itemAvailability, itemColor, itemMinPrice, itemMaxPrice, itemPromo, itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
-    console.log(itemCategory, itemSubcategoryCode);
+  const handleCheckBoxChange = (
+    itemCategory,
+    itemSubcategoryCode,
+    itemSize,
+    itemAvailability,
+    itemColor,
+    itemMinPrice,
+    itemMaxPrice,
+    itemPromo,
+    itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
+
+    console.log('Checkbox clicked');
+    console.log('Item Category:', itemCategory);
+    console.log('Item Subcategory Code:', itemSubcategoryCode);
+
     setQueryParams({ //AICI SETEZ FILTERELE
       ...filters, //adaugam tot ce a fost in const filters + key: value
       category: itemCategory,
@@ -123,8 +138,8 @@ const ProductListing = () => {
       size: itemSize,
       availability: itemAvailability,
       color: itemColor,
-      minPrice: itemMinPrice,
-      maxPrice: itemMaxPrice,
+      minPrice: parseFloat(itemMinPrice),
+      maxPrice: parseFloat(itemMaxPrice),
       promo: itemPromo,
       newArrival: itemNewArrival
     })
@@ -165,14 +180,6 @@ const ProductListing = () => {
   //     return isAvailable;
   //   });
   // };
-
-  const handleFilterChange = (filterType, value) => {
-    console.log(filterType, value);
-    // setCurrentFilters(prevFilters => ({prevFilters, [filterType]: value}));
-
-    // const filteredProducts = applyFilters();
-    // setProducts(filteredProducts);
-  }
 
   return (
     <div className={styles.productListingContainer}>
@@ -231,7 +238,6 @@ const ProductListing = () => {
             {/* Add more Accordion items as needed */}
           </Accordion>
 
-          <button onClick={handleFilterChange}>Apply Filters</button>
           <button>Reset Filters</button>
 
         </div>
