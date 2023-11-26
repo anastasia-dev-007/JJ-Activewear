@@ -55,9 +55,9 @@ const ProductListing = () => {
 
     // Sorting logic based on price
     if (queryParams.get('sortByPrice') === 'Ascending order') {
-      filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
+      filteredProducts = filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
     } else if (queryParams.get('sortByPrice') === 'Descending order') {
-      filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
+      filteredProducts = filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     }
 
     console.log('Filtered products:', filteredProducts);
@@ -166,7 +166,7 @@ const ProductListing = () => {
       minPrice: parseFloat(itemMinPrice),
       maxPrice: parseFloat(itemMaxPrice),
       promo: itemPromo,
-      newArrival: itemNewArrival
+      newArrival: itemNewArrival,
     })
   };
 
@@ -220,10 +220,10 @@ const ProductListing = () => {
 
       <div className={styles.sortByPrice}>
         <label htmlFor="sortByPrice">Sort by price: </label>
-        <select 
-        id="sortByPrice" 
-        name="sortByPrice"
-        onChange={(event) => setQueryParams({ ...filters, sortByPrice: event.target.value })}
+        <select
+          id="sortByPrice"
+          name="sortByPrice"
+          onChange={(event) => setQueryParams({ ...filters, sortByPrice: event.target.value })}
         >
           <option value="blank"></option>
           <option value="Ascending order">Ascending order</option>
