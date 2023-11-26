@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className={styles.footerContainer}>
             <div className={styles.mainFooterContainer}>
                 <div className={styles.footerColumn}>
-                    <img width='100px' src='"/assets/logo1wh.png"' alt="logo3" />
+                    <img width='100px' src="/assets/logo1wh.png" alt="logo3" />
                     <p>ACTIVEWEAR</p>
                 </div>
                 <div className={styles.footerColumn}>
@@ -40,10 +40,10 @@ const Footer = () => {
             </div>
 
             <div className={styles.socialMedia}>
-                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i className="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i className="fa-brands fa-square-twitter"></i></a>
+                <a href="#"><i className="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i className="fa-brands fa-square-instagram"></i></a>
             </div>
 
             <div className={styles.pageBottom}>

@@ -38,16 +38,16 @@ const NavBar = () => {
                                 value={searchQuery}
                                 onInput={(event) => { setSearchQuery(event.target.value) }} />
                             <div className={styles.searchIcon} >
-                                <i class="fa-solid fa-magnifying-glass" onClick={handleSearchClick}></i>
+                                <i className="fa-solid fa-magnifying-glass" onClick={handleSearchClick}></i>
                             </div>
                         </div>
 
-                        <i class="fa-regular fa-user"></i>
-                        <i class="fa-regular fa-heart"></i>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i className="fa-regular fa-user"></i>
+                        <i className="fa-regular fa-heart"></i>
+                        <i className="fa-solid fa-cart-shopping"></i>
                         <select id="language">
-                            <option value="EN">EN<img src="/assets/EN.png" alt="EN" /></option> {/**flag is not displayed((( */}
-                            <option value="RO">RO<img src="/assets/RO.png" alt="RO" /></option>{/**flag is not displayed((( */}
+                            <option value="EN">EN</option> {/**flag is not displayed((( */}
+                            <option value="RO">RO</option>{/**flag is not displayed((( */}
                         </select>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ const NavBar = () => {
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
                                             <li id='Swimwear'>
-                                                <Link to="/products-list?category=Swimwear">All Swimwear <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                                <Link to="/products-list?category=Swimwear">All Swimwear <i className="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
                                     </div>
@@ -104,7 +104,7 @@ const NavBar = () => {
                                             <li id='Corsets'><Link to="/products-list?category=Accessories&subcategoryCode=corsets">Corsets</Link></li>
                                             <li id='Resistance Bands'><Link to="/products-list?category=Accessories&subcategoryCode=resistance_bands">Resistance Bands</Link></li>
                                             <li id='Accessories'>
-                                                <Link to="/products-list?category=Accessories">All Accessories <i class="fa-solid fa-arrow-right-long"></i></Link>
+                                                <Link to="/products-list?category=Accessories">All Accessories <i className="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
                                     </div>

@@ -7,11 +7,11 @@ import Accordion from 'react-bootstrap/Accordion';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [queryParams, setQueryParams] = useSearchParams({ //TOATE FILTRELE MERG PRIN QUERYPARAMS, CI NU PRIN STATE
-    category: [],
-    subcategoryCode: [],
-    size: [],
+    category: '',
+    subcategoryCode: '',
+    size: '',
     availability: '',
-    color: [],
+    color: '',
     minPrice: '',
     maxPrice: '',
     promo: '',
@@ -20,17 +20,18 @@ const ProductListing = () => {
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
-      category: queryParams.get('category'),
-      subcategoryCode: queryParams.get('subcategoryCode'),
-      size: queryParams.get('size') === 'undefined' ? undefined : queryParams.get('size'),
-      availability: queryParams.get('availability') === 'undefined' ? undefined : queryParams.get('availability'),
-      color: queryParams.get('color') === 'undefined' ? undefined : queryParams.get('color'),
-      minPrice: isNaN(parseFloat(queryParams.get('minPrice'))) ? undefined : parseFloat(queryParams.get('minPrice')),
-      maxPrice: isNaN(parseFloat(queryParams.get('maxPrice'))) ? undefined : parseFloat(queryParams.get('maxPrice')),
-      promo: queryParams.get('promo') === 'undefined' ? undefined : queryParams.get('promo'),
-      newArrival: queryParams.get('newArrival') === 'undefined' ? undefined : queryParams.get('newArrival'),
+    category: queryParams.get('category'),
+    subcategoryCode: queryParams.get('subcategoryCode'),
+    size: queryParams.get('size') === 'undefined' ? undefined : queryParams.get('size'),
+    availability: queryParams.get('availability') === 'undefined' ? undefined : queryParams.get('availability'),
+    color: queryParams.get('color') === 'undefined' ? undefined : queryParams.get('color'),
+    minPrice: isNaN(parseFloat(queryParams.get('minPrice'))) ? undefined : parseFloat(queryParams.get('minPrice')),
+    maxPrice: isNaN(parseFloat(queryParams.get('maxPrice'))) ? undefined : parseFloat(queryParams.get('maxPrice')),
+    promo: queryParams.get('promo') === 'undefined' ? undefined : queryParams.get('promo'),
+    newArrival: queryParams.get('newArrival') === 'undefined' ? undefined : queryParams.get('newArrival'),
 
-      //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
+    //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
+    //This approach ensures that if a parameter is not found in the URL, it defaults to undefined, avoiding potential errors when trying to access properties or methods on null or undefined.
   };
   console.log('const filters:', filters);
 
@@ -40,17 +41,24 @@ const ProductListing = () => {
   useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
     const data = getProducts(); // Fetch products data
 
-    const filteredProducts = data.filter(product => (
-        (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
-        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-        (!filters.size || product.size === filters.size) &&
-        (!filters.availability || product.availability === filters.availability) &&
-        (!filters.color || product.color === filters.color) &&
-        (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
-        (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
-        (!filters.promo || product.promo === filters.promo) &&
-        (!filters.newArrival || product.newArrival === filters.newArrival)
+    let filteredProducts = data.filter(product => (
+      (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+      (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+      (!filters.size || product.size === filters.size) &&
+      (!filters.availability || product.availability === filters.availability) &&
+      (!filters.color || product.color === filters.color) &&
+      (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
+      (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+      (!filters.promo || product.promo === filters.promo) &&
+      (!filters.newArrival || product.newArrival === filters.newArrival)
     ));
+
+    // Sorting logic based on price
+    if (queryParams.get('sortByPrice') === 'Ascending order') {
+      filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (queryParams.get('sortByPrice') === 'Descending order') {
+      filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
+    }
 
     console.log('Filtered products:', filteredProducts);
     setProducts(filteredProducts);
@@ -60,7 +68,7 @@ const ProductListing = () => {
 
   // useEffect(() => { //Chat GPT trial
   //   const data = getProducts();
-  
+
   //   const filteredProducts = data.filter(product => {
   //     // Create a single condition to check all filters
   //     return Object.keys(filters).every(key => {
@@ -68,11 +76,11 @@ const ProductListing = () => {
   //       return !filterValue || product[key] === filterValue;
   //     });
   //   });
-  
+
   //   console.log('Filtered products:', filteredProducts);
   //   setProducts(filteredProducts);
   // }, [queryParams]);
-  
+
 
 
   const AccordionsData = [
@@ -211,8 +219,12 @@ const ProductListing = () => {
       </header>
 
       <div className={styles.sortByPrice}>
-        <label for="sortByPrice">Sort by price: </label>
-        <select id="sortByPrice" name="sortByPrice">
+        <label htmlFor="sortByPrice">Sort by price: </label>
+        <select 
+        id="sortByPrice" 
+        name="sortByPrice"
+        onChange={(event) => setQueryParams({ ...filters, sortByPrice: event.target.value })}
+        >
           <option value="blank"></option>
           <option value="Ascending order">Ascending order</option>
           <option value="Descending order">Descending order</option>
@@ -243,19 +255,19 @@ const ProductListing = () => {
                 </Accordion.Item>
               ))}
             </Accordion>
+
+            {/**Price Filter */}
+            <Accordion defaultActiveKey={['7']} alwaysOpen>
+              <Accordion.Item eventKey="priceFilter">
+                <Accordion.Header>Price</Accordion.Header>
+                <Accordion.Body>
+                  <input type="range" id="priceRange" name="priceRange" min="0" max="5000" />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              {/* Add more Accordion items as needed */}
+            </Accordion>
           </div>
-
-          {/**Price Filter */}
-          <Accordion defaultActiveKey={['7']} alwaysOpen>
-            <Accordion.Item eventKey="priceFilter">
-              <Accordion.Header>Price</Accordion.Header>
-              <Accordion.Body>
-                <input type="range" id="priceRange" name="priceRange" min="0" max="5000" />
-              </Accordion.Body>
-            </Accordion.Item>
-
-            {/* Add more Accordion items as needed */}
-          </Accordion>
 
           <button>Reset Filters</button>
 
@@ -280,11 +292,11 @@ const ProductListing = () => {
 
                 <div className={styles.favorites}>
                   <div>
-                    <i class="fa-regular fa-heart"></i>
+                    <i className="fa-regular fa-heart"></i>
                   </div>
 
                   <div>
-                    <i style={{ display: 'none' }} class="fa-solid fa-heart"></i>
+                    <i style={{ display: 'none' }} className="fa-solid fa-heart"></i>
                   </div>
                 </div>
 
@@ -293,7 +305,7 @@ const ProductListing = () => {
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
                 <div className={styles.addToCartAndFavorites}>
-                  <button className={styles.addToCartBtn}>Add to cart <i class="fa-solid fa-cart-shopping"></i>
+                  <button className={styles.addToCartBtn}>Add to cart <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </div>
               </div>
