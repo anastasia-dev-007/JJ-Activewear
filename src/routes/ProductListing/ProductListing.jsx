@@ -20,8 +20,8 @@ const ProductListing = () => {
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
-      category: queryParams.get('category') || undefined,
-      subcategoryCode: queryParams.get('subcategoryCode') || undefined,
+      category: queryParams.get('category'),
+      subcategoryCode: queryParams.get('subcategoryCode'),
       size: queryParams.get('size') === 'undefined' ? undefined : queryParams.get('size'),
       availability: queryParams.get('availability') === 'undefined' ? undefined : queryParams.get('availability'),
       color: queryParams.get('color') === 'undefined' ? undefined : queryParams.get('color'),
@@ -37,43 +37,41 @@ const ProductListing = () => {
 
 
   //usage of filters for links from NavBar to ProductListing
-  // useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
-  //   const data = getProducts(); // Fetch products data
+  useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
+    const data = getProducts(); // Fetch products data
 
+    const filteredProducts = data.filter(product => (
+        (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+        (!filters.size || product.size === filters.size) &&
+        (!filters.availability || product.availability === filters.availability) &&
+        (!filters.color || product.color === filters.color) &&
+        (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
+        (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+        (!filters.promo || product.promo === filters.promo) &&
+        (!filters.newArrival || product.newArrival === filters.newArrival)
+    ));
 
-  //   const filteredProducts = data.filter(product => (
-  //       (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
-  //       (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-  //       (!filters.size || product.size === filters.size) &&
-  //       (!filters.availability || product.availability === filters.availability) &&
-  //       (!filters.color || product.color === filters.color) &&
-  //       (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
-  //       (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
-  //       (!filters.promo || product.promo === filters.promo) &&
-  //       (!filters.newArrival || product.newArrival === filters.newArrival)
-  //   ));
-
-  //   console.log('Filtered products:', filteredProducts);
-  //   setProducts(filteredProducts);
-  // }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
-
-  useEffect(() => {
-    const data = getProducts();
-    console.log('Data length:', data.length);
-    console.log('Query Params:', queryParams.toString());
-    console.log('Filters:', filters);
-  
-    const filteredProducts = data.filter(product => {
-      // Create a single condition to check all filters
-      return Object.keys(filters).every(key => {
-        const filterValue = filters[key];
-        return !filterValue || product[key] === filterValue;
-      });
-    });
-  
     console.log('Filtered products:', filteredProducts);
     setProducts(filteredProducts);
-  }, [queryParams]);
+  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+
+
+
+  // useEffect(() => { //Chat GPT trial
+  //   const data = getProducts();
+  
+  //   const filteredProducts = data.filter(product => {
+  //     // Create a single condition to check all filters
+  //     return Object.keys(filters).every(key => {
+  //       const filterValue = filters[key];
+  //       return !filterValue || product[key] === filterValue;
+  //     });
+  //   });
+  
+  //   console.log('Filtered products:', filteredProducts);
+  //   setProducts(filteredProducts);
+  // }, [queryParams]);
   
 
 
