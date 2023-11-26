@@ -20,39 +20,62 @@ const ProductListing = () => {
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
-    category: queryParams.get('category'),
-    subcategoryCode: queryParams.get('subcategoryCode'),
-    size: queryParams.get('size'),
-    availability: queryParams.get('availability'),
-    color: queryParams.get('color'),
-    minPrice: queryParams.get('minPrice'),
-    maxPrice: queryParams.get('maxPrice'),
-    promo: queryParams.get('promo'),
-    newArrival: queryParams.get('newArrival'),
+      category: queryParams.get('category') || undefined,
+      subcategoryCode: queryParams.get('subcategoryCode') || undefined,
+      size: queryParams.get('size') === 'undefined' ? undefined : queryParams.get('size'),
+      availability: queryParams.get('availability') === 'undefined' ? undefined : queryParams.get('availability'),
+      color: queryParams.get('color') === 'undefined' ? undefined : queryParams.get('color'),
+      minPrice: isNaN(parseFloat(queryParams.get('minPrice'))) ? undefined : parseFloat(queryParams.get('minPrice')),
+      maxPrice: isNaN(parseFloat(queryParams.get('maxPrice'))) ? undefined : parseFloat(queryParams.get('maxPrice')),
+      promo: queryParams.get('promo') === 'undefined' ? undefined : queryParams.get('promo'),
+      newArrival: queryParams.get('newArrival') === 'undefined' ? undefined : queryParams.get('newArrival'),
+
+      //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
   };
   console.log('const filters:', filters);
 
 
 
   //usage of filters for links from NavBar to ProductListing
-  useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
-    const data = getProducts(); // Fetch products data
+  // useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
+  //   const data = getProducts(); // Fetch products data
 
-    const filteredProducts = data.filter(product => (
-      (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
-      (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-      (!filters.size || product.size === filters.size) &&
-      (!filters.availability || product.availability === filters.availability) &&
-      (!filters.color || product.color === filters.color) &&
-      (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
-      (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
-      (!filters.promo || product.promo === filters.promo) &&
-      (!filters.newArrival || product.newArrival === filters.newArrival)
-    ));
 
+  //   const filteredProducts = data.filter(product => (
+  //       (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+  //       (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+  //       (!filters.size || product.size === filters.size) &&
+  //       (!filters.availability || product.availability === filters.availability) &&
+  //       (!filters.color || product.color === filters.color) &&
+  //       (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
+  //       (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+  //       (!filters.promo || product.promo === filters.promo) &&
+  //       (!filters.newArrival || product.newArrival === filters.newArrival)
+  //   ));
+
+  //   console.log('Filtered products:', filteredProducts);
+  //   setProducts(filteredProducts);
+  // }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+
+  useEffect(() => {
+    const data = getProducts();
+    console.log('Data length:', data.length);
+    console.log('Query Params:', queryParams.toString());
+    console.log('Filters:', filters);
+  
+    const filteredProducts = data.filter(product => {
+      // Create a single condition to check all filters
+      return Object.keys(filters).every(key => {
+        const filterValue = filters[key];
+        return !filterValue || product[key] === filterValue;
+      });
+    });
+  
     console.log('Filtered products:', filteredProducts);
     setProducts(filteredProducts);
-  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+  }, [queryParams]);
+  
+
 
   const AccordionsData = [
     {
@@ -126,10 +149,6 @@ const ProductListing = () => {
     itemMaxPrice,
     itemPromo,
     itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
-
-    console.log('Checkbox clicked');
-    console.log('Item Category:', itemCategory);
-    console.log('Item Subcategory Code:', itemSubcategoryCode);
 
     setQueryParams({ //AICI SETEZ FILTERELE
       ...filters, //adaugam tot ce a fost in const filters + key: value
@@ -213,9 +232,11 @@ const ProductListing = () => {
                   <Accordion.Body>
                     {item.list.map(listItem => (
                       <div key={listItem.id}>
-                        <input type='checkbox'
-                          checked={filters.category === item.category && filters.subcategoryCode === listItem.subcategoryCode} //acest functional face ca daca am ales ceva din NavBar, pai acea subcategorie va fi deja bifata automat in SideBar
-                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)} />
+                        <input
+                          type='checkbox'
+                          checked={filters.category === item.category && filters.subcategoryCode === listItem.subcategoryCode}
+                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)}
+                        />
 
                         <span>{listItem.subcategory}</span>
                       </div>
