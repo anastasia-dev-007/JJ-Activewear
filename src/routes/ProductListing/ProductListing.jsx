@@ -51,8 +51,8 @@ const ProductListing = () => {
         (!filters.size || product.size === filters.size) &&
         (!filters.availability || product.availability === filters.availability) &&
         (!filters.color || product.color === filters.color) &&
-        (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
-        (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+        (!filters.minPrice || parseFloat(product.price) >= parseFloat(filters.minPrice)) &&
+        (!filters.maxPrice || parseFloat(product.price) <= parseFloat(filters.maxPrice)) &&
         (!filters.promo || product.promo === filters.promo) &&
         (!filters.newArrival || product.newArrival === filters.newArrival)
       ));
@@ -65,27 +65,8 @@ const ProductListing = () => {
     }
 
     console.log('Filtered products:', filteredProducts);
-    console.log('Size filter:', filters.size);
     setProducts(filteredProducts);
   }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
-
-
-
-  // useEffect(() => { //Chat GPT trial
-  //   const data = getProducts();
-
-  //   const filteredProducts = data.filter(product => {
-  //     // Create a single condition to check all filters
-  //     return Object.keys(filters).every(key => {
-  //       const filterValue = filters[key];
-  //       return !filterValue || product[key] === filterValue;
-  //     });
-  //   });
-
-  //   console.log('Filtered products:', filteredProducts);
-  //   setProducts(filteredProducts);
-  // }, [queryParams]);
-
 
 
   const CategoriesAccordionsData = [
@@ -165,6 +146,13 @@ const ProductListing = () => {
       color: selectedColor.color,
     });
   };
+
+  const handlePriceInput = (inputId, value) => {
+    setQueryParams({
+      ...filters,
+      [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: parseFloat(value) || undefined,
+        })
+  }
 
   // const applyFilters = () => {
   //   return products.filter(product => {
@@ -287,7 +275,9 @@ const ProductListing = () => {
               <Accordion.Item eventKey="priceFilter">
                 <Accordion.Header>Price</Accordion.Header>
                 <Accordion.Body>
-                  from <input type="text" id='minPrice' /> to <input type="text" id='maxPrice' />
+                  from <input type="text" id='minPrice' onInput={(event) => handlePriceInput(event.target.id, event.target.value)}/> 
+                  to 
+                  <input type="text" id='maxPrice' onInput={(event) => handlePriceInput(event.target.id, event.target.value)} />
                 </Accordion.Body>
               </Accordion.Item>
 
