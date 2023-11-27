@@ -34,7 +34,6 @@ const ProductListing = () => {
   console.log('const filters:', filters);
 
 
-
   //usage of filters for links from NavBar to ProductListing
   useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
     const data = getProducts(); // Fetch products data
@@ -44,7 +43,7 @@ const ProductListing = () => {
       availability: product.quantity > 0 ? 'Available' : 'Out of Stock'
     }))
       .filter(product => (
-        (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+        (!filters.category || filters.category.split(',').includes(product.category)) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
         (!filters.subcategoryCode || filters.subcategoryCode.split(',').includes(product.subcategoryCode)) &&
         (!filters.size || filters.size.split(',').includes(product.size)) &&
         (!filters.availability || product.availability === filters.availability) &&
@@ -120,16 +119,18 @@ const ProductListing = () => {
     itemSubcategoryCode
   ) => {
     // Check if the current subcategory is already in the array of selected subcategories
+    const categories = filters.category ? filters.category.split(',') : [];
     const subcategories = filters.subcategoryCode ? filters.subcategoryCode.split(',') : [];
 
     // Toggle the selection
+    const updatedCategories = categories.includes(itemCategory) ? categories.filter(category => category !== itemCategory) : [...categories, itemCategory];
     const updatedSubcategories = subcategories.includes(itemSubcategoryCode)
       ? subcategories.filter(subcategory => subcategory !== itemSubcategoryCode)
       : [...subcategories, itemSubcategoryCode];
 
     setQueryParams({
       ...filters,
-      category: itemCategory,
+      category: updatedCategories.join(','),
       subcategoryCode: updatedSubcategories.join(','), // Convert array to a comma-separated string
     });
   };
@@ -221,7 +222,10 @@ const ProductListing = () => {
                       <div key={listItem.id}>
                         <input
                           type='checkbox'
-                          checked={filters.subcategoryCode && filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)}
+                          checked={filters.category &&
+                            filters.category.split(',').includes(item.category) &&
+                            filters.subcategoryCode &&
+                            filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)}
                           onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)}
                         />
 
