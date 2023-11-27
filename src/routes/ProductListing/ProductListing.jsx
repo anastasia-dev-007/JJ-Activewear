@@ -117,19 +117,18 @@ const ProductListing = () => {
     },
   ];
 
-   
-   const ColorsAccordionData= [
-        { id: 1, subcategory: 'white', subcategoryCode: '#ffffff', },
-        { id: 2, subcategory: 'cream', subcategoryCode: '#dea18e', },
-        { id: 3, subcategory: 'yellow', subcategoryCode: '#e7d682', },
-        { id: 4, subcategory: 'green', subcategoryCode: '#aabbb1', },
-        { id: 5, subcategory: 'orange', subcategoryCode: '#f34221', },
-        { id: 6, subcategory: 'black', subcategoryCode: '#0e0f13', },
-        { id: 7, subcategory: 'purple', subcategoryCode: '#c8c6eb', },
-        { id: 8, subcategory: 'blue', subcategoryCode: '#438ad0', },
-        { id: 9, subcategory: 'grey', subcategoryCode: '#7a7e7e', },
-        { id: 10, subcategory: 'pink', subcategoryCode: '#dc3e79' },
-      ];
+  const ColorsAccordionData = [
+    { id: 1, color: 'white', colorCode: '#ffffff', },
+    { id: 2, color: 'cream', colorCode: '#dea18e', },
+    { id: 3, color: 'yellow', colorCode: '#e7d682', },
+    { id: 4, color: 'green', colorCode: '#aabbb1', },
+    { id: 5, color: 'orange', colorCode: '#f34221', },
+    { id: 6, color: 'black', colorCode: '#0e0f13', },
+    { id: 7, color: 'purple', colorCode: '#c8c6eb', },
+    { id: 8, color: 'blue', colorCode: '#438ad0', },
+    { id: 9, color: 'grey', colorCode: '#7a7e7e', },
+    { id: 10, color: 'pink', colorCode: '#dc3e79' },
+  ];
 
   const handleCheckBoxChange = (
     itemCategory,
@@ -252,28 +251,26 @@ const ProductListing = () => {
               <Accordion.Item eventKey="sizeFilter">
                 <Accordion.Header>Size</Accordion.Header>
                 <Accordion.Body >
-                  <ul style={{ listStyle: 'none' }}>
-                    {['S', 'M', 'L'].map((size) => (
-                      <li key={size}>
-                        <input
-                          type='checkbox'
-                          checked={filters.size === size}
-                          onChange={() => handleSizeSelection(size)}
-                        />
-                        <span>{size}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {['S', 'M', 'L'].map((size) => (
+                    <div key={size}>
+                      <input
+                        type='checkbox'
+                        checked={filters.size === size}
+                        onChange={() => handleSizeSelection(size)}
+                      />
+                      <span>{size}</span>
+                    </div>
+                  ))}
                 </Accordion.Body>
               </Accordion.Item>
 
-               {/**Color Filter */}
-               <Accordion.Item eventKey="colorFilter">
+              {/**Color Filter */}
+              <Accordion.Item eventKey="colorFilter">
                 <Accordion.Header>Color</Accordion.Header>
                 <Accordion.Body className={styles.colorsAccordionContainer} >
                   {
                     ColorsAccordionData.map((color) => (
-                      <div key={color.id} className={styles.colorsAccordion} style={{ backgroundColor: color.subcategoryCode, color: color.subcategoryCode }}>.</div>
+                      <div key={color.id} className={styles.colorsAccordion} style={{ backgroundColor: color.colorCode, color: color.colorCode }}>.</div>
                     ))
                   }
                 </Accordion.Body>
