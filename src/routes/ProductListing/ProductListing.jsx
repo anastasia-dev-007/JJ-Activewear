@@ -22,13 +22,11 @@ const ProductListing = () => {
   const filters = { //valorile din acest filters se iau din queryParams
     category: queryParams.get('category'),
     subcategoryCode: queryParams.get('subcategoryCode'),
-    size: queryParams.get('size') === 'undefined' ? undefined : queryParams.get('size'),
-    availability: queryParams.get('availability') === 'undefined' ? undefined : queryParams.get('availability'),
-    color: queryParams.get('color') === 'undefined' ? undefined : queryParams.get('color'),
-    minPrice: isNaN(parseFloat(queryParams.get('minPrice'))) ? undefined : parseFloat(queryParams.get('minPrice')),
-    maxPrice: isNaN(parseFloat(queryParams.get('maxPrice'))) ? undefined : parseFloat(queryParams.get('maxPrice')),
-    promo: queryParams.get('promo') === 'undefined' ? undefined : queryParams.get('promo'),
-    newArrival: queryParams.get('newArrival') === 'undefined' ? undefined : queryParams.get('newArrival'),
+    size: queryParams.get('size'),
+    availability: queryParams.get('availability'),
+    color: queryParams.get('color'),
+    minPrice: parseFloat(queryParams.get('minPrice')),
+    maxPrice: parseFloat(queryParams.get('maxPrice')),
 
     //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
     //This approach ensures that if a parameter is not found in the URL, it defaults to undefined, avoiding potential errors when trying to access properties or methods on null or undefined.
@@ -147,12 +145,12 @@ const ProductListing = () => {
     });
   };
 
-  const handlePriceInput = (inputId, value) => {
+  const handlePriceInput = (inputId, value) => { //inputID is either minPrice or maxPrice set as id="", value - price (value entered in the input field)
     setQueryParams({
       ...filters,
       [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: parseFloat(value) || undefined,
         })
-  }
+  };
 
   // const applyFilters = () => {
   //   return products.filter(product => {
@@ -264,7 +262,12 @@ const ProductListing = () => {
                     ColorsAccordionData.map((color) => (
                       <div key={color.id} 
                       className={styles.colorsAccordion} 
-                      style={{ backgroundColor: color.colorCode, color: color.colorCode }}
+                      style={{
+                        backgroundColor: color.colorCode,
+                        color: color.colorCode,
+                        boxShadow: filters.color === color.color ? `0 0 15px ${color.colorCode}` : 'none',
+
+                      }}
                       onClick={() => handleColorSelection(color)}>.</div>
                     ))
                   }
