@@ -69,7 +69,7 @@ const NavBar = () => {
                                             <li><Link to="/products-list?category=Activewear&subcategoryCode=T-shirts">T-shirts</Link></li>
                                             <li><Link to="/products-list?category=Activewear&subcategoryCode=long-sleeve_workout_tops">Long-sleeve workout tops</Link></li>
                                             <li><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts">Tennis Shorts</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts">Leggings & Yoga Pants</Link></li>
+                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=leggings_and_yoga_pants">Leggings & Yoga Pants</Link></li>
                                             <li><Link to="/products-list?category=Activewear&subcategoryCode=matching_sets">Matching Sets</Link></li>
                                             <li><Link to="/products-list?category=Activewear">All Activewear <i className="fa-solid fa-arrow-right-long"></i></Link></li>
                                         </ul>

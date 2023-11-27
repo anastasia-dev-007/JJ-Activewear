@@ -41,17 +41,21 @@ const ProductListing = () => {
   useEffect(() => { //useEffect runs function getProducts, each time when queryParams changes . fetch the product data and then filter it based on the specified query parameters (filters) before updating the products state with the filtered result. The effect is triggered whenever the queryParams dependency changes, indicating a change in the applied filters.
     const data = getProducts(); // Fetch products data
 
-    let filteredProducts = data.filter(product => (
-      (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
-      (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-      (!filters.size || product.size === filters.size) &&
-      (!filters.availability || product.availability === filters.availability) &&
-      (!filters.color || product.color === filters.color) &&
-      (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
-      (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
-      (!filters.promo || product.promo === filters.promo) &&
-      (!filters.newArrival || product.newArrival === filters.newArrival)
-    ));
+    let filteredProducts = data.map(product => ({
+      ...product,
+      availability: product.quantity > 0 ? 'Available' : 'Out of Stock'
+    }))
+      .filter(product => (
+        (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
+        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
+        (!filters.size || product.size === filters.size) &&
+        (!filters.availability || product.availability === filters.availability) &&
+        (!filters.color || product.color === filters.color) &&
+        (!filters.minPrice || parseFloat(product.minPrice) >= parseFloat(filters.minPrice)) &&
+        (!filters.maxPrice || parseFloat(product.maxPrice) <= parseFloat(filters.maxPrice)) &&
+        (!filters.promo || product.promo === filters.promo) &&
+        (!filters.newArrival || product.newArrival === filters.newArrival)
+      ));
 
     // Sorting logic based on price
     if (queryParams.get('sortByPrice') === 'Ascending order') {
@@ -61,6 +65,7 @@ const ProductListing = () => {
     }
 
     console.log('Filtered products:', filteredProducts);
+    console.log('Size filter:', filters.size);
     setProducts(filteredProducts);
   }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
@@ -214,7 +219,7 @@ const ProductListing = () => {
         </div>
 
         <div className='title'>
-          <h2> Title of category selected by user </h2>
+          <h4> Title of category selected by user ({products.length}) </h4>
         </div>
       </header>
 
@@ -245,7 +250,7 @@ const ProductListing = () => {
                         <input
                           type='checkbox'
                           checked={filters.category === item.category && filters.subcategoryCode === listItem.subcategoryCode}
-                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)}
+                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode, listItem.size, listItem.color, listItem.availability, listItem.price)}
                         />
 
                         <span>{listItem.subcategory}</span>
