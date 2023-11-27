@@ -45,10 +45,10 @@ const ProductListing = () => {
     }))
       .filter(product => (
         (!filters.category || product.category === filters.category) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
-        (!filters.subcategoryCode || product.subcategoryCode === filters.subcategoryCode) &&
-        (!filters.size || product.size === filters.size) &&
+        (!filters.subcategoryCode || filters.subcategoryCode.split(',').includes(product.subcategoryCode)) &&
+        (!filters.size || filters.size.split(',').includes(product.size)) &&
         (!filters.availability || product.availability === filters.availability) &&
-        (!filters.color || product.color === filters.color) &&
+        (!filters.color || filters.color.split(',').includes(product.color)) &&
         (!filters.minPrice || parseFloat(product.price) >= parseFloat(filters.minPrice)) &&
         (!filters.maxPrice || parseFloat(product.price) <= parseFloat(filters.maxPrice)) &&
         (!filters.promo || product.promo === filters.promo) &&
@@ -117,30 +117,47 @@ const ProductListing = () => {
 
   const handleCheckBoxChange = (
     itemCategory,
-    itemSubcategoryCode,
-    itemPromo,
-    itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
+    itemSubcategoryCode
+  ) => {
+    // Check if the current subcategory is already in the array of selected subcategories
+    const subcategories = filters.subcategoryCode ? filters.subcategoryCode.split(',') : [];
 
-    setQueryParams({ //AICI SETEZ FILTERELE
-      ...filters, //adaugam tot ce a fost in const filters + key: value
+    // Toggle the selection
+    const updatedSubcategories = subcategories.includes(itemSubcategoryCode)
+      ? subcategories.filter(subcategory => subcategory !== itemSubcategoryCode)
+      : [...subcategories, itemSubcategoryCode];
+
+    setQueryParams({
+      ...filters,
       category: itemCategory,
-      subcategoryCode: itemSubcategoryCode,
-      promo: itemPromo,
-      newArrival: itemNewArrival,
-    })
+      subcategoryCode: updatedSubcategories.join(','), // Convert array to a comma-separated string
+    });
   };
 
   const handleSizeSelection = (selectedSize) => {
+    const sizes = filters.size ? filters.size.split(',') : [];
+
+    const updatedSizes = sizes.includes(selectedSize)
+      ? sizes.filter(size => size !== selectedSize)
+      : [...sizes, selectedSize];
+
     setQueryParams({
       ...filters,
-      size: selectedSize,
+      size: updatedSizes.join(','),
     });
   };
 
   const handleColorSelection = (selectedColor) => {
+    const colors = filters.color ? filters.color.split(',') : [];
+
+    // Toggle the selection
+    const updatedColors = colors.includes(selectedColor.color)
+      ? colors.filter(color => color !== selectedColor.color)
+      : [...colors, selectedColor.color];
+
     setQueryParams({
       ...filters,
-      color: selectedColor.color,
+      color: updatedColors.join(','),
     });
   };
 
@@ -148,7 +165,7 @@ const ProductListing = () => {
     setQueryParams({
       ...filters,
       [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: parseFloat(value) || undefined,
-        })
+    })
   };
 
   const resetFilters = () => {
@@ -167,10 +184,10 @@ const ProductListing = () => {
     <div className={styles.productListingContainer}>
       <header>
         <div className='path'>
-          <p><Link to='/#'>Home</Link> | 
-          <Link to={'/products-list/'}>All products</Link> | 
-          <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> |  
-          {filters.subcategoryCode || ''} </p>
+          <p><Link to='/#'>Home</Link> |
+            <Link to={'/products-list/'}>All products</Link> |
+            <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> |
+            {filters.subcategoryCode || ''} </p>
         </div>
 
         <div className='title'>
@@ -204,8 +221,8 @@ const ProductListing = () => {
                       <div key={listItem.id}>
                         <input
                           type='checkbox'
-                          checked={filters.category === item.category && filters.subcategoryCode === listItem.subcategoryCode}
-                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode, listItem.size, listItem.color, listItem.availability, listItem.price)}
+                          checked={filters.subcategoryCode && filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)}
+                          onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)}
                         />
 
                         <span>{listItem.subcategory}</span>
@@ -223,7 +240,8 @@ const ProductListing = () => {
                     <div key={item.id}>
                       <input
                         type='checkbox'
-                        checked={filters.size === item.size}
+                        // checked={filters.size === item.size}
+                        checked={filters.size && filters.size.split(',').includes(item.size)}
                         onChange={() => handleSizeSelection(item.size)}
                       />
                       <span>{item.size}</span>
@@ -238,14 +256,16 @@ const ProductListing = () => {
                 <Accordion.Body className={styles.colorsAccordionContainer} >
                   {
                     ColorsAccordionData.map((color) => (
-                      <div key={color.id} 
-                      className={styles.colorsAccordion} 
-                      style={{
-                        backgroundColor: color.colorCode,
-                        color: color.colorCode,
-                        boxShadow: filters.color === color.color ? `0 0 15px ${color.colorCode}` : 'none',
-                      }}
-                      onClick={() => handleColorSelection(color)}>.</div>
+                      <div key={color.id}
+                        className={styles.colorsAccordion}
+                        style={{
+                          backgroundColor: color.colorCode,
+                          color: color.colorCode,
+                          boxShadow: filters.color === color.color ? `0 0 15px ${color.colorCode}` : 'none',
+                        }}
+                        onClick={() => handleColorSelection(color)}
+                        checked={filters.color && filters.color.split(',').includes(color.color)}
+                      >.</div>
                     ))
                   }
                 </Accordion.Body>
@@ -255,8 +275,8 @@ const ProductListing = () => {
               <Accordion.Item eventKey="priceFilter">
                 <Accordion.Header>Price</Accordion.Header>
                 <Accordion.Body>
-                  from <input type="text" id='minPrice' onInput={(event) => handlePriceInput(event.target.id, event.target.value)}/> 
-                  to 
+                  from <input type="text" id='minPrice' onInput={(event) => handlePriceInput(event.target.id, event.target.value)} />
+                  to
                   <input type="text" id='maxPrice' onInput={(event) => handlePriceInput(event.target.id, event.target.value)} />
                 </Accordion.Body>
               </Accordion.Item>
