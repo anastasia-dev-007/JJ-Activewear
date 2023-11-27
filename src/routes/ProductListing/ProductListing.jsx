@@ -115,7 +115,6 @@ const ProductListing = () => {
     { id: 10, color: 'pink', colorCode: '#dc3e79' },
   ];
 
-
   const handleCheckBoxChange = (
     itemCategory,
     itemSubcategoryCode,
@@ -164,51 +163,17 @@ const ProductListing = () => {
     });
   };
 
-  // const applyFilters = () => {
-  //   return products.filter(product => {
-  //     let isAvailable = true;
-
-  //     if (currentFilters.category && product.category !== currentFilters.category) {
-  //       isAvailable = false;
-  //     }
-
-  //     if (currentFilters.subcategory && product.subcategory !== currentFilters.subcategory) {
-  //       isAvailable = false;
-  //     }
-
-  //     if (currentFilters.size && product.size !== currentFilters.size) {
-  //       isAvailable = false;
-  //     }
-
-  //     if (currentFilters.availability && product.availability !== currentFilters.availability) {
-  //       isAvailable = false;
-  //     }
-
-  //     if (currentFilters.color && product.color !== currentFilters.color) {
-  //       isAvailable = false;
-  //     }
-
-  //     if (currentFilters.minPrice && currentFilters.maxPrice) {
-  //       const productPrice = product.price || 0; // Assuming product.price is a number
-  //       const minPrice = parseFloat(currentFilters.minPrice);
-  //       const maxPrice = parseFloat(currentFilters.maxPrice);
-
-  //       isAvailable = isAvailable && (productPrice >= minPrice && productPrice <= maxPrice);
-  //     }
-
-  //     return isAvailable;
-  //   });
-  // };
-
   return (
     <div className={styles.productListingContainer}>
       <header>
         <div className='path'>
-          <p><Link to='/#'>Home</Link> | Page with title of category selected by user </p>
+          <p><Link to='/#'>Home</Link> | 
+          <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || 'All products'}</Link> |  
+          {filters.subcategoryCode || ''} </p>
         </div>
 
         <div className='title'>
-          <h4> Title of category selected by user ({products.length}) </h4>
+          <p> {filters.category || 'All products'} ({products.length}) </p>
         </div>
       </header>
 
