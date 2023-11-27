@@ -6,17 +6,23 @@ import { products } from '../../products.service';
 const NavBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
-
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleSearchClick = () => {
-        const result = products.filter(product =>
+        if (searchQuery) {
+          const result = products.filter((product) =>
             product.titleCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
             product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
             product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        setFilteredProducts(result); // Update the filtered products
-    };
+          );
+      
+          setFilteredProducts(result); // Update the filtered products
+          setSearchResults(result); // Update the search results
+        } else {
+          // Reset search results when the search query is empty
+          setSearchResults([]);
+        }
+      };      
 
     return (
         <nav >

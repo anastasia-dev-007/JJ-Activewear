@@ -152,6 +152,18 @@ const ProductListing = () => {
         })
   };
 
+  const resetFilters = () => {
+    setQueryParams({
+      category: '',
+      subcategoryCode: '',
+      size: '',
+      availability: '',
+      color: '',
+      minPrice: '',
+      maxPrice: '',
+    });
+  };
+
   // const applyFilters = () => {
   //   return products.filter(product => {
   //     let isAvailable = true;
@@ -266,7 +278,6 @@ const ProductListing = () => {
                         backgroundColor: color.colorCode,
                         color: color.colorCode,
                         boxShadow: filters.color === color.color ? `0 0 15px ${color.colorCode}` : 'none',
-
                       }}
                       onClick={() => handleColorSelection(color)}>.</div>
                     ))
@@ -287,7 +298,7 @@ const ProductListing = () => {
             </Accordion>
           </div>
 
-          <button>Reset Filters</button>
+          <button onClick={resetFilters}>Reset Filters</button>
 
         </div>
 
