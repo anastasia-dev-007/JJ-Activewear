@@ -130,14 +130,16 @@ const ProductListing = () => {
     { id: 10, color: 'pink', colorCode: '#dc3e79' },
   ];
 
+  const SizesAccordionData = [
+    { id: 1, size: 'S' },
+    { id: 2, size: 'M' },
+    { id: 3, size: 'L' },
+  ];
+
+
   const handleCheckBoxChange = (
     itemCategory,
     itemSubcategoryCode,
-    itemSize,
-    itemAvailability,
-    itemColor,
-    itemMinPrice,
-    itemMaxPrice,
     itemPromo,
     itemNewArrival) => {//cand vom da click pe checkbox vom seta noile query params din accordion
 
@@ -145,11 +147,6 @@ const ProductListing = () => {
       ...filters, //adaugam tot ce a fost in const filters + key: value
       category: itemCategory,
       subcategoryCode: itemSubcategoryCode,
-      size: itemCategory === 'Size' ? itemSubcategoryCode : itemSize,
-      availability: itemAvailability,
-      color: itemColor,
-      minPrice: parseFloat(itemMinPrice),
-      maxPrice: parseFloat(itemMaxPrice),
       promo: itemPromo,
       newArrival: itemNewArrival,
     })
@@ -251,14 +248,14 @@ const ProductListing = () => {
               <Accordion.Item eventKey="sizeFilter">
                 <Accordion.Header>Size</Accordion.Header>
                 <Accordion.Body >
-                  {['S', 'M', 'L'].map((size) => (
-                    <div key={size}>
+                  {SizesAccordionData.map((item) => (
+                    <div key={item.id}>
                       <input
                         type='checkbox'
-                        checked={filters.size === size}
-                        onChange={() => handleSizeSelection(size)}
+                        checked={filters.size === item.size}
+                        onChange={() => handleSizeSelection(item.size)}
                       />
-                      <span>{size}</span>
+                      <span>{item.size}</span>
                     </div>
                   ))}
                 </Accordion.Body>

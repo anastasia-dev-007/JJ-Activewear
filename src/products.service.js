@@ -394,7 +394,7 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: nul
+        promoPrice: null,
     },
     {
         id: 23,
@@ -592,7 +592,7 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: nul
+        promoPrice: null,
     },
     {
         id: 34,
