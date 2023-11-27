@@ -114,26 +114,26 @@ const ProductListing = () => {
     { id: 10, color: 'pink', colorCode: '#dc3e79' },
   ];
 
-  const handleCheckBoxChange = (
-    itemCategory,
-    itemSubcategoryCode
-  ) => {
+  const handleCheckBoxChange = (itemCategory, itemSubcategoryCode) => {
     // Check if the current subcategory is already in the array of selected subcategories
     const categories = filters.category ? filters.category.split(',') : [];
     const subcategories = filters.subcategoryCode ? filters.subcategoryCode.split(',') : [];
-
+  
     // Toggle the selection
-    const updatedCategories = categories.includes(itemCategory) ? categories.filter(category => category !== itemCategory) : [...categories, itemCategory];
+    const updatedCategories = categories.includes(itemCategory)
+      ? categories.filter(category => category !== itemCategory)
+      : [...categories, itemCategory];
     const updatedSubcategories = subcategories.includes(itemSubcategoryCode)
       ? subcategories.filter(subcategory => subcategory !== itemSubcategoryCode)
       : [...subcategories, itemSubcategoryCode];
-
+  
     setQueryParams({
       ...filters,
       category: updatedCategories.join(','),
       subcategoryCode: updatedSubcategories.join(','), // Convert array to a comma-separated string
     });
   };
+  
 
   const handleSizeSelection = (selectedSize) => {
     const sizes = filters.size ? filters.size.split(',') : [];
@@ -162,12 +162,25 @@ const ProductListing = () => {
     });
   };
 
-  const handlePriceInput = (inputId, value) => { //inputID is either minPrice or maxPrice set as id="", value - price (value entered in the input field)
+  const handlePriceInput = (inputId, value) => {
+    // Check if the value is a valid number
+    const numericValue = parseFloat(value);
+  
+    // Check if the numericValue is a valid number
+    const isValidNumber = !isNaN(numericValue) && isFinite(numericValue);
+  
+    console.log('Value:', value);
+    console.log('Numeric Value:', numericValue);
+    console.log('Is Valid Number:', isValidNumber);
+  
     setQueryParams({
       ...filters,
-      [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: parseFloat(value) || undefined,
-    })
+      [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: isValidNumber ? numericValue : undefined,
+    });
   };
+  
+  
+  
 
   const resetFilters = () => {
     setQueryParams({
@@ -222,10 +235,12 @@ const ProductListing = () => {
                       <div key={listItem.id}>
                         <input
                           type='checkbox'
-                          checked={filters.category &&
+                          checked={
+                            filters.category &&
                             filters.category.split(',').includes(item.category) &&
                             filters.subcategoryCode &&
-                            filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)}
+                            filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)
+                          }
                           onChange={() => handleCheckBoxChange(item.category, listItem.subcategoryCode)}
                         />
 
