@@ -117,6 +117,12 @@ const ProductListing = () => {
     },
   ];
 
+  const SizesAccordionData = [
+    { id: 1, size: 'S' },
+    { id: 2, size: 'M' },
+    { id: 3, size: 'L' },
+  ];
+
   const ColorsAccordionData = [
     { id: 1, color: 'white', colorCode: '#ffffff', },
     { id: 2, color: 'cream', colorCode: '#dea18e', },
@@ -128,12 +134,6 @@ const ProductListing = () => {
     { id: 8, color: 'blue', colorCode: '#438ad0', },
     { id: 9, color: 'grey', colorCode: '#7a7e7e', },
     { id: 10, color: 'pink', colorCode: '#dc3e79' },
-  ];
-
-  const SizesAccordionData = [
-    { id: 1, size: 'S' },
-    { id: 2, size: 'M' },
-    { id: 3, size: 'L' },
   ];
 
 
@@ -156,6 +156,13 @@ const ProductListing = () => {
     setQueryParams({
       ...filters,
       size: selectedSize,
+    });
+  };
+
+  const handleColorSelection = (selectedColor) => {
+    setQueryParams({
+      ...filters,
+      color: selectedColor.color,
     });
   };
 
@@ -267,7 +274,10 @@ const ProductListing = () => {
                 <Accordion.Body className={styles.colorsAccordionContainer} >
                   {
                     ColorsAccordionData.map((color) => (
-                      <div key={color.id} className={styles.colorsAccordion} style={{ backgroundColor: color.colorCode, color: color.colorCode }}>.</div>
+                      <div key={color.id} 
+                      className={styles.colorsAccordion} 
+                      style={{ backgroundColor: color.colorCode, color: color.colorCode }}
+                      onClick={() => handleColorSelection(color)}>.</div>
                     ))
                   }
                 </Accordion.Body>
