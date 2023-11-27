@@ -88,7 +88,7 @@ const ProductListing = () => {
 
 
 
-  const AccordionsData = [
+  const CategoriesAccordionsData = [
     {
       id: 1,
       category: 'Activewear',
@@ -115,40 +115,21 @@ const ProductListing = () => {
       list: [
         { id: 1, subcategory: 'Swimwear', subcategoryCode: 'swimwear' },]
     },
-    {
-      id: 4,
-      category: 'Size',
-      list: [
-        { id: 1, subcategory: 'S', subcategoryCode: 'S' },
-        { id: 2, subcategory: 'M', subcategoryCode: 'M' },
-        { id: 3, subcategory: 'L', subcategoryCode: 'L' },
-      ]
-    },
-    {
-      id: 5,
-      category: 'Availability',
-      list: [
-        { id: 1, subcategory: 'Available', subcategoryCode: 'available' },
-        { id: 2, subcategory: 'Out of stock', subcategoryCode: 'out_of_stock' },
-      ]
-    },
-    {
-      id: 6,
-      category: 'Colors',
-      list: [
-        { id: 1, subcategory: '#ffffff', subcategoryCode: '#ffffff', },
-        { id: 2, subcategory: '#dea18e', subcategoryCode: '#dea18e', },
-        { id: 3, subcategory: '#e7d682', subcategoryCode: '#e7d682', },
-        { id: 4, subcategory: '#aabbb1', subcategoryCode: '#aabbb1', },
-        { id: 5, subcategory: '#f34221', subcategoryCode: '#f34221', },
-        { id: 6, subcategory: '#0e0f13', subcategoryCode: '#0e0f13', },
-        { id: 7, subcategory: '#c8c6eb', subcategoryCode: '#c8c6eb', },
-        { id: 8, subcategory: '#438ad0', subcategoryCode: '#438ad0', },
-        { id: 9, subcategory: '#7d888a', subcategoryCode: '#7d888a', },
-        { id: 10, subcategory: '#dc3e79', subcategoryCode: '#dc3e79' },
-      ],
-    },
   ];
+
+   
+   const ColorsAccordionData= [
+        { id: 1, subcategory: 'white', subcategoryCode: '#ffffff', },
+        { id: 2, subcategory: 'cream', subcategoryCode: '#dea18e', },
+        { id: 3, subcategory: 'yellow', subcategoryCode: '#e7d682', },
+        { id: 4, subcategory: 'green', subcategoryCode: '#aabbb1', },
+        { id: 5, subcategory: 'orange', subcategoryCode: '#f34221', },
+        { id: 6, subcategory: 'black', subcategoryCode: '#0e0f13', },
+        { id: 7, subcategory: 'purple', subcategoryCode: '#c8c6eb', },
+        { id: 8, subcategory: 'blue', subcategoryCode: '#438ad0', },
+        { id: 9, subcategory: 'grey', subcategoryCode: '#7a7e7e', },
+        { id: 10, subcategory: 'pink', subcategoryCode: '#dc3e79' },
+      ];
 
   const handleCheckBoxChange = (
     itemCategory,
@@ -165,7 +146,7 @@ const ProductListing = () => {
       ...filters, //adaugam tot ce a fost in const filters + key: value
       category: itemCategory,
       subcategoryCode: itemSubcategoryCode,
-      size: itemSize,
+      size: itemCategory === 'Size' ? itemSubcategoryCode : itemSize,
       availability: itemAvailability,
       color: itemColor,
       minPrice: parseFloat(itemMinPrice),
@@ -173,6 +154,13 @@ const ProductListing = () => {
       promo: itemPromo,
       newArrival: itemNewArrival,
     })
+  };
+
+  const handleSizeSelection = (selectedSize) => {
+    setQueryParams({
+      ...filters,
+      size: selectedSize,
+    });
   };
 
   // const applyFilters = () => {
@@ -241,7 +229,7 @@ const ProductListing = () => {
           <div className={styles.Accordions}>
             {/* https://react-bootstrap.netlify.app/docs/components/accordion */}
             <Accordion alwaysOpen>
-              {AccordionsData.map(item => (
+              {CategoriesAccordionsData.map(item => (
                 <Accordion.Item eventKey={item.id}>
                   <Accordion.Header>{item.category}</Accordion.Header>
                   <Accordion.Body>
@@ -259,18 +247,46 @@ const ProductListing = () => {
                   </Accordion.Body>
                 </Accordion.Item>
               ))}
-            </Accordion>
 
-            {/**Price Filter */}
-            <Accordion defaultActiveKey={['7']} alwaysOpen>
-              <Accordion.Item eventKey="priceFilter">
-                <Accordion.Header>Price</Accordion.Header>
-                <Accordion.Body>
-                  <input type="range" id="priceRange" name="priceRange" min="0" max="5000" />
+              {/**Size Filter */}
+              <Accordion.Item eventKey="sizeFilter">
+                <Accordion.Header>Size</Accordion.Header>
+                <Accordion.Body >
+                  <ul style={{ listStyle: 'none' }}>
+                    {['S', 'M', 'L'].map((size) => (
+                      <li key={size}>
+                        <input
+                          type='checkbox'
+                          checked={filters.size === size}
+                          onChange={() => handleSizeSelection(size)}
+                        />
+                        <span>{size}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </Accordion.Body>
               </Accordion.Item>
 
-              {/* Add more Accordion items as needed */}
+               {/**Color Filter */}
+               <Accordion.Item eventKey="colorFilter">
+                <Accordion.Header>Color</Accordion.Header>
+                <Accordion.Body className={styles.colorsAccordionContainer} >
+                  {
+                    ColorsAccordionData.map((color) => (
+                      <div key={color.id} className={styles.colorsAccordion} style={{ backgroundColor: color.subcategoryCode, color: color.subcategoryCode }}>.</div>
+                    ))
+                  }
+                </Accordion.Body>
+              </Accordion.Item>
+
+              {/**Price Filter */}
+              <Accordion.Item eventKey="priceFilter">
+                <Accordion.Header>Price</Accordion.Header>
+                <Accordion.Body>
+                  from <input type="text" id='minPrice' /> to <input type="text" id='maxPrice' />
+                </Accordion.Body>
+              </Accordion.Item>
+
             </Accordion>
           </div>
 
