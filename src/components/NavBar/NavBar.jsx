@@ -1,28 +1,32 @@
 import React, { useState } from 'react'
 import styles from "./NavBar.module.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { products } from '../../products.service';
 
-const NavBar = () => {
+const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
+
 
     const handleSearchClick = () => {
         if (searchQuery) {
-          const result = products.filter((product) =>
-            product.titleCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-      
-          setFilteredProducts(result); // Update the filtered products
-          setSearchResults(result); // Update the search results
+            const result = products.filter((product) =>
+                product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+
+            setFilteredProducts(result);
+            setSearchResults(result);
+
+            navigate(`/products-list?search=${searchQuery}`); // Use useHistory to navigate to the ProductListing page with the search query
         } else {
-          // Reset search results when the search query is empty
-          setSearchResults([]);
+            setSearchResults([]); // Reset search results when the search query is empty
         }
-      };      
+        onSearchQuery(searchQuery);
+    };
 
     return (
         <nav >
@@ -40,9 +44,9 @@ const NavBar = () => {
                             <input
                                 className={styles.searchInput}
                                 type="text"
-                                placeholder='Search'
                                 value={searchQuery}
-                                onInput={(event) => { setSearchQuery(event.target.value) }} />
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                                placeholder='Search' />
                             <div className={styles.searchIcon} >
                                 <i className="fa-solid fa-magnifying-glass" onClick={handleSearchClick}></i>
                             </div>

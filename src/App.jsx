@@ -10,17 +10,24 @@ import Checkout from './routes/Checkout/Checkout';
 import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Login from './routes/Login/Login';
 import Favorites from './routes/Favorites/Favorites';
+import { useState } from 'react';
 
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchQuery = (query) => {
+      setSearchQuery(query);
+  };
+
   return (
     <BrowserRouter>
       <div>
-        <NavBar />
+        <NavBar onSearchQuery={handleSearchQuery}/>
 
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/products-list' element={<ProductListing />} />
+          <Route path='/products-list' element={<ProductListing searchQuery={searchQuery}/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
           <Route path='/favorites/:id' element={<Favorites />} />

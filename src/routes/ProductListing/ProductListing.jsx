@@ -4,7 +4,7 @@ import styles from "../ProductListing/ProductListing.module.css"
 import { Link, useSearchParams } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 
-const ProductListing = () => {
+const ProductListing = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [queryParams, setQueryParams] = useSearchParams({ //TOATE FILTRELE MERG PRIN QUERYPARAMS, CI NU PRIN STATE
     category: '',
@@ -51,8 +51,13 @@ const ProductListing = () => {
         (!filters.minPrice || parseFloat(product.price) >= parseFloat(filters.minPrice)) &&
         (!filters.maxPrice || parseFloat(product.price) <= parseFloat(filters.maxPrice)) &&
         (!filters.promo || product.promo === filters.promo) &&
-        (!filters.newArrival || product.newArrival === filters.newArrival)
-      ));
+        (!filters.newArrival || product.newArrival === filters.newArrival) &&
+        (!searchQuery || 
+          product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
+         )
+      ));      
 
     // Sorting logic based on price
     if (queryParams.get('sortByPrice') === 'Ascending order') {
@@ -63,7 +68,7 @@ const ProductListing = () => {
 
     console.log('Filtered products:', filteredProducts);
     setProducts(filteredProducts);
-  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+  }, [queryParams, searchQuery]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
 
   const CategoriesAccordionsData = [
@@ -178,9 +183,6 @@ const ProductListing = () => {
       [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: isValidNumber ? numericValue : undefined,
     });
   };
-  
-  
-  
 
   const resetFilters = () => {
     setQueryParams({
@@ -334,7 +336,7 @@ const ProductListing = () => {
                   </div>
                 </div>
 
-                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.subcategory}</Link>
+                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
                 <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
