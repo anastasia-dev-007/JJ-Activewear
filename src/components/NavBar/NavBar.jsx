@@ -21,15 +21,10 @@ const handleSearchClick = () => {
       setSearchResults(result);
   
       navigate(`/products-list?search=${searchQuery}`);
-    } else {
-      setSearchResults([]); // Reset search results when the search query is empty
-    }
+    };
+    onSearchQuery(searchQuery); // Ensure onSearchQuery receives the updated searchQuery
   
-    // Ensure onSearchQuery receives the updated searchQuery
-    onSearchQuery(searchQuery);
-  
-    // Reset the search query after onSearchQuery has processed the current value
-    setSearchQuery('');
+    setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
   };
   
 
