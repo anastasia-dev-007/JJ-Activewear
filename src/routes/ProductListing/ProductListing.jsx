@@ -208,13 +208,12 @@ const ProductListing = ({ searchQuery }) => {
       </header>
 
       <div className={styles.sortByPrice}>
-        <label htmlFor="sortByPrice">Sort by price: </label>
         <select
           id="sortByPrice"
           name="sortByPrice"
           onChange={(event) => setQueryParams({ ...filters, sortByPrice: event.target.value })}
         >
-          <option value="blank"></option>
+          <option value="">Sort by price:</option>
           <option value="Ascending order">Ascending order</option>
           <option value="Descending order">Descending order</option>
         </select>
