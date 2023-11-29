@@ -53,12 +53,12 @@ const ProductListing = ({ searchQuery }) => {
         (!filters.promo || product.promo === filters.promo) &&
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
         //searching via navbar logic
-        (!searchQuery || 
+        (!searchQuery ||
           product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-         )
-      ));      
+        )
+      ));
 
     // Sorting logic based on price
     if (queryParams.get('sortByPrice') === 'Ascending order') {
@@ -122,24 +122,19 @@ const ProductListing = ({ searchQuery }) => {
 
   const handleCheckBoxChange = (itemCategory, itemSubcategoryCode) => {
     // Check if the current subcategory is already in the array of selected subcategories
-    const categories = filters.category ? filters.category.split(',') : [];
     const subcategories = filters.subcategoryCode ? filters.subcategoryCode.split(',') : [];
-  
+
     // Toggle the selection
-    const updatedCategories = categories.includes(itemCategory)
-      ? categories.filter(category => category !== itemCategory)
-      : [...categories, itemCategory];
     const updatedSubcategories = subcategories.includes(itemSubcategoryCode)
       ? subcategories.filter(subcategory => subcategory !== itemSubcategoryCode)
       : [...subcategories, itemSubcategoryCode];
-  
+
     setQueryParams({
       ...filters,
-      category: updatedCategories.join(','),
+      category: '',
       subcategoryCode: updatedSubcategories.join(','), // Convert array to a comma-separated string
     });
   };
-  
 
   const handleSizeSelection = (selectedSize) => {
     const sizes = filters.size ? filters.size.split(',') : [];
@@ -171,14 +166,14 @@ const ProductListing = ({ searchQuery }) => {
   const handlePriceInput = (inputId, value) => {
     // Check if the value is a valid number
     const numericValue = parseFloat(value);
-  
+
     // Check if the numericValue is a valid number
     const isValidNumber = !isNaN(numericValue) && isFinite(numericValue);
-  
+
     console.log('Value:', value);
     console.log('Numeric Value:', numericValue);
     console.log('Is Valid Number:', isValidNumber);
-  
+
     setQueryParams({
       ...filters,
       [inputId === 'minPrice' ? 'minPrice' : 'maxPrice']: isValidNumber ? numericValue : undefined,
@@ -239,8 +234,6 @@ const ProductListing = ({ searchQuery }) => {
                         <input
                           type='checkbox'
                           checked={
-                            filters.category &&
-                            filters.category.split(',').includes(item.category) &&
                             filters.subcategoryCode &&
                             filters.subcategoryCode.split(',').includes(listItem.subcategoryCode)
                           }
