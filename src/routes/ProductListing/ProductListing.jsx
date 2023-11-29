@@ -20,13 +20,13 @@ const ProductListing = ({ searchQuery }) => {
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
-    category: queryParams.get('category'),
-    subcategoryCode: queryParams.get('subcategoryCode'),
-    size: queryParams.get('size'),
-    availability: queryParams.get('availability'),
-    color: queryParams.get('color'),
-    minPrice: parseFloat(queryParams.get('minPrice')),
-    maxPrice: parseFloat(queryParams.get('maxPrice')),
+    category: queryParams.get('category') || '', //aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    subcategoryCode: queryParams.get('subcategoryCode') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    size: queryParams.get('size') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    availability: queryParams.get('availability') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    color: queryParams.get('color') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    minPrice: parseFloat(queryParams.get('minPrice')) ? parseFloat(queryParams.get('minPrice')) : '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
+    maxPrice: parseFloat(queryParams.get('maxPrice')) ? parseFloat(queryParams.get('maxPrice')) : '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
 
     //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
     //This approach ensures that if a parameter is not found in the URL, it defaults to undefined, avoiding potential errors when trying to access properties or methods on null or undefined.
