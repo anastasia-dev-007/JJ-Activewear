@@ -52,6 +52,7 @@ const ProductListing = ({ searchQuery }) => {
         (!filters.maxPrice || parseFloat(product.price) <= parseFloat(filters.maxPrice)) &&
         (!filters.promo || product.promo === filters.promo) &&
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
+        //searching via navbar logic
         (!searchQuery || 
           product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -6,27 +6,32 @@ import { products } from '../../products.service';
 const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState('');
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
 
-
-    const handleSearchClick = () => {
-        if (searchQuery) {
-            const result = products.filter((product) =>
-                product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-
-            setFilteredProducts(result);
-            setSearchResults(result);
-
-            navigate(`/products-list?search=${searchQuery}`); // Use useHistory to navigate to the ProductListing page with the search query
-        } else {
-            setSearchResults([]); // Reset search results when the search query is empty
-        }
-        onSearchQuery(searchQuery);
-    };
+//function to search products through NavBar input
+const handleSearchClick = () => {
+    if (searchQuery) {
+      const result = products.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(result);
+      setSearchResults(result);
+  
+      navigate(`/products-list?search=${searchQuery}`);
+    } else {
+      setSearchResults([]); // Reset search results when the search query is empty
+    }
+  
+    // Ensure onSearchQuery receives the updated searchQuery
+    onSearchQuery(searchQuery);
+  
+    // Reset the search query after onSearchQuery has processed the current value
+    setSearchQuery('');
+  };
+  
 
     return (
         <nav >
