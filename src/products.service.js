@@ -16,7 +16,7 @@ export const products = [
         price: 100,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 2,
         imgs: ["/purple1.jpg", "/purple2.jpg", "/purple3.jpg", "/purple4.jpg"],
@@ -34,7 +34,7 @@ export const products = [
         price: 90,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 3,
         imgs: ["/corset.jpg"],
@@ -51,7 +51,8 @@ export const products = [
         currency: '$',
         price: 200,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 4,
@@ -70,7 +71,7 @@ export const products = [
         price: 70,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 5,
         imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"],
@@ -87,7 +88,8 @@ export const products = [
         currency: '$',
         price: 80,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 6,
@@ -105,7 +107,8 @@ export const products = [
         currency: '$',
         price: 70,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 7,
@@ -123,7 +126,8 @@ export const products = [
         currency: '$',
         price: 90,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 8,
@@ -141,7 +145,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 9,
@@ -159,7 +164,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 10,
@@ -177,7 +183,8 @@ export const products = [
         currency: '$',
         price: 60,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 11,
@@ -195,7 +202,8 @@ export const products = [
         currency: '$',
         price: 80,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 12,
@@ -213,7 +221,8 @@ export const products = [
         currency: '$',
         price: 75,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 13,
@@ -232,7 +241,7 @@ export const products = [
         price: 30,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 14,
         imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "bej4.jpg"],
@@ -250,7 +259,7 @@ export const products = [
         price: 200,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 15,
         imgs: ["/black3.jpg", "/black2.jpg", "/black3.jpg", "/black2.jpg"],
@@ -267,7 +276,8 @@ export const products = [
         currency: '$',
         price: 90,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 16,
@@ -286,7 +296,7 @@ export const products = [
         price: 60,
         promo: 'Y',
         promoPrice: 45,
-    },
+        status: null,   },
     {
         id: 17,
         imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"],
@@ -303,7 +313,8 @@ export const products = [
         currency: '$',
         price: 120,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 18,
@@ -321,7 +332,8 @@ export const products = [
         currency: '$',
         price: 80,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
 
     {
@@ -340,7 +352,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 20,
@@ -358,7 +371,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 21,
@@ -376,7 +390,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 22,
@@ -394,7 +409,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 23,
@@ -412,7 +428,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 24,
@@ -430,7 +447,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 25,
@@ -448,7 +466,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 26,
@@ -466,7 +485,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 27,
@@ -484,7 +504,8 @@ export const products = [
         currency: '$',
         price: 30,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 28,
@@ -502,7 +523,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 29,
@@ -520,7 +542,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null, 
+        promoPrice: '',
+        status: null, 
     },
     {
         id: 30,
@@ -538,7 +561,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 31,
@@ -556,7 +580,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 32,
@@ -574,7 +599,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 33,
@@ -592,7 +618,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 34,
@@ -610,7 +637,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 35,
@@ -628,7 +656,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 36,
@@ -646,7 +675,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 37,
@@ -664,7 +694,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 38,
@@ -682,7 +713,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 39,
@@ -700,7 +732,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 40,
@@ -718,7 +751,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 41,
@@ -736,7 +770,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 42,
@@ -754,7 +789,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 43,
@@ -772,7 +808,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 44,
@@ -790,7 +827,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 45,
@@ -808,7 +846,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 46,
@@ -826,7 +865,8 @@ export const products = [
         currency: '$',
         price: 80,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 47,
@@ -844,7 +884,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 48,
@@ -862,7 +903,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 49,
@@ -880,7 +922,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
     {
         id: 50,
@@ -898,7 +941,8 @@ export const products = [
         currency: '$',
         price: 50,
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     },
 ];
 
@@ -925,7 +969,8 @@ export const getProductById = (id) => {
         currency: '$',
         price: '',
         promo: 'N',
-        promoPrice: null,
+        promoPrice: '',
+        status: null,
     };
     return foundItem ? foundItem : defaultItem;
 };

@@ -11,6 +11,7 @@ import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Login from './routes/Login/Login';
 import Favorites from './routes/Favorites/Favorites';
 import { useState } from 'react';
+import Management from './routes/Management/Management';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/shopping-cart/:id' element={<ShoppingCart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />
+          <Route path='/management' element={<Management />} />
           <Route path='*' element={<>Page not found</>}></Route>
         </Routes>
       </div>

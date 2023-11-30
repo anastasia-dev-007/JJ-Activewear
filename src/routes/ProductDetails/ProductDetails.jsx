@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
   // const [selectedColor, setSelectedColor] = useState(null);
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -65,34 +65,34 @@ const ProductDetails = () => {
     }
   };
 
-  // const addToCart = () => {
-  //   if (!selectedSize) {
-  //     alert('Please select a size before adding to the cart');
-  //     return;
-  //   }
-    
-  //   const cartItem = {
-  //     id: product.id,
-  //     img: product.img,
-  //     img2: product.img2,
-  //     img3: product.img3,
-  //     img4: product.img4,
-  //     title: product.title,
-  //     color: product.color,
-  //     category: product.category,
-  //     subcategory: product.subcategory,
-  //     availableSizeS: 10,
-  //     availableSizeM: 5,
-  //     availableSizeL: 2,
-  //     status: product.status,
-  //     currency: product.currency,
-  //     price: product.price,
-  //     availability: product.availability,
-  // },
+  const addToCart = () => {
+    if (!selectedSize) {
+      alert('Please select a size before adding to the cart');
+      return;
+    }
 
-  // setCart([...cart, cartItem]);
+    const cartItem = {
+      id: product.id,
+      imgs: product.img,
+      title: product.title,
+      titleCode: product.titleCode,
+      color: product.color,
+      category: product.category,
+      subcategory: product.subcategory,
+      subcategoryCode: product.subcategoryCode,
+      size: product.size,
+      quantity: product.quantity,
+      bestSellerStatus: product.bestSellerStatus,
+      newArrival: product.newArrival,
+      currency: product.currency,
+      price: product.price,
+      promo: product.promo,
+      promoPrice: product.promoPrice,
+      status: product.status,
+    };
 
-  // }
+    setCart([...cart, [...cartItem.status === 'addedToCart']]);
+  }
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -175,7 +175,9 @@ const ProductDetails = () => {
 
               <div className={styles.addToCartBtnAndFavorites}>
                 <Link to={'/shopping-cart/' + product.id}>
-                  <button className={styles.addToCartBtn} >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                  <button className={styles.addToCartBtn}
+                  onClick={addToCart}
+                  >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </Link>
                 <div className={styles.favoritesBtn}>
                   <button>

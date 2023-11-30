@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../ShoppingCart/ShoppingCart.module.css'
 import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
+import { products } from '../../products.service';
 
 const ShoppingCart = () => {
   return (
@@ -10,7 +11,9 @@ const ShoppingCart = () => {
           <header>Shopping Cart "in brackets number of items in cart"</header>
 
 {/**Info will be rendered from the constant of cart array */}
-          <div className={styles.cartItem}>
+         {
+          products.filter(products.status === '').map(item => (
+            <div className={styles.cartItem}>
             <div className={styles.image}></div>
             <div>
               <div className={styles.productInfo}></div>
@@ -18,10 +21,24 @@ const ShoppingCart = () => {
             </div>
             <div className={styles.price}></div>
           </div>
-
-
+          ))
+         }
         </div>
-        <div className={styles.subTotal}></div>
+
+        <div className={styles.Total}>
+          <div className='subTotalLine'>
+            <div className="subTotal"></div>
+            <div className="subTotalPrice"></div>
+          </div>
+          <div className='deliveryLine'>
+            <div className="delivery"></div>
+            <div className="deliveryPrice"></div>
+          </div>
+
+          <div>
+            <button>Buy</button>
+          </div>
+        </div>
       </div>
 
       <MightLikeProducts />
