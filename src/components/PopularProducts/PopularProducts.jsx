@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from "./PopularProducts.module.css"
+import { products } from '../../products.service'
+import { Link } from 'react-router-dom'
 
 
 const PopularProducts = () => {
@@ -32,12 +34,50 @@ const PopularProducts = () => {
     ]
 
     return (
-        <div className={styles.popularProductsContainer}>
-            <i class="fa-solid fa-chevron-left" ></i>
-            {popularProductsList.map(item => (
+        <div className={styles.popularProductsWrapper}>
+            <h3>Popular Products</h3>
+           <div className={styles.popularProductsContainer}>
+           <i class="fa-solid fa-chevron-left" ></i>
+            {products.filter(item => item.bestSellerStatus === 'Best Seller')
+            .map(item => (
                 <div className={styles.popularProductCard}
                     key={item.id}>
-                    <img src={item.img} alt={item.title} />
+                         <div key={item.id} className={styles.productCard}>
+                <Link to={'/product-details/' + item.id}>
+                  <div className={styles.popularProductImg}>
+                  <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                  </div>
+                </Link>
+
+                <div className={styles.label}>{item.bestSellerStatus}</div>
+
+                <div className={styles.favorites}>
+                  <div>
+                    <i className="fa-regular fa-heart"></i>
+                  </div>
+
+                  <div>
+                    <i style={{ display: 'none' }} className="fa-solid fa-heart"></i>
+                  </div>
+                </div>
+
+                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
+                <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
+                <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
+
+                {/* <div className={styles.addToCartAndFavorites}>
+                  <button className={styles.addToCartBtn} onClick={(item) => addToCart(item)}>Add to favorites <i className="fa-solid fa-cart-shopping"></i>
+                  </button>
+                </div> */}
+              </div>
+
+
+
+
+
+                    {/* <div className={styles.popProductImg}>
+                    <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt={item.title} />
+                    </div>
                     <p>Popular</p>
                     <ul>
                         <li>XXS</li>
@@ -48,16 +88,18 @@ const PopularProducts = () => {
                     </ul>
                     <div>
                         <header>{item.title}</header>
-                        <p>{item.description}</p>
+                        <p>{item.category} | {item.subcategory}</p>
                         <p>{item.currency} {item.price}</p>
                         <div>
                             <button>Add to cart</button>
                             <button>Details</button>
                         </div>
-                    </div>
+                    </div> */}
+
                 </div>
             ))}
             <i class="fa-solid fa-chevron-right" ></i>
+           </div>
 
         </div>
     )
