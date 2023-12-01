@@ -177,10 +177,7 @@ const ProductDetails = () => {
 
                 <Offcanvas show={show} onHide={handleClose}>
                   <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>
-                     <span>Shopping Cart</span>  
-                      <i className="fa-solid fa-cart-shopping"></i>
-                      </Offcanvas.Title>
+                    <Offcanvas.Title> Shopping Cart</Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     {
@@ -217,7 +214,7 @@ const ProductDetails = () => {
                             </div>
 
                             <div className={styles.removeBtn}>
-                            <button>Remove</button>
+                              <button>Remove</button>
                             </div>
                           </div >
                         </div>
@@ -235,7 +232,12 @@ const ProductDetails = () => {
                       </div>
 
                       <div className={styles.buyBtn}>
-                      <Link to='/shopping-cart'><button>Go to cart</button></Link>
+                        <Link to='/shopping-cart'>
+                          <button>
+                            <span>Go to cart</span>
+                            <i className="fa-solid fa-cart-shopping"></i>
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </Offcanvas.Body>
