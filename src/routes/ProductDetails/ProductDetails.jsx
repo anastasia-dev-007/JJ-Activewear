@@ -14,6 +14,8 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [selectedMainPhotoIndex, setSelectedMainPhotoIndex] = useState(0); //keep track of the index of the currently selected main photo.
+
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
   // const [selectedColor, setSelectedColor] = useState(null);
@@ -87,6 +89,10 @@ const ProductDetails = () => {
     }
   }
 
+  const handleSmallPhotoClick = (index) => { //the index of the small photo clicked
+    setSelectedMainPhotoIndex(index); //updates the selectedMainPhotoIndex state with the clicked index.
+  };
+
   return (
     <div className={styles.productDetailsContainer}>
       <header className={styles.productDetailsHeader}>
@@ -98,9 +104,16 @@ const ProductDetails = () => {
           <div key={product.id} className={styles.productInfoContainer}>
             <div className={styles.productGallery}>
               <div className={styles.allPhotos}>
-                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[1]}` : ''} alt="" /></div>
-                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[2]}` : ''} alt="" /></div>
-                <div className={styles.photo}><img src={Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[3]}` : ''} alt="" /></div>
+                {
+                  product.imgs.map((img, index) => (
+                    <div
+                    key={index}
+                    className={styles.photo}
+                    onClick={() => handleSmallPhotoClick(index)}>
+                      <img src={`/assets${img}`} alt="" />
+                    </div>
+                  ))
+                }
               </div>
               <div className={styles.mainPhoto}>
                 {/* https://www.npmjs.com/package/react-image-magnify
@@ -109,10 +122,10 @@ const ProductDetails = () => {
                   smallImage: {
                     alt: 'Wristwatch by Ted Baker London',
                     isFluidWidth: true,
-                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[0]}` : '',
+                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[selectedMainPhotoIndex]}` : '',
                   },
                   largeImage: {
-                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[0]}` : '',
+                    src: Array.isArray(product.imgs) && product.imgs.length > 0 ? `/assets${product.imgs[selectedMainPhotoIndex]}` : '',
                     width: 1400,
                     height: 1800
                   },

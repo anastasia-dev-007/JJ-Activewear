@@ -9,7 +9,7 @@
 }
 
 .mainPhoto {
-    width: 32vw;
+    width: 30vw;
     height: 20vw;
     object-fit: cover;
     z-index: 1;
@@ -23,13 +23,15 @@
 
 .productGallery {
     display: flex;
-    gap: 30px;
+    gap: 10px;
+    height: 40vw;
 }
 
 .allPhotos {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-y: auto; 
 }
 
 .photo {
