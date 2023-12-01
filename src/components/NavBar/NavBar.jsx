@@ -54,7 +54,7 @@ const handleSearchClick = () => {
 
                         <i className="fa-regular fa-user"></i>
                         <i className="fa-regular fa-heart"></i>
-                        <i className="fa-solid fa-cart-shopping"></i>
+                      <Link to='/shopping-cart/'> <i className="fa-solid fa-cart-shopping"></i></Link>
                         <select id="language">
                             <option value="EN">EN</option> {/**flag is not displayed((( */}
                             <option value="RO">RO</option>{/**flag is not displayed((( */}

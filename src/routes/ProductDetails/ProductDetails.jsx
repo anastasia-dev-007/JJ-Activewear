@@ -6,6 +6,8 @@ import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart.context';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,11 +15,12 @@ const ProductDetails = () => {
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
   // const [selectedColor, setSelectedColor] = useState(null);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
   }, [id]);
+
+  const cartContext = useContext(CartContext);// consumam contextul
 
   const colors = [
     { id: 1, title: '#ffffff' },
@@ -65,34 +68,16 @@ const ProductDetails = () => {
     }
   };
 
-  const addToCart = () => {
-    if (!selectedSize) {
-      alert('Please select a size before adding to the cart');
-      return;
-    }
+  const addToCart = (product) => {
+    // if (!selectedSize) {
+    //   alert('Please select a size before adding to the cart');
+    //   return;
+    // }
 
-    const cartItem = {
-      id: product.id,
-      imgs: product.img,
-      title: product.title,
-      titleCode: product.titleCode,
-      color: product.color,
-      category: product.category,
-      subcategory: product.subcategory,
-      subcategoryCode: product.subcategoryCode,
-      size: product.size,
-      quantity: product.quantity,
-      bestSellerStatus: product.bestSellerStatus,
-      newArrival: product.newArrival,
-      currency: product.currency,
-      price: product.price,
-      promo: product.promo,
-      promoPrice: product.promoPrice,
-      status: product.status,
-    };
-
-    setCart([...cart, [...cartItem.status === 'addedToCart']]);
+    if (cartContext && cartContext.addItem) {
+      cartContext.addItem(product);
   }
+}
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -174,11 +159,11 @@ const ProductDetails = () => {
               </div>
 
               <div className={styles.addToCartBtnAndFavorites}>
-                <Link to={'/shopping-cart/' + product.id}>
+                
                   <button className={styles.addToCartBtn}
-                  onClick={addToCart}
+                    onClick={() => addToCart(product)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                </Link>
+                  
                 <div className={styles.favoritesBtn}>
                   <button>
                     <i class="fa-regular fa-heart"></i>

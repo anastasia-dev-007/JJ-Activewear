@@ -3,6 +3,8 @@ import { getProducts } from '../../products.service';
 import styles from "../ProductListing/ProductListing.module.css"
 import { Link, useSearchParams } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart.context';
 
 const ProductListing = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
@@ -17,6 +19,7 @@ const ProductListing = ({ searchQuery }) => {
     promo: '',
     newArrival: '',
   }); //for links from NavBar to ProductDetails
+  const cartContext = useContext(CartContext);// consumam contextul
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
@@ -192,6 +195,12 @@ const ProductListing = ({ searchQuery }) => {
     });
   };
 
+  const addToCart = (product) => {
+    if (cartContext && cartContext.addItem) {
+      cartContext.addItem(product);
+    }
+  };
+
   return (
     <div className={styles.productListingContainer}>
       <header>
@@ -333,10 +342,10 @@ const ProductListing = ({ searchQuery }) => {
                 <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
-                <div className={styles.addToCartAndFavorites}>
-                  <button className={styles.addToCartBtn}>Add to cart <i className="fa-solid fa-cart-shopping"></i>
+                {/* <div className={styles.addToCartAndFavorites}>
+                  <button className={styles.addToCartBtn} onClick={(item) => addToCart(item)}>Add to favorites <i className="fa-solid fa-cart-shopping"></i>
                   </button>
-                </div>
+                </div> */}
               </div>
             ))
           }
