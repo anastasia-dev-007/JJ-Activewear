@@ -9,7 +9,7 @@ const NavBar = ({ onSearchQuery }) => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
-    const cartContent = useContext(CartContext);
+    const cartContext = useContext(CartContext);
 
     //function to search products through NavBar input
     const handleSearchClick = () => {
@@ -55,15 +55,27 @@ const NavBar = ({ onSearchQuery }) => {
                         </div>
 
                         <i className="fa-regular fa-user"></i>
-                        <i className="fa-regular fa-heart"></i>
+
+
+
+
+                        <button type="button" class="btn position-relative">
+                            <i className="fa-regular fa-heart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                99+
+                            </span>
+                        </button>
+
+
                         <Link to='/shopping-cart/'>
                             <div className={styles.cartOnNav}>
-                                <button type="button" class="btn btn-primary position-relative">
-                                <i className="fa-solid fa-cart-shopping"></i>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {cartContent.cartItems.length}
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
+                                <button type="button" class="btn position-relative">
+                                    <i className="fa-solid fa-cart-shopping"></i>
+                                    {cartContext.cartItems.length > 0 && (
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {cartContext.cartItems.length}
+                                        </span>
+                                    )}
                                 </button>
                             </div>
                         </Link>
