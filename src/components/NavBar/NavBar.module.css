@@ -119,3 +119,17 @@
 .menuImage img {
     width: 20%; 
 }
+
+.cartOnNav {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    right: 0;
+}

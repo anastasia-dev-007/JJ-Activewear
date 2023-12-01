@@ -1,32 +1,34 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from "./NavBar.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { products } from '../../products.service';
+import { CartContext } from '../../contexts/cart.context';
 
 const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
+    const cartContent = useContext(CartContext);
 
-//function to search products through NavBar input
-const handleSearchClick = () => {
-    if (searchQuery) {
-      const result = products.filter((product) =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredProducts(result);
-      setSearchResults(result);
-  
-      navigate(`/products-list?search=${searchQuery}`);
+    //function to search products through NavBar input
+    const handleSearchClick = () => {
+        if (searchQuery) {
+            const result = products.filter((product) =>
+                product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredProducts(result);
+            setSearchResults(result);
+
+            navigate(`/products-list?search=${searchQuery}`);
+        };
+        onSearchQuery(searchQuery); // Ensure onSearchQuery receives the updated searchQuery
+
+        setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
     };
-    onSearchQuery(searchQuery); // Ensure onSearchQuery receives the updated searchQuery
-  
-    setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
-  };
-  
+
 
     return (
         <nav >
@@ -54,7 +56,17 @@ const handleSearchClick = () => {
 
                         <i className="fa-regular fa-user"></i>
                         <i className="fa-regular fa-heart"></i>
-                      <Link to='/shopping-cart/'> <i className="fa-solid fa-cart-shopping"></i></Link>
+                        <Link to='/shopping-cart/'>
+                            <div className={styles.cartOnNav}>
+                                <button type="button" class="btn btn-primary position-relative">
+                                <i className="fa-solid fa-cart-shopping"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {cartContent.cartItems.length}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </Link>
                         <select id="language">
                             <option value="EN">EN</option> {/**flag is not displayed((( */}
                             <option value="RO">RO</option>{/**flag is not displayed((( */}
