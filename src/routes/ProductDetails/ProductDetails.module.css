@@ -148,3 +148,44 @@
     padding-left: 15px;
     font-size: 14px;
 }
+
+.cartItem .image {
+    width: 150px;
+    height: 200px;
+}
+
+.cartItem .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cartItem {
+    display: flex;
+    gap: 10px;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.infoPriceAndBtnContainer {
+    height: 100%;
+}
+
+.subTotalLine {
+    display: flex;
+    justify-content: space-between;
+}
+
+.deliveryLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.buyBtn button {
+width: 100%;
+}
+
+.total {
+    margin-top: 50px;
+}

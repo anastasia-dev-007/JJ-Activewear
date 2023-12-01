@@ -8,6 +8,8 @@ import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -16,11 +18,17 @@ const ProductDetails = () => {
   // const [selectedSize, setSelectedSize] = useState(null);
   // const [selectedColor, setSelectedColor] = useState(null);
 
+  const [show, setShow] = useState(false); //for offCanvas
+  const handleClose = () => setShow(false);//for offCanvas
+  const handleShow = () => setShow(true);//for offCanvas
+
+
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
   }, [id]);
 
   const cartContext = useContext(CartContext);// consumam contextul
+  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price, 0);//for offCanvas
 
   const colors = [
     { id: 1, title: '#ffffff' },
@@ -76,8 +84,8 @@ const ProductDetails = () => {
 
     if (cartContext && cartContext.addItem) {
       cartContext.addItem(product);
+    }
   }
-}
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -159,11 +167,80 @@ const ProductDetails = () => {
               </div>
 
               <div className={styles.addToCartBtnAndFavorites}>
-                
+
+                <Button variant="primary" onClick={handleShow}>
                   <button className={styles.addToCartBtn}
                     onClick={() => addToCart(product)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                  
+                </Button>
+
+
+                <Offcanvas show={show} onHide={handleClose}>
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>
+                     <span>Shopping Cart</span>  
+                      <i className="fa-solid fa-cart-shopping"></i>
+                      </Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    {
+                      cartContext.cartItems.map(item => (
+                        <div key={item.id} className={styles.cartItem}>
+                          <div className={styles.imageContainer}>
+                            <div className={styles.image}>
+                              <img
+                                src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
+                                alt={`Product: ${item.title}`}
+                              />
+                            </div>
+                          </div>
+                          <div className={styles.infoPriceAndBtnContainer}>
+                            <div className={styles.productInfoAndPrice}>
+                              <div className={styles.productInfo}>
+                                <div>{item.title}</div>
+                                <div>{item.category} | {item.subcategory}</div>
+                                <div>Quantity: {item.quantity}</div>
+                                <div>Size: {item.size}</div>
+                                <div>Color: {item.color}</div>
+                              </div>
+
+                              <div className={styles.price}> Price: {item.currency} {item.price.toFixed(2)}</div>
+                            </div>
+
+                            <div className={styles.quantity}>
+                              <header>Quantity</header>
+                              <div className={styles.quantityPanel}>
+                                <button>-</button>
+                                <input className={styles.quantityInput} type="number" placeholder='1' style={{ width: '40px', height: '28px', fontSize: '14px' }} />
+                                <button>+</button>
+                              </div>
+                            </div>
+
+                            <div className={styles.removeBtn}>
+                            <button>Remove</button>
+                            </div>
+                          </div >
+                        </div>
+                      ))
+                    }
+
+                    <div className={styles.total}>
+                      <div className={styles.subTotalLine}>
+                        <div className={styles.subTotal}>Subtotal</div>
+                        <div className={styles.subTotalPrice}>$ {subtotalPrice.toFixed(2)}</div>
+                      </div>
+                      <div className={styles.deliveryLine}>
+                        <div className={styles.delivery}>Delivery</div>
+                        <div className={styles.deliveryPrice}>$ 10</div>
+                      </div>
+
+                      <div className={styles.buyBtn}>
+                      <Link to='/shopping-cart'><button>Go to cart</button></Link>
+                      </div>
+                    </div>
+                  </Offcanvas.Body>
+                </Offcanvas>
+
                 <div className={styles.favoritesBtn}>
                   <button>
                     <i class="fa-regular fa-heart"></i>
