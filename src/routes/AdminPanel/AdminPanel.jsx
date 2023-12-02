@@ -11,11 +11,11 @@ function AdminPanel() {
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="products" title="Products">
+                <Tab eventKey="products" title="View Products">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">Product ID</th>
                                 <th scope="col">Cover photo</th>
                                 <th scope="col">Gallery</th>
                                 <th scope="col">Title</th>
@@ -58,14 +58,41 @@ function AdminPanel() {
                                         <td>{item.promo}</td>
                                         <td>{item.promoPrice}</td>
                                         <td>{item.productDescription}</td>
+                                        <td>
+                                            <button>Edit</button>
+                                            <button>Delete</button>
+                                        </td>
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </table>
                 </Tab>
+                <Tab eventKey="addProducts" title="Add New Products">
+                    Tab content for Contact
+                </Tab>
                 <Tab eventKey="orders" title="Orders">
-                    Tab content for Profile
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Cover photo</th>
+                                <th scope="col">Gallery</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Title Code</th>
+                               
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>cell 1</td>
+                                <td>cell 2</td>
+                                <td>cell 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </Tab>
                 <Tab eventKey="clients" title="Clients">
                     Tab content for Contact
