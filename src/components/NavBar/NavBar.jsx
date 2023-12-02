@@ -111,6 +111,10 @@ const NavBar = ({ onSearchQuery }) => {
                                             autoFocus
                                         />
                                     </Form.Group>
+                                    
+                                        <p><Link>Forgot your password?</Link></p>
+                                        <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
+                                    
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer>
@@ -131,7 +135,15 @@ const NavBar = ({ onSearchQuery }) => {
                             <Modal.Body>
                                 <Form>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Username</Form.Label>
+                                        <Form.Label>Name Surname</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Phone number</Form.Label>
                                         <Form.Control
                                             type="text"
                                             autoFocus
@@ -148,11 +160,28 @@ const NavBar = ({ onSearchQuery }) => {
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Password</Form.Label>
+                                        <Form.Label>New password</Form.Label>
                                         <Form.Control
                                             type="password"
                                             autoFocus
                                         />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Confirm password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Upload your photo</Form.Label>
+                                        <div className="m-3">
+                                            <label className="mx-3">Choose file: </label>
+                                            <input className="d-none" type="file" />
+                                            <button className="btn btn-outline-primary">Upload</button>
+                                        </div>
                                     </Form.Group>
                                 </Form>
                             </Modal.Body>
