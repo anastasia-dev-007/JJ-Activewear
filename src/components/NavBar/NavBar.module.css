@@ -133,3 +133,11 @@
     top: 0;
     right: 0;
 }
+
+.loginDropDownBtn button:active, 
+.loginDropDownBtn button:hover,
+.loginDropDownBtn button:focus {
+    background-color: transparent; 
+    color: inherit; 
+    border: none;
+  }

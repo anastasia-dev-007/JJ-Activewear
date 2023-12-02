@@ -3,11 +3,17 @@ import styles from "./NavBar.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { products } from '../../products.service';
 import { CartContext } from '../../contexts/cart.context';
+import Button from 'react-bootstrap/Button';//for Modal
+import Form from 'react-bootstrap/Form';//for Modal
+import Modal from 'react-bootstrap/Modal';//for Modal
+import Dropdown from 'react-bootstrap/Dropdown';//for DropDown on login
+import DropdownButton from 'react-bootstrap/DropdownButton';//for DropDown on login
 
 const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
+    const [activeModal, setActiveModal] = useState(null);
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
     const cartContext = useContext(CartContext);
 
@@ -29,6 +35,16 @@ const NavBar = ({ onSearchQuery }) => {
         setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
     };
 
+    const [show, setShow] = useState(false); //for Modal
+
+    const handleClose = () => {
+        setShow(false)
+        setActiveModal(null);
+    };//for Modal
+    const handleShow = () => setShow(true);//for Modal
+    const handleModalButtonClick = (modalId) => {//for Modal
+        setActiveModal(modalId);
+    };
 
     return (
         <nav >
@@ -54,10 +70,101 @@ const NavBar = ({ onSearchQuery }) => {
                             </div>
                         </div>
 
-                        <i className="fa-regular fa-user"></i>
+                        <DropdownButton id="dropdown-basic-button" className={styles.loginDropDownBtn} title={<i className="fa-regular fa-user"></i>}>
+                            <Button variant="primary" onClick={() => handleModalButtonClick('login')}>
+                                <Dropdown.Item href="#/action-1">Log in</Dropdown.Item>
+                            </Button>
 
+                            <Button variant="primary" onClick={() => handleModalButtonClick('createAccount')}>
+                                <Dropdown.Item href="#/action-2">Create account</Dropdown.Item>
+                            </Button>
+                        </DropdownButton>
 
+                        {/* Modal for Login */}
+                        <Modal show={activeModal === 'login'} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Please log in to your account</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Username</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
 
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            // placeholder="name@example.com"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="primary" onClick={handleClose}>
+                                    Log in
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+
+                        {/* Modal for create account */}
+                        <Modal show={activeModal === 'createAccount'} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Create your account</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Username</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            // placeholder="name@example.com"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="primary" onClick={handleClose}>
+                                    Log in
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
 
                         <button type="button" class="btn position-relative">
                             <i className="fa-regular fa-heart"></i>
