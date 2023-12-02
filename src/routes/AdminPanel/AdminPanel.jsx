@@ -76,12 +76,13 @@ function AdminPanel() {
                         <thead>
                             <tr>
                                 <th scope="col">Order ID</th>
-                                <th scope="col">Cover photo</th>
-                                <th scope="col">Gallery</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Title Code</th>
-                               
-
+                                <th scope="col">Order date</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Client Phone</th>
+                                <th scope="col">Client email</th>
+                                <th scope="col">Order - product id, quantity, price</th>
+                                <th scope="col">Final price</th>
+                                <th scope="col">Status - completed, in process, new</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,12 +91,42 @@ function AdminPanel() {
                                 <td>cell 1</td>
                                 <td>cell 2</td>
                                 <td>cell 3</td>
+                                <td>cell 4</td>
+                                <td>cell 5</td>
+                                <td>cell 6</td>
+                                <td>cell 6</td>
                             </tr>
                         </tbody>
                     </table>
                 </Tab>
                 <Tab eventKey="clients" title="Clients">
-                    Tab content for Contact
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Client ID</th>
+                                <th scope="col">Registration date</th>
+                                <th scope="col">Name Surname</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Birthday</th>
+                                <th scope="col">Orders history</th>
+                                <th scope="col">Status - active, inactive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>cell 1</td>
+                                <td>cell 2</td>
+                                <td>cell 3</td>
+                                <td>cell 4</td>
+                                <td>cell 5</td>
+                                <td>cell 6</td>
+                                <td>cell 6</td>
+                                <td>cell 7</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </Tab>
             </Tabs>
         </div>
