@@ -8,14 +8,28 @@ import Form from 'react-bootstrap/Form';//for Modal
 import Modal from 'react-bootstrap/Modal';//for Modal
 import Dropdown from 'react-bootstrap/Dropdown';//for DropDown on login
 import DropdownButton from 'react-bootstrap/DropdownButton';//for DropDown on login
+import { UserContext } from '../../contexts/user.context';
+import { registerUser, loginUser, logoutUser } from '../../users.service';
+
 
 const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const [activeModal, setActiveModal] = useState(null);
+    const [photo, setUserPhoto] = useState('');
+    const [nameSurname, setNameSurname] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setConfirmedPassword] = useState('');
+    const [confirmedPassword, setPassword] = useState('');
+
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
     const cartContext = useContext(CartContext);
+    const userContext = useContext(UserContext);
+
+    const { user, users, setUser, setUsers, createUser, loginUser, logoutUser } = useContext(UserContext);
 
     //function to search products through NavBar input
     const handleSearchClick = () => {
@@ -46,6 +60,38 @@ const NavBar = ({ onSearchQuery }) => {
         setActiveModal(modalId);
     };
 
+    const handleLoginButtonClick = () => {
+        // Add your custom logic for the "Log in" button click
+        // For example, you can call the loginUser function from the UserContext
+        // and perform additional actions like closing the modal
+        userContext.loginUser(/* pass necessary parameters */);
+        handleClose(); // Close the modal after logging in
+    };
+
+    const handleLogoutButtonClick = () => {
+        // Add your custom logic for the "Log out" button click
+        // For example, you can call the setUser function from the UserContext
+        // and perform additional actions like closing the modal
+        userContext.setUser(null);
+        handleClose(); // Close the modal after logging out
+    };
+
+    const handleRegister = () => {
+        const newUser = { email: 'example@example.com', password: 'password' };
+        registerUser(newUser, setUsers);
+      };
+      
+      const handleLogin = () => {
+        const email = 'example@example.com';
+        const password = 'password';
+        loginUser(email, password, users, setUser);
+      };
+      
+      const handleLogout = () => {
+        logoutUser(setUser);
+      };
+
+
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>
@@ -72,7 +118,23 @@ const NavBar = ({ onSearchQuery }) => {
 
                         <DropdownButton id="dropdown-basic-button" className={styles.loginDropDownBtn} title={<i className="fa-regular fa-user"></i>}>
                             <Button variant="primary" onClick={() => handleModalButtonClick('login')}>
-                                <Dropdown.Item href="#/action-1">Log in</Dropdown.Item>
+                                {
+                                    userContext.user === null ? (
+                                        <Dropdown.Item href="#/action-1"
+                                            onClick={() => {
+                                                handleLoginButtonClick()
+                                                //userContext.setUser({
+                                                // username: 'Jessica',
+                                                //})
+                                            }}>Log in</Dropdown.Item>
+                                    ) : (
+                                        <Dropdown.Item href="#/action-1"
+                                            onClick={() => handleLogoutButtonClick()
+                                                //userContext.setUser(null)
+                                            }
+                                        >Log out</Dropdown.Item>
+                                    )
+                                }
                             </Button>
 
                             <Button variant="primary" onClick={() => handleModalButtonClick('createAccount')}>
@@ -111,10 +173,10 @@ const NavBar = ({ onSearchQuery }) => {
                                             autoFocus
                                         />
                                     </Form.Group>
-                                    
-                                        <p><Link>Forgot your password?</Link></p>
-                                        <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
-                                    
+
+                                    <p><Link>Forgot your password?</Link></p>
+                                    <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
+
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer>
@@ -139,6 +201,7 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="text"
                                             autoFocus
+                                            onChange={(e) => setNameSurname(e.target.value)}
                                         />
                                     </Form.Group>
 
@@ -147,6 +210,16 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="text"
                                             autoFocus
+                                            onChange={(e) => setPhoneNumber(e.target.value)}
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Birthday</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            autoFocus
+                                            onChange={(e) => setBirthday(e.target.value)}
                                         />
                                     </Form.Group>
 
@@ -156,14 +229,16 @@ const NavBar = ({ onSearchQuery }) => {
                                             type="email"
                                             // placeholder="name@example.com"
                                             autoFocus
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>New password</Form.Label>
+                                        <Form.Label>Password</Form.Label>
                                         <Form.Control
                                             type="password"
                                             autoFocus
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
                                     </Form.Group>
 
@@ -172,6 +247,7 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="password"
                                             autoFocus
+                                            onChange={(e) => setConfirmedPassword(e.target.value)}
                                         />
                                     </Form.Group>
 
@@ -180,7 +256,7 @@ const NavBar = ({ onSearchQuery }) => {
                                         <div className="m-3">
                                             <label className="mx-3">Choose file: </label>
                                             <input className="d-none" type="file" />
-                                            <button className="btn btn-outline-primary">Upload</button>
+                                            <button  onClick={() => setUserPhoto()}className="btn btn-outline-primary">Upload</button>
                                         </div>
                                     </Form.Group>
                                 </Form>
@@ -190,7 +266,7 @@ const NavBar = ({ onSearchQuery }) => {
                                     Close
                                 </Button>
                                 <Button variant="primary" onClick={handleClose}>
-                                    Log in
+                                    Create account
                                 </Button>
                             </Modal.Footer>
                         </Modal>
