@@ -16,7 +16,9 @@ export const products = [
         price: 100,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+
+    },
     {
         id: 2,
         imgs: ["/purple1.jpg", "/purple2.jpg", "/purple3.jpg", "/purple4.jpg"],
@@ -34,7 +36,8 @@ export const products = [
         price: 90,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+    },
     {
         id: 3,
         imgs: ["/corset.jpg"],
@@ -52,7 +55,7 @@ export const products = [
         price: 200,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 4,
@@ -71,7 +74,8 @@ export const products = [
         price: 70,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+    },
     {
         id: 5,
         imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"],
@@ -89,7 +93,7 @@ export const products = [
         price: 80,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 6,
@@ -108,7 +112,7 @@ export const products = [
         price: 70,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 7,
@@ -127,7 +131,7 @@ export const products = [
         price: 90,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 8,
@@ -146,7 +150,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 9,
@@ -165,7 +169,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 10,
@@ -184,7 +188,7 @@ export const products = [
         price: 60,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 11,
@@ -203,7 +207,7 @@ export const products = [
         price: 80,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 12,
@@ -222,7 +226,7 @@ export const products = [
         price: 75,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 13,
@@ -241,7 +245,8 @@ export const products = [
         price: 30,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+    },
     {
         id: 14,
         imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "bej4.jpg"],
@@ -259,7 +264,8 @@ export const products = [
         price: 200,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+    },
     {
         id: 15,
         imgs: ["/black3.jpg", "/black2.jpg", "/black3.jpg", "/black2.jpg"],
@@ -277,7 +283,7 @@ export const products = [
         price: 90,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 16,
@@ -296,7 +302,8 @@ export const products = [
         price: 60,
         promo: 'Y',
         promoPrice: 45,
-        status: null,   },
+        productDescription: '',
+    },
     {
         id: 17,
         imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"],
@@ -314,7 +321,7 @@ export const products = [
         price: 120,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 18,
@@ -333,7 +340,7 @@ export const products = [
         price: 80,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
 
     {
@@ -353,7 +360,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 20,
@@ -372,7 +379,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 21,
@@ -391,7 +398,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 22,
@@ -410,7 +417,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 23,
@@ -429,7 +436,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 24,
@@ -448,7 +455,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 25,
@@ -467,7 +474,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 26,
@@ -486,7 +493,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 27,
@@ -505,7 +512,7 @@ export const products = [
         price: 30,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 28,
@@ -524,7 +531,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 29,
@@ -543,7 +550,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null, 
+        productDescription: '',
     },
     {
         id: 30,
@@ -562,7 +569,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 31,
@@ -581,7 +588,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 32,
@@ -600,7 +607,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 33,
@@ -619,7 +626,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 34,
@@ -638,7 +645,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 35,
@@ -657,7 +664,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 36,
@@ -676,7 +683,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 37,
@@ -695,7 +702,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 38,
@@ -714,7 +721,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 39,
@@ -733,7 +740,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 40,
@@ -752,7 +759,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 41,
@@ -771,7 +778,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 42,
@@ -790,7 +797,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 43,
@@ -809,7 +816,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 44,
@@ -828,7 +835,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 45,
@@ -847,7 +854,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 46,
@@ -866,7 +873,7 @@ export const products = [
         price: 80,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 47,
@@ -885,7 +892,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 48,
@@ -904,7 +911,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 49,
@@ -923,7 +930,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
     {
         id: 50,
@@ -942,7 +949,7 @@ export const products = [
         price: 50,
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     },
 ];
 
@@ -963,34 +970,34 @@ export const getProductById = (id) => {
         subcategory: '',
         subcategoryCode: '',
         size: '',
-        quantity: '', 
+        quantity: '',
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
         price: '',
         promo: 'N',
         promoPrice: '',
-        status: null,
+        productDescription: '',
     };
     return foundItem ? foundItem : defaultItem;
 };
 
 export const filterProducts = (products, filters) => {
     return products.filter(product => {
-      // Check each filter criterion
-      const categoryFilter = !filters.category || product.category === filters.category;
-      const subcategoryFilter = !filters.subcategory || product.subcategoryCode === filters.subcategory;
-      const colorFilter = !filters.color || product.color === filters.color;
-      const sizeFilter = !filters.size || product.size === filters.size;
-  
-      // Check price range if provided
-      const priceFilter = (!filters.minPrice || product.price >= filters.minPrice) &&
-                         (!filters.maxPrice || product.price <= filters.maxPrice);
-  
-      // Combine all filters with AND logic
-      return categoryFilter && subcategoryFilter && colorFilter && sizeFilter && priceFilter;
+        // Check each filter criterion
+        const categoryFilter = !filters.category || product.category === filters.category;
+        const subcategoryFilter = !filters.subcategory || product.subcategoryCode === filters.subcategory;
+        const colorFilter = !filters.color || product.color === filters.color;
+        const sizeFilter = !filters.size || product.size === filters.size;
+
+        // Check price range if provided
+        const priceFilter = (!filters.minPrice || product.price >= filters.minPrice) &&
+            (!filters.maxPrice || product.price <= filters.maxPrice);
+
+        // Combine all filters with AND logic
+        return categoryFilter && subcategoryFilter && colorFilter && sizeFilter && priceFilter;
     });
-  };
+};
 
 //cream o functie care va adauga produse in lista initiala, dar va si modifica produsul existent daca este cazul. Acum trebuie sa verificam daca produsul are id, atunci trebuie sa il gasim si sa rescriem proprietatile lui cu ceea ce primim aici, ceea ce insemana ca el a fost modificat, iar daca id este null, atunci trebuie sa setam un nou atribut id si sa il adaugam in lista
 export const saveProduct = (product) => {

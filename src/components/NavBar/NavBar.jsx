@@ -79,17 +79,17 @@ const NavBar = ({ onSearchQuery }) => {
     const handleRegister = () => {
         const newUser = { email: 'example@example.com', password: 'password' };
         registerUser(newUser, setUsers);
-      };
-      
-      const handleLogin = () => {
+    };
+
+    const handleLogin = () => {
         const email = 'example@example.com';
         const password = 'password';
         loginUser(email, password, users, setUser);
-      };
-      
-      const handleLogout = () => {
+    };
+
+    const handleLogout = () => {
         logoutUser(setUser);
-      };
+    };
 
 
     return (
@@ -256,7 +256,7 @@ const NavBar = ({ onSearchQuery }) => {
                                         <div className="m-3">
                                             <label className="mx-3">Choose file: </label>
                                             <input className="d-none" type="file" />
-                                            <button  onClick={() => setUserPhoto()}className="btn btn-outline-primary">Upload</button>
+                                            <button onClick={() => setUserPhoto()} className="btn btn-outline-primary">Upload</button>
                                         </div>
                                     </Form.Group>
                                 </Form>
@@ -358,6 +358,9 @@ const NavBar = ({ onSearchQuery }) => {
                             </div>
                         </li>
                         <li style={{ color: 'red' }}><Link to="/products-list?promo=Y">OFFERS</Link></li>
+                        <li>
+                           <Link to="/admin-panel">ADMIN PANEL</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
