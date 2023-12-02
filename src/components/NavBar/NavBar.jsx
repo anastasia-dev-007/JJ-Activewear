@@ -10,7 +10,7 @@ import Dropdown from 'react-bootstrap/Dropdown';//for DropDown on login
 import DropdownButton from 'react-bootstrap/DropdownButton';//for DropDown on login
 import { UserContext } from '../../contexts/user.context';
 import { registerUser, loginUser, logoutUser } from '../../users.service';
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 const NavBar = ({ onSearchQuery }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -149,34 +149,20 @@ const NavBar = ({ onSearchQuery }) => {
                             </Modal.Header>
                             <Modal.Body>
                                 <Form>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Username</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
+                                    <FloatingLabel
+                                        controlId="floatingInput"
+                                        label="Username"
+                                        className="mb-3">
+                                        <Form.Control type="email" placeholder="name@example.com" />
+                                    </FloatingLabel>
+                                    <FloatingLabel controlId="floatingPassword" label="Password">
+                                        <Form.Control type="password" placeholder="Password" />
+                                    </FloatingLabel>
 
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control
-                                            type="email"
-                                            // placeholder="name@example.com"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Password</Form.Label>
-                                        <Form.Control
-                                            type="password"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
-
+                                    <div>
                                     <p><Link>Forgot your password?</Link></p>
                                     <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
-
+                                    </div>
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer>
@@ -251,13 +237,9 @@ const NavBar = ({ onSearchQuery }) => {
                                         />
                                     </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Group controlId="formFile" className="mb-3">
                                         <Form.Label>Upload your photo</Form.Label>
-                                        <div className="m-3">
-                                            <label className="mx-3">Choose file: </label>
-                                            <input className="d-none" type="file" />
-                                            <button onClick={() => setUserPhoto()} className="btn btn-outline-primary">Upload</button>
-                                        </div>
+                                        <Form.Control type="file" onClick={() => setUserPhoto()} />
                                     </Form.Group>
                                 </Form>
                             </Modal.Body>
@@ -359,7 +341,7 @@ const NavBar = ({ onSearchQuery }) => {
                         </li>
                         <li style={{ color: 'red' }}><Link to="/products-list?promo=Y">OFFERS</Link></li>
                         <li>
-                           <Link to="/admin-panel">ADMIN PANEL</Link>
+                            <Link to="/admin-panel">ADMIN PANEL</Link>
                         </li>
                     </ul>
                 </div>

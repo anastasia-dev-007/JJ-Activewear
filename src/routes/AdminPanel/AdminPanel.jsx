@@ -2,6 +2,8 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './AdminPanel.module.css'
 import { products } from '../../products.service';
+import Form from 'react-bootstrap/Form';//for Modal
+
 
 function AdminPanel() {
     return (
@@ -69,7 +71,20 @@ function AdminPanel() {
                     </table>
                 </Tab>
                 <Tab eventKey="addProducts" title="Add New Products">
-                    Tab content for Contact
+                    <div>
+                        <span>Product ID</span>
+                        <input type="text" disabled/>
+                    </div>
+                    
+                    <Form.Group controlId="formFile" className="mb-3">
+                                            <Form.Label>Upload your photos</Form.Label>
+                                            <Form.Control type="file" />
+                                            <Form.Control type="file" />
+                                            <Form.Control type="file" />
+                                            <Form.Control type="file" />
+                                            <Form.Control type="file" />
+                                        </Form.Group>
+                                        <input type="text" name="" id="" />
                 </Tab>
                 <Tab eventKey="orders" title="Orders">
                     <table class="table">
