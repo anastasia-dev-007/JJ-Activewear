@@ -9,10 +9,10 @@ import Modal from 'react-bootstrap/Modal';//for Modal
 import Dropdown from 'react-bootstrap/Dropdown';//for DropDown on login
 import DropdownButton from 'react-bootstrap/DropdownButton';//for DropDown on login
 import { UserContext } from '../../contexts/user.context';
-import { registerUser, loginUser, logoutUser, findUserByEmailAndPassword } from '../../users.service';
+import { registerUser, login, logout, findUserByEmailAndPassword, saveUser } from '../../users.service';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-const NavBar = ({ onSearchQuery }) => {
+const NavBar = ({ onSearchQuery, setUser }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
@@ -20,7 +20,7 @@ const NavBar = ({ onSearchQuery }) => {
     const [photo, setUserPhoto] = useState('');
     const [nameSurname, setNameSurname] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [birthday, setBirthday] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
@@ -29,7 +29,7 @@ const NavBar = ({ onSearchQuery }) => {
     const cartContext = useContext(CartContext);
     const userContext = useContext(UserContext);
 
-    const { user, users, setUser, setUsers, createUser, loginUser, logoutUser } = useContext(UserContext);
+    const { user, users, setUsers, createUser, login, logout } = useContext(UserContext);
 
     //function to search products through NavBar input
     const handleSearchClick = () => {
@@ -64,7 +64,7 @@ const NavBar = ({ onSearchQuery }) => {
         // Add your custom logic for the "Log in" button click
         // For example, you can call the loginUser function from the UserContext
         // and perform additional actions like closing the modal
-        userContext.loginUser(/* pass necessary parameters */);
+        userContext.login(/* pass necessary parameters */);
         handleClose(); // Close the modal after logging in
     };
 
@@ -76,13 +76,8 @@ const NavBar = ({ onSearchQuery }) => {
         handleClose(); // Close the modal after logging out
     };
 
-    const handleRegister = () => {
-        const newUser = { email: 'example@example.com', password: 'password' };
-        registerUser(newUser, setUsers);
-    };
-
-      // Function to handle changes in the email input
-      const handleEmailChange = (e) => {
+    // Function to handle changes in the email input
+    const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
 
@@ -91,20 +86,67 @@ const NavBar = ({ onSearchQuery }) => {
         setPassword(e.target.value);
     };
 
+    const handleNameSurnameChange = (e) => {
+        setNameSurname(e.target.value);
+    };
+
+    const handlePhoneNumberChange = (e) => {
+        setPhoneNumber(e.target.value);
+    };
+
+    const handleBirthDateChange = (e) => {
+        setBirthDate(e.target.value);
+    };
+
+    const handleConfirmedPasswordChange = (e) => {
+        setConfirmedPassword(e.target.value);
+    };
+
+    const handleRegister = () => {
+        const user = {
+            id: 1,
+            surname: 'admin',
+            phoneNumber: 37367890987,
+            birthDate: new Date(),
+            email: 'admins@admin.com',
+            password: 'admin',
+        };
+        const registeredUser = saveUser(user);
+
+        if (registeredUser) {
+            setUser(user);
+            alert('user created, you are logged in');
+            handleClose();
+            setNameSurname('');
+            setEmail('');
+            setPhoneNumber('');
+            setBirthDate();
+            setPassword('');
+            setConfirmedPassword('');
+        } else {
+            alert('user with this email already exists');
+        }
+    };
+
+
     //Function created by Radu. To collect data introduced mannualy by user in form
     const handleLogin = () => {
         const user = findUserByEmailAndPassword(email, password);
 
         if (user) {
-            alert('user exists, you are logged in')
+            setUser(user);
+            alert('user exists, you are logged in');
+            handleClose();
+            setEmail('');
+            setPassword('');
         } else {
-            alert('wrong credentials')
+            alert('wrong credentials');
         }
     };
 
-    
+
     const handleLogout = () => {
-        logoutUser(setUser);
+        logout(setUser);
     };
 
 
@@ -169,16 +211,16 @@ const NavBar = ({ onSearchQuery }) => {
                                         controlId="floatingInput"
                                         label="Username"
                                         className="mb-3">
-                                        <Form.Control type="email" 
-                                        placeholder="name@example.com"
-                                        value={email}
-                                        onChange={handleEmailChange}/>
+                                        <Form.Control type="email"
+                                            placeholder="name@example.com"
+                                            value={email}
+                                            onChange={handleEmailChange} />
                                     </FloatingLabel>
                                     <FloatingLabel controlId="floatingPassword" label="Password">
-                                        <Form.Control type="password" 
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handlePasswordChange} />
+                                        <Form.Control type="password"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={handlePasswordChange} />
                                     </FloatingLabel>
 
                                     <div>
@@ -209,7 +251,8 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="text"
                                             autoFocus
-                                            onChange={(e) => setNameSurname(e.target.value)}
+                                            value={nameSurname}
+                                            onChange={handleNameSurnameChange}
                                         />
                                     </Form.Group>
 
@@ -218,7 +261,8 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="text"
                                             autoFocus
-                                            onChange={(e) => setPhoneNumber(e.target.value)}
+                                            value={phoneNumber}
+                                            onChange={handlePhoneNumberChange}
                                         />
                                     </Form.Group>
 
@@ -227,7 +271,8 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="date"
                                             autoFocus
-                                            onChange={(e) => setBirthday(e.target.value)}
+                                            value={birthDate}
+                                            onChange={handleBirthDateChange}
                                         />
                                     </Form.Group>
 
@@ -237,7 +282,8 @@ const NavBar = ({ onSearchQuery }) => {
                                             type="email"
                                             // placeholder="name@example.com"
                                             autoFocus
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            value={email}
+                                            onChange={handleEmailChange}
                                         />
                                     </Form.Group>
 
@@ -246,7 +292,8 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="password"
                                             autoFocus
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={password}
+                                            onChange={handlePasswordChange}
                                         />
                                     </Form.Group>
 
@@ -255,7 +302,8 @@ const NavBar = ({ onSearchQuery }) => {
                                         <Form.Control
                                             type="password"
                                             autoFocus
-                                            onChange={(e) => setConfirmedPassword(e.target.value)}
+                                            value={confirmedPassword}
+                                            onChange={handleConfirmedPasswordChange}
                                         />
                                     </Form.Group>
 
@@ -269,7 +317,7 @@ const NavBar = ({ onSearchQuery }) => {
                                 <Button variant="secondary" onClick={handleClose}>
                                     Close
                                 </Button>
-                                <Button variant="primary" onClick={handleClose}>
+                                <Button variant="primary" onClick={handleRegister}>
                                     Create account
                                 </Button>
                             </Modal.Footer>

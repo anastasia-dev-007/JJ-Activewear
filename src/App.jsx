@@ -16,6 +16,7 @@ import AdminPanel from './routes/AdminPanel/AdminPanel';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [user, setUser] = useState(false);
 
   const handleSearchQuery = (query) => {
       setSearchQuery(query);
@@ -24,8 +25,8 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <NavBar onSearchQuery={handleSearchQuery}/>
-
+        <NavBar setUser={setUser} user={user} onSearchQuery={handleSearchQuery}/>
+        {user && <h1 style={{marginTop: '100px'}}>{user.email}</h1>}
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/products-list' element={<ProductListing searchQuery={searchQuery}/>} />

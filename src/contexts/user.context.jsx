@@ -1,45 +1,32 @@
-import React, { createContext, useState } from 'react'
-import { registerUser, loginUser, logoutUser } from '../users.service';
+import React, { createContext, useState } from 'react';
 
-export const UserContext = createContext ({
-    user: null,
-    setUser: () => {},
-    createUser: () => {},
-    loginUser: () => {},
-    logoutUser: () => {},
+export const UserContext = createContext({
+  user: null,
+  login: () => { },
+  logout: () => { },
 });
 
 export function UserProvider(props) {
- const [user, setUser] = useState(null);
- const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
 
- // Function to create a new user
- const createUser = (newUser) => {
-    setUsers([...users, newUser]);
-    setUser(newUser);
+  // Function to validate login credentials
+  const login = (user) => {
+    setUser(user);//aici setam userul exitent din state
   };
 
-   // Function to validate login credentials
-   const loginUser = (email, password) => {
-    const foundUser = users.find((u) => u.email === email && u.password === password);
-    if (foundUser) {
-      setUser(foundUser);
-    } 
+  const logout = () => {
+    setUser(null); //aici setam utilizatorul null
   };
 
-  const logoutUser = () => {
-    setUser(null);
-  };
-
-    return (
-        <UserContext.Provider value = {{
-            user: user, //short cut - este posibil de scris doar "user" in loc de user: user, caci prop===value. Cand lasam doar numele proprietatii el va avea si proprietatea si valoarea acesteia
-            setUser: setUser,
-            createUser: createUser,
-            loginUser: loginUser,
-            logoutUser: logoutUser,
-        }}>
-            {props.children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider
+      value={{
+        user: user,
+        login: login,
+        logout: logout,
+      }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  );
 }
