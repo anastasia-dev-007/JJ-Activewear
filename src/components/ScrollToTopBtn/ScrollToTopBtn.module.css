@@ -1,0 +1,20 @@
+.scrollToTopBtnContainer {
+border-radius: 50%;
+z-index: 100;
+width: 3.75rem;
+height: 3.75em;
+box-shadow: 0 6px 7px 0 rgba(0,0,0,.3);
+cursor: pointer;
+position: fixed;
+right: 1.5rem;
+bottom: 11rem;
+background-color: rgba(255, 255, 255, 0.173);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.scrollToTopBtnContainer i {
+font-size: 24px;
+color: rgb(149, 149, 149);
+}

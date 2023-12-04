@@ -281,4 +281,5 @@ const LoginAndRegistration = () => {
     )
 }
 
+
 export default LoginAndRegistration;

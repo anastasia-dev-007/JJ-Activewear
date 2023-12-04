@@ -1,12 +1,20 @@
 import React from 'react'
 import styles from "./Footer.module.css"
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+    const navigate = useNavigate();
+
+    const handleLogoClick = () => {
+      navigate('/');
+      window.scrollTo(0, 0); // Scrolls to the top of the page
+    };
+
     return (
         <footer className={styles.footerContainer}>
             <div className={styles.mainFooterContainer}>
                 <div className={styles.footerColumn}>
-                    <img width='100px' src="/assets/logo1wh.png" alt="logo3" />
+                    <Link to='/' onClick={handleLogoClick}><img width='100px' src="/assets/logo1wh.png" alt="logo3" /></Link>
                     <p>ACTIVEWEAR</p>
                 </div>
                 <div className={styles.footerColumn}>

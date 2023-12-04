@@ -9,9 +9,10 @@ import ShoppingCart from './routes/ShoppingCart/ShoppingCart';
 import Checkout from './routes/Checkout/Checkout';
 import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Favorites from './routes/Favorites/Favorites';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import AdminPanel from './routes/AdminPanel/AdminPanel';
 import { UserContext } from './contexts/user.context';
+import ScrollToTopBtn from './components/ScrollToTopBtn/ScrollToTopBtn';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        <ScrollToTopBtn/>
         <NavBar/>
         {user && <h1 style={{ marginTop: '100px' }}>{user.email}</h1>}
         <Routes>
