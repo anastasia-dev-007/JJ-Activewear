@@ -12,7 +12,7 @@ import { UserContext } from '../../contexts/user.context';
 import { registerUser, login, logout, findUserByEmailAndPassword, saveUser } from '../../users.service';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-const NavBar = ({ onSearchQuery, setUser }) => {
+const NavBar = ({ onSearchQuery}) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
@@ -64,7 +64,7 @@ const NavBar = ({ onSearchQuery, setUser }) => {
         // Add your custom logic for the "Log in" button click
         // For example, you can call the loginUser function from the UserContext
         // and perform additional actions like closing the modal
-        userContext.login(/* pass necessary parameters */);
+        // userContext.login(/* pass necessary parameters */);
         handleClose(); // Close the modal after logging in
     };
 
@@ -72,8 +72,9 @@ const NavBar = ({ onSearchQuery, setUser }) => {
         // Add your custom logic for the "Log out" button click
         // For example, you can call the setUser function from the UserContext
         // and perform additional actions like closing the modal
-        userContext.setUser(null);
-        handleClose(); // Close the modal after logging out
+        // userContext.setUser(null);
+        logout();
+        // handleClose(); // Close the modal after logging out
     };
 
     // Function to handle changes in the email input
@@ -114,7 +115,7 @@ const NavBar = ({ onSearchQuery, setUser }) => {
         const registeredUser = saveUser(user);
 
         if (registeredUser) {
-            setUser(user);
+            login(user);//login vine din users.context
             alert('user created, you are logged in');
             handleClose();
             setNameSurname('');
@@ -134,7 +135,7 @@ const NavBar = ({ onSearchQuery, setUser }) => {
         const user = findUserByEmailAndPassword(email, password);
 
         if (user) {
-            setUser(user);
+            login(user);//login vine din users.context
             alert('user exists, you are logged in');
             handleClose();
             setEmail('');
@@ -146,7 +147,7 @@ const NavBar = ({ onSearchQuery, setUser }) => {
 
 
     const handleLogout = () => {
-        logout(setUser);
+        // logout(setUser);
     };
 
 

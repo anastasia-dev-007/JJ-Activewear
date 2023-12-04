@@ -10,13 +10,15 @@ import Checkout from './routes/Checkout/Checkout';
 import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Login from './routes/Login/Login';
 import Favorites from './routes/Favorites/Favorites';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AdminPanel from './routes/AdminPanel/AdminPanel';
+import { UserContext } from './contexts/user.context';
 
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [user, setUser] = useState(false);
+
+  const {user} = useContext(UserContext);
 
   const handleSearchQuery = (query) => {
       setSearchQuery(query);
@@ -25,7 +27,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <NavBar setUser={setUser} user={user} onSearchQuery={handleSearchQuery}/>
+        <NavBar onSearchQuery={handleSearchQuery}/>
         {user && <h1 style={{marginTop: '100px'}}>{user.email}</h1>}
         <Routes>
           <Route path='/' element={<LandingPage />} />
