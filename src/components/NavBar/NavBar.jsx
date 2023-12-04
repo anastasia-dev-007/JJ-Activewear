@@ -22,7 +22,6 @@ const NavBar = () => {
         setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
     };
 
-
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>

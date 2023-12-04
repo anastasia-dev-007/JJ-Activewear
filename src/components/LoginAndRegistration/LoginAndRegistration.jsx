@@ -25,6 +25,7 @@ const LoginAndRegistration = () => {
 
     const { user, users, setUsers, createUser, login, logout } = useContext(UserContext);
 
+    const navigate = useNavigate();
 
     const [show, setShow] = useState(false); //for Modal
 
@@ -117,6 +118,7 @@ const LoginAndRegistration = () => {
             handleClose();
             setEmail('');
             setPassword('');
+            navigate('/');
         } else {
             alert('wrong credentials');
         }
