@@ -37,6 +37,7 @@ const Favorites = () => {
         ) : (
           <div> Favorites: {favoritesContext.items.length}</div>)
       }
+      
       <div className={styles.ProductCardsContainer}>
         {
           favoritesContext.items.map(item => (

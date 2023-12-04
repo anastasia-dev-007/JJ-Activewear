@@ -3,6 +3,7 @@ import styles from '../ShoppingCart/ShoppingCart.module.css'
 import MightLikeProducts from '../../components/Recommendations/Recommendations';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
   const cartContext = useContext(CartContext); //consumam contextul
@@ -11,9 +12,27 @@ const ShoppingCart = () => {
 
   return (
     <div className={styles.shoppingCartPage}>
-      <div className={styles.shoppingCartContainer}>
+      {
+        cartContext.cartItems.length < 1 ? (
+          <div className={styles.emptyShoppingCart}>
+            <h5>Your cart is empty</h5>
+            <p>There are no products added to shopping cart</p>
+            <p>Add our products to the cart</p>
+            <Link to='/products-list/'>
+              <button>Continue Shopping</button>
+            </Link>
+          </div>
+        ) : (
+          <div className={styles.shoppingCartContainer}>
         <div className={styles.cartContent}>
-          <header>Shopping Cart "{cartContext.cartItems.length}"</header>
+
+
+          {
+            cartContext.cartItems.length < 1 ? (
+              <></>
+            ) : (
+              <div>Shopping Cart "{cartContext.cartItems.length}"</div>)
+          }
 
           {/**Info will be rendered from the constant of cart array */}
           {
@@ -66,6 +85,8 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
+        )
+      }
 
       <MightLikeProducts />
     </div>
