@@ -15,14 +15,28 @@ const Favorites = () => {
   // const addToCart = (item) => {
   //   cartContext.addItem(item);
   // }
-  
+
   const removeItem = (product) => {
     favoritesContext.removeItem(product);
   }
 
+
   return (
+
     <div className={styles.favoritesContainer}>
-      <div> Favorites: {favoritesContext.items.length}</div>
+      {
+        favoritesContext.items.length < 1 ? (
+          <div className={styles.emptyWishList}>
+            <h5>Your wishlist is empty</h5>
+            <p>There are no products added to favourites</p>
+            <p>Add our favourites to your wishlist</p>
+            <Link to='/products-list/'>
+              <button>Continue Shopping</button>
+            </Link>
+          </div>
+        ) : (
+          <div> Favorites: {favoritesContext.items.length}</div>)
+      }
       <div className={styles.ProductCardsContainer}>
         {
           favoritesContext.items.map(item => (
@@ -53,7 +67,7 @@ const Favorites = () => {
               <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
               {/* <button onClick={() => removeItem(item)}>Remove</button> */}
 
-              
+
 
               {/* <div className={styles.addToCartAndFavorites}>
                 <button className={styles.addToCartBtn} onClick={() => addToCart(item)}>Add to cart <i className="fa-solid fa-cart-shopping"></i>
