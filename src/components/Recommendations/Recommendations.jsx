@@ -1,12 +1,12 @@
 import React from 'react'
 
-const MightLikeProducts = () => {
+const Recommendations = () => {
     return (
         <div>
-            <h3>Recently Viewed Products</h3>
+            <h3>Recommendations for you</h3>
             <div className='fiveCards'></div>
         </div>
     )
 }
 
-export default MightLikeProducts;
+export default Recommendations;

@@ -28,7 +28,7 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/products-list' element={<ProductListing/>} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
-          <Route path='/favorites/:id' element={<Favorites />} />
+          <Route path='/favorites' element={<Favorites />} />
           <Route path='/shopping-cart' element={<ShoppingCart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />

@@ -15,6 +15,7 @@ export function CartProvider(props) { //acesta este un component React
         console.log(item);
         setCartItems([...cartItems, item]);
     }
+    
     return (
         <CartContext.Provider value={{
             cartItems: cartItems,

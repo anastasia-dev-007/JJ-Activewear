@@ -5,6 +5,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
+import { FavoritesContext } from '../../contexts/favorites.context';
 
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,7 @@ const ProductListing = () => {
     search: '',
   }); //for links from NavBar to ProductDetails
   const cartContext = useContext(CartContext);// consumam contextul
+  const favoritesContext = useContext(FavoritesContext);
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
@@ -202,6 +204,13 @@ const ProductListing = () => {
     }
   };
 
+  const addToFavorites = (product) => {
+    if (favoritesContext && favoritesContext.addItem) {
+      favoritesContext.addItem(product);
+      console.log('Added to favorites:', product);    
+    }
+  };
+
   return (
     <div className={styles.productListingContainer}>
       <header>
@@ -330,7 +339,7 @@ const ProductListing = () => {
                 <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
-                  <div>
+                  <div onClick={() => addToFavorites(item)}>
                     <i className="fa-regular fa-heart"></i>
                   </div>
 

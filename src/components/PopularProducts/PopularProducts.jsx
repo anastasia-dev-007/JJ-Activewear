@@ -2,6 +2,8 @@ import React from 'react'
 import styles from "./PopularProducts.module.css"
 import { products } from '../../products.service'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { FavoritesContext } from '../../contexts/favorites.context'
 
 
 const PopularProducts = () => {
@@ -32,6 +34,11 @@ const PopularProducts = () => {
         },
 
     ]
+    const favoritesContext = useContext(FavoritesContext);
+
+    const addToFavorites = (product) => {
+        favoritesContext.addItem(product);
+    }
 
     return (
         <div className={styles.popularProductsWrapper}>
@@ -52,7 +59,7 @@ const PopularProducts = () => {
                 <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
-                  <div>
+                  <div onClick={()=> addToFavorites(item)}>
                     <i className="fa-regular fa-heart"></i>
                   </div>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../ShoppingCart/ShoppingCart.module.css'
-import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
+import MightLikeProducts from '../../components/Recommendations/Recommendations';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 

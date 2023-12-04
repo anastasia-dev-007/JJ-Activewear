@@ -5,11 +5,12 @@ import styles from '../ProductDetails/ProductDetails.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
-import MightLikeProducts from '../../components/MightLikeProducts/MightLikeProducts';
+import MightLikeProducts from '../../components/Recommendations/Recommendations';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { FavoritesContext } from '../../contexts/favorites.context';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const ProductDetails = () => {
   const handleClose = () => setShow(false);//for offCanvas
   const handleShow = () => setShow(true);//for offCanvas
 
+const favoritesContext = useContext(FavoritesContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -92,6 +94,12 @@ const ProductDetails = () => {
   const handleSmallPhotoClick = (index) => { //the index of the small photo clicked
     setSelectedMainPhotoIndex(index); //updates the selectedMainPhotoIndex state with the clicked index.
   };
+
+  const addToFavorites = (product) => {
+    if (favoritesContext && favoritesContext.addItem) {
+      favoritesContext.addItem(product);
+    }
+  }
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -257,7 +265,7 @@ const ProductDetails = () => {
                 </Offcanvas>
 
                 <div className={styles.favoritesBtn}>
-                  <button>
+                  <button onClick={() => addToFavorites(product)}>
                     <i class="fa-regular fa-heart"></i>
                   </button>
                   <button style={{ display: 'none' }}>

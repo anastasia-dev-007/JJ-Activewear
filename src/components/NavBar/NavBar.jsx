@@ -3,6 +3,7 @@ import styles from "./NavBar.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../contexts/cart.context';
 import LoginAndRegistration from '../LoginAndRegistration/LoginAndRegistration';
+import { FavoritesContext } from '../../contexts/favorites.context';
 
 const NavBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -11,7 +12,8 @@ const NavBar = () => {
 
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
     const cartContext = useContext(CartContext);
-   
+    const favoritesContext = useContext(FavoritesContext);
+
     //function to search products through NavBar input
     const handleSearchClick = () => {
         if (searchQuery) {
@@ -20,7 +22,7 @@ const NavBar = () => {
         setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
     };
 
-   
+
     return (
         <nav >
             <div className={styles.fullNavBarContainer}>
@@ -45,14 +47,16 @@ const NavBar = () => {
                             </div>
                         </div>
 
-                        <LoginAndRegistration/>
+                        <LoginAndRegistration />
 
-                        <button type="button" class="btn position-relative">
-                            <i className="fa-regular fa-heart"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                99+
-                            </span>
-                        </button>
+                        <Link to='/favorites/'>
+                            <button type="button" class="btn position-relative">
+                                <i className="fa-regular fa-heart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                   {favoritesContext.items.length >= 1 && favoritesContext.items.length}
+                                </span>
+                            </button>
+                        </Link>
 
 
                         <Link to='/shopping-cart/'>
