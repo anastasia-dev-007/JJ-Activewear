@@ -204,11 +204,8 @@ const ProductListing = () => {
     }
   };
 
-  const addToFavorites = (product) => {
-    if (favoritesContext && favoritesContext.addItem) {
-      favoritesContext.addItem(product);
-      console.log('Added to favorites:', product);    
-    }
+  const toggleFavoriteItem = (product) => {
+    favoritesContext.toggleFavoriteItem(product);
   };
 
   return (
@@ -339,12 +336,14 @@ const ProductListing = () => {
                 <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
-                  <div onClick={() => addToFavorites(item)}>
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-
-                  <div>
-                    <i style={{ display: 'none' }} className="fa-solid fa-heart"></i>
+                  <div onClick={() => toggleFavoriteItem(item)}>
+                    {favoritesContext.items.some(favorite => favorite.id === item.id) ? (
+                      // Render a solid heart if the item is in favorites
+                      <i className="fa-solid fa-heart"></i>
+                    ) : (
+                      // Render a regular heart if the item is not in favorites
+                      <i className="fa-regular fa-heart"></i>
+                    )}
                   </div>
                 </div>
 

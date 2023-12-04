@@ -7,37 +7,10 @@ import { FavoritesContext } from '../../contexts/favorites.context'
 
 
 const PopularProducts = () => {
-    const popularProductsList = [
-        {
-            id: 1,
-            img: "/assets/pop1.jpg",
-            title: 'Matching Set',
-            description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
-            currency: '$',
-            price: 80
-        },
-        {
-            id: 2,
-            img: "/assets/pop1.jpg",
-            title: 'Matching Set',
-            description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
-            currency: '$',
-            price: 80
-        },
-        {
-            id: 3,
-            img: "/assets/pop1.jpg",
-            title: 'Matching Set',
-            description: 'Workout Premium Push-Up Set: Sculpting Leggings and High-Waistband for Tummy Control, Back Support, and Flattering Silhouette',
-            currency: '$',
-            price: 80
-        },
-
-    ]
     const favoritesContext = useContext(FavoritesContext);
 
-    const addToFavorites = (product) => {
-        favoritesContext.addItem(product);
+    const toggleFavoriteItem = (product) => {
+        favoritesContext.toggleFavoriteItem(product);
     }
 
     return (
@@ -59,12 +32,14 @@ const PopularProducts = () => {
                 <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
-                  <div onClick={()=> addToFavorites(item)}>
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-
-                  <div>
-                    <i style={{ display: 'none' }} className="fa-solid fa-heart"></i>
+                <div onClick={() => toggleFavoriteItem(item)}>
+                    {favoritesContext.items.some(favorite => favorite.id === item.id) ? (
+                      // Render a solid heart if the item is in favorites
+                      <i className="fa-solid fa-heart"></i>
+                    ) : (
+                      // Render a regular heart if the item is not in favorites
+                      <i className="fa-regular fa-heart"></i>
+                    )}
                   </div>
                 </div>
 

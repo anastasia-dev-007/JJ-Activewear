@@ -25,7 +25,7 @@ const ProductDetails = () => {
   const handleClose = () => setShow(false);//for offCanvas
   const handleShow = () => setShow(true);//for offCanvas
 
-const favoritesContext = useContext(FavoritesContext);
+  const favoritesContext = useContext(FavoritesContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -95,10 +95,8 @@ const favoritesContext = useContext(FavoritesContext);
     setSelectedMainPhotoIndex(index); //updates the selectedMainPhotoIndex state with the clicked index.
   };
 
-  const addToFavorites = (product) => {
-    if (favoritesContext && favoritesContext.addItem) {
-      favoritesContext.addItem(product);
-    }
+  const toggleFavoriteItem = (product) => {
+    favoritesContext.toggleFavoriteItem(product);
   }
 
   return (
@@ -115,9 +113,9 @@ const favoritesContext = useContext(FavoritesContext);
                 {
                   product.imgs.map((img, index) => (
                     <div
-                    key={index}
-                    className={styles.photo}
-                    onClick={() => handleSmallPhotoClick(index)}>
+                      key={index}
+                      className={styles.photo}
+                      onClick={() => handleSmallPhotoClick(index)}>
                       <img src={`/assets${img}`} alt="" />
                     </div>
                   ))
@@ -265,13 +263,13 @@ const favoritesContext = useContext(FavoritesContext);
                 </Offcanvas>
 
                 <div className={styles.favoritesBtn}>
-                  <button onClick={() => addToFavorites(product)}>
-                    <i class="fa-regular fa-heart"></i>
+                  <button onClick={() => toggleFavoriteItem(product)}>
+                    {favoritesContext.items.some(favorite => favorite.id === product.id) ? (
+                      <i className="fa-solid fa-heart"></i>
+                    ) : (
+                      <i className="fa-regular fa-heart"></i>
+                    )}
                   </button>
-                  <button style={{ display: 'none' }}>
-                    <i class="fa-solid fa-heart"></i>
-                  </button>
-
                 </div>
               </div>
 
