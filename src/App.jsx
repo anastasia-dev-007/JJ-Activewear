@@ -16,22 +16,16 @@ import { UserContext } from './contexts/user.context';
 
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const {user} = useContext(UserContext);
-
-  const handleSearchQuery = (query) => {
-      setSearchQuery(query);
-  };
+  const { user } = useContext(UserContext);
 
   return (
     <BrowserRouter>
       <div>
-        <NavBar onSearchQuery={handleSearchQuery}/>
-        {user && <h1 style={{marginTop: '100px'}}>{user.email}</h1>}
+        <NavBar/>
+        {user && <h1 style={{ marginTop: '100px' }}>{user.email}</h1>}
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/products-list' element={<ProductListing searchQuery={searchQuery}/>} />
+          <Route path='/products-list' element={<ProductListing/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
           <Route path='/favorites/:id' element={<Favorites />} />

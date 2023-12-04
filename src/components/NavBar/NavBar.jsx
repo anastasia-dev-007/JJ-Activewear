@@ -12,7 +12,7 @@ import { UserContext } from '../../contexts/user.context';
 import { registerUser, login, logout, findUserByEmailAndPassword, saveUser } from '../../users.service';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-const NavBar = ({ onSearchQuery}) => {
+const NavBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchResults, setSearchResults] = useState('');
@@ -34,18 +34,8 @@ const NavBar = ({ onSearchQuery}) => {
     //function to search products through NavBar input
     const handleSearchClick = () => {
         if (searchQuery) {
-            const result = products.filter((product) =>
-                product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setFilteredProducts(result);
-            setSearchResults(result);
-
             navigate(`/products-list?search=${searchQuery}`);
         };
-        onSearchQuery(searchQuery); // Ensure onSearchQuery receives the updated searchQuery
-
         setSearchQuery(''); // Reset the search query after onSearchQuery has processed the current value
     };
 
@@ -176,7 +166,7 @@ const NavBar = ({ onSearchQuery}) => {
                         </div>
 
                         <DropdownButton id="dropdown-basic-button" className={styles.loginDropDownBtn} title={<i className="fa-regular fa-user"></i>}>
-                            <Button variant="primary" onClick={() => handleModalButtonClick('login')}>
+                            <Link variant="" onClick={() => handleModalButtonClick('login')}>
                                 {
                                     userContext.user === null ? (
                                         <Dropdown.Item href="#/action-1"
@@ -194,11 +184,11 @@ const NavBar = ({ onSearchQuery}) => {
                                         >Log out</Dropdown.Item>
                                     )
                                 }
-                            </Button>
+                            </Link>
 
-                            <Button variant="primary" onClick={() => handleModalButtonClick('createAccount')}>
+                            <Link variant="primary" onClick={() => handleModalButtonClick('createAccount')}>
                                 <Dropdown.Item href="#/action-2">Create account</Dropdown.Item>
-                            </Button>
+                            </Link>
                         </DropdownButton>
 
                         {/* Modal for Login */}

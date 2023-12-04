@@ -6,7 +6,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 
-const ProductListing = ({ searchQuery }) => {
+const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [queryParams, setQueryParams] = useSearchParams({ //TOATE FILTRELE MERG PRIN QUERYPARAMS, CI NU PRIN STATE
     category: '',
@@ -18,6 +18,7 @@ const ProductListing = ({ searchQuery }) => {
     maxPrice: '',
     promo: '',
     newArrival: '',
+    search: '',
   }); //for links from NavBar to ProductDetails
   const cartContext = useContext(CartContext);// consumam contextul
 
@@ -30,7 +31,7 @@ const ProductListing = ({ searchQuery }) => {
     color: queryParams.get('color') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
     minPrice: parseFloat(queryParams.get('minPrice')) ? parseFloat(queryParams.get('minPrice')) : '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
     maxPrice: parseFloat(queryParams.get('maxPrice')) ? parseFloat(queryParams.get('maxPrice')) : '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
-
+    search: queryParams.get('search') || '',
     //This filter didn't worked previously before setting this new conditions. This modification checks if the value is the string 'undefined' and sets the property to undefined in such cases. Also, it correctly parses the minPrice and maxPrice as numbers. It looks like the size, availability, color, and other properties are still being set to the string value 'undefined'. This might be due to how the values are initially set in the queryParams object. Let's make sure that undefined values are handled correctly.
     //This approach ensures that if a parameter is not found in the URL, it defaults to undefined, avoiding potential errors when trying to access properties or methods on null or undefined.
   };
@@ -56,10 +57,10 @@ const ProductListing = ({ searchQuery }) => {
         (!filters.promo || product.promo === filters.promo) &&
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
         //searching via navbar logic
-        (!searchQuery ||
-          product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.subcategoryCode.toLowerCase().includes(searchQuery.toLowerCase())
+        (!filters.search ||
+          product.title.toLowerCase().includes(filters.search.toLowerCase()) ||
+          product.category.toLowerCase().includes(filters.search.toLowerCase()) ||
+          product.subcategoryCode.toLowerCase().includes(filters.search.toLowerCase())
         )
       ));
 
@@ -72,7 +73,7 @@ const ProductListing = ({ searchQuery }) => {
 
     console.log('Filtered products:', filteredProducts);
     setProducts(filteredProducts);
-  }, [queryParams, searchQuery]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
+  }, [queryParams]); //pun ca array de dependente queryParams, pentru ca pana acum era filers si el randa la infinit. queryParams nu se modifica, el doar se ia din URL
 
 
   const CategoriesAccordionsData = [
