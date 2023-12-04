@@ -131,7 +131,7 @@ const LoginAndRegistration = () => {
 
     return (
         <div>
-            <DropdownButton id="dropdown-basic-button" className={styles.loginDropDownBtn} title={<i className="fa-regular fa-user"></i>}>
+            <DropdownButton id="dropdown-basic-button" className={styles.loginDropDownBtn} title={user ? user.email : (<i className="fa-regular fa-user"></i>)}>
                 <Link variant="" onClick={() => handleModalButtonClick('login')}>
                     {
                         userContext.user === null ? (
