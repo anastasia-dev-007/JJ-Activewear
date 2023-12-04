@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';//for Modal
 import Dropdown from 'react-bootstrap/Dropdown';//for DropDown on login
 import DropdownButton from 'react-bootstrap/DropdownButton';//for DropDown on login
 import { UserContext } from '../../contexts/user.context';
-import { registerUser, loginUser, logoutUser } from '../../users.service';
+import { registerUser, loginUser, logoutUser, findUserByEmailAndPassword } from '../../users.service';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 const NavBar = ({ onSearchQuery }) => {
@@ -22,8 +22,8 @@ const NavBar = ({ onSearchQuery }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [birthday, setBirthday] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setConfirmedPassword] = useState('');
-    const [confirmedPassword, setPassword] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmedPassword, setConfirmedPassword] = useState('');
 
     const navigate = useNavigate(); // used to go on click on search input tO PRODUCT LISTING page
     const cartContext = useContext(CartContext);
@@ -81,12 +81,28 @@ const NavBar = ({ onSearchQuery }) => {
         registerUser(newUser, setUsers);
     };
 
-    const handleLogin = () => {
-        const email = 'example@example.com';
-        const password = 'password';
-        loginUser(email, password, users, setUser);
+      // Function to handle changes in the email input
+      const handleEmailChange = (e) => {
+        setEmail(e.target.value);
     };
 
+    // Function to handle changes in the password input
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    //Function created by Radu. To collect data introduced mannualy by user in form
+    const handleLogin = () => {
+        const user = findUserByEmailAndPassword(email, password);
+
+        if (user) {
+            alert('user exists, you are logged in')
+        } else {
+            alert('wrong credentials')
+        }
+    };
+
+    
     const handleLogout = () => {
         logoutUser(setUser);
     };
@@ -153,15 +169,21 @@ const NavBar = ({ onSearchQuery }) => {
                                         controlId="floatingInput"
                                         label="Username"
                                         className="mb-3">
-                                        <Form.Control type="email" placeholder="name@example.com" />
+                                        <Form.Control type="email" 
+                                        placeholder="name@example.com"
+                                        value={email}
+                                        onChange={handleEmailChange}/>
                                     </FloatingLabel>
                                     <FloatingLabel controlId="floatingPassword" label="Password">
-                                        <Form.Control type="password" placeholder="Password" />
+                                        <Form.Control type="password" 
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={handlePasswordChange} />
                                     </FloatingLabel>
 
                                     <div>
-                                    <p><Link>Forgot your password?</Link></p>
-                                    <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
+                                        <p><Link>Forgot your password?</Link></p>
+                                        <p onClick={() => handleModalButtonClick('createAccount')}><Link>Create account</Link></p>
                                     </div>
                                 </Form>
                             </Modal.Body>
@@ -169,7 +191,7 @@ const NavBar = ({ onSearchQuery }) => {
                                 <Button variant="secondary" onClick={handleClose}>
                                     Close
                                 </Button>
-                                <Button variant="primary" onClick={handleClose}>
+                                <Button variant="primary" onClick={handleLogin}>
                                     Log in
                                 </Button>
                             </Modal.Footer>
