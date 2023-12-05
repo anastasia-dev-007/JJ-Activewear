@@ -82,13 +82,19 @@ const LoginAndRegistration = () => {
     };
 
     const handleRegister = () => {
+        if (password !== confirmedPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+
         const user = {
-            id: 1,
-            surname: 'admin',
-            phoneNumber: 37367890987,
-            birthDate: new Date(),
-            email: 'admins@admin.com',
-            password: 'admin',
+            id: Date.now(),
+            role: 'user', //admin or user
+            nameSurname: nameSurname,
+            phoneNumber: phoneNumber,
+            birthDate: birthDate,
+            email: email,
+            password: password,
         };
         const registeredUser = saveUser(user);
 
@@ -103,7 +109,7 @@ const LoginAndRegistration = () => {
             setPassword('');
             setConfirmedPassword('');
         } else {
-            alert('user with this email already exists');
+            alert('User with this email already exists');
         }
     };
 
@@ -114,7 +120,6 @@ const LoginAndRegistration = () => {
 
         if (user) {
             login(user);//login vine din users.context
-            alert('user exists, you are logged in');
             handleClose();
             setEmail('');
             setPassword('');

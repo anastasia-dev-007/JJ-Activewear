@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useRef, useState } from 'react';
 import { saveProduct } from '../../products.service';
+import { users } from '../../users.service'
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -29,10 +30,10 @@ function AdminPanel() {
 
     const fileInputRef = useRef(null);
 
-const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setNewProduct({ ...newProduct, imgs: files });
-};
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        setNewProduct({ ...newProduct, imgs: files });
+    };
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -107,10 +108,10 @@ const handleFileChange = (e) => {
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Upload your photos</Form.Label>
                         <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple/>
-                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple/>
-                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple/>
-                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple/>
+                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
+                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
+                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
+                        <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
                     </Form.Group>
 
                     <FloatingLabel
@@ -236,17 +237,20 @@ const handleFileChange = (e) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>cell 1</td>
-                                <td>cell 2</td>
-                                <td>cell 3</td>
-                                <td>cell 4</td>
-                                <td>cell 5</td>
-                                <td>cell 6</td>
-                                <td>cell 6</td>
-                                <td>cell 7</td>
-                            </tr>
+                            {
+                                users.map(item => (
+                                    <tr key={item.id}>
+                                        <th scope="row">{item.id}</th>
+                                        <td>cell 1</td>
+                                        <td>{item.nameSurname}</td>
+                                        <td>{item.phoneNumber}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.birthday}</td>
+                                        <td>cell 6</td>
+                                        <td>cell 7</td>
+                                    </tr>
+                                ))
+                            }
                         </tbody>
                     </table>
                 </Tab>

@@ -23,7 +23,7 @@ function App() {
       <div>
         <ScrollToTopBtn/>
         <NavBar/>
-        {user && <h1 style={{ marginTop: '100px' }}>{user.email}</h1>}
+        {/* {user && <h1 style={{ marginTop: '100px' }}>{user.email}</h1>} */}
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/products-list' element={<ProductListing/>} />

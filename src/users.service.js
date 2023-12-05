@@ -1,7 +1,8 @@
-const users = [
+export const users = [
     {
         id: 1,
-        surname: 'admin',
+        role: 'admin',
+        nameSurname: 'admin',
         phoneNumber: 37367890987,
         birthDate: new Date(),
         email: 'admin@admin.com',
