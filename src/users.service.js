@@ -7,7 +7,16 @@ export const users = [
         birthDate: new Date(),
         email: 'admin@admin.com',
         password: 'admin',
-    }
+    },
+    {
+        id: 2,
+        role: 'user',
+        nameSurname: 'test',
+        phoneNumber: 37367890987,
+        birthDate: new Date(),
+        email: 'test@test.com',
+        password: 'test',
+    },  
 ];
 
 //Functia findUserByEmailAndPassword trebuie sa fie apelata cand dam click pe Login, ea ne gaseste acest user in baza de date
@@ -29,13 +38,6 @@ export const saveUser = (user) => {
         return user;
     }
 };
-
-
-
-
-
-
-
 
 export const loginUser = (email, password, users, setUser) => {
     // Input validation

@@ -20,7 +20,6 @@ const Favorites = () => {
     favoritesContext.removeItem(product);
   }
 
-
   return (
 
     <div className={styles.favoritesContainer}>

@@ -7,6 +7,9 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useRef, useState } from 'react';
 import { saveProduct } from '../../products.service';
 import { users } from '../../users.service'
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/user.context';
+import { useEffect } from 'react';
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -28,12 +31,79 @@ function AdminPanel() {
         productDescription: '',
     });
 
+    const [imgs, setImgs] = useState([]);
+    const [title, setTitle] = useState('');
+    const [titleCode, setTitleCode] = useState('');
+    const [color, setColor] = useState('');
+    const [category, setCategory] = useState('');
+    const [subcategory, setSubcategory] = useState('');
+    const [subcategoryCode, setSubcategoryCode] = useState('');
+    const [size, setSize] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [bestSellerStatus, setBestSellerStatus] = useState('');
+    const [currency, setCurrency] = useState('');
+    const [price, setPrice] = useState('');
+    const [promo, setPromo] = useState('');
+    const [promoPrice, setPromoPrice] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+
+
+    const { user } = useContext(UserContext);
+
+    // useEffect(() => {
+    //     if (!user || !user.roles.includes('admin')) {
+    //         // Redirect or show unauthorized message
+    //     }
+    // }, [user]);
+
     const fileInputRef = useRef(null);
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         setNewProduct({ ...newProduct, imgs: files });
     };
+
+
+    const handleAddNewProduct = () => {
+        const newProductData = {
+            id: products.length + 1,
+            imgs: imgs,
+            title: title,
+            titleCode: titleCode,
+            color: color,
+            category: category,
+            subcategory: subcategory,
+            subcategoryCode: subcategoryCode,
+            size: size,
+            quantity: quantity,
+            bestSellerStatus: bestSellerStatus,
+            currency: currency,
+            price: price,
+            promo: promo,
+            promoPrice: promoPrice,
+            productDescription: productDescription,
+        };
+
+        setNewProduct(newProductData);
+        products.push(newProductData);
+        // setImgs([]);
+        // setTitle('');
+        // setTitleCode('');
+        // setColor('');
+        // setCategory('');
+        // setSubcategory('');
+        // setSubcategoryCode('');
+        // setSize('');
+        // setQuantity('');
+        // setBestSellerStatus('');
+        // setCurrency('');
+        // setPrice('');
+        // setPromo('');
+        // setPromoPrice('');
+        // setProductDescription('');
+
+    };
+
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -42,7 +112,7 @@ function AdminPanel() {
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="products" title="View Products">
+                <Tab eventKey="products" title={`View Products ${products.length}`}>
                     <table class="table">
                         <thead>
                             <tr>
@@ -102,7 +172,7 @@ function AdminPanel() {
                 <Tab eventKey="addProducts" title="Add New Products">
                     <div>
                         <span>Product ID</span>
-                        <input type="text" disabled />
+                        <input type="text" disabled value={products.length + 1} />
                     </div>
 
                     <Form.Group controlId="formFile" className="mb-3">
@@ -192,7 +262,7 @@ function AdminPanel() {
                             onChange={(e) => setNewProduct({ ...newProduct, productDescription: e.target.value })} />
                     </FloatingLabel>
 
-                    <button onClick={() => saveProduct(newProduct)}>SAVE PRODUCT</button>
+                    <button onClick={() => handleAddNewProduct(newProduct)}>SAVE PRODUCT</button>
                 </Tab>
                 <Tab eventKey="orders" title="Orders">
                     <table class="table">

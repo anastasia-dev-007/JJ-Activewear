@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { getProductById, products } from '../../products.service';
+import { getProductById, products, removeProduct } from '../../products.service';
 import styles from '../ProductDetails/ProductDetails.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import MightLikeProducts from '../../components/Recommendations/Recommendations';
-import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FavoritesContext } from '../../contexts/favorites.context';
+import { UserContext } from '../../contexts/user.context';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedMainPhotoIndex, setSelectedMainPhotoIndex] = useState(0); //keep track of the index of the currently selected main photo.
+  const [quantity, setQuantity] = useState(0);
 
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
@@ -26,6 +27,9 @@ const ProductDetails = () => {
   const handleShow = () => setShow(true);//for offCanvas
 
   const favoritesContext = useContext(FavoritesContext);
+  const userContext = useContext(UserContext);
+
+ const { user } = useContext(UserContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -89,6 +93,10 @@ const ProductDetails = () => {
     if (cartContext && cartContext.addItem) {
       cartContext.addItem(product);
     }
+
+    const result = removeProduct(product.id, quantity);
+    setProduct(result);
+    setQuantity(0);
   }
 
   const handleSmallPhotoClick = (index) => { //the index of the small photo clicked
@@ -179,19 +187,33 @@ const ProductDetails = () => {
               <div className={styles.quantity}>
                 <header>Quantity</header>
                 <div className={styles.quantityPanel}>
-                  <button>-</button>
-                  <input className={styles.quantityInput} type="number" placeholder='1' style={{ width: '40px', height: '28px', fontSize: '14px' }} />
-                  <button>+</button>
+                  <button disabled={quantity === 0} onClick={() => setQuantity((prev) => prev - 1)}>-</button>
+                  <input className={styles.quantityInput} type="number" placeholder='1' style={{ width: '40px', height: '28px', fontSize: '14px' }} value = {quantity} />
+                  <button disabled={quantity >= product.quantity} onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                 </div>
               </div>
 
               <div className={styles.addToCartBtnAndFavorites}>
 
-                <Button variant="primary" onClick={handleShow}>
+                {/* <Button variant="primary" onClick={handleShow}>
                   <button className={styles.addToCartBtn}
                     onClick={() => addToCart(product)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                </Button>
+                </Button> */}
+
+                {
+                            userContext.user === null ? (
+                              <button className={styles.addToCartBtn}
+                            >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                            ) : (
+                              <Button variant="primary" onClick={handleShow}>
+                              <button disabled={quantity === 0} className={styles.addToCartBtn}
+                                onClick={() => addToCart(product)}
+                              >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                            </Button>
+                            )
+                        }
+
 
 
                 <Offcanvas show={show} onHide={handleClose}>

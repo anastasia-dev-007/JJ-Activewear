@@ -214,8 +214,7 @@ const ProductListing = () => {
         <div className='path'>
           <p><Link to='/#'>Home</Link> |
             <Link to={'/products-list/'}>All products</Link> |
-            <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> |
-            {filters.subcategoryCode || ''} </p>
+            <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> </p>
         </div>
 
         <div className='title'>

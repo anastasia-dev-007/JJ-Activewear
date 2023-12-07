@@ -123,7 +123,7 @@ const LoginAndRegistration = () => {
             handleClose();
             setEmail('');
             setPassword('');
-            navigate('/');
+            // navigate('/');
         } else {
             alert('wrong credentials');
         }

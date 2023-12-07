@@ -17,7 +17,7 @@ const PopularProducts = () => {
         <div className={styles.popularProductsWrapper}>
             <h3>Popular Products</h3>
            <div className={styles.popularProductsContainer}>
-           <i class="fa-solid fa-chevron-left" ></i>
+           {/* <i class="fa-solid fa-chevron-left" ></i> */}
             {products.filter(item => item.bestSellerStatus === 'Best Seller')
             .map(item => (
                 <div className={styles.popularProductCard}
@@ -80,7 +80,7 @@ const PopularProducts = () => {
 
                 </div>
             ))}
-            <i class="fa-solid fa-chevron-right" ></i>
+            {/* <i class="fa-solid fa-chevron-right" ></i> */}
            </div>
 
         </div>

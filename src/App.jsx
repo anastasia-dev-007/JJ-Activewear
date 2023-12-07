@@ -17,21 +17,24 @@ import ScrollToTopBtn from './components/ScrollToTopBtn/ScrollToTopBtn';
 
 function App() {
   const { user } = useContext(UserContext);
+  const isAdmin = user && user.roles && user.roles.includes('admin');
+  const userContext = useContext(UserContext);
 
   return (
     <BrowserRouter>
       <div>
-        <ScrollToTopBtn/>
-        <NavBar/>
+        <ScrollToTopBtn />
+        <NavBar />
         {/* {user && <h1 style={{ marginTop: '100px' }}>{user.email}</h1>} */}
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/products-list' element={<ProductListing/>} />
+          <Route path='/products-list' element={<ProductListing />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
-          <Route path='/favorites' element={<Favorites />} />
-          <Route path='/shopping-cart' element={<ShoppingCart />} />
+          {userContext.user === null ? (<></>) : (<Route path='/favorites' element={<Favorites />} />)}
+          {userContext.user === null ? (<></>) : (<Route path='/shopping-cart' element={<ShoppingCart />} />)}
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />
+          {/* {isAdmin && <Route path='/admin-panel' element={<AdminPanel />} />} */}
           <Route path='/admin-panel' element={<AdminPanel />} />
           <Route path='*' element={<>Page not found</>}></Route>
         </Routes>

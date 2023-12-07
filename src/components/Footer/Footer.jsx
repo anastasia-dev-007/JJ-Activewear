@@ -10,6 +10,10 @@ const Footer = () => {
       window.scrollTo(0, 0); // Scrolls to the top of the page
     };
 
+    const handleLinkClick = () => {
+        window.scrollTo(0, 0);
+      };
+
     return (
         <footer className={styles.footerContainer}>
             <div className={styles.mainFooterContainer}>
@@ -31,10 +35,11 @@ const Footer = () => {
                 <div className={styles.footerColumn}>
                     <h4>Products</h4>
                     <ul>
-                        <li><a href="#">Catalogue</a></li>
-                        <li><a href="#">Activewear</a></li>
-                        <li><a href="#">Swimwear</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><Link to='/products-list/' onClick={handleLinkClick}>Catalogue</Link>
+                        </li>
+                        <li><Link to='/products-list?category=Activewear' onClick={handleLinkClick}>Activewear</Link></li>
+                        <li><Link to='/products-list?category=Swimwear' onClick={handleLinkClick}>Swimwear</Link></li>
+                        <li><Link to='/products-list?category=Accessories' onClick={handleLinkClick}>Accessories</Link></li>
                     </ul>
                 </div>
 

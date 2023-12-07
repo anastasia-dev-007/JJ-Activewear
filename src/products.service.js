@@ -2,14 +2,17 @@ export const products = [
     {
         id: 1,
         imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"],
-        title: 'Product 1',
-        titleCode: 'product_1',
-        color: 'black',
+        title: 'Activewear Set',
+        titleCode: 'activewear_set',
+        color: 'cream',
         category: 'Activewear',
-        subcategory: 'Leggings & Yoga Pants',
-        subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'S',
-        quantity: 10,
+        subcategory: 'Matching Sets',
+        subcategoryCode: 'matching_sets',
+        size: {
+            S: 4,
+            M: 5,
+            L: 2,
+        },
         bestSellerStatus: 'Best Seller',
         newArrival: 'Y',  //'Y' and 'N'
         currency: '$',
@@ -28,8 +31,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Matching Sets',
         subcategoryCode: 'matching_sets',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -47,8 +53,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -66,8 +73,11 @@ export const products = [
         category: 'Swimwear',
         subcategory: 'Swimwear',
         subcategoryCode: 'swimwear',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'Y',
         currency: '$',
@@ -85,8 +95,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -104,8 +115,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Long-sleeve workout tops',
         subcategoryCode: 'long-sleeve_workout_tops',
-        size: 'L',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -123,8 +137,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -142,8 +159,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -161,8 +181,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: 'Best Seller',
         newArrival: 'Y',
         currency: '$',
@@ -180,8 +203,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'T-shirts',
         subcategoryCode: 'T-shirts',
-        size: 'L',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -199,8 +225,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -218,8 +247,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -237,8 +269,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Sport Bras',
         subcategoryCode: 'sport_bras',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -256,8 +291,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Matching Sets',
         subcategoryCode: 'matching_sets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -275,8 +313,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Long-sleeve workout tops',
         subcategoryCode: 'long-sleeve_workout_tops',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'Y',
         currency: '$',
@@ -294,8 +335,11 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -313,8 +357,11 @@ export const products = [
         category: 'Swimwear',
         subcategory: 'Swimwear',
         subcategoryCode: 'swimwear',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: 'Best Seller',
         newArrival: 'N',
         currency: '$',
@@ -332,8 +379,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: 'Best Seller',
         newArrival: 'Y',
         currency: '$',
@@ -352,8 +400,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -371,8 +422,11 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'Y',
         currency: '$',
@@ -390,8 +444,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'T-shirts',
         subcategoryCode: 'T-shirts',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -409,8 +466,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Resistance Bands',
         subcategoryCode: 'resistance_bands',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -428,8 +486,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Sport Bras',
         subcategoryCode: 'sport_bras',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -447,8 +508,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -466,8 +530,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Resistance Bands',
         subcategoryCode: 'resistance_bands',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -485,8 +550,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: 'Best Seller',
         newArrival: 'N',
         currency: '$',
@@ -504,8 +570,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -523,8 +592,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Long-sleeve workout tops',
         subcategoryCode: 'long-sleeve_workout_tops',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 0,
+            M: 0,
+            L: 0
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -542,8 +614,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -561,8 +636,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Sport Bras',
         subcategoryCode: 'sport_bras',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -580,8 +658,11 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -599,8 +680,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tops & Sport Bras',
         subcategoryCode: 'tops_and_sport_bras',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -618,8 +702,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Matching Sets',
         subcategoryCode: 'matching_sets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -637,8 +724,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -656,8 +746,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Sport Bras',
         subcategoryCode: 'sport_bras',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -675,8 +768,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -694,8 +788,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -713,8 +810,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Long-sleeve workout tops',
         subcategoryCode: 'long-sleeve_workout_tops',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -732,8 +832,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Leggings & Yoga Pants',
         subcategoryCode: 'leggings_and_yoga_pants',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -751,8 +854,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Sport Bras',
         subcategoryCode: 'sport_bras',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -770,8 +876,11 @@ export const products = [
         category: 'Swimwear',
         subcategory: 'Swimwear',
         subcategoryCode: 'swimwear',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -789,8 +898,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Matching Sets',
         subcategoryCode: 'matching_sets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -808,8 +920,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tennis Shorts',
         subcategoryCode: 'tennis_shorts',
-        size: 'L',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -827,8 +942,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tops & Sport Bras',
         subcategoryCode: 'tops_and_sport_bras',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -846,8 +964,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -865,8 +984,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Long-sleeve workout tops',
         subcategoryCode: 'long-sleeve_workout_tops',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -884,8 +1006,11 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -903,8 +1028,11 @@ export const products = [
         category: 'Activewear',
         subcategory: 'Tops & Sport Bras',
         subcategoryCode: 'tops_and_sport_bras',
-        size: 'S',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -922,8 +1050,11 @@ export const products = [
         category: 'Swimwear',
         subcategory: 'Swimwear',
         subcategoryCode: 'swimwear',
-        size: 'M',
-        quantity: 10,
+        size: {
+            S: 4,
+            M: 5,
+            L: 2
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -941,8 +1072,9 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bag',
         subcategoryCode: 'sport-bags',
-        size: null,
-        quantity: 10,
+        size: {
+            nosize: 15,
+        },
         bestSellerStatus: '',
         newArrival: 'N',
         currency: '$',
@@ -1011,6 +1143,10 @@ export const saveProduct = (product) => {
     }
 };
 
+export const addProduct = (product) => {
+
+}
+
 //aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
 export const deleteProduct = (id) => {
     const foundIndex = products.findIndex(product => product.id === id);
@@ -1018,4 +1154,15 @@ export const deleteProduct = (id) => {
     if (foundIndex > -1) {
         products.splice(foundIndex, 1);
     }
+};
+
+//aceatsa functie va scadea cantitatea produsului
+export const removeProduct = (id, quantity) => {
+    const index = products.findIndex(item => item.id === id);
+
+    if (index !== -1) {
+        products[index].quantity = products[index] - quantity;
+        return products[index];
+    }
+    return 'Product not found';
 };
