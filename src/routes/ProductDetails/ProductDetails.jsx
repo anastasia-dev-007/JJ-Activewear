@@ -11,12 +11,14 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FavoritesContext } from '../../contexts/favorites.context';
 import { UserContext } from '../../contexts/user.context';
+import Accordion from 'react-bootstrap/Accordion';
+
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedMainPhotoIndex, setSelectedMainPhotoIndex] = useState(0); //keep track of the index of the currently selected main photo.
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(null); // Add selectedSize state
 
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
@@ -74,16 +76,7 @@ const ProductDetails = () => {
         "The strategic design of our leggings and longsleeve provides a slimming and supportive fit, enhancing your natural curves and boosting your confidence."
       ],
     },
-  ]
-
-  //toggleAccordion function is responsible for managing which accordions are open and which ones are closed.
-  const toggleAccordion = (id) => {
-    if (openAccordions.includes(id)) { //  // Check if the accordion with this id is already in the openAccordions array
-      setOpenAccordions(openAccordions.filter(acc => acc !== id));  // If it is already open, close it by updating openAccordions to exclude the current id. If the accordion is already open ('includes' returns 'true'), it removes that id from the openAccordions array. It uses the 'filter' function to create a new array that includes all the items from openAccordions except the one with the id clicked on.
-    } else {
-      setOpenAccordions([...openAccordions, id]); //If the accordion is closed ('includes' returns 'false'), means it's opening. So, it sets the openAccordions array to a new array that contains all the existing items from openAccordions ([...openAccordions]) and adds the new id to it.
-    }
-  };
+  ];
 
   const handleSizeButtonClick = (size) => {
     if (product.size[size] > 0) {
@@ -197,7 +190,7 @@ const ProductDetails = () => {
                 <div>| Size Guide</div>
               </div>
 
-              <div className={styles.colors}>
+              {/* <div className={styles.colors}>
                 <header>Color</header>
                 <div className={styles.colorCircles}>
                   {
@@ -207,7 +200,7 @@ const ProductDetails = () => {
                       ))
                   }
                 </div>
-              </div>
+              </div> */}
 
               <div className={styles.quantity}>
                 <header>Quantity</header>
@@ -352,23 +345,18 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className={styles.Accordions}>
-                {AccordionsData.map(item => (
-                  <div key={item.id} className={styles.accordionItem}>
-                    <div className={styles.accordionHeader} onClick={() => toggleAccordion(item.id)}>
-                      <div>{item.title}</div>
-                      <div>{openAccordions.includes(item.id) ? (<i class="fa-solid fa-chevron-up"></i>) : (<i class="fa-solid fa-chevron-down"></i>)}</div> {/*displays +/-  based on whether the current accordion is open (i.e., its id is in the openAccordions array). */}
-                    </div>
-                    {openAccordions.includes(item.id) && ( //checks if the current accordion is open. If open, accordion content is rendered.
-                      <div className={styles.accordionList}>
-                        {item.content.map(listItem => (
-                          <div key={listItem.id}>{listItem}</div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+
+              {AccordionsData.map(item => (
+                <Accordion styles={{width: '100px'}} defaultActiveKey={AccordionsData.id} alwaysOpen>
+                  <Accordion.Item eventKey="0"  className={styles.accordionItem}>
+                    <Accordion.Header>{item.title}</Accordion.Header>
+                    <Accordion.Body>
+                      {item.content}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              ))}
+
             </div>
           </div>
         )
