@@ -17,6 +17,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [selectedMainPhotoIndex, setSelectedMainPhotoIndex] = useState(0); //keep track of the index of the currently selected main photo.
   const [quantity, setQuantity] = useState(0);
+  const [selectedSize, setSelectedSize] = useState(null); // Add selectedSize state
 
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
@@ -29,7 +30,7 @@ const ProductDetails = () => {
   const favoritesContext = useContext(FavoritesContext);
   const userContext = useContext(UserContext);
 
- const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -81,6 +82,15 @@ const ProductDetails = () => {
       setOpenAccordions(openAccordions.filter(acc => acc !== id));  // If it is already open, close it by updating openAccordions to exclude the current id. If the accordion is already open ('includes' returns 'true'), it removes that id from the openAccordions array. It uses the 'filter' function to create a new array that includes all the items from openAccordions except the one with the id clicked on.
     } else {
       setOpenAccordions([...openAccordions, id]); //If the accordion is closed ('includes' returns 'false'), means it's opening. So, it sets the openAccordions array to a new array that contains all the existing items from openAccordions ([...openAccordions]) and adds the new id to it.
+    }
+  };
+
+  const handleSizeButtonClick = (size) => {
+    if (product.size[size] > 0) {
+      setQuantity(1);
+      setSelectedSize(size); // Update selected size
+    } else {
+      alert(`Size ${size} is not available.`);
     }
   };
 
@@ -162,12 +172,27 @@ const ProductDetails = () => {
               <div className={styles.sizes}>
                 <header>Size</header>
                 <div>
-                  {/* <button onClick={() => setSelectedSize('S')} className={selectedSize === 'S' ? styles.selectedSize : ''}>S</button>
-                  <button onClick={() => setSelectedSize('M')} className={selectedSize === 'M' ? styles.selectedSize : ''}>M</button>
-                  <button onClick={() => setSelectedSize('L')} className={selectedSize === 'L' ? styles.selectedSize : ''}>L</button> */}
-                  <button>S</button>
-                  <button>M</button>
-                  <button>L</button>
+                  <button
+                    disabled={product.size.S < 1}
+                    onClick={() => handleSizeButtonClick('S')}
+                    className={selectedSize === 'S' ? styles.selectedSize : ''}
+                  >
+                    S
+                  </button>
+                  <button
+                    disabled={product.size.M < 1}
+                    onClick={() => handleSizeButtonClick('M')}
+                    className={selectedSize === 'M' ? styles.selectedSize : ''}
+                  >
+                    M
+                  </button>
+                  <button
+                    disabled={product.size.L < 1}
+                    onClick={() => handleSizeButtonClick('L')}
+                    className={selectedSize === 'L' ? styles.selectedSize : ''}
+                  >
+                    L
+                  </button>
                 </div>
                 <div>| Size Guide</div>
               </div>
@@ -187,9 +212,25 @@ const ProductDetails = () => {
               <div className={styles.quantity}>
                 <header>Quantity</header>
                 <div className={styles.quantityPanel}>
-                  <button disabled={quantity === 0} onClick={() => setQuantity((prev) => prev - 1)}>-</button>
-                  <input className={styles.quantityInput} type="number" placeholder='1' style={{ width: '40px', height: '28px', fontSize: '14px' }} value = {quantity} />
-                  <button disabled={quantity >= product.quantity} onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+                  <button
+                    disabled={product[selectedSize] === 0} // Update here
+                    onClick={() => setQuantity((prev) => prev - 1)}
+                  >
+                    -
+                  </button>
+                  <input
+                    className={styles.quantityInput}
+                    type="number"
+                    placeholder="1"
+                    style={{ width: '40px', height: '28px', fontSize: '14px' }}
+                    value={quantity}
+                  />
+                  <button
+                    disabled={quantity >= product[selectedSize]} // Update here
+                    onClick={() => setQuantity((prev) => prev + 1)}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
@@ -202,17 +243,17 @@ const ProductDetails = () => {
                 </Button> */}
 
                 {
-                            userContext.user === null ? (
-                              <button className={styles.addToCartBtn}
-                            >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                            ) : (
-                              <Button variant="primary" onClick={handleShow}>
-                              <button disabled={quantity === 0} className={styles.addToCartBtn}
-                                onClick={() => addToCart(product)}
-                              >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                            </Button>
-                            )
-                        }
+                  userContext.user === null ? (
+                    <button className={styles.addToCartBtn}
+                    >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                  ) : (
+                    <Button variant="primary" onClick={handleShow}>
+                      <button disabled={quantity === 0} className={styles.addToCartBtn}
+                        onClick={() => addToCart(product)}
+                      >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    </Button>
+                  )
+                }
 
 
 
@@ -248,9 +289,25 @@ const ProductDetails = () => {
                             <div className={styles.quantity}>
                               <header>Quantity</header>
                               <div className={styles.quantityPanel}>
-                                <button>-</button>
-                                <input className={styles.quantityInput} type="number" placeholder='1' style={{ width: '40px', height: '28px', fontSize: '14px' }} />
-                                <button>+</button>
+                                <button
+                                  disabled={product[selectedSize] === 0} // Update here
+                                  onClick={() => setQuantity((prev) => prev - 1)}
+                                >
+                                  -
+                                </button>
+                                <input
+                                  className={styles.quantityInput}
+                                  type="number"
+                                  placeholder="1"
+                                  style={{ width: '40px', height: '28px', fontSize: '14px' }}
+                                  value={quantity}
+                                />
+                                <button
+                                  disabled={quantity >= product[selectedSize]} // Update here
+                                  onClick={() => setQuantity((prev) => prev + 1)}
+                                >
+                                  +
+                                </button>
                               </div>
                             </div>
 
