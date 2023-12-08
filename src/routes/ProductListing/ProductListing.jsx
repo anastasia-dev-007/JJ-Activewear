@@ -53,7 +53,7 @@ const ProductListing = () => {
         (!filters.subcategoryCode || filters.subcategoryCode.split(',').includes(product.subcategoryCode)) &&
         (!filters.size || filters.size.split(',').includes(product.size)) &&
         (!filters.availability || product.availability === filters.availability) &&
-        (!filters.color || filters.color.split(',').includes(product.color)) &&
+        (!filters.color || filters.color.split(',').map(color => color.trim().toLowerCase()).includes(product.color.toLowerCase())) &&
         (!filters.minPrice || parseFloat(product.price) >= parseFloat(filters.minPrice)) &&
         (!filters.maxPrice || parseFloat(product.price) <= parseFloat(filters.maxPrice)) &&
         (!filters.promo || product.promo === filters.promo) &&
@@ -159,9 +159,10 @@ const ProductListing = () => {
     const colors = filters.color ? filters.color.split(',') : [];
 
     // Toggle the selection
-    const updatedColors = colors.includes(selectedColor.color)
-      ? colors.filter(color => color !== selectedColor.color)
-      : [...colors, selectedColor.color];
+   const updatedColors = colors.includes(selectedColor.color.toLowerCase())
+  ? colors.filter(color => color !== selectedColor.color.toLowerCase())
+  : [...colors, selectedColor.color.toLowerCase()];
+ 
 
     setQueryParams({
       ...filters,

@@ -132,7 +132,7 @@ const ProductDetails = () => {
                   ))
                 }
               </div>
-              <div className={styles.mainPhoto}>
+              <div className={styles.mainPhoto} style={{zIndex: 10}}>
                 {/* https://www.npmjs.com/package/react-image-magnify
                 https://www.youtube.com/watch?app=desktop&v=onUH6Op5GKQ */}
                 <ReactImageMagnify {...{
