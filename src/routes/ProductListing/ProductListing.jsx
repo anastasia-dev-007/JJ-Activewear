@@ -348,6 +348,7 @@ const ProductListing = () => {
 
                 <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
                 <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
+                <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
 
                 {/* <div className={styles.addToCartAndFavorites}>
