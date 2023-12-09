@@ -107,11 +107,11 @@ const ProductListing = () => {
     },
   ];
 
-  const SizesAccordionData = [
-    { id: 1, size: 'S' },
-    { id: 2, size: 'M' },
-    { id: 3, size: 'L' },
-  ];
+  // const SizesAccordionData = [
+  //   { id: 1, size: 'S' },
+  //   { id: 2, size: 'M' },
+  //   { id: 3, size: 'L' },
+  // ];
 
   const ColorsAccordionData = [
     { id: 1, color: 'white', colorCode: '#ffffff', },
@@ -263,7 +263,7 @@ const ProductListing = () => {
               ))}
 
               {/**Size Filter */}
-              <Accordion.Item eventKey="sizeFilter">
+              {/* <Accordion.Item eventKey="sizeFilter">
                 <Accordion.Header>Size</Accordion.Header>
                 <Accordion.Body >
                   {SizesAccordionData.map((item) => (
@@ -278,7 +278,7 @@ const ProductListing = () => {
                     </div>
                   ))}
                 </Accordion.Body>
-              </Accordion.Item>
+              </Accordion.Item> */}
 
               {/**Color Filter */}
               <Accordion.Item eventKey="colorFilter">

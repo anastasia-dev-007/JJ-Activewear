@@ -4,12 +4,30 @@ import MightLikeProducts from '../../components/Recommendations/Recommendations'
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../../products.service';
+
 
 const ShoppingCart = () => {
   const cartContext = useContext(CartContext); //consumam contextul
   const [quantity, setQuantity] = useState(1); // State to manage the quantity
 
   const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const handleQuantityDecrement = (item) => {
+    const newQuantity = Math.max(item.quantity - 1, 1);
+    setQuantity(newQuantity);
+
+    const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
+    // You might want to update the cart context or handle the updated product in some way
+  };
+
+  const handleQuantityIncrement = (item) => {
+    const newQuantity = Math.min(item.quantity + 1, item.size[item.selectedSize]);
+    setQuantity(newQuantity);
+
+    const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
+    // You might want to update the cart context or handle the updated product in some way
+  };
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -55,31 +73,26 @@ const ShoppingCart = () => {
                           <div>Quantity: {item.quantity}</div>
                           <div>Size: {item.selectedSize}</div>
                           <div>Color: {item.color}</div>
-                        </div>
 
-
-
-                        <div className={styles.quantity}>
-                          <header>Quantity</header>
-                          <div className={styles.quantityPanel}>
-                            <button
-                              disabled={item.size[item.selectedSize] === 0}
-                              onClick={() => setQuantity((prev) => prev - 1)}
-                            >
-                              -
-                            </button>
-                            <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{item.quantity}</p>
-                            <button
-                              disabled={quantity >= item.size[item.selectedSize]}
-                              onClick={() => setQuantity((prev) => prev + 1)}
-                            >
-                              +
-                            </button>
+                          <div className={styles.quantity}>
+                            <header>Quantity</header>
+                            <div className={styles.quantityPanel}>
+                              <button
+                                disabled={item.size[item.selectedSize] === 0}
+                                onClick={() => handleQuantityDecrement(item)}
+                              >
+                                -
+                              </button>
+                              <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{item.quantity}</p>
+                              <button
+                                disabled={quantity >= item.size[item.selectedSize]}
+                                onClick={() => handleQuantityIncrement(item)}
+                              >
+                                +
+                              </button>
+                            </div>
                           </div>
                         </div>
-
-
-
 
                         <div className={styles.price}>{item.currency} {item.price.toFixed(2)}</div>
                       </div>

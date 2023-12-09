@@ -899,3 +899,18 @@ export const removeProduct = (id, size, quantity) => {
     return 'Product not found';
   };
   
+
+  export const addToCart = (product, selectedSize, quantity, cartContext) => {
+    if (!selectedSize) {
+      // Handle size error
+      return null;
+    }
+  
+    const result = removeProduct(product.id, selectedSize, quantity);
+  
+    if (cartContext && cartContext.addItem) {
+      cartContext.addItem(result, selectedSize, quantity);
+    }
+  
+    return result;
+  };
