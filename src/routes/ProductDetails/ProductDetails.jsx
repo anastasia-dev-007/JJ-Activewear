@@ -20,6 +20,8 @@ const ProductDetails = () => {
   const [selectedMainPhotoIndex, setSelectedMainPhotoIndex] = useState(0); //keep track of the index of the currently selected main photo.
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(null); // Add selectedSize state
+  const [sizeError, setSizeError] = useState(false);
+  const [quantityError, setQuantityError] = useState(false);
 
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
   // const [selectedSize, setSelectedSize] = useState(null);
@@ -89,7 +91,7 @@ const ProductDetails = () => {
 
   const addToCart = (product) => {
     if (!selectedSize) {
-      alert('Please select a size before adding to the cart');
+      setSizeError(true);
       return;
     }
 
@@ -103,6 +105,7 @@ const ProductDetails = () => {
     setProduct(result);
     setQuantity(1);
     setSelectedSize(null); // Reset selected size after adding to the cart
+    setSizeError(false);
   };
 
 
@@ -113,7 +116,43 @@ const ProductDetails = () => {
 
   const toggleFavoriteItem = (product) => {
     favoritesContext.toggleFavoriteItem(product);
-  }
+  };
+
+  const handleQuantityDecrement = () => {
+    if (!selectedSize) {
+      setSizeError(true); // Set the size error to true
+      setQuantityError(false); // Reset the quantity error
+      return;
+    }
+
+    if (quantity <= 1) {
+      setQuantityError(true); // Set the quantity error to true
+      setSizeError(false); // Reset the size error
+      return;
+    }
+
+    setQuantity((prev) => prev - 1);
+    setSizeError(false); // Reset both errors
+    setQuantityError(false);
+  };
+
+  const handleQuantityIncrement = () => {
+    if (!selectedSize) {
+      setSizeError(true); // Set the size error to true
+      setQuantityError(false); // Reset the quantity error
+      return;
+    }
+
+    if (quantity >= product.size[selectedSize]) {
+      setQuantityError(true); // Set the quantity error to true
+      setSizeError(false); // Reset the size error
+      return;
+    }
+
+    setQuantity((prev) => prev + 1);
+    setSizeError(false); // Reset both errors
+    setQuantityError(false);
+  };
 
   return (
     <div className={styles.productDetailsContainer}>
@@ -201,20 +240,23 @@ const ProductDetails = () => {
                 <div className={styles.quantityPanel}>
                   <button
                     disabled={product.size[selectedSize] === 0}
-                    onClick={() => setQuantity((prev) => prev - 1)}
+                    onClick={handleQuantityDecrement}
                   >
                     -
                   </button>
                   <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{quantity}</p>
                   <button
                     disabled={quantity >= product.size[selectedSize]}
-                    onClick={() => setQuantity((prev) => prev + 1)}
+                    onClick={handleQuantityIncrement}
                   >
                     +
                   </button>
                 </div>
               </div>
 
+              {sizeError && (
+                <p style={{ color: 'red', fontSize: '10px' }}>Please select a size before.</p>
+              )}
 
               <div className={styles.addToCartBtnAndFavorites}>
 
@@ -227,7 +269,7 @@ const ProductDetails = () => {
 
                 <div variant="primary" onClick={handleShow}>
                   <button disabled={quantity === 0} className={styles.addToCartBtn}
-                    onClick={() => addToCart(product)}
+                    onClick={() => addToCart(product, selectedSize, quantity)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
 
@@ -261,7 +303,7 @@ const ProductDetails = () => {
                               <div className={styles.price}> Price: {item.currency} {item.price.toFixed(2)}</div>
                             </div>
 
-                            <div className={styles.quantity}>
+                            {/* <div className={styles.quantity}>
                               <header>Quantity</header>
                               <div className={styles.quantityPanel}>
                                 <button
@@ -279,12 +321,12 @@ const ProductDetails = () => {
                                 />
                                 <button
                                   disabled={quantity >= product[selectedSize]} // Update here
-                                  onClick={() => setQuantity((prev) => prev + 1)}
+                                  onClick={() => addToCart(item, item.selectedSize, 1)}
                                 >
                                   +
                                 </button>
                               </div>
-                            </div>
+                            </div> */}
 
                             <div className={styles.removeBtn}>
                               <button>Remove</button>

@@ -67,3 +67,29 @@ width: 100%;
     margin-top: 50px;
     height: 20vw;
 }
+
+.quantityPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.quantity button {
+    padding: 0 8px;
+    background-color: white;
+    color: rgb(68, 68, 68);
+    font-size: 20px;
+    border-right: 1px solid;
+    border-left: 1px solid;
+}
+
+
+.quantity {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 0.1px solid;
+    border-color: rgb(216, 216, 216);
+}
