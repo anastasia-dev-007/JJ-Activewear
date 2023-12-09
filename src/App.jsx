@@ -30,8 +30,10 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/products-list' element={<ProductListing />} />
           <Route path='/product-details/:id' element={<ProductDetails />} />
-          {userContext.user === null ? (<></>) : (<Route path='/favorites' element={<Favorites />} />)}
-          {userContext.user === null ? (<></>) : (<Route path='/shopping-cart' element={<ShoppingCart />} />)}
+          {/* {userContext.user === null ? (<></>) : ()}*/}
+          <Route path='/favorites' element={<Favorites />} />
+          {/* {userContext.user === null ? (<></>) : ()}*/}
+          <Route path='/shopping-cart' element={<ShoppingCart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order-confirmation' element={<OrderConfirmation />} />
           {/* {isAdmin && <Route path='/admin-panel' element={<AdminPanel />} />} */}

@@ -56,7 +56,7 @@ const NavBar = () => {
                         </div>
 
                         <LoginAndRegistration />
-                        {/* 
+                        
                         <Link to='/favorites/' onClick={handleLinkClick}>
                             <button type="button" class="btn position-relative">
                                 <i className="fa-regular fa-heart"></i>
@@ -64,9 +64,9 @@ const NavBar = () => {
                                     {favoritesContext.items.length >= 1 && favoritesContext.items.length}
                                 </span>
                             </button>
-                        </Link> */}
+                        </Link>
 
-                        {
+                        {/* {
                             userContext.user === null ? (
                                 <i className="fa-regular fa-heart"></i>
                             ) : (
@@ -79,10 +79,10 @@ const NavBar = () => {
                                     </button>
                                 </Link>
                             )
-                        }
+                        } */}
 
 
-                        {/* <Link to='/shopping-cart/' onClick={handleLinkClick}>
+                        <Link to='/shopping-cart/' onClick={handleLinkClick}>
                             <div className={styles.cartOnNav}>
                                 <button type="button" class="btn position-relative">
                                     <i className="fa-solid fa-cart-shopping"></i>
@@ -93,9 +93,9 @@ const NavBar = () => {
                                     )}
                                 </button>
                             </div>
-                        </Link> */}
+                        </Link>
 
-                        {
+                        {/* {
                             userContext.user === null ? (
                                 <i className="fa-solid fa-cart-shopping"></i>
                             ) : (
@@ -112,7 +112,7 @@ const NavBar = () => {
                                     </div>
                                 </Link>
                             )
-                        }
+                        } */}
 
                         <select id="language">
                             <option value="EN">EN</option> {/**flag is not displayed((( */}

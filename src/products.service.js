@@ -865,12 +865,37 @@ export const deleteProduct = (id) => {
 };
 
 //aceatsa functie va scadea cantitatea produsului
-export const removeProduct = (id, quantity) => {
-    const index = products.findIndex(item => item.id === id);
+// export const removeProduct = (id, quantity) => {
+//     const index = products.findIndex(item => item.id === id);
 
+//     if (index !== -1) {
+//         products[index].quantity = products[index] - quantity;
+//         return products[index];
+//     }
+//     return 'Product not found';
+// };
+// This function will decrease the quantity of a specific size for a given product
+export const removeProduct = (id, size, quantity) => {
+    const index = products.findIndex(item => item.id === id);
+  
     if (index !== -1) {
-        products[index].quantity = products[index] - quantity;
+      // Check if the size exists for the product
+      if (products[index].size && products[index].size[size]) {
+        // Subtract the quantity from the specified size
+        products[index].size[size] -= quantity;
+  
+        // You might also want to check if the quantity is non-negative
+        if (products[index].size[size] < 0) {
+          products[index].size[size] = 0;
+        }
+  
+        // Return the updated product
         return products[index];
+      } else {
+        return 'Size not found for the product';
+      }
     }
+  
     return 'Product not found';
-};
+  };
+  

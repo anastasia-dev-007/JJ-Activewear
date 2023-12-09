@@ -88,19 +88,24 @@ const ProductDetails = () => {
   };
 
   const addToCart = (product) => {
-    // if (!selectedSize) {
-    //   alert('Please select a size before adding to the cart');
-    //   return;
-    // }
-
-    if (cartContext && cartContext.addItem) {
-      cartContext.addItem(product);
+    if (!selectedSize) {
+      alert('Please select a size before adding to the cart');
+      return;
     }
-
-    const result = removeProduct(product.id, quantity);
+  
+    // Use the selected size when calling removeProduct
+    const result = removeProduct(product.id, selectedSize, quantity);
+  
+    if (cartContext && cartContext.addItem) {
+      cartContext.addItem(result); // Add the updated product to the cart
+    }
+  
     setProduct(result);
-    setQuantity(0);
-  }
+    setQuantity(1);
+    setSelectedSize(null); // Reset selected size after adding to the cart
+  };
+  
+  
 
   const handleSmallPhotoClick = (index) => { //the index of the small photo clicked
     setSelectedMainPhotoIndex(index); //updates the selectedMainPhotoIndex state with the clicked index.
@@ -132,7 +137,7 @@ const ProductDetails = () => {
                   ))
                 }
               </div>
-              <div className={styles.mainPhoto} style={{zIndex: 10}}>
+              <div className={styles.mainPhoto} style={{ zIndex: 10 }}>
                 {/* https://www.npmjs.com/package/react-image-magnify
                 https://www.youtube.com/watch?app=desktop&v=onUH6Op5GKQ */}
                 <ReactImageMagnify {...{
@@ -165,27 +170,17 @@ const ProductDetails = () => {
               <div className={styles.sizes}>
                 <header>Size</header>
                 <div>
-                  <button
-                    disabled={product.size.S < 1}
-                    onClick={() => handleSizeButtonClick('S')}
-                    className={selectedSize === 'S' ? styles.selectedSize : ''}
-                  >
-                    S
-                  </button>
-                  <button
-                    disabled={product.size.M < 1}
-                    onClick={() => handleSizeButtonClick('M')}
-                    className={selectedSize === 'M' ? styles.selectedSize : ''}
-                  >
-                    M
-                  </button>
-                  <button
-                    disabled={product.size.L < 1}
-                    onClick={() => handleSizeButtonClick('L')}
-                    className={selectedSize === 'L' ? styles.selectedSize : ''}
-                  >
-                    L
-                  </button>
+                  {Object.keys(product.size).map((size) => (
+                    <button
+                      key={size}
+                      disabled={product.size[size] < 1}
+                      onClick={() => handleSizeButtonClick(size)}
+                      className={selectedSize === size ? styles.selectedSize : ''}
+                    >
+                      {`${size} - ${product.size[size]}`} {/* Render size and quantity */}
+                    </button>
+                  ))}
+
                 </div>
                 <div>| Size Guide</div>
               </div>
@@ -206,7 +201,7 @@ const ProductDetails = () => {
                 <header>Quantity</header>
                 <div className={styles.quantityPanel}>
                   <button
-                    disabled={product[selectedSize] === 0} // Update here
+                    disabled={product.size[selectedSize] === 0}
                     onClick={() => setQuantity((prev) => prev - 1)}
                   >
                     -
@@ -219,13 +214,14 @@ const ProductDetails = () => {
                     value={quantity}
                   />
                   <button
-                    disabled={quantity >= product[selectedSize]} // Update here
+                    disabled={quantity >= product.size[selectedSize]}
                     onClick={() => setQuantity((prev) => prev + 1)}
                   >
                     +
                   </button>
                 </div>
               </div>
+
 
               <div className={styles.addToCartBtnAndFavorites}>
 
@@ -235,19 +231,12 @@ const ProductDetails = () => {
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </Button> */}
 
-                {
-                  userContext.user === null ? (
-                    <button className={styles.addToCartBtn}
-                    >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                  ) : (
-                    <Button variant="primary" onClick={handleShow}>
-                      <button disabled={quantity === 0} className={styles.addToCartBtn}
-                        onClick={() => addToCart(product)}
-                      >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                    </Button>
-                  )
-                }
 
+                <Button variant="primary" onClick={handleShow}>
+                  <button disabled={quantity === 0} className={styles.addToCartBtn}
+                    onClick={() => addToCart(product)}
+                  >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                </Button>
 
 
                 <Offcanvas show={show} onHide={handleClose}>
@@ -347,11 +336,13 @@ const ProductDetails = () => {
 
 
               {AccordionsData.map(item => (
-                <Accordion styles={{width: '100px'}} defaultActiveKey={AccordionsData.id} alwaysOpen>
-                  <Accordion.Item eventKey="0"  className={styles.accordionItem}>
+                <Accordion styles={{ width: '100px' }} defaultActiveKey={AccordionsData.id} alwaysOpen>
+                  <Accordion.Item eventKey="0" className={styles.accordionItem}>
                     <Accordion.Header>{item.title}</Accordion.Header>
                     <Accordion.Body>
-                      {item.content}
+                      {item.content.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
