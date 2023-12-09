@@ -100,11 +100,11 @@
     text-align: center;
 }
 
-.quantityInput {
+/* .quantityInput {
     text-align: center;
     padding-left: 8px;
     border: none;
-}
+} */
 
 .quantity button {
     padding: 0 8px;
