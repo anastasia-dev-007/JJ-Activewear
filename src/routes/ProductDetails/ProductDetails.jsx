@@ -39,7 +39,7 @@ const ProductDetails = () => {
   }, [id]);
 
   const cartContext = useContext(CartContext);// consumam contextul
-  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price, 0);//for offCanvas
+  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const colors = [
     { id: 1, title: '#ffffff' },
@@ -97,7 +97,7 @@ const ProductDetails = () => {
     const result = removeProduct(product.id, selectedSize, quantity);
 
     if (cartContext && cartContext.addItem) {
-      cartContext.addItem(result); // Add the updated product to the cart
+      cartContext.addItem(result, selectedSize, quantity); // Add the updated product to the cart
     }
 
     setProduct(result);
@@ -254,7 +254,7 @@ const ProductDetails = () => {
                                 <div>{item.title}</div>
                                 <div>{item.category} | {item.subcategory}</div>
                                 <div>Quantity: {item.quantity}</div>
-                                <div>Size: {item.size}</div>
+                                <div>Size: {item.selectedSize}</div>
                                 <div>Color: {item.color}</div>
                               </div>
 

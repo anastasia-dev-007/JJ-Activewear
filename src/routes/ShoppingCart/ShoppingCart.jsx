@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const ShoppingCart = () => {
   const cartContext = useContext(CartContext); //consumam contextul
 
-  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price, 0);
+  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -52,7 +52,7 @@ const ShoppingCart = () => {
                       <div>{item.title}</div>
                       <div>{item.category} | {item.subcategory}</div>
                       <div>Quantity: {item.quantity}</div>
-                      <div>Size: {item.size}</div>
+                      <div>Size: {item.selectedSize}</div>
                       <div>Color: {item.color}</div>
                     </div>
 

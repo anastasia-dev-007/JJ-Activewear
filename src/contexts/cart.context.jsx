@@ -11,11 +11,24 @@ export function CartProvider(props) { //acesta este un component React
     const [cartItems, setCartItems] = useState([]); //cream un state care va tine datele
 
     //cream functii necesare pentru a lucra cu shopping cart
-    const addItem = (item) => {
-        console.log(item);
-        setCartItems([...cartItems, item]);
-    }
-    
+    const addItem = (item, size, quantity) => {
+        const existingItem = cartItems.find(cartItem => cartItem.id === item.id && cartItem.selectedSize === size);
+
+        if (existingItem) {
+            // If the item already exists in the cart with the same size, update the quantity
+            existingItem.quantity += quantity;
+            setCartItems([...cartItems]); // Trigger a state update to re-render
+        } else {
+            //sa verific daca in shopping cart deja exista asa item cu asa selected size. Daca da, maresc quantity, daca nu, el adaug in array existent
+            console.log(item);
+            setCartItems([...cartItems, {
+                ...item,
+                selectedSize: size,
+                quantity: quantity,
+            }]);
+        };
+    };
+
     return (
         <CartContext.Provider value={{
             cartItems: cartItems,
