@@ -468,7 +468,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 25, 
+    id: 27, 
     imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"], 
     title: 'Tops & Sport Bras', 
     titleCode: 'tops_and_sport_bras', 
@@ -486,7 +486,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 26, 
+    id: 28, 
     imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"], 
     title: 'Tops & Sport Bras', 
     titleCode: 'tops_and_sport_bras', 
@@ -504,7 +504,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 27, 
+    id: 29, 
     imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"], 
     title: 'Tops & Sport Bras', 
     titleCode: 'tops_and_sport_bras', 
@@ -522,7 +522,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 28, 
+    id: 30, 
     imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"], 
     title: 'Tops & Sport Bras', 
     titleCode: 'tops_and_sport_bras', 
@@ -540,7 +540,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 29, 
+    id: 31, 
     imgs: ["/bej1.jpg", "/bej2.jpg", "/bej3.jpg", "/bej4.jpg"], 
     title: 'Tops & Sport Bras', 
     titleCode: 'tops_and_sport_bras', 
@@ -558,7 +558,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 30, 
+    id: 32, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"], 
     title: 'Swimwear 1', 
     titleCode: 'swimwear_1', 
@@ -576,7 +576,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 31, 
+    id: 33, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"],
     title: 'Swimwear 2', 
     titleCode: 'swimwear_2', 
@@ -594,7 +594,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 32, 
+    id: 34, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"], 
     title: 'Swimwear 3', 
     titleCode: 'swimwear_3', 
@@ -612,7 +612,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 33, 
+    id: 35, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"], 
     title: 'Swimwear 4', 
     titleCode: 'swimwear_4', 
@@ -630,7 +630,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 34, 
+    id: 36, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"], 
     title: 'Swimwear 5', 
     titleCode: 'swimwear_5', 
@@ -648,7 +648,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 35, 
+    id: 37, 
     imgs: ["/swim1.jpg", "/swim2.jpg", "/swim3.jpg", "/swim4.jpg"], 
     title: 'Swimwear 6', 
     titleCode: 'swimwear_6', 
@@ -666,7 +666,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 36, 
+    id: 38, 
     imgs: ["/corset.jpg"], 
     title: 'Corsets', 
     titleCode: 'corsets', 
@@ -684,7 +684,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 37, 
+    id: 39, 
     imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"], 
     title: 'Sport Bag 1', 
     titleCode: 'sport_bag_1', 
@@ -702,7 +702,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 38, 
+    id: 40, 
     imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"], 
     title: 'Sport Bag 2', 
     titleCode: 'sport_bag_2', 
@@ -720,7 +720,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 39, 
+    id: 41, 
     imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"], 
     title: 'Sport Bag 3', 
     titleCode: 'sport_bag_3', 
@@ -738,7 +738,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 40, 
+    id: 42, 
     imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"], 
     title: 'Sport Bag 4', 
     titleCode: 'sport_bag_4', 
@@ -756,7 +756,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 41, 
+    id: 43, 
     imgs: ["/sb1.jpg", "/sb2.jpg", "/sb3.jpg", "/sb4.jpg"], 
     title: 'Sport Bag 5', 
     titleCode: 'sport_bag_5', 
@@ -774,7 +774,7 @@ export const products = [
     productDescription: '', 
     },
     { 
-    id: 42, 
+    id: 44, 
     imgs: ["/rb.jpg"], 
     title: 'Resistance Bands', 
     titleCode: 'resistance_bands', 
