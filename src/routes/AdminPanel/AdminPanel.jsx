@@ -21,7 +21,7 @@ function AdminPanel() {
         category: '',
         subcategory: '',
         subcategoryCode: '',
-        size: '',
+        size: {},
         quantity: '',
         bestSellerStatus: '',
         currency: '',
@@ -125,8 +125,9 @@ function AdminPanel() {
                                 <th scope="col">Category</th>
                                 <th scope="col">Subcategory</th>
                                 <th scope="col">Subcategory Code</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Size S, units</th>
+                                <th scope="col">Size M, units</th>
+                                <th scope="col">Size L, units</th>
                                 <th scope="col">Best Seller</th>
                                 <th scope="col">New</th>
                                 <th scope="col">Currency</th>
@@ -150,7 +151,9 @@ function AdminPanel() {
                                         <td>{item.category}</td>
                                         <td>{item.subcategory}</td>
                                         <td>{item.subcategoryCode}</td>
-                                        <td>{item.size}</td>
+                                        <td>{item.size.S}</td>
+                                        <td>{item.size.M}</td>
+                                        <td>{item.size.L}</td>
                                         <td>{item.quantity}</td>
                                         <td>{item.bestSellerStatus}</td>
                                         <td>{item.newArrival}</td>
