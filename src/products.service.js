@@ -930,28 +930,4 @@ export const addToCart = (product, selectedSize, quantity, cartContext) => {
     }
 };
 
-export const updateProductQuantity = (productId, size, quantityChange) => {
-    const productIndex = products.findIndex((product) => product.id === productId);
 
-    if (productIndex !== -1) {
-        const updatedProduct = { ...products[productIndex] };
-
-        // Ensure the size exists in the product's quantity
-        if (updatedProduct.quantity.hasOwnProperty(size)) {
-            // Update the quantity
-            updatedProduct.quantity[size] += quantityChange;
-
-            // Ensure the quantity doesn't go below 0
-            updatedProduct.quantity[size] = Math.max(updatedProduct.quantity[size], 0);
-
-            // Update the products array with the modified product
-            products[productIndex] = updatedProduct;
-
-            // Return the updated product
-            return updatedProduct;
-        }
-    }
-
-    // Return null if the product or size is not found
-    return null;
-};

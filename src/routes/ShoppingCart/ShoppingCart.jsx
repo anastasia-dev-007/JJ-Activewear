@@ -14,44 +14,6 @@ const ShoppingCart = () => {
 
   const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  const handleQuantityDecrement = (item) => {
-    const newQuantity = Math.max(item.quantity - 1, 1);
-    setQuantity(newQuantity);
-
-    const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
-  };
-
-  const handleQuantityIncrement = (item) => {
-    const newQuantity = Math.min(item.quantity + 1, item.size[item.selectedSize]);
-  
-    // Check if the new quantity exceeds the available stock for the selected size
-    if (newQuantity > item.size[item.selectedSize]) {
-      // You can handle this case, show an error message, or prevent further increment
-      console.log('Cannot exceed available stock for the selected size');
-      return;
-    }
-  
-    setQuantity(newQuantity);
-  
-    const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
-    // You might want to update the cart context or handle the updated product in some way
-  };
-
-
-  const handleRemove = (itemId) => {
-    // Remove the item from the cart
-    const updatedCartItems = cartContext.cartItems.filter((item) => item.id !== itemId);
-    cartContext.setCartItems(updatedCartItems);
-  
-    // Update the quantity in the product service
-    const removedItem = cartContext.cartItems.find((item) => item.id === itemId);
-    if (removedItem) {
-      const updatedProduct = updateProductQuantity(itemId, removedItem.selectedSize, -removedItem.quantity);
-      // Handle the updated product as needed...
-    }
-  
-    // Additional logic if needed...
-  };
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -105,14 +67,14 @@ const ShoppingCart = () => {
                             <div className={styles.quantityPanel}>
                               <button
                                 disabled={item.size[item.selectedSize] === 0}
-                                onClick={() => handleQuantityDecrement(item)}
+                                onClick={() => {}}
                               >
                                 -
                               </button>
                               <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{item.quantity}</p>
                               <button
                                 disabled={quantity >= item.size[item.selectedSize]}
-                                onClick={() => handleQuantityIncrement(item)}
+                                onClick={() => {}}
                               >
                                 +
                               </button>
@@ -124,7 +86,7 @@ const ShoppingCart = () => {
                       </div>
 
                       <div className={styles.removeBtn}>
-                        <button onClick={() => handleRemove()}>Remove</button>
+                        <button onClick={() => {}}>Remove</button>
                       </div>
                     </div >
                   </div>
