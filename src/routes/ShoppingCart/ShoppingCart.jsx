@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../products.service';
+import { updateProductQuantity } from '../../products.service';
 
 
 const ShoppingCart = () => {
@@ -18,15 +19,38 @@ const ShoppingCart = () => {
     setQuantity(newQuantity);
 
     const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
-    // You might want to update the cart context or handle the updated product in some way
   };
 
   const handleQuantityIncrement = (item) => {
     const newQuantity = Math.min(item.quantity + 1, item.size[item.selectedSize]);
+  
+    // Check if the new quantity exceeds the available stock for the selected size
+    if (newQuantity > item.size[item.selectedSize]) {
+      // You can handle this case, show an error message, or prevent further increment
+      console.log('Cannot exceed available stock for the selected size');
+      return;
+    }
+  
     setQuantity(newQuantity);
-
+  
     const updatedProduct = addToCart(item, item.selectedSize, newQuantity, cartContext);
     // You might want to update the cart context or handle the updated product in some way
+  };
+
+
+  const handleRemove = (itemId) => {
+    // Remove the item from the cart
+    const updatedCartItems = cartContext.cartItems.filter((item) => item.id !== itemId);
+    cartContext.setCartItems(updatedCartItems);
+  
+    // Update the quantity in the product service
+    const removedItem = cartContext.cartItems.find((item) => item.id === itemId);
+    if (removedItem) {
+      const updatedProduct = updateProductQuantity(itemId, removedItem.selectedSize, -removedItem.quantity);
+      // Handle the updated product as needed...
+    }
+  
+    // Additional logic if needed...
   };
 
   return (
@@ -58,17 +82,19 @@ const ShoppingCart = () => {
                 cartContext.cartItems.map(item => (
                   <div key={item.id} className={styles.cartItem}>
                     <div className={styles.imageContainer}>
-                      <div className={styles.image}>
+                     <Link to={'/product-details/' + item.id}>
+                     <div className={styles.image}>
                         <img
                           src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
                           alt={`Product: ${item.title}`}
                         />
-                      </div>
+                      </div></Link>
                     </div>
                     <div className={styles.infoPriceAndBtnContainer}>
                       <div className={styles.productInfoAndPrice}>
                         <div className={styles.productInfo}>
                           <div>{item.title}</div>
+                          <div>Item ID: {item.id}</div>
                           <div>{item.category} | {item.subcategory}</div>
                           <div>Quantity: {item.quantity}</div>
                           <div>Size: {item.selectedSize}</div>
@@ -98,7 +124,7 @@ const ShoppingCart = () => {
                       </div>
 
                       <div className={styles.removeBtn}>
-                        <button>Remove</button>
+                        <button onClick={() => handleRemove()}>Remove</button>
                       </div>
                     </div >
                   </div>

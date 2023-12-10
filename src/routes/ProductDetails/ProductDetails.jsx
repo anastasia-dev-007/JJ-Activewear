@@ -89,7 +89,7 @@ const ProductDetails = () => {
     }
   };
 
-  const addToCart = (product) => {
+  const addToCart = (product, selectedSize, quantity) => {
     if (!selectedSize) {
       setSizeError(true);
       return;
@@ -284,10 +284,11 @@ const ProductDetails = () => {
                         <div key={item.id} className={styles.cartItem}>
                           <div className={styles.imageContainer}>
                             <div className={styles.image}>
-                              <img
+                             <Link to={'/product-details/' + item.id}>
+                             <img
                                 src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
                                 alt={`Product: ${item.title}`}
-                              />
+                              /></Link>
                             </div>
                           </div>
                           <div className={styles.infoPriceAndBtnContainer}>
@@ -328,9 +329,9 @@ const ProductDetails = () => {
                               </div>
                             </div> */}
 
-                            <div className={styles.removeBtn}>
+                            {/* <div className={styles.removeBtn}>
                               <button>Remove</button>
-                            </div>
+                            </div> */}
                           </div >
                         </div>
                       ))

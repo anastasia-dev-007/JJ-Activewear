@@ -7,32 +7,36 @@ import { FavoritesContext } from '../../contexts/favorites.context'
 
 
 const PopularProducts = () => {
-    const favoritesContext = useContext(FavoritesContext);
+  const favoritesContext = useContext(FavoritesContext);
 
-    const toggleFavoriteItem = (product) => {
-        favoritesContext.toggleFavoriteItem(product);
-    }
+  const toggleFavoriteItem = (product) => {
+    favoritesContext.toggleFavoriteItem(product);
+  };
 
-    return (
-        <div className={styles.popularProductsWrapper}>
-            <h3>Popular Products</h3>
-           <div className={styles.popularProductsContainer}>
-           {/* <i class="fa-solid fa-chevron-left" ></i> */}
-            {products.filter(item => item.bestSellerStatus === 'Best Seller')
-            .map(item => (
-                <div className={styles.popularProductCard}
-                    key={item.id}>
-                         <div key={item.id} className={styles.productCard}>
-                <Link to={'/product-details/' + item.id}>
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
+
+  return (
+    <div className={styles.popularProductsWrapper}>
+      <h3>Popular Products</h3>
+      <div className={styles.popularProductsContainer}>
+        {/* <i class="fa-solid fa-chevron-left" ></i> */}
+        {products.filter(item => item.bestSellerStatus === 'Best Seller')
+          .map(item => (
+            <div className={styles.popularProductCard}
+              key={item.id}>
+              <div key={item.id} className={styles.productCard}>
+                <Link to={'/product-details/' + item.id} onClick={handleLinkClick}>
                   <div className={styles.popularProductImg}>
-                  <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                    <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
                   </div>
                 </Link>
 
                 <div className={styles.label}>{item.bestSellerStatus}</div>
 
                 <div className={styles.favorites}>
-                <div onClick={() => toggleFavoriteItem(item)}>
+                  <div onClick={() => toggleFavoriteItem(item)}>
                     {favoritesContext.items.some(favorite => favorite.id === item.id) ? (
                       // Render a solid heart if the item is in favorites
                       <i className="fa-solid fa-heart"></i>
@@ -57,7 +61,7 @@ const PopularProducts = () => {
 
 
 
-                    {/* <div className={styles.popProductImg}>
+              {/* <div className={styles.popProductImg}>
                     <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt={item.title} />
                     </div>
                     <p>Popular</p>
@@ -78,13 +82,13 @@ const PopularProducts = () => {
                         </div>
                     </div> */}
 
-                </div>
-            ))}
-            {/* <i class="fa-solid fa-chevron-right" ></i> */}
-           </div>
+            </div>
+          ))}
+        {/* <i class="fa-solid fa-chevron-right" ></i> */}
+      </div>
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default PopularProducts;

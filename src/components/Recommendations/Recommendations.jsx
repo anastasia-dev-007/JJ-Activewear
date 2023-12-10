@@ -30,6 +30,10 @@ const Recommendations = () => {
         }
       }, [products]);
 
+      const handleLinkClick = () => {
+        window.scrollTo(0, 0);
+      };
+
     return (
         <div className={styles.popularProductsWrapper}>
         <h3>Recommendations for you</h3>
@@ -39,7 +43,7 @@ const Recommendations = () => {
             <div className={styles.popularProductCard}
                 key={item.id}>
                      <div key={item.id} className={styles.productCard}>
-            <Link to={'/product-details/' + item.id}>
+            <Link to={'/product-details/' + item.id} onClick={handleLinkClick}>
               <div className={styles.popularProductImg}>
               <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
               </div>

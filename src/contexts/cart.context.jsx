@@ -29,6 +29,10 @@ export function CartProvider(props) { //acesta este un component React
         };
     };
 
+    const removeItemFromCart = (itemId) => {
+        setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== itemId));
+      };
+
     return (
         <CartContext.Provider value={{
             cartItems: cartItems,
