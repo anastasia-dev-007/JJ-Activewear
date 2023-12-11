@@ -902,33 +902,42 @@ export const removeProduct = (id, size, quantity) => {
 
 // products.service.js
 
-export const addToCart = (product, selectedSize, quantity, cartContext) => {
-    // Check if the product is already in the cart
-    const existingItemIndex = cartContext.cartItems.findIndex(item => item.id === product.id && item.selectedSize === selectedSize);
+// export const addToCart = (product, selectedSize, quantity, cartContext) => {
+//     // Check if the product is already in the cart
+//     const existingItemIndex = cartContext.cartItems.findIndex(item => item.id === product.id && item.selectedSize === selectedSize);
 
-    if (existingItemIndex !== -1) {
-        // If the product is in the cart, update its quantity
-        const updatedCart = [...cartContext.cartItems];
-        updatedCart[existingItemIndex].quantity = quantity;
+//     if (existingItemIndex !== -1) {
+//         // If the product is in the cart, update its quantity
+//         const updatedCart = [...cartContext.cartItems];
+//         updatedCart[existingItemIndex].quantity = quantity;
 
-        // You might want to update the cart context or perform other actions
-        // For example: cartContext.setCartItems(updatedCart);
+//         // You might want to update the cart context or perform other actions
+//         // For example: cartContext.setCartItems(updatedCart);
 
-        return updatedCart[existingItemIndex];
-    } else {
-        // If the product is not in the cart, add a new item
-        const newItem = {
-            ...product,
-            selectedSize,
-            quantity,
-        };
+//         return updatedCart[existingItemIndex];
+//     } else {
+//         // If the product is not in the cart, add a new item
+//         const newItem = {
+//             ...product,
+//             selectedSize,
+//             quantity,
+//         };
 
-        // You might want to update the cart context or perform other actions
-        // For example: cartContext.setCartItems([...cartContext.cartItems, newItem]);
+//         // You might want to update the cart context or perform other actions
+//         // For example: cartContext.setCartItems([...cartContext.cartItems, newItem]);
 
-        return newItem;
+//         return newItem;
+//     }
+// };
+
+
+export const addToCart = (product, selectedSize, quantity) => {
+       // Use the selected size when calling removeProduct
+    const result = removeProduct(product.id, selectedSize, quantity);
+
+    if (cartContext && cartContext.addItem) {
+      cartContext.addItem(result, selectedSize, quantity); // Add the updated product to the cart
     }
-};
 
-
+  };
 
