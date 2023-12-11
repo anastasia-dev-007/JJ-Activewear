@@ -931,13 +931,13 @@ export const removeProduct = (id, size, quantity) => {
 // };
 
 
-export const addToCart = (product, selectedSize, quantity) => {
-       // Use the selected size when calling removeProduct
-    const result = removeProduct(product.id, selectedSize, quantity);
+// export const addToCart = (product, selectedSize, quantity) => {
+//        // Use the selected size when calling removeProduct
+//     const result = removeProduct(product.id, selectedSize, quantity);
 
-    if (cartContext && cartContext.addItem) {
-      cartContext.addItem(result, selectedSize, quantity); // Add the updated product to the cart
-    }
+//     if (cartContext && cartContext.addItem) {
+//       cartContext.addItem(result, selectedSize, quantity); // Add the updated product to the cart
+//     }
 
-  };
+//   };
 

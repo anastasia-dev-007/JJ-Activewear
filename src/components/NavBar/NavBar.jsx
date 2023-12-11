@@ -5,7 +5,7 @@ import { CartContext } from '../../contexts/cart.context';
 import LoginAndRegistration from '../LoginAndRegistration/LoginAndRegistration';
 import { FavoritesContext } from '../../contexts/favorites.context';
 import { UserContext } from '../../contexts/user.context';
-import {handleLoginButtonClick} from '../../users.service'
+import { handleLoginButtonClick } from '../../users.service'
 
 const NavBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -56,7 +56,7 @@ const NavBar = () => {
                         </div>
 
                         <LoginAndRegistration />
-                        
+
                         <Link to='/favorites/' onClick={handleLinkClick}>
                             <button type="button" class="btn position-relative">
                                 <i className="fa-regular fa-heart"></i>
@@ -178,7 +178,10 @@ const NavBar = () => {
                                 </div>
                             </div>
                         </li>
-                        <li><Link to="/admin-panel" onClick={handleLinkClick}>ADMIN PANEL</Link></li>
+                        {userContext.user !== null && userContext.user.role === 'admin' && (
+                            <li><Link to="/admin-panel" onClick={handleLinkClick}>ADMIN PANEL</Link></li>
+                        )}
+
                     </ul>
                 </div>
             </div>
