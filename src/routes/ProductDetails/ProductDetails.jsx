@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { getProductById, products, removeProduct } from '../../products.service';
+import { getProductById, products, updateProduct } from '../../products.service';
 import styles from '../ProductDetails/ProductDetails.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
@@ -89,25 +89,21 @@ const ProductDetails = () => {
     }
   };
 
-  const addToCart = (product, selectedSize, quantity) => {
+  const handleAddToCart = (product, selectedSize, quantity) => {
     if (!selectedSize) {
       setSizeError(true);
       return;
     }
 
-    // Use the selected size when calling removeProduct
-    const result = removeProduct(product.id, selectedSize, quantity);
+    const result = updateProduct(product.id, selectedSize, quantity);
 
-    if (cartContext && cartContext.addItem) {
-      cartContext.addItem(result, selectedSize, quantity); // Add the updated product to the cart
-    }
+    cartContext.addToCart(product, selectedSize, quantity);
 
     setProduct(result);
     setQuantity(1);
     setSelectedSize(null); // Reset selected size after adding to the cart
     setSizeError(false);
   };
-
 
 
   const handleSmallPhotoClick = (index) => { //the index of the small photo clicked
@@ -137,7 +133,7 @@ const ProductDetails = () => {
   };
 
   const handleQuantityIncrement = () => {
-    if (!selectedSize) {
+    if (!selectedSize && product.category !== 'Accessories') {
       setSizeError(true); // Set the size error to true
       setQuantityError(false); // Reset the quantity error
       return;
@@ -206,22 +202,26 @@ const ProductDetails = () => {
 
               <h3 className={styles.price}>$ 50.00</h3>
 
-              <div className={styles.sizes}>
-                <header>Size</header>
-                <div>
-                  {Object.entries(product.size).map(([sizeKey, sizeValue]) => (
-                    <button
-                      key={sizeKey}
-                      disabled={sizeValue < 1}
-                      onClick={() => handleSizeButtonClick(sizeKey)}
-                      className={selectedSize === sizeKey ? styles.selectedSize : ''}
-                    >
-                      {sizeKey}
-                    </button>
-                  ))}
+              {product.category === 'Accessories' ? (
+                <></>
+              ) : (
+                <div className={styles.sizes}>
+                  <header>Size</header>
+                  <div>
+                    {Object.entries(product.size).map(([sizeKey, sizeValue]) => (
+                      <button
+                        key={sizeKey}
+                        disabled={sizeValue < 1}
+                        onClick={() => handleSizeButtonClick(sizeKey)}
+                        className={selectedSize === sizeKey ? styles.selectedSize : ''}
+                      >
+                        {sizeKey}
+                      </button>
+                    ))}
+                  </div>
+                  <div>| Size Guide</div>
                 </div>
-                <div>| Size Guide</div>
-              </div>
+              )}
 
               {/* <div className={styles.colors}>
                 <header>Color</header>
@@ -269,7 +269,7 @@ const ProductDetails = () => {
 
                 <div variant="primary" onClick={handleShow}>
                   <button disabled={quantity === 0} className={styles.addToCartBtn}
-                    onClick={() => addToCart(product, selectedSize, quantity)}
+                    onClick={() => handleAddToCart(product, selectedSize, quantity)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
 
@@ -284,11 +284,11 @@ const ProductDetails = () => {
                         <div key={item.id} className={styles.cartItem}>
                           <div className={styles.imageContainer}>
                             <div className={styles.image}>
-                             <Link to={'/product-details/' + item.id}>
-                             <img
-                                src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
-                                alt={`Product: ${item.title}`}
-                              /></Link>
+                              <Link to={'/product-details/' + item.id}>
+                                <img
+                                  src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
+                                  alt={`Product: ${item.title}`}
+                                /></Link>
                             </div>
                           </div>
                           <div className={styles.infoPriceAndBtnContainer}>

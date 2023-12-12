@@ -875,7 +875,7 @@ export const deleteProduct = (id) => {
 //     return 'Product not found';
 // };
 // This function will decrease the quantity of a specific size for a given product
-export const removeProduct = (id, size, quantity) => {
+export const updateProduct = (id, size, quantity) => {
     const index = products.findIndex(item => item.id === id);
 
     if (index !== -1) {

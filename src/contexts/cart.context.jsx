@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { createContext } from "react";
+import { updateProduct } from "../products.service";
 
 export const CartContext = createContext({ //adaugam valori implicite aici pentru a le putea accesa din extern
     items: [],
-    addItem: () => { }
+    addItem: () => { },
+    addToCart: () => { },
+    removeFromCart: () => { },
 });
 {/**Toate proprietatile care le afisam se declara aici in acest file. Aici noi indicam ce valori sunt expuse din acest context: lista de produse, addProducts(), deleteProducts(), removeAll(),isOpen(true/false), etc. */ }
 
@@ -29,14 +32,26 @@ export function CartProvider(props) { //acesta este un component React
         };
     };
 
-    const removeItemFromCart = (itemId) => {
+    const addToCart = (product, selectedSize, quantity) => {
+        const result = updateProduct(product.id, selectedSize, quantity);
+    
+        if (CartContext && CartContext.addItem) {
+            CartContext.addItem(result, selectedSize, quantity);
+        };
+    
+        setCartItems([...cartItems]);
+    };
+
+    const removeFromCart = (itemId) => {
         setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== itemId));
-      };
+    };
 
     return (
         <CartContext.Provider value={{
             cartItems: cartItems,
             addItem: addItem,
+            addToCart: addToCart,
+            removeFromCart: removeFromCart,
         }}>
             {props.children} {/**copii lui CartContext in index.jsx VOR FI RANDATI IN ACEASTA LINIE DE COD UTILIZAND "props.children" */}
         </CartContext.Provider>

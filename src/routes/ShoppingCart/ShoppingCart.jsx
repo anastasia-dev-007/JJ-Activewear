@@ -14,6 +14,10 @@ const ShoppingCart = () => {
 
   const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
+//   const handleRemoveFromCart = (itemId) => {
+//     cartContext.removeFromCart(product, selectedSize, quantity);
+// };
+
 
   return (
     <div className={styles.shoppingCartPage}>
