@@ -101,6 +101,7 @@ function AdminPanel() {
         // setPromo('');
         // setPromoPrice('');
         // setProductDescription('');
+        saveProduct();
 
     };
 
