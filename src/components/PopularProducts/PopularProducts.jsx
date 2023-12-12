@@ -23,7 +23,7 @@ const PopularProducts = () => {
       <div className={styles.popularProductsContainer}>
         {/* <i class="fa-solid fa-chevron-left" ></i> */}
         {products.filter(item => item.bestSellerStatus === 'Best Seller')
-          .map(item => (
+          .slice(0, 5).map(item => (
             <div className={styles.popularProductCard}
               key={item.id}>
               <div key={item.id} className={styles.productCard}>
