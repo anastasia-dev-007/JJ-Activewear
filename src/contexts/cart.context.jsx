@@ -59,6 +59,8 @@ export function CartProvider(props) { //acesta este un component React
             } catch (e) {
                 console.log(e);
             }
+        } else {
+            console.log('Product is not available');
         }
         //NO?  -> set error
         const result = updateProduct(product.id, selectedSize, quantity);

@@ -35,6 +35,7 @@ const ProductDetails = () => {
   const userContext = useContext(UserContext);
 
   const { user } = useContext(UserContext);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -95,7 +96,7 @@ const ProductDetails = () => {
       return;
     }
 
-    cartContext.addToCart(product, selectedSize, quantity);
+    addToCart(product, selectedSize, quantity);
 
     setQuantity(1);
     setSelectedSize(null); // Reset selected size after adding to the cart
