@@ -900,6 +900,17 @@ export const updateProduct = (id, size, quantity) => {
 };
 
 
+export const checkIfProductIsAvailable = (id, size, quantity) => {
+    const index = products.findIndex(item => item.id === id);//gasim acest index
+
+    if (index !== -1) { //verificam daca indexul exista
+           return products[index].size[size] >= quantity; //returnam daca disponibilitatea lui este mai mare decat cantitatea
+        } else {
+            return false;
+        }
+    };
+
+
 // products.service.js
 
 // export const addToCart = (product, selectedSize, quantity, cartContext) => {

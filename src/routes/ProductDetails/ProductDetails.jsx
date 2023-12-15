@@ -95,11 +95,8 @@ const ProductDetails = () => {
       return;
     }
 
-    const result = updateProduct(product.id, selectedSize, quantity);
-
     cartContext.addToCart(product, selectedSize, quantity);
 
-    setProduct(result);
     setQuantity(1);
     setSelectedSize(null); // Reset selected size after adding to the cart
     setSizeError(false);
@@ -268,7 +265,7 @@ const ProductDetails = () => {
 
 
                 <div variant="primary" onClick={handleShow}>
-                  <button disabled={quantity === 0} className={styles.addToCartBtn}
+                  <button disabled={quantity === 0 || !selectedSize} className={styles.addToCartBtn}
                     onClick={() => handleAddToCart(product, selectedSize, quantity)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </div>

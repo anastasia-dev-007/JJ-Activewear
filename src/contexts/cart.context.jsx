@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createContext } from "react";
-import { updateProduct } from "../products.service";
+import { checkIfProductIsAvailable, updateProduct } from "../products.service";
 
 export const CartContext = createContext({ //adaugam valori implicite aici pentru a le putea accesa din extern
     items: [],
@@ -12,6 +12,14 @@ export const CartContext = createContext({ //adaugam valori implicite aici pentr
 
 export function CartProvider(props) { //acesta este un component React
     const [cartItems, setCartItems] = useState([]); //cream un state care va tine datele
+    /**
+     {
+        id:
+        title:
+        size:
+        quantity:
+     }
+     */
 
     //cream functii necesare pentru a lucra cu shopping cart
     const addItem = (item, size, quantity) => {
@@ -32,13 +40,33 @@ export function CartProvider(props) { //acesta este un component React
         };
     };
 
-    const addToCart = (product, selectedSize, quantity) => {
+    async function addToCart(product, selectedSize, quantity) {
+        //is quantity available?
+        const isAvailable = checkIfProductIsAvailable(product, selectedSize, quantity);
+        // YES? ->
+        if (isAvailable) {
+            try {
+                //decrease quantity of item
+                await updateProduct(product, selectedSize, quantity);
+                //add item to items
+                setCartItems(prev => [...prev, {
+                    ...product,
+                    selectedSize: selectedSize,
+                    quantity: quantity,
+
+                }])
+
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        //NO?  -> set error
         const result = updateProduct(product.id, selectedSize, quantity);
-    
+
         if (CartContext && CartContext.addItem) {
             CartContext.addItem(result, selectedSize, quantity);
         };
-    
+
         setCartItems([...cartItems]);
     };
 
