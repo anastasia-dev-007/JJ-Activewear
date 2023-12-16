@@ -92,7 +92,7 @@ const ShoppingCart = () => {
                       </div>
 
                       <div className={styles.removeBtn}>
-                        <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                        <button onClick={() => removeFromCart(item.id, item.selectedSize)}>Remove</button>
                       </div>
                     </div >
                   </div>

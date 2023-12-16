@@ -61,9 +61,13 @@ export function CartProvider(props) { //acesta este un component React
         }
     };
 
-    const removeFromCart = (itemId) => {
-        setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== itemId));
-    };
+    const removeFromCart = (itemId, selectedSize) => {
+        setCartItems((prevCartItems) =>
+          prevCartItems.filter(
+            (item) => !(item.id === itemId && item.selectedSize === selectedSize)
+          )
+        );
+      };
 
     return (
         <CartContext.Provider value={{
