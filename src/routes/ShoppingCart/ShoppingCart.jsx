@@ -14,11 +14,12 @@ const ShoppingCart = () => {
 
   const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-//   const handleRemoveFromCart = (itemId) => {
-//     cartContext.removeFromCart(product, selectedSize, quantity);
-// };
+  //   const handleRemoveFromCart = (itemId) => {
+  //     cartContext.removeFromCart(product, selectedSize, quantity);
+  // };
 
-const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
+  const { removeFromCart } = useContext(CartContext);
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -49,13 +50,13 @@ const { addToCart } = useContext(CartContext);
                 cartContext.cartItems.map(item => (
                   <div key={item.id} className={styles.cartItem}>
                     <div className={styles.imageContainer}>
-                     <Link to={'/product-details/' + item.id}>
-                     <div className={styles.image}>
-                        <img
-                          src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
-                          alt={`Product: ${item.title}`}
-                        />
-                      </div></Link>
+                      <Link to={'/product-details/' + item.id}>
+                        <div className={styles.image}>
+                          <img
+                            src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''}
+                            alt={`Product: ${item.title}`}
+                          />
+                        </div></Link>
                     </div>
                     <div className={styles.infoPriceAndBtnContainer}>
                       <div className={styles.productInfoAndPrice}>
@@ -72,7 +73,7 @@ const { addToCart } = useContext(CartContext);
                             <div className={styles.quantityPanel}>
                               <button
                                 disabled={item.size[item.selectedSize] === 0}
-                                onClick={() => {}}
+                                onClick={() => { }}
                               >
                                 -
                               </button>
@@ -91,7 +92,7 @@ const { addToCart } = useContext(CartContext);
                       </div>
 
                       <div className={styles.removeBtn}>
-                        <button onClick={() => {}}>Remove</button>
+                        <button onClick={() => removeFromCart(item.id)}>Remove</button>
                       </div>
                     </div >
                   </div>
