@@ -40,36 +40,25 @@ export function CartProvider(props) { //acesta este un component React
         };
     };
 
-    async function addToCart(product, selectedSize, quantity) {
+    function addToCart(product, selectedSize, quantity) {
         //is quantity available?
-        const isAvailable = checkIfProductIsAvailable(product, selectedSize, quantity);
+        //Verifici daca produsul este disponibil, transmit ca parametru la functia checkIfProductIsAvailable id-ul produsului
+        const isAvailable = checkIfProductIsAvailable(product.id, selectedSize, quantity);
         // YES? ->
-        if (isAvailable) {
-            try {
-                //decrease quantity of item
-                await updateProduct(product, selectedSize, quantity);
+        if (isAvailable) { //Daca este ->
+            //decrease quantity of item
+            const updatedProduct = updateProduct(product.id, selectedSize, quantity);
+
+            //Fac update la produs(transmit id-ul deoarece el se asteapta in acea functie)
+            if (typeof updateProduct === 'string') { //Functia updateProduct retuneaza fie obiectul modificat, fie un string ce reprezinta eroarea. Daca rezultatul din functie este un string (inseamna ca este o eroare), eu afisez in consola acel string - dar ar trebui de afisat o eroare
+                console.log(updatedProduct);
+            } else { //Daca nu este string, atunci eu apelez functia addItem pentru al adauga in cos
                 //add item to items
-                setCartItems(prev => [...prev, {
-                    ...product,
-                    selectedSize: selectedSize,
-                    quantity: quantity,
-
-                }])
-
-            } catch (e) {
-                console.log(e);
+                addItem(product, selectedSize, quantity);
             }
-        } else {
+        } else { //Daca produsul nu este disponibil, afisez o eroare
             console.log('Product is not available');
         }
-        //NO?  -> set error
-        const result = updateProduct(product.id, selectedSize, quantity);
-
-        if (CartContext && CartContext.addItem) {
-            CartContext.addItem(result, selectedSize, quantity);
-        };
-
-        setCartItems([...cartItems]);
     };
 
     const removeFromCart = (itemId) => {
