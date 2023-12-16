@@ -242,7 +242,7 @@ const ProductDetails = () => {
                   >
                     -
                   </button>
-                  <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{quantity}</p>
+                  <button>{quantity}</button>
                   <button
                     disabled={quantity >= product.size[selectedSize]}
                     onClick={handleQuantityIncrement}
@@ -302,30 +302,24 @@ const ProductDetails = () => {
                               <div className={styles.price}> Price: {item.currency} {item.price.toFixed(2)}</div>
                             </div>
 
-                            {/* <div className={styles.quantity}>
+                            <div className={styles.quantity}>
                               <header>Quantity</header>
                               <div className={styles.quantityPanel}>
                                 <button
                                   disabled={product[selectedSize] === 0} // Update here
-                                  onClick={() => setQuantity((prev) => prev - 1)}
+                                  onClick={() => {}}
                                 >
                                   -
                                 </button>
-                                <input
-                                  className={styles.quantityInput}
-                                  type="number"
-                                  placeholder="1"
-                                  style={{ width: '40px', height: '28px', fontSize: '14px' }}
-                                  value={quantity}
-                                />
+                               <button>{item.quantity}</button>
                                 <button
                                   disabled={quantity >= product[selectedSize]} // Update here
-                                  onClick={() => addToCart(item, item.selectedSize, 1)}
+                                  onClick={() => addToCart(item, item.selectedSize, quantity)}
                                 >
                                   +
                                 </button>
                               </div>
-                            </div> */}
+                            </div>
 
                             {/* <div className={styles.removeBtn}>
                               <button>Remove</button>

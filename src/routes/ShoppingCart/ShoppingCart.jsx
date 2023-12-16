@@ -18,6 +18,7 @@ const ShoppingCart = () => {
 //     cartContext.removeFromCart(product, selectedSize, quantity);
 // };
 
+const { addToCart } = useContext(CartContext);
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -78,7 +79,7 @@ const ShoppingCart = () => {
                               <p className={styles.quantityInput} style={{ width: '40px', height: '28px', fontSize: '14px' }}>{item.quantity}</p>
                               <button
                                 disabled={quantity >= item.size[item.selectedSize]}
-                                onClick={() => {}}
+                                onClick={() => addToCart(item, item.selectedSize, quantity)}
                               >
                                 +
                               </button>
