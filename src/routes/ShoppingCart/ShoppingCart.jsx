@@ -6,6 +6,7 @@ import { CartContext } from '../../contexts/cart.context';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../products.service';
 import { updateProductQuantity } from '../../products.service';
+import { decrementCartItem } from '../../contexts/cart.context';
 
 
 const ShoppingCart = () => {
@@ -20,6 +21,7 @@ const ShoppingCart = () => {
 
   const { addToCart } = useContext(CartContext);
   const { removeFromCart } = useContext(CartContext);
+  const { decrementCartItem } = useContext(CartContext);
 
   return (
     <div className={styles.shoppingCartPage}>
@@ -73,7 +75,7 @@ const ShoppingCart = () => {
                             <div className={styles.quantityPanel}>
                               <button
                                 disabled={item.size[item.selectedSize] === 0}
-                                onClick={() => { }}
+                                onClick={() => decrementCartItem(item, item.selectedSize, quantity)}
                               >
                                 -
                               </button>

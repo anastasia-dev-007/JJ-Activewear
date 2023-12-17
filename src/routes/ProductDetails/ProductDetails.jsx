@@ -36,6 +36,7 @@ const ProductDetails = () => {
 
   const { user } = useContext(UserContext);
   const { addToCart } = useContext(CartContext);
+  const { decrementCartItem } = useContext(CartContext);
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -307,11 +308,11 @@ const ProductDetails = () => {
                               <div className={styles.quantityPanel}>
                                 <button
                                   disabled={product[selectedSize] === 0} // Update here
-                                  onClick={() => {}}
+                                  onClick={() => decrementCartItem(item, item.selectedSize, quantity)}
                                 >
                                   -
                                 </button>
-                               <button>{item.quantity}</button>
+                                <button>{item.quantity}</button>
                                 <button
                                   disabled={quantity >= product[selectedSize]} // Update here
                                   onClick={() => addToCart(item, item.selectedSize, quantity)}

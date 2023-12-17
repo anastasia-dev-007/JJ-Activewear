@@ -851,10 +851,6 @@ export const saveProduct = (product) => {
     }
 };
 
-export const addProduct = (product) => {
-
-}
-
 //aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
 export const deleteProduct = (id) => {
     const foundIndex = products.findIndex(product => product.id === id);
@@ -875,7 +871,7 @@ export const deleteProduct = (id) => {
 //     return 'Product not found';
 // };
 // This function will decrease the quantity of a specific size for a given product
-export const updateProduct = (id, size, quantity) => {
+export const updateProductByReducing = (id, size, quantity) => {
     const index = products.findIndex(item => item.id === id);
 
     if (index !== -1) {
@@ -884,7 +880,7 @@ export const updateProduct = (id, size, quantity) => {
             // Subtract the quantity from the specified size
             products[index].size[size] -= quantity;
 
-            // You might also want to check if the quantity is non-negative
+            // check if the quantity is non-negative
             if (products[index].size[size] < 0) {
                 products[index].size[size] = 0;
             }
@@ -898,6 +894,31 @@ export const updateProduct = (id, size, quantity) => {
 
     return 'Product not found';
 };
+
+export const updateProductByIncreasing = (id, size, quantity) => {
+    const index = products.findIndex((item) => item.id === id);
+  
+    if (index !== -1) {
+      // Check if the size exists for the product
+      if (products[index].size && products[index].size[size] !== undefined) {
+        // Check if the quantity is non-negative
+        if (quantity >= 0) {
+          // Add the quantity to the specified size
+          products[index].size[size] += quantity;
+  
+          // Return the updated product
+          return products[index];
+        } else {
+          return 'Invalid quantity. Quantity must be non-negative.';
+        }
+      } else {
+        return 'Size not found for the product';
+      }
+    }
+  
+    return 'Product not found';
+  };
+  
 
 
 export const checkIfProductIsAvailable = (id, size, quantity) => {
