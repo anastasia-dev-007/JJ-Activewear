@@ -92,7 +92,7 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = (product, selectedSize, quantity) => {
-    if (!selectedSize) {
+    if (!selectedSize && product.category !== 'Accessories') {
       setSizeError(true);
       return;
     }
