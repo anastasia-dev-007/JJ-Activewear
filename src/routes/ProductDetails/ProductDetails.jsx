@@ -97,8 +97,8 @@ const ProductDetails = () => {
       return;
     }
 
-    if (product.category === 'Accessories') {
-      addToCart(product, 'noSize', 1);
+    if (product.size.hasOwnProperty("noSize")) {
+      addToCart(product, 'noSize', quantity);
     } else {
       addToCart(product, selectedSize, quantity);
     }
@@ -271,7 +271,7 @@ const ProductDetails = () => {
 
 
                 <div variant="primary" onClick={handleShow}>
-                  <button disabled={quantity === 0 || !selectedSize} className={styles.addToCartBtn}
+                  <button disabled={quantity === 0 || !selectedSize || product.category !== 'Accessories'} className={styles.addToCartBtn}
                     onClick={() => handleAddToCart(product, selectedSize, quantity)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
