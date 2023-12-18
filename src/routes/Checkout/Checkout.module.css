@@ -1,3 +1,13 @@
 .checkoutContainer {
     margin-top: 50px;
 }
+
+.checkoutBody{
+    display: flex;
+    justify-content: space-around;
+}
+
+.itemCard{
+    display: flex;
+    justify-content: space-between;
+}
