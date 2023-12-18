@@ -88,7 +88,7 @@ const NavBar = () => {
                                     <i className="fa-solid fa-cart-shopping"></i>
                                     {cartContext.cartItems.length > 0 && (
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            {cartContext.cartItems.length}
+                                            {cartContext.cartItems.reduce((total, item) => total + item.quantity, 0)}
                                         </span>
                                     )}
                                 </button>

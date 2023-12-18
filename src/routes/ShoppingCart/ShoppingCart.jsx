@@ -47,7 +47,7 @@ const ShoppingCart = () => {
                 cartContext.cartItems.length < 1 ? (
                   <></>
                 ) : (
-                  <div>Shopping Cart: {cartContext.cartItems.length}</div>)
+                  <div>Shopping Cart: {cartContext.cartItems.reduce((total, item) => total + item.quantity, 0)}</div>)
               }
 
               {/**Info will be rendered from the constant of cart array */}
