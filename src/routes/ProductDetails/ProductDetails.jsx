@@ -114,7 +114,7 @@ const ProductDetails = () => {
   };
 
   const handleQuantityDecrement = () => {
-    if (!selectedSize) {
+    if (!selectedSize && product.category !== 'Accessories') {
       setSizeError(true); // Set the size error to true
       setQuantityError(false); // Reset the quantity error
       return;

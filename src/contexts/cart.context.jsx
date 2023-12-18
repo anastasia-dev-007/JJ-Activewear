@@ -65,54 +65,53 @@ export function CartProvider(props) { //acesta este un component React
 
 
     //function decrementCartItemExlanation (product, selectedSize, quantity) {
-        //1. find product and selectedsize (const cartItem + method find)
-        //2. if found...
-            //if item quantity higher then 0:
-               //decrease quantity in cart and increase back quantity in products.service with updateProduct function
-            //else if item quantity is lower then 0 => removeProduct from cart (removeFromCart(product.id, selectedSize))
+    //1. find product and selectedsize (const cartItem + method find)
+    //2. if found...
+    //if item quantity higher then 0:
+    //decrease quantity in cart and increase back quantity in products.service with updateProduct function
+    //else if item quantity is lower then 0 => removeProduct from cart (removeFromCart(product.id, selectedSize))
     // }
 
 
     // New function to decrement items in the cart and update product availability
-  const decrementCartItem = (product, selectedSize, quantity) => {
-    const cartItem = cartItems.find(
-      (item) => item.id === product.id && item.selectedSize === selectedSize
-    );
+    const decrementCartItem = (product, selectedSize, quantity) => {
+        const cartItem = cartItems.find(
+            (item) => item.id === product.id && item.selectedSize === selectedSize
+        );
 
-    if (cartItem) {
-      if (quantity > 0 && quantity <= cartItem.quantity) {
-        // Decrease quantity in the cart
-        const updatedQuantity = cartItem.quantity - quantity;
+        if (cartItem) {
+            if (quantity > 0 && quantity <= cartItem.quantity) {
+                // Decrease quantity in the cart
+                const updatedQuantity = cartItem.quantity - quantity;
 
-        if (updatedQuantity > 0) {
-          // Update cart items
-          setCartItems((prevCartItems) =>
-            prevCartItems.map((item) =>
-              item.id === product.id && item.selectedSize === selectedSize
-                ? { ...item, quantity: updatedQuantity }
-                : item
-            )
-          );
+                // Update cart items
+                setCartItems((prevCartItems) =>
+                    prevCartItems.map((item) =>
+                        item.id === product.id && item.selectedSize === selectedSize
+                            ? { ...item, quantity: updatedQuantity }
+                            : item
+                    )
+                );
 
-          // Update product availability in the database
-          const updatedProduct = updateProductByIncreasing(
-            product.id,
-            selectedSize,
-            quantity
-          );
+                // Update product availability in the database
+                const updatedProduct = updateProductByIncreasing(
+                    product.id,
+                    selectedSize,
+                    quantity
+                );
 
-          if (typeof updatedProduct === 'string') {
-            console.log(updatedProduct); // Handle error if needed
-          }
-        } else {
-          // Remove the item from the cart if quantity becomes 0
-          removeFromCart(product.id, selectedSize);
+                if (typeof updatedProduct === 'string') {
+                    console.log(updatedProduct); // Handle error if needed
+                }
+
+                // Remove the item from the cart if quantity becomes 0
+                if (updatedQuantity === 0) {
+                    removeFromCart(product.id, selectedSize);
+                }
+            }
         }
-      }
-    }
-  };
+    };
 
-    
     const removeFromCart = (itemId, selectedSize) => {
         setCartItems((prevCartItems) =>
             prevCartItems.filter(
