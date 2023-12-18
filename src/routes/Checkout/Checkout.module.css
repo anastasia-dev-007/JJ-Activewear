@@ -10,4 +10,12 @@
 .itemCard{
     display: flex;
     justify-content: space-between;
+    border-bottom: solid 1px;
+}
+
+.cartSummaryContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 30%;
 }

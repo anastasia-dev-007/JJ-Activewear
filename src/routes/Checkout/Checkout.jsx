@@ -18,6 +18,18 @@ const Checkout = () => {
     setShow(true);
   }
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [country, setCountry] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleNameChange = (event) => setName(event.target.value);
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handleCountryChange = (event) => setCountry(event.target.value);
+  const handleAddressChange = (event) => setAddress(event.target.value);
+  const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
+
   return (
     <>
       {values.map((v, idx) => (
@@ -37,69 +49,78 @@ const Checkout = () => {
               <>
                 <Form.Floating>
                   <Form.Control
-                    id="floatingPasswordCustom"
+                    id="floatingNameCustom"
                     type="text"
                     placeholder="Name Surname"
+                    onChange={handleNameChange}
                   />
-                  <label htmlFor="floatingPasswordCustom">Name Surname</label>
+                  <label htmlFor="floatingNameCustom">Name Surname</label>
                 </Form.Floating>
 
                 <Form.Floating className="mb-3">
                   <Form.Control
-                    id="floatingInputCustom"
+                    id="floatingEmailustom"
                     type="email"
                     placeholder="name@example.com"
+                    onChange={handleEmailChange}
                   />
-                  <label htmlFor="floatingInputCustom">Email address</label>
+                  <label htmlFor="floatingEmailCustom">Email address</label>
                 </Form.Floating>
-                <Form.Select aria-label="Default select example">
+                <Form.Select aria-label="Default select example"
+                  onChange={handleCountryChange}
+                >
                   <option>Select country</option>
                   <option value="1">Moldova</option>
                   <option value="2">Romania</option>
                   <option value="3">Germany</option>
-                  <option value="3">France</option>
+                  <option value="4">France</option>
                 </Form.Select>
 
                 <Form.Floating>
                   <Form.Control
-                    id="floatingPasswordCustom"
+                    id="floatingAddressCustom"
                     type="text"
                     placeholder="Address"
+                    onChange={handleAddressChange}
                   />
-                  <label htmlFor="floatingPasswordCustom">Address</label>
+                  <label htmlFor="floatingAddressCustom">Address</label>
                 </Form.Floating>
 
                 <Form.Floating>
                   <Form.Control
-                    id="floatingPasswordCustom"
+                    id="floatingPhoneCustom"
                     type="text"
                     placeholder="+373 79 000 000"
+                    onChange={handlePhoneNumberChange}
                   />
-                  <label htmlFor="floatingPasswordCustom">Phone number</label>
+                  <label htmlFor="floatingPhoneCustom">Phone number</label>
                 </Form.Floating>
-                
+
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
               <button>Place Order</button>
 
             </div>
-            <h3>Cart summary</h3>
-           {
-            cartContext.cartItems.map(item => (
-              <div className={styles.itemCard}>
-              <div>
-              <h6>{item.quantity} x {item.title}</h6>
-              <div>{item.category} | {item.subcategory}</div>
-              <div>Item ID: {item.id}</div>
-              <div>Size: {item.selectedSize}</div>
-              <div>Color: {item.color}</div>
-              </div>
 
-              <div>{item.currency} {item.price.toFixed(2)}</div>
+            <div className={styles.cartSummaryContainer}>
+              <h3>Cart summary</h3>
+              {
+                cartContext.cartItems.map(item => (
+                  <div className={styles.itemCard}>
+                    <div>
+                      <h6>{item.quantity} x {item.title}</h6>
+                      <div>{item.category} | {item.subcategory}</div>
+                      <div>Item ID: {item.id}</div>
+                      <div>Size: {item.selectedSize}</div>
+                      <div>Color: {item.color}</div>
+                    </div>
+
+                    <div>{item.currency} {item.price.toFixed(2)}</div>
+                  </div>
+
+                ))
+              }
             </div>
-            
-            ))
-           }
             <div>
 
             </div>

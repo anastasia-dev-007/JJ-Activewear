@@ -41,7 +41,6 @@ export function CartProvider(props) { //acesta este un component React
         };
     };
 
-
     function addToCart(product, selectedSize, quantity) {
         //is quantity available?
         //Verifici daca produsul este disponibil, transmit ca parametru la functia checkIfProductIsAvailable id-ul produsului

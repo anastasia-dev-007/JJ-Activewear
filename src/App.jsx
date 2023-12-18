@@ -33,8 +33,6 @@ function App() {
           <Route path='/favorites' element={<Favorites />} />
           {/* {userContext.user === null ? (<></>) : ()}*/}
           <Route path='/shopping-cart' element={<ShoppingCart />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/order-confirmation' element={<OrderConfirmation />} />
           {userContext.user !== null && userContext.user.role === 'admin' && (
             <Route path='/admin-panel' element={<AdminPanel />} />
           )}

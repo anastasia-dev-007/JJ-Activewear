@@ -674,7 +674,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -692,7 +692,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -710,7 +710,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -728,7 +728,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -746,7 +746,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -764,7 +764,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -782,7 +782,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Resistance Bands',
         subcategoryCode: 'resistance_bands',
-        size: 15,
+        size: {nosize: 15},
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -918,8 +918,6 @@ export const updateProductByIncreasing = (id, size, quantity) => {
   
     return 'Product not found';
   };
-  
-
 
 export const checkIfProductIsAvailable = (id, size, quantity) => {
     const index = products.findIndex(item => item.id === id);//gasim acest index

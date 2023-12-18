@@ -97,7 +97,11 @@ const ProductDetails = () => {
       return;
     }
 
-    addToCart(product, selectedSize, quantity);
+    if (product.category === 'Accessories') {
+      addToCart(product, 'noSize', 1);
+    } else {
+      addToCart(product, selectedSize, quantity);
+    }
 
     setQuantity(1);
     setSelectedSize(null); // Reset selected size after adding to the cart
