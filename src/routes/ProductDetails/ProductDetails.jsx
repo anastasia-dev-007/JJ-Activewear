@@ -42,6 +42,13 @@ const ProductDetails = () => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
   }, [id]);
 
+  //La prima randare setam valoare implicita prima marime din produs.De fiecare data cand product se modifica, daca el exista, setez o noua valoare in selectedSize, prima proprietate 
+  useEffect(() => {
+    if (product) {
+      setSelectedSize(Object.keys(product.size)[0]);
+    }
+  }, [product]);
+
   const cartContext = useContext(CartContext);// consumam contextul
   const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -271,7 +278,7 @@ const ProductDetails = () => {
 
 
                 <div variant="primary" onClick={handleShow}>
-                  <button disabled={quantity === 0 || !selectedSize || product.category !== 'Accessories'} className={styles.addToCartBtn}
+                  <button disabled={quantity === 0 || !selectedSize} className={styles.addToCartBtn}
                     onClick={() => handleAddToCart(product, selectedSize, quantity)}
                   >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
