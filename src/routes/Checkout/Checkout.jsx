@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/cart.context';
 import styles from './Checkout.module.css'
 import Form from 'react-bootstrap/Form';
+import { saveOrder } from '../../orders.service';
 
 
 const Checkout = () => {
@@ -24,11 +25,35 @@ const Checkout = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const { cartItems } = useContext(CartContext);
+
   const handleNameChange = (event) => setName(event.target.value);
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handleCountryChange = (event) => setCountry(event.target.value);
   const handleAddressChange = (event) => setAddress(event.target.value);
   const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
+
+  const handleOrderSave = () => {
+    const order = {
+      id: Date.now(),
+      name: name, //admin or user
+      email: email,
+      country: country,
+      address: address,
+      phoneNumber: phoneNumber,
+      cartItems: cartItems,
+    };
+
+    const savedOrder = saveOrder(order);
+
+    if (savedOrder) {
+      setName('');
+      setEmail('');
+      setCountry('');
+      setAddress('');
+      setPhoneNumber('');
+    }
+  };
 
   return (
     <>
@@ -98,7 +123,7 @@ const Checkout = () => {
 
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
-              <button>Place Order</button>
+              <button onClick={() => handleOrderSave()}>Place Order</button>
 
             </div>
 
