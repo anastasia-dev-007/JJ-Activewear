@@ -6,6 +6,7 @@ export const orders = [
         country: 'testCountryOfOrder',
         address: 'testAddressofOrder',
         phoneNumber: '076-666-666',
+        orderStatus: 'new',
     },
 ];
 

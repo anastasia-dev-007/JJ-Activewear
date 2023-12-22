@@ -110,6 +110,13 @@ function AdminPanel() {
 
     };
 
+    const handleSelectOrderStatus = (orderId, selectedStatus) => {
+        const updatedOrders = orders.map((order) =>
+            order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
+        );
+
+        setOrderStatus(updatedOrders);
+    };
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -327,7 +334,16 @@ function AdminPanel() {
                                     <td>
                                         $ {subtotalPrice.toFixed(2)}
                                     </td>
-                                    <td>{orderStatus}</td>
+                                    <td><Form.Select aria-label="Default select example"
+                                        
+                                        onChange={(e) => {
+                                            setOrderStatus(e.target.value);
+                                            handleSelectOrderStatus(item.id, e.target.value);
+                                        }}>
+                                        <option value={orderStatus}>New</option>
+                                        <option value={orderStatus}>In progress</option>
+                                        <option value={orderStatus}>Done</option>
+                                    </Form.Select></td>
                                 </tr>
                             ))}
                         </tbody>
