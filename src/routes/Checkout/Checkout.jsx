@@ -7,7 +7,6 @@ import styles from './Checkout.module.css'
 import Form from 'react-bootstrap/Form';
 import { saveOrder } from '../../orders.service';
 
-
 const Checkout = () => {
   const cartContext = useContext(CartContext); //consumam contextul
   const values = [true];
@@ -34,6 +33,7 @@ const Checkout = () => {
   const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
 
   const handleOrderSave = () => {
+    const currentDate = new Date();
     const order = {
       id: Date.now(),
       name: name, //admin or user
@@ -42,11 +42,13 @@ const Checkout = () => {
       address: address,
       phoneNumber: phoneNumber,
       cartItems: cartItems,
+      orderDate: currentDate.toISOString(),
     };
 
     const savedOrder = saveOrder(order);
 
     if (savedOrder) {
+      console.log('Order saved:', order);
       setName('');
       setEmail('');
       setCountry('');
@@ -140,7 +142,7 @@ const Checkout = () => {
                       <div>Color: {item.color}</div>
                     </div>
 
-                    <div>{item.currency} {item.price.toFixed(2)}</div>
+                    <div>{item.currency} {((item.quantity)*(item.price)).toFixed(2)}</div>
                   </div>
 
                 ))

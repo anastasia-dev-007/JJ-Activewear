@@ -10,6 +10,8 @@ import { users } from '../../users.service'
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/user.context';
 import { useEffect } from 'react';
+import { CartContext } from '../../contexts/cart.context';
+import { orders } from '../../orders.service';
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -46,9 +48,12 @@ function AdminPanel() {
     const [promo, setPromo] = useState('');
     const [promoPrice, setPromoPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
-
+    const [orderStatus, setOrderStatus] = useState('new');
 
     const { user } = useContext(UserContext);
+    const cartContext = useContext(CartContext); //consumam contextul
+
+    const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
     // useEffect(() => {
     //     if (!user || !user.roles.includes('admin')) {
@@ -86,21 +91,21 @@ function AdminPanel() {
 
         setNewProduct(newProductData);
         products.push(newProductData);
-        // setImgs([]);
-        // setTitle('');
-        // setTitleCode('');
-        // setColor('');
-        // setCategory('');
-        // setSubcategory('');
-        // setSubcategoryCode('');
-        // setSize('');
-        // setQuantity('');
-        // setBestSellerStatus('');
-        // setCurrency('');
-        // setPrice('');
-        // setPromo('');
-        // setPromoPrice('');
-        // setProductDescription('');
+        setImgs([]);
+        setTitle('');
+        setTitleCode('');
+        setColor('');
+        setCategory('');
+        setSubcategory('');
+        setSubcategoryCode('');
+        setSize('');
+        setQuantity('');
+        setBestSellerStatus('');
+        setCurrency('');
+        setPrice('');
+        setPromo('');
+        setPromoPrice('');
+        setProductDescription('');
         saveProduct();
 
     };
@@ -268,6 +273,7 @@ function AdminPanel() {
 
                     <button onClick={() => handleAddNewProduct(newProduct)}>SAVE PRODUCT</button>
                 </Tab>
+
                 <Tab eventKey="orders" title="Orders">
                     <table class="table">
                         <thead>
@@ -293,6 +299,37 @@ function AdminPanel() {
                                 <td>cell 6</td>
                                 <td>cell 6</td>
                             </tr>
+                            {orders.map(item => (
+                                <tr>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.orderDate}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.phoneNumber}</td>
+                                    <td>{item.email}</td>
+                                    <td>
+                                        {
+                                            cartContext.cartItems.map(item => (
+                                                <div className={styles.itemCard}>
+                                                    <div>
+                                                        <h6>{item.quantity} x {item.title}</h6>
+                                                        <div>{item.category} | {item.subcategory}</div>
+                                                        <div>Item ID: {item.id}</div>
+                                                        <div>Size: {item.selectedSize}</div>
+                                                        <div>Color: {item.color}</div>
+                                                    </div>
+
+                                                    <div>{item.currency} {item.price.toFixed(2)}</div>
+                                                </div>
+
+                                            ))
+                                        }
+                                    </td>
+                                    <td>
+                                        $ {subtotalPrice.toFixed(2)}
+                                    </td>
+                                    <td>{orderStatus}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Tab>

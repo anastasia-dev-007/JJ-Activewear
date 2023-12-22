@@ -93,7 +93,9 @@ const ShoppingCart = () => {
                           </div>
                         </div>
 
-                        <div className={styles.price}>{item.currency} {item.price.toFixed(2)}</div>
+                        <div className={styles.price}>
+                        {item.currency} {(item.quantity * item.price).toFixed(2)}
+                          </div>
                       </div>
 
                       <div className={styles.removeBtn}>

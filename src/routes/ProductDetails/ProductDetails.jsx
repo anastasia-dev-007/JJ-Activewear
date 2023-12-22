@@ -210,7 +210,7 @@ const ProductDetails = () => {
 
               <div className={styles.itemCode}>Item code: {product.id}</div>
 
-              <h3 className={styles.price}>$ 50.00</h3>
+              <h3 className={styles.price}>$ {product.price.toFixed(2)}</h3>
 
               {product.category === 'Accessories' ? (
                 <></>

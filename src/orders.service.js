@@ -1,4 +1,4 @@
-const orders = [
+export const orders = [
     {
         id: '1',
         name: 'test order', //admin or user
@@ -10,7 +10,6 @@ const orders = [
 ];
 
 export const saveOrder = (order) => {
-   
         orders.push(order);
         return order;
 };
