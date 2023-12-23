@@ -34,6 +34,11 @@ const Checkout = () => {
   const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
 
   const handleOrderSave = () => {
+    const totalAmount = cartContext.cartItems.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    );
+
     const currentDate = new Date();
     const order = {
       id: Date.now(),
@@ -44,6 +49,7 @@ const Checkout = () => {
       phoneNumber: phoneNumber,
       cartItems: cartItems, //am mai incercat cartItems: cartContext.items cu commented const {cartItems} de sus si cu [...cartItems] tot am incercat
       orderDate: currentDate.toISOString(),
+      totalAmount: totalAmount,
     };
 
     const savedOrder = saveOrder(order);
@@ -128,7 +134,7 @@ const Checkout = () => {
 
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
-              <CheckoutModal handleOrderSave = {handleOrderSave}/>
+              <CheckoutModal handleOrderSave={handleOrderSave} />
             </div>
 
             <div className={styles.cartSummaryContainer}>

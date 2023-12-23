@@ -332,10 +332,10 @@ function AdminPanel() {
                                         }
                                     </td>
                                     <td>
-                                        $ {subtotalPrice.toFixed(2)}
+                                        {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
                                     </td>
                                     <td><Form.Select aria-label="Default select example"
-                                        
+
                                         onChange={(e) => {
                                             setOrderStatus(e.target.value);
                                             handleSelectOrderStatus(item.id, e.target.value);
