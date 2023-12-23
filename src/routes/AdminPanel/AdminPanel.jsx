@@ -315,7 +315,7 @@ function AdminPanel() {
                                     <td>{item.email}</td>
                                     <td>
                                         {
-                                            cartContext.cartItems.map(item => (
+                                            item.cartItems.map(item => (
                                                 <div className={styles.itemCard}>
                                                     <div>
                                                         <h6>{item.quantity} x {item.title}</h6>

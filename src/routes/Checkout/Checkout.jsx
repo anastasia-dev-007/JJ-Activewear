@@ -6,6 +6,7 @@ import { CartContext } from '../../contexts/cart.context';
 import styles from './Checkout.module.css'
 import Form from 'react-bootstrap/Form';
 import { saveOrder } from '../../orders.service';
+import CheckoutModal from '../../components/CheckoutModal/CheckoutModal';
 
 const Checkout = () => {
   const cartContext = useContext(CartContext); //consumam contextul
@@ -41,7 +42,7 @@ const Checkout = () => {
       country: country,
       address: address,
       phoneNumber: phoneNumber,
-      cartItems: cartItems,
+      cartItems: cartItems, //am mai incercat cartItems: cartContext.items cu commented const {cartItems} de sus si cu [...cartItems] tot am incercat
       orderDate: currentDate.toISOString(),
     };
 
@@ -56,8 +57,8 @@ const Checkout = () => {
       setPhoneNumber('');
     }
 
-    // cartContext.setCartItems([]);
-    };
+    cartContext.setCartItems([]);
+  };
 
   return (
     <>
@@ -127,8 +128,7 @@ const Checkout = () => {
 
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
-              <button onClick={() => handleOrderSave()}>Place Order</button>
-
+              <CheckoutModal handleOrderSave = {handleOrderSave}/>
             </div>
 
             <div className={styles.cartSummaryContainer}>
@@ -144,7 +144,7 @@ const Checkout = () => {
                       <div>Color: {item.color}</div>
                     </div>
 
-                    <div>{item.currency} {((item.quantity)*(item.price)).toFixed(2)}</div>
+                    <div>{item.currency} {((item.quantity) * (item.price)).toFixed(2)}</div>
                   </div>
 
                 ))
