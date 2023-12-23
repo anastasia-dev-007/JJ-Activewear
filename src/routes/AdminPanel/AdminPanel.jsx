@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { orders } from '../../orders.service';
 import { deleteOrder } from '../../orders.service';
+import { OrdersContext } from '../../contexts/orders.context';
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -55,6 +56,8 @@ function AdminPanel() {
 
     const { user } = useContext(UserContext);
     const cartContext = useContext(CartContext); //consumam contextul
+    const { removeOrder } = useContext(OrdersContext);
+
 
     // useEffect(() => {
     //     if (!user || !user.roles.includes('admin')) {
@@ -112,19 +115,20 @@ function AdminPanel() {
     };
 
     const handleSelectOrderStatus = (orderId, selectedStatus) => {
-        // Update the state of orders
-        const updatedOrders = orders.map((order) =>
-            order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
+        const updatedOrders = ordersInAdminPannel.map((order) =>
+          order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
         );
-        // If the selected status is 'Done', remove the order from the list
+      
         if (selectedStatus === 'Done') {
-            const remainingOrders = deleteOrder(orderId);
-            setOrdersInAdminPannel(remainingOrders);
+          const remainingOrders = updatedOrders.filter((order) => order.id !== orderId);
+          setOrdersInAdminPannel(remainingOrders);
+          removeOrder(orderId);
         } else {
-            setOrdersInAdminPannel(updatedOrders);
+          setOrdersInAdminPannel(updatedOrders);
         }
-    };
-        
+      };
+      
+
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -290,8 +294,8 @@ function AdminPanel() {
                 </Tab>
 
                 <Tab eventKey="orders" title={`Orders ${orders.length}`}>
-               
-                
+
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -303,61 +307,54 @@ function AdminPanel() {
                                 <th scope="col">Order - product id, quantity, price</th>
                                 <th scope="col">Final price</th>
                                 <th scope="col">Status - completed, in process, new</th>
+                                <th scope="col">Remove</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* <tr>
-                                <th scope="row">1</th>
-                                <td>cell 1</td>
-                                <td>cell 2</td>
-                                <td>cell 3</td>
-                                <td>cell 4</td>
-                                <td>cell 5</td>
-                                <td>cell 6</td>
-                                <td>cell 6</td>
-                            </tr> */}
                             {orders
-                            .filter(item => item.orderStatus !== 'Done')
-                            .map(item => (
-                                <tr>
-                                    <th scope="row">{item.id}</th>
-                                    <td>{item.orderDate}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.phoneNumber}</td>
-                                    <td>{item.email}</td>
-                                    <td>
-                                        {
-                                            item.cartItems.map(item => (
-                                                <div className={styles.itemCard}>
-                                                    <div>
-                                                        <h6>{item.quantity} x {item.title}</h6>
-                                                        <div>{item.category} | {item.subcategory}</div>
-                                                        <div>Item ID: {item.id}</div>
-                                                        <div>Size: {item.selectedSize}</div>
-                                                        <div>Color: {item.color}</div>
+                                .filter(item => item.orderStatus !== 'Done')
+                                .map(item => (
+                                    <tr>
+                                        <th scope="row">{item.id}</th>
+                                        <td>{item.orderDate}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.phoneNumber}</td>
+                                        <td>{item.email}</td>
+                                        <td>
+                                            {
+                                                item.cartItems.map(item => (
+                                                    <div className={styles.itemCard}>
+                                                        <div>
+                                                            <h6>{item.quantity} x {item.title}</h6>
+                                                            <div>{item.category} | {item.subcategory}</div>
+                                                            <div>Item ID: {item.id}</div>
+                                                            <div>Size: {item.selectedSize}</div>
+                                                            <div>Color: {item.color}</div>
+                                                        </div>
+
+                                                        <div>{item.currency} {item.price.toFixed(2)}</div>
                                                     </div>
 
-                                                    <div>{item.currency} {item.price.toFixed(2)}</div>
-                                                </div>
+                                                ))
+                                            }
+                                        </td>
+                                        <td>
+                                            {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
+                                        </td>
+                                        <td><Form.Select aria-label="Default select example"
 
-                                            ))
-                                        }
-                                    </td>
-                                    <td>
-                                        {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
-                                    </td>
-                                    <td><Form.Select aria-label="Default select example"
-
-                                        onChange={(e) => {
-                                            setOrderStatus(e.target.value);
-                                            handleSelectOrderStatus(item.id, e.target.value);
-                                        }}>
-                                        <option value={orderStatus}>New</option>
-                                        <option value={orderStatus}>In progress</option>
-                                        <option value={orderStatus}>Done</option>
-                                    </Form.Select></td>
-                                </tr>
-                            ))}
+                                            onChange={(e) => {
+                                                setOrderStatus(e.target.value);
+                                                handleSelectOrderStatus(item.id, e.target.value);
+                                            }}>
+                                            <option value={orderStatus}>New</option>
+                                            <option value={orderStatus}>In progress</option>
+                                            <option value={orderStatus}>Done</option>
+                                        </Form.Select>
+                                        </td>
+                                        <td><button onClick={() => removeOrder(item.id)}>Delete</button></td>
+                                    </tr>
+                                ))}
                         </tbody>
                     </table>
                 </Tab>
