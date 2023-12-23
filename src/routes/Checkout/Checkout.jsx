@@ -1,18 +1,23 @@
 import React, { useContext, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../contexts/cart.context';
 import styles from './Checkout.module.css'
 import Form from 'react-bootstrap/Form';
 import { saveOrder } from '../../orders.service';
 import CheckoutModal from '../../components/CheckoutModal/CheckoutModal';
 
+
 const Checkout = () => {
   const cartContext = useContext(CartContext); //consumam contextul
   const values = [true];
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+
+  const navigate = useNavigate();
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -24,6 +29,7 @@ const Checkout = () => {
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [orderStatus, setOrderStatus] = useState('New');
 
   const { cartItems } = useContext(CartContext);
 
@@ -34,10 +40,7 @@ const Checkout = () => {
   const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
 
   const handleOrderSave = () => {
-    const totalAmount = cartContext.cartItems.reduce(
-      (total, item) => total + item.quantity * item.price,
-      0
-    );
+    const totalAmount = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
     const currentDate = new Date();
     const order = {
@@ -50,6 +53,7 @@ const Checkout = () => {
       cartItems: cartItems, //am mai incercat cartItems: cartContext.items cu commented const {cartItems} de sus si cu [...cartItems] tot am incercat
       orderDate: currentDate.toISOString(),
       totalAmount: totalAmount,
+      orderStatus: orderStatus,
     };
 
     const savedOrder = saveOrder(order);
@@ -64,6 +68,9 @@ const Checkout = () => {
     }
 
     cartContext.setCartItems([]);
+
+    navigate('/');
+    alert('Thank you! Order placed successfully! You will be contacted soon by us for details!')
   };
 
   return (
@@ -134,13 +141,34 @@ const Checkout = () => {
 
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
-              <CheckoutModal handleOrderSave={handleOrderSave} />
+              {/* <CheckoutModal handleOrderSave={handleOrderSave} /> */}
+              <div>
+                {/* <button onClick={() => handleOrderSave()}>PLACE ORDER</button> */}
+                <Button variant="primary" onClick={() => { handleShow(); handleOrderSave(); }}>PLACE ORDER</Button>
+
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Order confirmation</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Your order has been placed successfully!</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                      OK
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+
+
             </div>
 
             <div className={styles.cartSummaryContainer}>
               <h3>Cart summary</h3>
               {
-                cartContext.cartItems.map(item => (
+                cartItems.map(item => (
                   <div className={styles.itemCard}>
                     <div>
                       <h6>{item.quantity} x {item.title}</h6>

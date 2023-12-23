@@ -3,16 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 
-const CheckoutModal = ({handleOrderSave}) => {
+const CheckoutModal = ({ handleOrderSave }) => {
     const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
-            <Button variant="primary" onClick={() => {handleShow(); handleOrderSave();}}>
-           Place Order
+            <Button variant="primary" onClick={() => { handleShow(); handleOrderSave(); }}>
+                Place Order
             </Button>
 
             <Modal show={show} onHide={handleClose}>

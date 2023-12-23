@@ -32,6 +32,16 @@ export const orders = [];
 // };
 
 export const saveOrder = (order) => {
-    orders.push(order);
-    return order;
+    const orderWithStatus = { ...order, orderStatus: 'New' };
+    orders.push(orderWithStatus);
+    return orderWithStatus;
+  };
+
+  export const deleteOrder = (id) => {
+    const foundIndex = orders.findIndex(order => order.id === id);
+
+    if (foundIndex > -1) {
+        orders.splice(foundIndex, 1);
+    }
 };
+  

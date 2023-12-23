@@ -12,6 +12,7 @@ import { UserContext } from '../../contexts/user.context';
 import { useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { orders } from '../../orders.service';
+import { deleteOrder } from '../../orders.service';
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -49,11 +50,11 @@ function AdminPanel() {
     const [promoPrice, setPromoPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [orderStatus, setOrderStatus] = useState('new');
+    const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]); // replace initialOrders with your actual orders array
+
 
     const { user } = useContext(UserContext);
     const cartContext = useContext(CartContext); //consumam contextul
-
-    const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
     // useEffect(() => {
     //     if (!user || !user.roles.includes('admin')) {
@@ -111,12 +112,19 @@ function AdminPanel() {
     };
 
     const handleSelectOrderStatus = (orderId, selectedStatus) => {
+        // Update the state of orders
         const updatedOrders = orders.map((order) =>
             order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
         );
-
-        setOrderStatus(updatedOrders);
+        // If the selected status is 'Done', remove the order from the list
+        if (selectedStatus === 'Done') {
+            const remainingOrders = deleteOrder(orderId);
+            setOrdersInAdminPannel(remainingOrders);
+        } else {
+            setOrdersInAdminPannel(updatedOrders);
+        }
     };
+        
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -281,7 +289,9 @@ function AdminPanel() {
                     <button onClick={() => handleAddNewProduct(newProduct)}>SAVE PRODUCT</button>
                 </Tab>
 
-                <Tab eventKey="orders" title="Orders">
+                <Tab eventKey="orders" title={`Orders ${orders.length}`}>
+               
+                
                     <table class="table">
                         <thead>
                             <tr>
@@ -306,7 +316,9 @@ function AdminPanel() {
                                 <td>cell 6</td>
                                 <td>cell 6</td>
                             </tr> */}
-                            {orders.map(item => (
+                            {orders
+                            .filter(item => item.orderStatus !== 'Done')
+                            .map(item => (
                                 <tr>
                                     <th scope="row">{item.id}</th>
                                     <td>{item.orderDate}</td>
