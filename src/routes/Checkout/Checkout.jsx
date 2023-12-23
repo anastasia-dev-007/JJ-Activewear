@@ -55,7 +55,9 @@ const Checkout = () => {
       setAddress('');
       setPhoneNumber('');
     }
-  };
+
+    // cartContext.setCartItems([]);
+    };
 
   return (
     <>

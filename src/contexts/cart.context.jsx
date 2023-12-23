@@ -8,6 +8,7 @@ export const CartContext = createContext({ //adaugam valori implicite aici pentr
     addToCart: () => { },
     removeFromCart: () => { },
     decrementCartItem: () => { },
+    setCartItems: () => {},
 });
 {/**Toate proprietatile care le afisam se declara aici in acest file. Aici noi indicam ce valori sunt expuse din acest context: lista de produse, addProducts(), deleteProducts(), removeAll(),isOpen(true/false), etc. */ }
 
@@ -126,6 +127,7 @@ export function CartProvider(props) { //acesta este un component React
             addToCart: addToCart,
             removeFromCart: removeFromCart,
             decrementCartItem: decrementCartItem,
+            setCartItems: setCartItems,
         }}>
             {props.children} {/**copii lui CartContext in index.jsx VOR FI RANDATI IN ACEASTA LINIE DE COD UTILIZAND "props.children" */}
         </CartContext.Provider>

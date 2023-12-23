@@ -296,7 +296,7 @@ function AdminPanel() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {/* <tr>
                                 <th scope="row">1</th>
                                 <td>cell 1</td>
                                 <td>cell 2</td>
@@ -305,7 +305,7 @@ function AdminPanel() {
                                 <td>cell 5</td>
                                 <td>cell 6</td>
                                 <td>cell 6</td>
-                            </tr>
+                            </tr> */}
                             {orders.map(item => (
                                 <tr>
                                     <th scope="row">{item.id}</th>
@@ -359,8 +359,6 @@ function AdminPanel() {
                                 <th scope="col">Phone</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Birthday</th>
-                                <th scope="col">Orders history</th>
-                                <th scope="col">Status - active, inactive</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -373,8 +371,6 @@ function AdminPanel() {
                                         <td>{item.phoneNumber}</td>
                                         <td>{item.email}</td>
                                         <td>{item.birthday}</td>
-                                        <td>cell 6</td>
-                                        <td>cell 7</td>
                                     </tr>
                                 ))
                             }
