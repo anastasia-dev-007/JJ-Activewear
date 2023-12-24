@@ -7,8 +7,6 @@ import styles from './Checkout.module.css'
 import Form from 'react-bootstrap/Form';
 import { saveOrder } from '../../orders.service';
 import CheckoutModal from '../../components/CheckoutModal/CheckoutModal';
-import { OrdersContext } from '../../contexts/orders.context';
-
 
 const Checkout = () => {
   const cartContext = useContext(CartContext); //consumam contextul
@@ -32,7 +30,6 @@ const Checkout = () => {
   const [orderStatus, setOrderStatus] = useState('New');
 
   const { cartItems } = useContext(CartContext);
-  const { orders } = useContext(OrdersContext);
 
   const handleNameChange = (event) => setName(event.target.value);
   const handleEmailChange = (event) => setEmail(event.target.value);

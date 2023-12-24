@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { orders } from '../../orders.service';
 import { deleteOrder } from '../../orders.service';
-import { OrdersContext } from '../../contexts/orders.context';
 
 function AdminPanel() {
     const [newProduct, setNewProduct] = useState({
@@ -56,7 +55,6 @@ function AdminPanel() {
 
     const { user } = useContext(UserContext);
     const cartContext = useContext(CartContext); //consumam contextul
-    const { removeOrder } = useContext(OrdersContext);
 
 
     // useEffect(() => {
@@ -122,14 +120,12 @@ function AdminPanel() {
         if (selectedStatus === 'Done') {
           const remainingOrders = updatedOrders.filter((order) => order.id !== orderId);
           setOrdersInAdminPannel(remainingOrders);
-          removeOrder(orderId);
+          deleteOrder(orderId);
         } else {
           setOrdersInAdminPannel(updatedOrders);
         }
       };
       
-
-
     return (
         <div className={styles.adminPanelContainer}>
             <Tabs
@@ -351,7 +347,7 @@ function AdminPanel() {
                                             <option value={orderStatus}>Done</option>
                                         </Form.Select>
                                         </td>
-                                        <td><button onClick={() => removeOrder(item.id)}>Delete</button></td>
+                                        <td><button onClick={() => deleteOrder(item.id)}>Delete</button></td>
                                     </tr>
                                 ))}
                         </tbody>
