@@ -351,7 +351,7 @@ function AdminPanel() {
                                             <option value={orderStatus}>Done</option>
                                         </Form.Select>
                                         </td>
-                                        <td><button onClick={() => removeOrder(item.id, item.selectedSize)}>Delete</button></td>
+                                        <td><button onClick={() => removeOrder(item.id)}>Delete</button></td>
                                     </tr>
                                 ))}
                         </tbody>

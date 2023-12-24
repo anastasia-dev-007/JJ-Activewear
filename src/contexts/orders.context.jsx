@@ -9,10 +9,10 @@ export const OrdersContext = createContext({
 export function OrdersProvider(props) {
   const [orderItems, setOrderItems] = useState([...orders]);
 
-  const removeOrder = (orderId, selectedSize) => {
+  const removeOrder = (orderId) => {
     setOrderItems((prevOrders) =>
       prevOrders.filter(
-        (item) => !(item.id === orderId && item.selectedSize === selectedSize)
+        (item) => !(item.id === orderId)
       )
     );
   };
