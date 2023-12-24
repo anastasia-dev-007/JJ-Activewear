@@ -342,7 +342,6 @@ function AdminPanel() {
                                             {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
                                         </td>
                                         <td><Form.Select aria-label="Default select example"
-
                                             onChange={(e) => {
                                                 setOrderStatus(e.target.value);
                                                 handleSelectOrderStatus(item.id, e.target.value);
@@ -352,7 +351,7 @@ function AdminPanel() {
                                             <option value={orderStatus}>Done</option>
                                         </Form.Select>
                                         </td>
-                                        <td><button onClick={() => removeOrder(item.id)}>Delete</button></td>
+                                        <td><button onClick={() => removeOrder(item.id, item.selectedSize)}>Delete</button></td>
                                     </tr>
                                 ))}
                         </tbody>
