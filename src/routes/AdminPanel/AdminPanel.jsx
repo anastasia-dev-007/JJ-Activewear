@@ -1,7 +1,7 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './AdminPanel.module.css'
-import { deleteProduct, products } from '../../products.service';
+import { deleteProduct, getProductById, products } from '../../products.service';
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useRef, useState } from 'react';
@@ -13,9 +13,13 @@ import { useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { orders } from '../../orders.service';
 import { deleteOrder } from '../../orders.service';
+import { useNavigate } from 'react-router-dom';
 
 function AdminPanel() {
     const [productsData, setProductsData] = useState([...products]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [editedProduct, setEditedProduct] = useState({
+    });
 
     const [newProduct, setNewProduct] = useState({
         id: '',
@@ -146,7 +150,20 @@ function AdminPanel() {
     const handleDeleteProduct = (productId) => {
         deleteProduct(productId);
         setProductsData((prevProducts) => prevProducts.filter(product => product.id !== productId))
-    }
+    };
+
+    const handleSearchClick = (productId) => {
+        const foundProduct = products.find(product => product.id == productId); // cu triple === nu mergea nu stiu din ce cauza
+    
+        if (foundProduct) {
+            setEditedProduct(foundProduct);
+            console.log('Found Product:', foundProduct);
+        } else {
+            console.error('Product not found');
+        }
+    };
+    
+
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -378,25 +395,29 @@ function AdminPanel() {
                 </Tab>
 
                 <Tab eventKey="editProducts" title="Edit Products">
-                <div>
+                    <div>
                         <span>Product ID</span>
-                        <input type="text" placeholder='Search product by ID...'/>
+                        <input type="text" placeholder='Search product by ID...'
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button onClick={() => handleSearchClick(searchQuery)}>Search</button>
                     </div>
 
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Upload your photos</Form.Label>
-                        <Form.Control type="file"/>
-                        <Form.Control type="file"/>
-                        <Form.Control type="file"/>
-                        <Form.Control type="file"/>
-                        <Form.Control type="file"/>
+                        <Form.Control type="file" />
+                        <Form.Control type="file" />
+                        <Form.Control type="file" />
+                        <Form.Control type="file" />
+                        <Form.Control type="file" />
                     </Form.Group>
 
                     <FloatingLabel
                         controlId="floatingTitle"
                         label="Product Title"
                         className="mb-3">
-                        <Form.Control type="text" placeholder="Enter product title..."/>
+                        <Form.Control type="text" placeholder="Enter product title..." />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingTitleCode" label="Title Code">
@@ -414,7 +435,7 @@ function AdminPanel() {
 
 
                     <FloatingLabel controlId="floatingSubcategory" label="Subcategory">
-                        <Form.Control type="text" placeholder=""/>
+                        <Form.Control type="text" placeholder="" />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingSubcategoryCode" label="Subcategory Code">
@@ -422,11 +443,11 @@ function AdminPanel() {
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingSize" label="Size">
-                        <Form.Control type="text" placeholder=""/>
+                        <Form.Control type="text" placeholder="" />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingQuantity" label="Quantity">
-                        <Form.Control type="text" placeholder=""/>
+                        <Form.Control type="text" placeholder="" />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
@@ -446,14 +467,14 @@ function AdminPanel() {
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPromoPrice" label="Promo Price">
-                        <Form.Control type="text" placeholder=""/>
+                        <Form.Control type="text" placeholder="" />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingDescription" label="Description">
-                        <Form.Control type="textare" placeholder=""/>
+                        <Form.Control type="textare" placeholder="" />
                     </FloatingLabel>
 
-                    <button onClick={() => handleAddNewProduct()}>SAVE</button>
+                    <button>SAVE</button>
                 </Tab>
 
                 <Tab eventKey="clients" title="Clients">
