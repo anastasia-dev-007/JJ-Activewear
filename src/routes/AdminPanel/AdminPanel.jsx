@@ -19,6 +19,22 @@ function AdminPanel() {
     const [productsData, setProductsData] = useState([...products]);
     const [searchQuery, setSearchQuery] = useState('');
     const [editedProduct, setEditedProduct] = useState({
+        id: '',
+        imgs: [],
+        title: '',
+        titleCode: '',
+        color: '',
+        category: '',
+        subcategory: '',
+        subcategoryCode: '',
+        size: {},
+        quantity: '',
+        bestSellerStatus: '',
+        currency: '',
+        price: '',
+        promo: '',
+        promoPrice: '',
+        productDescription: '',
     });
 
     const [newProduct, setNewProduct] = useState({
@@ -154,15 +170,32 @@ function AdminPanel() {
 
     const handleSearchClick = (productId) => {
         const foundProduct = products.find(product => product.id == productId); // cu triple === nu mergea nu stiu din ce cauza
-    
+
         if (foundProduct) {
-            setEditedProduct(foundProduct);
+            setEditedProduct({
+                id: foundProduct.id,
+                imgs: foundProduct.imgs || [],
+                title: foundProduct.title,
+                titleCode: foundProduct.titleCode,
+                color: foundProduct.color,
+                category: foundProduct.category,
+                subcategory: foundProduct.subcategory,
+                subcategoryCode: foundProduct.subcategoryCode,
+                size: foundProduct.size || {},
+                quantity: foundProduct.quantity,
+                bestSellerStatus: foundProduct.bestSellerStatus,
+                currency: foundProduct.currency,
+                price: foundProduct.price,
+                promo: foundProduct.promo,
+                promoPrice: foundProduct.promoPrice,
+                productDescription: foundProduct.productDescription,
+            });
             console.log('Found Product:', foundProduct);
         } else {
             console.error('Product not found');
         }
     };
-    
+
 
 
     return (
@@ -417,61 +450,61 @@ function AdminPanel() {
                         controlId="floatingTitle"
                         label="Product Title"
                         className="mb-3">
-                        <Form.Control type="text" placeholder="Enter product title..." />
+                        <Form.Control type="text" placeholder="Enter product title..." value={editedProduct.title} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingTitleCode" label="Title Code">
-                        <Form.Control type="text" placeholder="Enter product title code..." />
+                        <Form.Control type="text" placeholder="Enter product title code..." value={editedProduct.titleCode} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingColor" label="Color">
-                        <Form.Control type="text" placeholder="Enter product color..." />
+                        <Form.Control type="text" placeholder="Enter product color..." value={editedProduct.color}/>
                     </FloatingLabel>
 
 
                     <FloatingLabel controlId="floatingCategory" label="Category">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.category}/>
                     </FloatingLabel>
 
 
                     <FloatingLabel controlId="floatingSubcategory" label="Subcategory">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.subcategory}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingSubcategoryCode" label="Subcategory Code">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.subcategoryCode}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingSize" label="Size">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" /> {/**sa ma gandesc cum aici */}
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingQuantity" label="Quantity">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.quantity}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.bestSellerStatus} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingCurrency" label="Currency">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.currency} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPrice" label="Price">
-                        <Form.Control type="number" placeholder="" />
+                        <Form.Control type="number" placeholder="" value={editedProduct.price} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPromo" label="Promo">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.promo}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPromoPrice" label="Promo Price">
-                        <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={editedProduct.promoPrice}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingDescription" label="Description">
-                        <Form.Control type="textare" placeholder="" />
+                        <Form.Control type="textare" placeholder="" value={editedProduct.productDescription}/>
                     </FloatingLabel>
 
                     <button>SAVE</button>
