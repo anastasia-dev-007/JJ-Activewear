@@ -50,7 +50,7 @@ function AdminPanel() {
     const [promoPrice, setPromoPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [orderStatus, setOrderStatus] = useState('new');
-    const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]); // replace initialOrders with your actual orders array
+    const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]); 
 
 
     const { user } = useContext(UserContext);
@@ -124,6 +124,11 @@ function AdminPanel() {
         } else {
           setOrdersInAdminPannel(updatedOrders);
         }
+      };
+
+      const handleDeleteOrder = (orderId) => {
+        deleteOrder(orderId);
+        setOrdersInAdminPannel((prevOrders) => prevOrders.filter(order => order.id !== orderId));
       };
       
     return (
@@ -347,7 +352,7 @@ function AdminPanel() {
                                             <option value={orderStatus}>Done</option>
                                         </Form.Select>
                                         </td>
-                                        <td><button onClick={() => deleteOrder(item.id)}>Delete</button></td>
+                                        <td><button onClick={() => handleDeleteOrder(item.id)}>Delete</button></td>
                                     </tr>
                                 ))}
                         </tbody>
