@@ -50,7 +50,7 @@ function AdminPanel() {
     const [promoPrice, setPromoPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [orderStatus, setOrderStatus] = useState('new');
-    const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]); 
+    const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]);
 
 
     const { user } = useContext(UserContext);
@@ -112,25 +112,33 @@ function AdminPanel() {
 
     };
 
+    // const handleSelectOrderStatus = (orderId, selectedStatus) => {
+    //     const updatedOrders = ordersInAdminPannel.map((order) =>
+    //         order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
+    //     );
+
+    //     if (selectedStatus === 'Done') {
+    //         const remainingOrders = updatedOrders.filter((order) => order.id !== orderId);
+    //         setOrdersInAdminPannel(remainingOrders);
+    //         deleteOrder(orderId);
+    //     } 
+    //     else {
+    //         setOrdersInAdminPannel(updatedOrders);
+    //     }
+    // };
+
     const handleSelectOrderStatus = (orderId, selectedStatus) => {
         const updatedOrders = ordersInAdminPannel.map((order) =>
-          order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
+            order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
         );
-      
-        if (selectedStatus === 'Done') {
-          const remainingOrders = updatedOrders.filter((order) => order.id !== orderId);
-          setOrdersInAdminPannel(remainingOrders);
-          deleteOrder(orderId);
-        } else {
-          setOrdersInAdminPannel(updatedOrders);
-        }
-      };
+            setOrdersInAdminPannel(updatedOrders);
+    };
 
-      const handleDeleteOrder = (orderId) => {
+    const handleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
         setOrdersInAdminPannel((prevOrders) => prevOrders.filter(order => order.id !== orderId));
-      };
-      
+    };
+
     return (
         <div className={styles.adminPanelContainer}>
             <Tabs
@@ -342,15 +350,18 @@ function AdminPanel() {
                                         <td>
                                             {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
                                         </td>
-                                        <td><Form.Select aria-label="Default select example"
-                                            onChange={(e) => {
-                                                setOrderStatus(e.target.value);
-                                                handleSelectOrderStatus(item.id, e.target.value);
-                                            }}>
-                                            <option value={orderStatus}>New</option>
-                                            <option value={orderStatus}>In progress</option>
-                                            <option value={orderStatus}>Done</option>
-                                        </Form.Select>
+                                        <td>
+                                            <Form.Select
+                                                aria-label="Default select example"
+                                                onChange={(e) => {
+                                                    setOrderStatus(e.target.value);
+                                                    handleSelectOrderStatus(item.id, e.target.value);
+                                                }}
+                                            >
+                                                <option value="New">New</option>
+                                                <option value="In progress">In progress</option>
+                                                <option value="Done">Done</option>
+                                            </Form.Select>
                                         </td>
                                         <td><button onClick={() => handleDeleteOrder(item.id)}>Delete</button></td>
                                     </tr>
