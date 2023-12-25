@@ -155,7 +155,73 @@ function AdminPanel() {
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="products" title={`View Products ${products.length}`}>
+                <Tab eventKey="orders" title={`Orders ${orders.length}`}>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Order date</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Client Phone</th>
+                                <th scope="col">Client email</th>
+                                <th scope="col">Order - product id, quantity, price</th>
+                                <th scope="col">Final price</th>
+                                <th scope="col">Status - completed, in process, new</th>
+                                <th scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders
+                                .filter(item => item.orderStatus !== 'Done')
+                                .map(item => (
+                                    <tr>
+                                        <th scope="row">{item.id}</th>
+                                        <td>{item.orderDate}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.phoneNumber}</td>
+                                        <td>{item.email}</td>
+                                        <td>
+                                            {
+                                                item.cartItems.map(item => (
+                                                    <div className={styles.itemCard}>
+                                                        <div>
+                                                            <h6>{item.quantity} x {item.title}</h6>
+                                                            <div>{item.category} | {item.subcategory}</div>
+                                                            <div>Item ID: {item.id}</div>
+                                                            <div>Size: {item.selectedSize}</div>
+                                                            <div>Color: {item.color}</div>
+                                                        </div>
+
+                                                        <div>{item.currency} {item.price.toFixed(2)}</div>
+                                                    </div>
+
+                                                ))
+                                            }
+                                        </td>
+                                        <td>
+                                            {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
+                                        </td>
+                                        <td>
+                                            <Form.Select
+                                                aria-label="Default select example"
+                                                onChange={(e) => {
+                                                    setOrderStatus(e.target.value);
+                                                    handleSelectOrderStatus(item.id, e.target.value);
+                                                }}
+                                            >
+                                                <option value="New">New</option>
+                                                <option value="In progress">In progress</option>
+                                                <option value="Done">Done</option>
+                                            </Form.Select>
+                                        </td>
+                                        <td><button onClick={() => handleDeleteOrder(item.id)}>Delete</button></td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </table>
+                </Tab>
+
+                <Tab eventKey="products" title={`Products ${products.length}`}>
                     <table class="table">
                         <thead>
                             <tr>
@@ -311,73 +377,85 @@ function AdminPanel() {
                     <button onClick={() => handleAddNewProduct()}>SAVE PRODUCT</button>
                 </Tab>
 
-                <Tab eventKey="orders" title={`Orders ${orders.length}`}>
+                <Tab eventKey="editProducts" title="Edit Products">
+                <div>
+                        <span>Product ID</span>
+                        <input type="text" placeholder='Search product by ID...'/>
+                    </div>
+
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Upload your photos</Form.Label>
+                        <Form.Control type="file"/>
+                        <Form.Control type="file"/>
+                        <Form.Control type="file"/>
+                        <Form.Control type="file"/>
+                        <Form.Control type="file"/>
+                    </Form.Group>
+
+                    <FloatingLabel
+                        controlId="floatingTitle"
+                        label="Product Title"
+                        className="mb-3">
+                        <Form.Control type="text" placeholder="Enter product title..."/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingTitleCode" label="Title Code">
+                        <Form.Control type="text" placeholder="Enter product title code..." />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingColor" label="Color">
+                        <Form.Control type="text" placeholder="Enter product color..." />
+                    </FloatingLabel>
 
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Order date</th>
-                                <th scope="col">Client Name</th>
-                                <th scope="col">Client Phone</th>
-                                <th scope="col">Client email</th>
-                                <th scope="col">Order - product id, quantity, price</th>
-                                <th scope="col">Final price</th>
-                                <th scope="col">Status - completed, in process, new</th>
-                                <th scope="col">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {orders
-                                .filter(item => item.orderStatus !== 'Done')
-                                .map(item => (
-                                    <tr>
-                                        <th scope="row">{item.id}</th>
-                                        <td>{item.orderDate}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.phoneNumber}</td>
-                                        <td>{item.email}</td>
-                                        <td>
-                                            {
-                                                item.cartItems.map(item => (
-                                                    <div className={styles.itemCard}>
-                                                        <div>
-                                                            <h6>{item.quantity} x {item.title}</h6>
-                                                            <div>{item.category} | {item.subcategory}</div>
-                                                            <div>Item ID: {item.id}</div>
-                                                            <div>Size: {item.selectedSize}</div>
-                                                            <div>Color: {item.color}</div>
-                                                        </div>
+                    <FloatingLabel controlId="floatingCategory" label="Category">
+                        <Form.Control type="text" placeholder="" />
+                    </FloatingLabel>
 
-                                                        <div>{item.currency} {item.price.toFixed(2)}</div>
-                                                    </div>
 
-                                                ))
-                                            }
-                                        </td>
-                                        <td>
-                                            {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
-                                        </td>
-                                        <td>
-                                            <Form.Select
-                                                aria-label="Default select example"
-                                                onChange={(e) => {
-                                                    setOrderStatus(e.target.value);
-                                                    handleSelectOrderStatus(item.id, e.target.value);
-                                                }}
-                                            >
-                                                <option value="New">New</option>
-                                                <option value="In progress">In progress</option>
-                                                <option value="Done">Done</option>
-                                            </Form.Select>
-                                        </td>
-                                        <td><button onClick={() => handleDeleteOrder(item.id)}>Delete</button></td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
+                    <FloatingLabel controlId="floatingSubcategory" label="Subcategory">
+                        <Form.Control type="text" placeholder=""/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingSubcategoryCode" label="Subcategory Code">
+                        <Form.Control type="text" placeholder="" />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingSize" label="Size">
+                        <Form.Control type="text" placeholder=""/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingQuantity" label="Quantity">
+                        <Form.Control type="text" placeholder=""/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
+                        <Form.Control type="text" placeholder="" />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingCurrency" label="Currency">
+                        <Form.Control type="text" placeholder="" />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingPrice" label="Price">
+                        <Form.Control type="number" placeholder="" />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingPromo" label="Promo">
+                        <Form.Control type="text" placeholder="" />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingPromoPrice" label="Promo Price">
+                        <Form.Control type="text" placeholder=""/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingDescription" label="Description">
+                        <Form.Control type="textare" placeholder=""/>
+                    </FloatingLabel>
+
+                    <button onClick={() => handleAddNewProduct()}>SAVE</button>
                 </Tab>
+
                 <Tab eventKey="clients" title="Clients">
                     <table class="table">
                         <thead>
