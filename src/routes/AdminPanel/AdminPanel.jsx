@@ -1,7 +1,7 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './AdminPanel.module.css'
-import { products } from '../../products.service';
+import { deleteProduct, products } from '../../products.service';
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useRef, useState } from 'react';
@@ -15,6 +15,8 @@ import { orders } from '../../orders.service';
 import { deleteOrder } from '../../orders.service';
 
 function AdminPanel() {
+    const [productsData, setProductsData] = useState([...products]);
+
     const [newProduct, setNewProduct] = useState({
         id: '',
         imgs: [],
@@ -70,46 +72,48 @@ function AdminPanel() {
         setNewProduct({ ...newProduct, imgs: files });
     };
 
-
     const handleAddNewProduct = () => {
         const newProductData = {
             id: products.length + 1,
-            imgs: imgs,
-            title: title,
-            titleCode: titleCode,
-            color: color,
-            category: category,
-            subcategory: subcategory,
-            subcategoryCode: subcategoryCode,
-            size: size,
-            quantity: quantity,
-            bestSellerStatus: bestSellerStatus,
-            currency: currency,
-            price: price,
-            promo: promo,
-            promoPrice: promoPrice,
-            productDescription: productDescription,
+            imgs: newProduct.imgs || [],
+            title: newProduct.title || '',
+            titleCode: newProduct.titleCode || '',
+            color: newProduct.color || '',
+            category: newProduct.category || '',
+            subcategory: newProduct.subcategory || '',
+            subcategoryCode: newProduct.subcategoryCode || '',
+            size: newProduct.size || '',
+            quantity: newProduct.quantity || '',
+            bestSellerStatus: newProduct.bestSellerStatus || '',
+            currency: newProduct.currency || '',
+            price: newProduct.price || '',
+            promo: newProduct.promo || '',
+            promoPrice: newProduct.promoPrice || '',
+            productDescription: newProduct.productDescription || '',
         };
 
-        setNewProduct(newProductData);
-        products.push(newProductData);
-        setImgs([]);
-        setTitle('');
-        setTitleCode('');
-        setColor('');
-        setCategory('');
-        setSubcategory('');
-        setSubcategoryCode('');
-        setSize('');
-        setQuantity('');
-        setBestSellerStatus('');
-        setCurrency('');
-        setPrice('');
-        setPromo('');
-        setPromoPrice('');
-        setProductDescription('');
-        saveProduct();
+        setProductsData([...products, newProductData]);
 
+        saveProduct(newProductData);
+
+        setNewProduct({
+            id: '',
+            imgs: [],
+            title: '',
+            titleCode: '',
+            color: '',
+            category: '',
+            subcategory: '',
+            subcategoryCode: '',
+            size: '',
+            quantity: '',
+            bestSellerStatus: '',
+            currency: '',
+            price: '',
+            promo: '',
+            promoPrice: '',
+            productDescription: '',
+        });
     };
 
     // const handleSelectOrderStatus = (orderId, selectedStatus) => {
@@ -131,13 +135,18 @@ function AdminPanel() {
         const updatedOrders = ordersInAdminPannel.map((order) =>
             order.id === orderId ? { ...order, orderStatus: selectedStatus } : order
         );
-            setOrdersInAdminPannel(updatedOrders);
+        setOrdersInAdminPannel(updatedOrders);
     };
 
     const handleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
         setOrdersInAdminPannel((prevOrders) => prevOrders.filter(order => order.id !== orderId));
     };
+
+    const handleDeleteProduct = (productId) => {
+        deleteProduct(productId);
+        setProductsData((prevProducts) => prevProducts.filter(product => product.id !== productId))
+    }
 
     return (
         <div className={styles.adminPanelContainer}>
@@ -198,7 +207,7 @@ function AdminPanel() {
                                         <td>{item.productDescription}</td>
                                         <td>
                                             <button>Edit</button>
-                                            <button>Delete</button>
+                                            <button onClick={() => handleDeleteProduct(item.id)}>Delete</button>
                                         </td>
                                     </tr>
                                 ))
@@ -299,7 +308,7 @@ function AdminPanel() {
                             onChange={(e) => setNewProduct({ ...newProduct, productDescription: e.target.value })} />
                     </FloatingLabel>
 
-                    <button onClick={() => handleAddNewProduct(newProduct)}>SAVE PRODUCT</button>
+                    <button onClick={() => handleAddNewProduct()}>SAVE PRODUCT</button>
                 </Tab>
 
                 <Tab eventKey="orders" title={`Orders ${orders.length}`}>
