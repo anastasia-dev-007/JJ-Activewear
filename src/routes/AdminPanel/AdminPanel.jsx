@@ -27,8 +27,8 @@ function AdminPanel() {
         category: '',
         subcategory: '',
         subcategoryCode: '',
-        size: {},
-        quantity: '',
+        size: {S: '', M: '', L: ''},
+        newArrival: '',
         bestSellerStatus: '',
         currency: '',
         price: '',
@@ -47,7 +47,7 @@ function AdminPanel() {
         subcategory: '',
         subcategoryCode: '',
         size: {},
-        quantity: '',
+        newArrival: '',
         bestSellerStatus: '',
         currency: '',
         price: '',
@@ -64,7 +64,7 @@ function AdminPanel() {
     const [subcategory, setSubcategory] = useState('');
     const [subcategoryCode, setSubcategoryCode] = useState('');
     const [size, setSize] = useState('');
-    const [quantity, setQuantity] = useState('');
+    const [newArrival, setNewArrival] = useState('');
     const [bestSellerStatus, setBestSellerStatus] = useState('');
     const [currency, setCurrency] = useState('');
     const [price, setPrice] = useState('');
@@ -103,7 +103,7 @@ function AdminPanel() {
             subcategory: newProduct.subcategory || '',
             subcategoryCode: newProduct.subcategoryCode || '',
             size: newProduct.size || '',
-            quantity: newProduct.quantity || '',
+            newArrival: newProduct.newArrival || '',
             bestSellerStatus: newProduct.bestSellerStatus || '',
             currency: newProduct.currency || '',
             price: newProduct.price || '',
@@ -126,7 +126,7 @@ function AdminPanel() {
             subcategory: '',
             subcategoryCode: '',
             size: '',
-            quantity: '',
+            newArrival: '',
             bestSellerStatus: '',
             currency: '',
             price: '',
@@ -182,7 +182,7 @@ function AdminPanel() {
                 subcategory: foundProduct.subcategory,
                 subcategoryCode: foundProduct.subcategoryCode,
                 size: foundProduct.size || {},
-                quantity: foundProduct.quantity,
+                newArrival: foundProduct.newArrival,
                 bestSellerStatus: foundProduct.bestSellerStatus,
                 currency: foundProduct.currency,
                 price: foundProduct.price,
@@ -389,9 +389,9 @@ function AdminPanel() {
                             onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value })} />
                     </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingQuantity" label="Quantity">
-                        <Form.Control type="text" placeholder="" value={newProduct.quantity}
-                            onChange={(e) => setNewProduct({ ...newProduct, quantity: e.target.value })} />
+                    <FloatingLabel controlId="floatingNewArrival" label="New Arrival">
+                        <Form.Control type="text" placeholder="" value={newProduct.newArrival}
+                            onChange={(e) => setNewProduct({ ...newProduct, newArrival: e.target.value })} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
@@ -475,12 +475,23 @@ function AdminPanel() {
                         <Form.Control type="text" placeholder="" value={editedProduct.subcategoryCode}/>
                     </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingSize" label="Size">
-                        <Form.Control type="text" placeholder="" /> {/**sa ma gandesc cum aici */}
+                    <div>
+                        <h3>Size</h3>
+                    <FloatingLabel controlId="floatingSize" label="SizeS">
+                        <Form.Control type="text" placeholder="" value={editedProduct.size.S}/> {/**sa ma gandesc cum aici */}
                     </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingQuantity" label="Quantity">
-                        <Form.Control type="text" placeholder="" value={editedProduct.quantity}/>
+                    <FloatingLabel controlId="floatingSize" label="SizeM">
+                        <Form.Control type="text" placeholder="" value={editedProduct.size.M}/> {/**sa ma gandesc cum aici */}
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingSize" label="SizeL">
+                        <Form.Control type="text" placeholder="" value={editedProduct.size.L}/> {/**sa ma gandesc cum aici */}
+                    </FloatingLabel>
+                    </div>
+
+                    <FloatingLabel controlId="floatingNewArrival" label="New Arrival">
+                        <Form.Control type="text" placeholder="" value={editedProduct.newArrival}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
