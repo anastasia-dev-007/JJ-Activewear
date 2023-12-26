@@ -851,6 +851,23 @@ export const saveProduct = (product) => {
     }
 };
 
+export const editProduct = (productId, editedProductData) => {
+    const existingProducts = [...products];
+
+    const productIndex = existingProducts.findIndex(product => product.id === productId);
+
+    if (productIndex !== -1) {
+        existingProducts[productIndex] = {
+            ...existingProducts[productIndex],
+            ...editedProductData,
+        };
+
+        saveProduct(existingProducts);
+        return true; 
+    }
+    return ('Product not found'); 
+};
+
 //aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
 export const deleteProduct = (id) => {
     const foundIndex = products.findIndex(product => product.id === id);

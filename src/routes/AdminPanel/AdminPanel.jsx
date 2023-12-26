@@ -1,7 +1,7 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './AdminPanel.module.css'
-import { deleteProduct, getProductById, products } from '../../products.service';
+import { deleteProduct, editProduct, getProductById, products } from '../../products.service';
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useRef, useState } from 'react';
@@ -27,7 +27,7 @@ function AdminPanel() {
         category: '',
         subcategory: '',
         subcategoryCode: '',
-        size: {S: '', M: '', L: ''},
+        size: { S: '', M: '', L: '' },
         newArrival: '',
         bestSellerStatus: '',
         currency: '',
@@ -74,10 +74,8 @@ function AdminPanel() {
     const [orderStatus, setOrderStatus] = useState('new');
     const [ordersInAdminPannel, setOrdersInAdminPannel] = useState([...orders]);
 
-
     const { user } = useContext(UserContext);
     const cartContext = useContext(CartContext); //consumam contextul
-
 
     // useEffect(() => {
     //     if (!user || !user.roles.includes('admin')) {
@@ -196,12 +194,29 @@ function AdminPanel() {
         }
     };
 
+    const { id } = editedProduct;
 
+    const handleEditProduct = (editedProduct) => {
+        const success = editProduct(id, editedProduct);
+    
+        if (success) {
+            console.log('Product edited successfully!');
+        } else {
+            console.error('Product not found for edit');
+        }
+    };
+
+    const handleEditProductChange = (field, value) => {
+        setEditedProduct(prevProduct => ({
+            ...prevProduct,
+            [field]: value,
+        }));
+    };
 
     return (
         <div className={styles.adminPanelContainer}>
             <Tabs
-                defaultActiveKey="products"
+                defaultActiveKey="tabs"
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
@@ -450,75 +465,111 @@ function AdminPanel() {
                         controlId="floatingTitle"
                         label="Product Title"
                         className="mb-3">
-                        <Form.Control type="text" placeholder="Enter product title..." value={editedProduct.title} />
+                        <Form.Control type="text" placeholder="Enter product title..." 
+                        value={editedProduct.title} 
+                        onChange={(e) => handleEditProductChange('title', e.target.value)} //'title': The first argument is a string representing the field you want to update in your state. In this case, it's the 'title' field of the editedProduct state.
+                        />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingTitleCode" label="Title Code">
-                        <Form.Control type="text" placeholder="Enter product title code..." value={editedProduct.titleCode} />
+                        <Form.Control type="text" placeholder="Enter product title code..." 
+                        value={editedProduct.titleCode} 
+                        onChange={(e) => handleEditProductChange('titleCode', e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingColor" label="Color">
-                        <Form.Control type="text" placeholder="Enter product color..." value={editedProduct.color}/>
+                        <Form.Control type="text" placeholder="Enter product color..." 
+                        value={editedProduct.color} 
+                        onChange={(e) => handleEditProductChange('color', e.target.value)} />
                     </FloatingLabel>
 
 
                     <FloatingLabel controlId="floatingCategory" label="Category">
-                        <Form.Control type="text" placeholder="" value={editedProduct.category}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.category} 
+                        onChange={(e) => handleEditProductChange('category', e.target.value)} />
                     </FloatingLabel>
 
-
                     <FloatingLabel controlId="floatingSubcategory" label="Subcategory">
-                        <Form.Control type="text" placeholder="" value={editedProduct.subcategory}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.subcategory} 
+                        onChange={(e) => handleEditProductChange('subcategory', e.target.value)} 
+                        />
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingSubcategoryCode" label="Subcategory Code">
-                        <Form.Control type="text" placeholder="" value={editedProduct.subcategoryCode}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.subcategoryCode}
+                        onChange={(e) => handleEditProductChange('subcategoryCode', e.target.value)}  />
                     </FloatingLabel>
 
                     <div>
                         <h3>Size</h3>
-                    <FloatingLabel controlId="floatingSize" label="SizeS">
-                        <Form.Control type="text" placeholder="" value={editedProduct.size.S}/> {/**sa ma gandesc cum aici */}
-                    </FloatingLabel>
+                        <FloatingLabel controlId="floatingSize" label="SizeS">
+                            <Form.Control type="text" placeholder="" 
+                            value={editedProduct.size.S} 
+                            onChange={(e) => handleEditProductChange('size.S', e.target.value)} /> 
+                            
+                        </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingSize" label="SizeM">
-                        <Form.Control type="text" placeholder="" value={editedProduct.size.M}/> {/**sa ma gandesc cum aici */}
-                    </FloatingLabel>
+                        <FloatingLabel controlId="floatingSize" label="SizeM">
+                            <Form.Control type="text" placeholder="" 
+                            value={editedProduct.size.M} 
+                            onChange={(e) => handleEditProductChange('size.M', e.target.value)} /> 
+                            
+                        </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingSize" label="SizeL">
-                        <Form.Control type="text" placeholder="" value={editedProduct.size.L}/> {/**sa ma gandesc cum aici */}
-                    </FloatingLabel>
+                        <FloatingLabel controlId="floatingSize" label="SizeL">
+                            <Form.Control type="text" placeholder="" 
+                            value={editedProduct.size.L} 
+                            onChange={(e) => handleEditProductChange('size.L', e.target.value)} /> 
+
+                        </FloatingLabel>
                     </div>
 
                     <FloatingLabel controlId="floatingNewArrival" label="New Arrival">
-                        <Form.Control type="text" placeholder="" value={editedProduct.newArrival}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.newArrival} 
+                        onChange={(e) => handleEditProductChange('newArrival', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingBestSellerStatus" label="Best Seller Status">
-                        <Form.Control type="text" placeholder="" value={editedProduct.bestSellerStatus} />
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.bestSellerStatus}
+                        onChange={(e) => handleEditProductChange('bestSellerStatus', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingCurrency" label="Currency">
-                        <Form.Control type="text" placeholder="" value={editedProduct.currency} />
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.currency}
+                        onChange={(e) => handleEditProductChange('currency', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPrice" label="Price">
-                        <Form.Control type="number" placeholder="" value={editedProduct.price} />
+                        <Form.Control type="number" placeholder="" 
+                        value={editedProduct.price} 
+                        onChange={(e) => handleEditProductChange('price', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPromo" label="Promo">
-                        <Form.Control type="text" placeholder="" value={editedProduct.promo}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.promo}
+                        onChange={(e) => handleEditProductChange('promo', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingPromoPrice" label="Promo Price">
-                        <Form.Control type="text" placeholder="" value={editedProduct.promoPrice}/>
+                        <Form.Control type="text" placeholder="" 
+                        value={editedProduct.promoPrice}
+                        onChange={(e) => handleEditProductChange('promoPrice', e.target.value)} /> 
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingDescription" label="Description">
-                        <Form.Control type="textare" placeholder="" value={editedProduct.productDescription}/>
+                        <Form.Control type="textare" placeholder="" 
+                        value={editedProduct.productDescription} 
+                        onChange={(e) => handleEditProductChange('productDescription', e.target.value)} /> 
                     </FloatingLabel>
 
-                    <button>SAVE</button>
+                    <button onClick={editProduct}>SAVE</button>
                 </Tab>
 
                 <Tab eventKey="clients" title="Clients">
