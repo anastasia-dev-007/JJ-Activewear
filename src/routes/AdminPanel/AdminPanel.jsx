@@ -194,23 +194,52 @@ function AdminPanel() {
         }
     };
 
-    const { id } = editedProduct;
-
-    const handleEditProduct = (editedProduct) => {
-        const success = editProduct(id, editedProduct);
-    
-        if (success) {
-            console.log('Product edited successfully!');
-        } else {
-            console.error('Product not found for edit');
-        }
-    };
-
     const handleEditProductChange = (field, value) => {
         setEditedProduct(prevProduct => ({
             ...prevProduct,
             [field]: value,
         }));
+    };
+
+    const editProduct = (field, value) => {
+        // Create a copy of the editedProduct state
+        const updatedProduct = { ...editedProduct, [field]: value };
+        
+        // Update the editedProduct state
+        setEditedProduct(updatedProduct);
+    };
+    
+    const saveEditedProduct = () => {
+        // Assuming products is a state variable containing the list of products
+        const updatedProducts = products.map((product) =>
+            product.id === editedProduct.id ? editedProduct : product
+        );
+    
+        // Update the products state with the edited product
+        setProductsData(updatedProducts);
+    
+        // Save the edited product data to your service
+        saveProduct(editedProduct);
+    
+        // Reset the editedProduct state
+        setEditedProduct({
+            id: '',
+            imgs: [],
+            title: '',
+            titleCode: '',
+            color: '',
+            category: '',
+            subcategory: '',
+            subcategoryCode: '',
+            size: {},
+            newArrival: '',
+            bestSellerStatus: '',
+            currency: '',
+            price: '',
+            promo: '',
+            promoPrice: '',
+            productDescription: '',
+        });
     };
 
     return (
@@ -569,7 +598,7 @@ function AdminPanel() {
                         onChange={(e) => handleEditProductChange('productDescription', e.target.value)} /> 
                     </FloatingLabel>
 
-                    <button onClick={editProduct}>SAVE</button>
+                    <button onClick={saveEditedProduct}>SAVE</button>
                 </Tab>
 
                 <Tab eventKey="clients" title="Clients">
