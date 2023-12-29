@@ -31,14 +31,6 @@ const Checkout = () => {
 
   const { cartItems } = useContext(CartContext);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value)
-  };
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handleCountryChange = (event) => setCountry(event.target.value);
-  const handleAddressChange = (event) => setAddress(event.target.value);
-  const handlePhoneNumberChange = (event) => setPhoneNumber(event.target.value);
-
   const handleOrderSave = () => {
     const totalAmount = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
@@ -95,24 +87,26 @@ const Checkout = () => {
                     id="floatingNameCustom"
                     type="text"
                     placeholder="Name Surname"
-                    // value={name} //am incercat sa utilizez value, dar oricum nu functioneaza
-                    onChange={handleNameChange}
+                    value={name} //am incercat sa utilizez value, dar oricum nu functioneaza
+                    onChange={(event) => setName(event.target.value)}
                   />
                   <label htmlFor="floatingNameCustom">Name Surname</label>
                 </Form.Floating>
 
                 <Form.Floating className="mb-3">
                   <Form.Control
-                    id="floatingEmailustom"
+                    id="floatingEmailCustom"
                     type="email"
                     placeholder="name@example.com"
-                    // value={email} //am incercat sa utilizez email, dar oricum nu functioneaza
-                    onChange={handleEmailChange}
+                    value={email} //am incercat sa utilizez email, dar oricum nu functioneaza
+                    onChange={(event) => setEmail(event.target.value)}
                   />
                   <label htmlFor="floatingEmailCustom">Email address</label>
                 </Form.Floating>
+
                 <Form.Select aria-label="Default select example"
-                  onChange={handleCountryChange}
+                  value={country}
+                  onChange={(event) => setCountry(event.target.value)}
                 >
                   <option>Select country</option>
                   <option value="1">Moldova</option>
@@ -126,7 +120,8 @@ const Checkout = () => {
                     id="floatingAddressCustom"
                     type="text"
                     placeholder="Address"
-                    onChange={handleAddressChange}
+                    values={address}
+                    onChange={(event) => setAddress(event.target.value)}
                   />
                   <label htmlFor="floatingAddressCustom">Address</label>
                 </Form.Floating>
@@ -136,7 +131,8 @@ const Checkout = () => {
                     id="floatingPhoneCustom"
                     type="text"
                     placeholder="+373 79 000 000"
-                    onChange={handlePhoneNumberChange}
+                    value={phoneNumber}
+                    onChange={(event) => setPhoneNumber(event.target.value)}
                   />
                   <label htmlFor="floatingPhoneCustom">Phone number</label>
                 </Form.Floating>
