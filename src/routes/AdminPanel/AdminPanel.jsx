@@ -46,7 +46,11 @@ function AdminPanel() {
         category: '',
         subcategory: '',
         subcategoryCode: '',
-        size: {},
+        size: {
+            S: '',
+            M: '',
+            L: '',
+        },
         newArrival: '',
         bestSellerStatus: '',
         currency: '',
@@ -295,14 +299,14 @@ function AdminPanel() {
                                                             <div>Color: {item.color}</div>
                                                         </div>
 
-                                                        <div>{item.currency} {item.price.toFixed(2)}</div>
+                                                        <div>{item.currency} {parseFloat(item.price).toFixed(2)}</div>
                                                     </div>
 
                                                 ))
                                             }
                                         </td>
                                         <td>
-                                            {item.totalAmount ? `$ ${item.totalAmount.toFixed(2)}` : 'N/A'}
+                                            {item.totalAmount ? `$ ${parseFloat(item.totalAmount).toFixed(2)}` : 'N/A'}
                                         </td>
                                         <td>
                                             <Form.Select
@@ -437,10 +441,23 @@ function AdminPanel() {
                             onChange={(e) => setNewProduct({ ...newProduct, subcategoryCode: e.target.value })} />
                     </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingSize" label="Size">
-                        <Form.Control type="text" placeholder="" value={newProduct.size}
-                            onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value })} />
-                    </FloatingLabel>
+                    <div>
+                        <FloatingLabel controlId="floatingSizeS" label="SizeS">
+                            <Form.Control type="text" placeholder="" value={newProduct.size.S}
+                                onChange={(e) => setNewProduct({ ...newProduct, size: { ...newProduct.size, S: e.target.value } })} />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingSizeM" label="SizeM">
+                            <Form.Control type="text" placeholder="" value={newProduct.size.M}
+                                onChange={(e) => setNewProduct({ ...newProduct, size: { ...newProduct.size, M: e.target.value } })}
+                            />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingSizeL" label="SizeL">
+                            <Form.Control type="text" placeholder="" value={newProduct.size.L}
+                                onChange={(e) => setNewProduct({ ...newProduct, size: { ...newProduct.size, L: e.target.value } })}
+                            />
+                        </FloatingLabel>
+                    </div>
+
 
                     <FloatingLabel controlId="floatingNewArrival" label="New Arrival">
                         <Form.Control type="text" placeholder="" value={newProduct.newArrival}

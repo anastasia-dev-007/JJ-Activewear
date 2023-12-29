@@ -31,7 +31,9 @@ const Checkout = () => {
 
   const { cartItems } = useContext(CartContext);
 
-  const handleNameChange = (event) => setName(event.target.value);
+  const handleNameChange = (event) => {
+    setName(event.target.value)
+  };
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handleCountryChange = (event) => setCountry(event.target.value);
   const handleAddressChange = (event) => setAddress(event.target.value);
@@ -93,6 +95,7 @@ const Checkout = () => {
                     id="floatingNameCustom"
                     type="text"
                     placeholder="Name Surname"
+                    // value={name} //am incercat sa utilizez value, dar oricum nu functioneaza
                     onChange={handleNameChange}
                   />
                   <label htmlFor="floatingNameCustom">Name Surname</label>
@@ -103,6 +106,7 @@ const Checkout = () => {
                     id="floatingEmailustom"
                     type="email"
                     placeholder="name@example.com"
+                    // value={email} //am incercat sa utilizez email, dar oricum nu functioneaza
                     onChange={handleEmailChange}
                   />
                   <label htmlFor="floatingEmailCustom">Email address</label>
@@ -167,7 +171,7 @@ const Checkout = () => {
               <h3>Cart summary</h3>
               {
                 cartItems.map(item => (
-                  <div className={styles.itemCard}>
+                  <div className={styles.itemCard} key={item.id}>
                     <div>
                       <h6>{item.quantity} x {item.title}</h6>
                       <div>{item.category} | {item.subcategory}</div>
@@ -176,7 +180,7 @@ const Checkout = () => {
                       <div>Color: {item.color}</div>
                     </div>
 
-                    <div>{item.currency} {((item.quantity) * (item.price)).toFixed(2)}</div>
+                    <div>{item.currency} {parseFloat((item.quantity) * (item.price)).toFixed(2)}</div>
                   </div>
 
                 ))

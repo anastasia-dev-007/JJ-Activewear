@@ -65,7 +65,7 @@ const Recommendations = () => {
 
             <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
             <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
-            <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
+            <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {parseFloat(item.price).toFixed(2)}</div>
 
             {/* <div className={styles.addToCartAndFavorites}>
               <button className={styles.addToCartBtn} onClick={(item) => addToCart(item)}>Add to favorites <i className="fa-solid fa-cart-shopping"></i>

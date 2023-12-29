@@ -58,9 +58,9 @@ const NavBar = () => {
                         <LoginAndRegistration />
 
                         <Link to='/favorites/' onClick={handleLinkClick}>
-                            <button type="button" class="btn position-relative">
+                            <button type="button" className="btn position-relative">
                                 <i className="fa-regular fa-heart"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     {favoritesContext.items.length >= 1 && favoritesContext.items.length}
                                 </span>
                             </button>
@@ -84,10 +84,10 @@ const NavBar = () => {
 
                         <Link to='/shopping-cart/' onClick={handleLinkClick}>
                             <div className={styles.cartOnNav}>
-                                <button type="button" class="btn position-relative">
+                                <button type="button" className="btn position-relative">
                                     <i className="fa-solid fa-cart-shopping"></i>
                                     {cartContext.cartItems.length > 0 && (
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                             {cartContext.cartItems.reduce((total, item) => total + item.quantity, 0)}
                                         </span>
                                     )}

@@ -94,7 +94,7 @@ const ShoppingCart = () => {
                         </div>
 
                         <div className={styles.price}>
-                        {item.currency} {(item.quantity * item.price).toFixed(2)}
+                        {item.currency} {parseFloat(item.quantity * item.price).toFixed(2)}
                           </div>
                       </div>
 

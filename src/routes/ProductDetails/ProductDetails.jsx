@@ -210,7 +210,7 @@ const ProductDetails = () => {
 
               <div className={styles.itemCode}>Item code: {product.id}</div>
 
-              <h3 className={styles.price}>$ {product.price.toFixed(2)}</h3>
+              <h3 className={styles.price}>$ {parseFloat(product.price).toFixed(2)}</h3>
 
               {product.category === 'Accessories' ? (
                 <></>
@@ -311,7 +311,7 @@ const ProductDetails = () => {
                                 <div>Color: {item.color}</div>
                               </div>
 
-                              <div className={styles.price}> Price: {item.currency} {item.price.toFixed(2)}</div>
+                              <div className={styles.price}> Price: {item.currency} {parseFloat(item.price).toFixed(2)}</div>
                             </div>
 
                             <div className={styles.quantity}>
