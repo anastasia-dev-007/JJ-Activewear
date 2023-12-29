@@ -120,7 +120,7 @@ const Checkout = () => {
                     id="floatingAddressCustom"
                     type="text"
                     placeholder="Address"
-                    values={address}
+                    value={address}
                     onChange={(event) => setAddress(event.target.value)}
                   />
                   <label htmlFor="floatingAddressCustom">Address</label>

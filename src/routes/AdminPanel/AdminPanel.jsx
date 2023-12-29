@@ -244,7 +244,11 @@ function AdminPanel() {
             category: '',
             subcategory: '',
             subcategoryCode: '',
-            size: {},
+            size: {
+                S: '',
+                M: '',
+                L: ''
+            },
             newArrival: '',
             bestSellerStatus: '',
             currency: '',
@@ -563,22 +567,19 @@ function AdminPanel() {
                         <FloatingLabel controlId="floatingSize" label="SizeS">
                             <Form.Control type="text" placeholder=""
                                 value={editedProduct.size.S}
-                                onChange={(e) => handleEditProductChange('size.S', e.target.value)} />
-
+                                onChange={(e) => handleEditProductChange('S', e.target.value)} />
                         </FloatingLabel>
 
                         <FloatingLabel controlId="floatingSize" label="SizeM">
                             <Form.Control type="text" placeholder=""
                                 value={editedProduct.size.M}
-                                onChange={(e) => handleEditProductChange('size.M', e.target.value)} />
-
+                                onChange={(e) => handleEditProductChange('M', e.target.value)} />
                         </FloatingLabel>
 
                         <FloatingLabel controlId="floatingSize" label="SizeL">
                             <Form.Control type="text" placeholder=""
                                 value={editedProduct.size.L}
                                 onChange={(e) => handleEditProductChange('size.L', e.target.value)} />
-
                         </FloatingLabel>
                     </div>
 
