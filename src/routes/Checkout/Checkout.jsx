@@ -144,7 +144,7 @@ const Checkout = () => {
                 {/* <button onClick={() => handleOrderSave()}>PLACE ORDER</button> */}
                 <Button variant="primary" onClick={() => { handleShow(); handleOrderSave(); }}>PLACE ORDER</Button>
 
-                <Modal show={show} onHide={handleClose}>
+                {/* <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>Order confirmation</Modal.Title>
                   </Modal.Header>
@@ -157,7 +157,7 @@ const Checkout = () => {
                       OK
                     </Button>
                   </Modal.Footer>
-                </Modal>
+                </Modal> */}
               </div>
 
 
