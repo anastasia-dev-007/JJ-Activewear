@@ -264,8 +264,7 @@ function AdminPanel() {
             <Tabs
                 defaultActiveKey="tabs"
                 id="uncontrolled-tab-example"
-                className="mb-3"
-            >
+                className="mb-3" >
                 <Tab eventKey="orders" title={`Orders ${orders.length}`}>
                     <table class="table">
                         <thead>

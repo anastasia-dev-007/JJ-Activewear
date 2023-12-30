@@ -10,6 +10,7 @@ import { FavoritesContext } from '../../contexts/favorites.context';
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const [queryParams, setQueryParams] = useSearchParams({ //TOATE FILTRELE MERG PRIN QUERYPARAMS, CI NU PRIN STATE
+    id: '',
     category: '',
     subcategoryCode: '',
     size: '',
@@ -26,6 +27,7 @@ const ProductListing = () => {
 
   //for links from NavBar to ProductDetails
   const filters = { //valorile din acest filters se iau din queryParams
+    id: queryParams.get('id') || '',
     category: queryParams.get('category') || '', //aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
     subcategoryCode: queryParams.get('subcategoryCode') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
     size: queryParams.get('size') || '',//aici peste tot obligatoriu sa pun sau '', caci de altfel cand se punea null el nu afisa produsele cum trebuie
@@ -49,6 +51,7 @@ const ProductListing = () => {
       availability: product.quantity > 0 ? 'Available' : 'Out of Stock'
     }))
       .filter(product => (
+        (!filters.id || filters.id.split(',').includes(product.id.toString())) &&
         (!filters.category || filters.category.split(',').includes(product.category)) && //if there is no filter specified for the category, all products are included in the result because !filters.category would be true. If a filter is specified for the category, then it checks whether the product's category matches the filtered category
         (!filters.subcategoryCode || filters.subcategoryCode.split(',').includes(product.subcategoryCode)) &&
         (!filters.size || filters.size.split(',').includes(product.size)) &&
@@ -60,9 +63,12 @@ const ProductListing = () => {
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
         //searching via navbar logic
         (!filters.search ||
+          (typeof filters.search === 'string' &&
+            data.some(product => product.id.toString() === filters.search)) ||
           product.title.toLowerCase().includes(filters.search.toLowerCase()) ||
           product.category.toLowerCase().includes(filters.search.toLowerCase()) ||
-          product.subcategoryCode.toLowerCase().includes(filters.search.toLowerCase())
+          product.subcategoryCode.toLowerCase().includes(filters.search.toLowerCase()) ||
+          product.color.toLowerCase().includes(filters.search.toLowerCase())
         )
       ));
 
@@ -159,10 +165,10 @@ const ProductListing = () => {
     const colors = filters.color ? filters.color.split(',') : [];
 
     // Toggle the selection
-   const updatedColors = colors.includes(selectedColor.color.toLowerCase())
-  ? colors.filter(color => color !== selectedColor.color.toLowerCase())
-  : [...colors, selectedColor.color.toLowerCase()];
- 
+    const updatedColors = colors.includes(selectedColor.color.toLowerCase())
+      ? colors.filter(color => color !== selectedColor.color.toLowerCase())
+      : [...colors, selectedColor.color.toLowerCase()];
+
 
     setQueryParams({
       ...filters,
