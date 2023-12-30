@@ -139,25 +139,8 @@ const Checkout = () => {
 
               </>
               <p>By clicking the button you agree to the <u>Terms and Conditions</u></p>
-              {/* <CheckoutModal handleOrderSave={handleOrderSave} /> */}
               <div>
-                {/* <button onClick={() => handleOrderSave()}>PLACE ORDER</button> */}
                 <Button variant="primary" onClick={() => { handleShow(); handleOrderSave(); }}>PLACE ORDER</Button>
-
-                {/* <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Order confirmation</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>Your order has been placed successfully!</Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                      OK
-                    </Button>
-                  </Modal.Footer>
-                </Modal> */}
               </div>
 
 
