@@ -63,8 +63,7 @@ const ProductListing = () => {
         (!filters.newArrival || product.newArrival === filters.newArrival) &&
         //searching via navbar logic
         (!filters.search ||
-          (typeof filters.search === 'string' &&
-            data.some(product => product.id.toString() === filters.search)) ||
+          product.id.toString() === filters.search ||
           product.title.toLowerCase().includes(filters.search.toLowerCase()) ||
           product.category.toLowerCase().includes(filters.search.toLowerCase()) ||
           product.subcategoryCode.toLowerCase().includes(filters.search.toLowerCase()) ||
