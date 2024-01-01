@@ -325,6 +325,7 @@ const ProductListing = () => {
 
         <div className={styles.ProductCardsContainer}>
           {
+           products.length > 0 ? (
             products.map(item => (
               //Link-ul lucreaza in felul urmator:
               //Daca ai slash in fata, la <Link to= - el face redirect pe pagina aia
@@ -363,6 +364,9 @@ const ProductListing = () => {
                 </div> */}
               </div>
             ))
+           ) : (
+            <h1>No products found</h1>
+           )
           }
         </div>
       </div>
