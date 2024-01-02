@@ -5,7 +5,7 @@
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 10px 20px;
+    padding: 10px 20px 0;
 }
 
 .placeholder {
@@ -25,7 +25,7 @@
     flex-direction: row;
     align-items: end;
     gap: 15px;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 21px;
     font-weight: 800;
     padding: 0;
@@ -40,7 +40,7 @@
 }
 
 .navBarLogo img {
-    width: 65px;
+    width: 50px;
 }
 
 .navBarLogo p {
@@ -80,7 +80,15 @@
     cursor: pointer;
     list-style: none;
     margin-left: -30px; /*can't find where padding comes from, so resolved it with margin*/
+    font-size: 14px;
 }
+
+.productList .productListItems a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
 
 .dropDownMenu {
     position: relative;

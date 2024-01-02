@@ -382,7 +382,6 @@ function AdminPanel() {
                                         <td>{item.promoPrice}</td>
                                         <td>{item.productDescription}</td>
                                         <td>
-                                            <button>Edit</button>
                                             <button onClick={() => handleDeleteProduct(item.id)}>Delete</button>
                                         </td>
                                     </tr>

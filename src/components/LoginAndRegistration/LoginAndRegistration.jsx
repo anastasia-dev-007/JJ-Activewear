@@ -268,11 +268,6 @@ const LoginAndRegistration = () => {
                                 onChange={handleConfirmedPasswordChange}
                             />
                         </Form.Group>
-
-                        <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Upload your photo</Form.Label>
-                            <Form.Control type="file" onClick={() => setUserPhoto()} />
-                        </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
