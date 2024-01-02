@@ -22,6 +22,9 @@ const ProductListing = () => {
     newArrival: '',
     search: '',
   }); //for links from NavBar to ProductDetails
+
+  const [selectedColors, setSelectedColors] = useState([]);
+
   const cartContext = useContext(CartContext);// consumam contextul
   const favoritesContext = useContext(FavoritesContext);
 
@@ -168,6 +171,7 @@ const ProductListing = () => {
       ? colors.filter(color => color !== selectedColor.color.toLowerCase())
       : [...colors, selectedColor.color.toLowerCase()];
 
+    setSelectedColors(updatedColors);
 
     setQueryParams({
       ...filters,
@@ -296,7 +300,9 @@ const ProductListing = () => {
                         style={{
                           backgroundColor: color.colorCode,
                           color: color.colorCode,
-                          boxShadow: filters.color === color.color ? `0 0 15px ${color.colorCode}` : 'none',
+                          boxShadow: selectedColors.includes(color.color.toLowerCase())
+                            ? `0 0 15px ${color.colorCode}`
+                            : 'none',
                         }}
                         onClick={() => handleColorSelection(color)}
                         checked={filters.color && filters.color.split(',').includes(color.color)}
@@ -325,48 +331,48 @@ const ProductListing = () => {
 
         <div className={styles.ProductCardsContainer}>
           {
-           products.length > 0 ? (
-            products.map(item => (
-              //Link-ul lucreaza in felul urmator:
-              //Daca ai slash in fata, la <Link to= - el face redirect pe pagina aia
-              // Daca nu ai slash in fata, el adauga acel link la linkul existent
-              ////In exemplul cu students lucra din motiv ca:
-              //Noi ne aflam pe pagina /
-              // De pe acea pagina noi am facut redirect pe edit. Practic el la / a adaugat edit si intr-un final a fost /edit
-              // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
-              <div key={item.id} className={styles.productCard}>
-                <Link to={'/product-details/' + item.id}>
-                  <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
-                </Link>
+            products.length > 0 ? (
+              products.map(item => (
+                //Link-ul lucreaza in felul urmator:
+                //Daca ai slash in fata, la <Link to= - el face redirect pe pagina aia
+                // Daca nu ai slash in fata, el adauga acel link la linkul existent
+                ////In exemplul cu students lucra din motiv ca:
+                //Noi ne aflam pe pagina /
+                // De pe acea pagina noi am facut redirect pe edit. Practic el la / a adaugat edit si intr-un final a fost /edit
+                // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
+                <div key={item.id} className={styles.productCard}>
+                  <Link to={'/product-details/' + item.id}>
+                    <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                  </Link>
 
-                <div className={styles.label}>{item.bestSellerStatus}</div>
+                  <div className={styles.label}>{item.bestSellerStatus}</div>
 
-                <div className={styles.favorites}>
-                  <div onClick={() => toggleFavoriteItem(item)}>
-                    {favoritesContext.items.some(favorite => favorite.id === item.id) ? (
-                      // Render a solid heart if the item is in favorites
-                      <i className="fa-solid fa-heart"></i>
-                    ) : (
-                      // Render a regular heart if the item is not in favorites
-                      <i className="fa-regular fa-heart"></i>
-                    )}
+                  <div className={styles.favorites}>
+                    <div onClick={() => toggleFavoriteItem(item)}>
+                      {favoritesContext.items.some(favorite => favorite.id === item.id) ? (
+                        // Render a solid heart if the item is in favorites
+                        <i className="fa-solid fa-heart"></i>
+                      ) : (
+                        // Render a regular heart if the item is not in favorites
+                        <i className="fa-regular fa-heart"></i>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
-                <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
-                <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div>
-                <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price ? `${parseFloat(item.price).toFixed(2)}` : 'N/A'}</div>
+                  <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
+                  <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
+                  <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div>
+                  <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price ? `${parseFloat(item.price).toFixed(2)}` : 'N/A'}</div>
 
-                {/* <div className={styles.addToCartAndFavorites}>
+                  {/* <div className={styles.addToCartAndFavorites}>
                   <button className={styles.addToCartBtn} onClick={(item) => addToCart(item)}>Add to favorites <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </div> */}
-              </div>
-            ))
-           ) : (
-            <h1>No products found</h1>
-           )
+                </div>
+              ))
+            ) : (
+              <h1>No products found</h1>
+            )
           }
         </div>
       </div>
