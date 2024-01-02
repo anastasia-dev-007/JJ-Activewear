@@ -123,22 +123,22 @@ const NavBar = () => {
 
                 <div className={styles.productList}>
                     <ul className={styles.productListItems}>
-                        <li><Link to='/products-list' onClick={handleLinkClick}>CATALOGUE</Link></li>
+                        <li className={styles.mainProductListItems}><Link to='/products-list' onClick={handleLinkClick}>CATALOGUE</Link></li>
 
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span><Link to='/products-list?category=Activewear' onClick={handleLinkClick}>ACTIVEWEAR</Link></span>
+                                <span className={styles.mainProductListItems}><Link to='/products-list?category=Activewear' onClick={handleLinkClick}>ACTIVEWEAR</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tops_and_sport_bras" onClick={handleLinkClick}>Tops & Sport Bras</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=T-shirts" onClick={handleLinkClick}>T-shirts</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=long-sleeve_workout_tops" onClick={handleLinkClick}>Long-sleeve workout tops</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts" onClick={handleLinkClick}>Tennis Shorts</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=leggings_and_yoga_pants" onClick={handleLinkClick}>Leggings & Yoga Pants</Link></li>
-                                            <li><Link to="/products-list?category=Activewear&subcategoryCode=matching_sets" onClick={handleLinkClick}>Matching Sets</Link></li>
-                                            <li><Link to="/products-list?category=Activewear" onClick={handleLinkClick}>All Activewear <i className="fa-solid fa-arrow-right-long"></i></Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=tops_and_sport_bras" onClick={handleLinkClick}>Tops & Sport Bras</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=T-shirts" onClick={handleLinkClick}>T-shirts</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=long-sleeve_workout_tops" onClick={handleLinkClick}>Long-sleeve workout tops</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=tennis_shorts" onClick={handleLinkClick}>Tennis Shorts</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=leggings_and_yoga_pants" onClick={handleLinkClick}>Leggings & Yoga Pants</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear&subcategoryCode=matching_sets" onClick={handleLinkClick}>Matching Sets</Link></li>
+                                            <li className={styles.dropDownMenuListItems}><Link to="/products-list?category=Activewear" onClick={handleLinkClick}>All Activewear <i className="fa-solid fa-arrow-right-long"></i></Link></li>
                                         </ul>
 
                                     </div>
@@ -147,12 +147,12 @@ const NavBar = () => {
                         </li>
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span><Link to='/products-list?category=Swimwear' onClick={handleLinkClick}>SWIMWEAR</Link></span>
+                                <span className={styles.mainProductListItems}><Link to='/products-list?category=Swimwear' onClick={handleLinkClick}>SWIMWEAR</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li id='Swimwear'>
+                                            <li className={styles.dropDownMenuListItems} id='Swimwear'>
                                                 <Link to="/products-list?category=Swimwear" onClick={handleLinkClick}>All Swimwear <i className="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
@@ -162,15 +162,15 @@ const NavBar = () => {
                         </li>
                         <li>
                             <div className={styles.dropDownMenu}>
-                                <span><Link to='/products-list?category=Accessories' onClick={handleLinkClick}>ACCESSORIES</Link></span>
+                                <span className={styles.mainProductListItems}><Link to='/products-list?category=Accessories' onClick={handleLinkClick}>ACCESSORIES</Link></span>
 
                                 <div className={styles.dropDownMenuList}>
                                     <div styles={styles.dropDownMenuContainer}>
                                         <ul>
-                                            <li id='Sport Bags'><Link to="/products-list?category=Accessories&subcategoryCode=sport_bags" onClick={handleLinkClick}>Sport Bags</Link></li>
-                                            <li id='Corsets'><Link to="/products-list?category=Accessories&subcategoryCode=corsets" onClick={handleLinkClick}>Corsets</Link></li>
-                                            <li id='Resistance Bands'><Link to="/products-list?category=Accessories&subcategoryCode=resistance_bands" onClick={handleLinkClick}>Resistance Bands</Link></li>
-                                            <li id='Accessories'>
+                                            <li className={styles.dropDownMenuListItems} id='Sport Bags'><Link to="/products-list?category=Accessories&subcategoryCode=sport_bags" onClick={handleLinkClick}>Sport Bags</Link></li>
+                                            <li className={styles.dropDownMenuListItems} id='Corsets'><Link to="/products-list?category=Accessories&subcategoryCode=corsets" onClick={handleLinkClick}>Corsets</Link></li>
+                                            <li className={styles.dropDownMenuListItems} id='Resistance Bands'><Link to="/products-list?category=Accessories&subcategoryCode=resistance_bands" onClick={handleLinkClick}>Resistance Bands</Link></li>
+                                            <li className={styles.dropDownMenuListItems} id='Accessories'>
                                                 <Link to="/products-list?category=Accessories" onClick={handleLinkClick}>All Accessories <i className="fa-solid fa-arrow-right-long"></i></Link>
                                             </li>
                                         </ul>
