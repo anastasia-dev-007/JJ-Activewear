@@ -223,7 +223,8 @@ const ProductDetails = () => {
                         key={sizeKey}
                         disabled={sizeValue < 1}
                         onClick={() => handleSizeButtonClick(sizeKey)}
-                        className={selectedSize === sizeKey ? styles.selectedSize : ''}
+                        // className={selectedSize === sizeKey ? styles.selectedSize : ''}
+                        className={`${selectedSize === sizeKey ? styles.selectedSize : ''} ${selectedSize === sizeKey ? styles.selectedSizeButton : ''}`}
                       >
                         {sizeKey}
                       </button>
