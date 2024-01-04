@@ -131,7 +131,7 @@ const LoginAndRegistration = () => {
 
 
     const handleLogout = () => {
-        // logout(setUser);
+        // logout(setUser)//to delete;
     };
 
     return (
