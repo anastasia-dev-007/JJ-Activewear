@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .photo {
@@ -46,21 +46,22 @@
 }
 
 .productTitle {
-    font-size: 30px;
+    font-size: 24px;
     border-bottom: 1px solid;
     border-color: rgb(216, 216, 216);
 
 }
 
 .itemCode {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .price {
     border-bottom: 0.1px solid;
     border-color: rgb(216, 216, 216);
-    padding-bottom: 50px;
+    padding-bottom: 35px;
     padding-top: 10px;
+    font-size: 22px;
 }
 
 .sizes,
@@ -72,6 +73,7 @@
     padding: 10px 0;
     border-bottom: 0.1px solid;
     border-color: rgb(216, 216, 216);
+    font-size: 15px;
 }
 
 .sizes button {
@@ -113,7 +115,9 @@
     font-size: 20px;
     border-right: 1px solid;
     border-left: 1px solid;
+    font-size: 14px;
 }
+
 
 .addToCartBtnAndFavorites {
     margin: 30px 0;
@@ -121,7 +125,8 @@
     gap: 10px;
 }
 
-.addToCartBtn, .favoritesBtn button {
+.addToCartBtn,
+.favoritesBtn button {
     padding: 10px;
     background-color: rgba(228, 228, 228, 0.321);
     color: rgb(74, 74, 74);
@@ -130,12 +135,28 @@
 }
 
 .addToCartBtn {
-    width: 100%;
+    width: 200px;
+}
+
+.favoritesBtn button{
+  width: 55px;  
+}
+
+
+.addToCartBtn, .favoritesBtn button{
+    transition: border-color 1.2s, background-color 1.2s, color 0.2s;
+}
+
+.addToCartBtn:hover, .favoritesBtn button:hover {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(221, 221, 221);
+    color: white;
 }
 
 .accordionItem {
     margin-bottom: 20px;
     /*here is something wrong with accordion width. I don't understand where it comes from*/
+    font-size: 12px;
 }
 
 .accordionHeader {
@@ -185,7 +206,7 @@
 }
 
 .buyBtn button {
-width: 100%;
+    width: 100%;
 }
 
 .total {
@@ -193,5 +214,5 @@ width: 100%;
 }
 
 .selectedSizeButton {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }

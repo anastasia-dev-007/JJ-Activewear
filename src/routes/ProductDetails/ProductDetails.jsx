@@ -307,6 +307,7 @@ const ProductDetails = () => {
                               <div className={styles.productInfo}>
                                 <div>{item.title}</div>
                                 <div>{item.category} | {item.subcategory}</div>
+                                <div>Item code: {item.id}</div>
                                 <div>Quantity: {item.quantity}</div>
                                 <div>Size: {item.selectedSize}</div>
                                 <div>Color: {item.color}</div>
@@ -395,12 +396,7 @@ const ProductDetails = () => {
         )
       }
 
-      <div className='similarProducts'>
-        <h3>You might also like</h3>
         <PopularProducts />
-      </div>
-
-      <MightLikeProducts />
 
       <WhyChooseJJ />
     </div>

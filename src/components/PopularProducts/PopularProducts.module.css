@@ -53,6 +53,7 @@
     padding: 0 5px;
     border-radius: 5px;
     color: rgb(96, 95, 95);
+    font-size: 12px;
 }
 
 .favorites i {
@@ -91,3 +92,23 @@ hr {
     transform: scale(1.2);   
   }
   
+/* header format */
+  .cardHeader a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.cardCategory {
+    font-size: 12px;
+}
+
+.cardItemCode {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.cardItemPrice {
+    font-size: 14px;
+    margin-bottom: 5px;
+}

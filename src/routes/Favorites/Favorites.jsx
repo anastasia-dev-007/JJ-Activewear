@@ -7,6 +7,7 @@ import { CartContext } from '../../contexts/cart.context'
 import MightLikeProducts from '../../components/Recommendations/Recommendations'
 import PopularProducts from '../../components/PopularProducts/PopularProducts'
 import RecentlyViewed from '../../components/RecentlyViewed/RecentlyViewed'
+import Recommendations from '../../components/Recommendations/Recommendations'
 
 const Favorites = () => {
   const favoritesContext = useContext(FavoritesContext);
@@ -36,7 +37,7 @@ const Favorites = () => {
         ) : (
           <div> Favorites: {favoritesContext.items.length}</div>)
       }
-      
+
       <div className={styles.ProductCardsContainer}>
         {
           favoritesContext.items.map(item => (
@@ -48,9 +49,11 @@ const Favorites = () => {
             // De pe acea pagina noi am facut redirect pe edit. Practic el la / a adaugat edit si intr-un final a fost /edit
             // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
             <div key={item.id} className={styles.productCard}>
-              <Link to={'/product-details/' + item.id}>
-                <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+             <div className={styles.productImg}>
+             <Link to={'/product-details/' + item.id}>
+                <img className={styles.productPhoto} src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
               </Link>
+             </div>
 
               <div className={styles.label}>{item.bestSellerStatus}</div>
 
@@ -62,12 +65,14 @@ const Favorites = () => {
                 )}
               </div>
 
-              <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
-              <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
-              <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price.toFixed(2)}</div>
+
+
+              <div className={styles.cardHeader}><Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link></div>
+              <div className={styles.cardCategory}>{item.category} | {item.subcategory}</div>
+              <div className={styles.cardItemCode}>Item code: {item.id}</div>
+              {/* <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div> */}
+              <div className={styles.cardItemPrice}>{item.currency} {item.price ? `${parseFloat(item.price).toFixed(2)}` : 'N/A'}</div>
               {/* <button onClick={() => removeItem(item)}>Remove</button> */}
-
-
 
               {/* <div className={styles.addToCartAndFavorites}>
                 <button className={styles.addToCartBtn} onClick={() => addToCart(item)}>Add to cart <i className="fa-solid fa-cart-shopping"></i>
@@ -80,8 +85,7 @@ const Favorites = () => {
 
 
       <PopularProducts />
-
-      <RecentlyViewed />
+      <Recommendations/>
     </div>
   )
 }

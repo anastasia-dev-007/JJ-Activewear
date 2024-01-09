@@ -342,9 +342,9 @@ const ProductListing = () => {
                 // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
                 <div key={item.id} className={styles.productCard}>
                   <Link to={'/product-details/' + item.id}>
-                   <div className={styles.productImg}>
-                   <img className={styles.productPhoto} src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
-                   </div>
+                    <div className={styles.productImg}>
+                      <img className={styles.productPhoto} src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                    </div>
                   </Link>
 
                   <div className={styles.label}>{item.bestSellerStatus}</div>
@@ -361,10 +361,11 @@ const ProductListing = () => {
                     </div>
                   </div>
 
-                  <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
-                  <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
-                  <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div>
-                  <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {item.price ? `${parseFloat(item.price).toFixed(2)}` : 'N/A'}</div>
+                  <div className={styles.cardHeader}><Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link></div>
+                  <div className={styles.cardCategory}>{item.category} | {item.subcategory}</div>
+                  <div className={styles.cardItemCode}>Item code: {item.id}</div>
+                  {/* <div style={{ fontSize: '12px', marginBottom: '5px' }}>Color: {item.color}</div> */}
+                  <div className={styles.cardItemPrice}>{item.currency} {item.price ? `${parseFloat(item.price).toFixed(2)}` : 'N/A'}</div>
 
                   {/* <div className={styles.addToCartAndFavorites}>
                   <button className={styles.addToCartBtn} onClick={(item) => addToCart(item)}>Add to favorites <i className="fa-solid fa-cart-shopping"></i>
