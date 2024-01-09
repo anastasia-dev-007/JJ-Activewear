@@ -19,7 +19,8 @@ const PopularProducts = () => {
 
   return (
     <div className={styles.popularProductsWrapper}>
-      <h3>Popular Products</h3>
+      <h3 className={styles.header}>Popular Products</h3>
+      <hr/>
       <div className={styles.popularProductsContainer}>
         {/* <i class="fa-solid fa-chevron-left" ></i> */}
         {products.filter(item => item.bestSellerStatus === 'Best Seller')
@@ -29,7 +30,7 @@ const PopularProducts = () => {
               <div key={item.id} className={styles.productCard}>
                 <Link to={'/product-details/' + item.id} onClick={handleLinkClick}>
                   <div className={styles.popularProductImg}>
-                    <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                    <img className={styles.popularProductPhoto} src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
                   </div>
                 </Link>
 
@@ -48,7 +49,8 @@ const PopularProducts = () => {
                 </div>
 
                 <Link to={'/product-details/' + item.id} style={{ fontWeight: '600px' }}>{item.title}</Link>
-                <div style={{ fontSize: '12px', marginBottom: '5px' }}>{item.category} | {item.subcategory}</div>
+                <div style={{ fontSize: '12px'}}>{item.category} | {item.subcategory}</div>
+                <div style={{ fontSize: '12px', marginBottom: '5px' }}>Item code: {item.id}</div>
                 <div style={{ fontSize: '14px', marginBottom: '5px' }}>{item.currency} {parseFloat(item.price).toFixed(2)}</div>
 
                 {/* <div className={styles.addToCartAndFavorites}>

@@ -67,3 +67,27 @@
     top: 2%;
     right: 4%;
 }
+
+.header {
+    font-size: 21px;
+}
+
+hr {
+    margin-bottom: 20px;
+}
+
+/* making zooming pictures */
+.popularProductImg {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+  
+  .popularProductPhoto {
+    transition: transform 0.5s ease;
+  }
+  
+  .popularProductImg:hover .popularProductPhoto {
+    transform: scale(1.2);   
+  }
+  
