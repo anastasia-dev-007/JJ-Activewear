@@ -31,7 +31,7 @@ const MyCarousel = () => {
 
         <div>
           <img src={"/assets/logo1wh.png"} alt="logo3" width='100px' />
-          <h1>ACTIVEWEAR</h1>
+          <h1 className={styles.header}>ACTIVEWEAR</h1>
         </div>
 
           <div className={styles.carouselText}>
@@ -40,9 +40,9 @@ const MyCarousel = () => {
               Our trendy and functional designs are made with high-quality materials to help you achieve your fitness goals in style.
             </p>
           </div>
-
+          
           <Link to="/product-list">
-            <a href='#'>SHOP NOW</a>
+            <a href='#' className={styles.shopButton}>SHOP NOW</a>
           </Link>
         </div>
       </div>
