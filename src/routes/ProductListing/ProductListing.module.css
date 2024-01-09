@@ -124,3 +124,17 @@
     height: 30px;
 }
 
+/* making zooming pictures */
+.productImg {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+  
+  .productPhoto {
+    transition: transform 0.5s ease;
+  }
+  
+  .productImg:hover .productPhoto {
+    transform: scale(1.2);   
+  }

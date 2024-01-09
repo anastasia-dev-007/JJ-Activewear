@@ -342,7 +342,9 @@ const ProductListing = () => {
                 // Daca ne aflam pe alta pagina, de ex. details, si am fi utilizat doar edit era sa fie details/edit
                 <div key={item.id} className={styles.productCard}>
                   <Link to={'/product-details/' + item.id}>
-                    <img src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                   <div className={styles.productImg}>
+                   <img className={styles.productPhoto} src={Array.isArray(item.imgs) && item.imgs.length > 0 ? `/assets${item.imgs[0]}` : ''} alt="" />
+                   </div>
                   </Link>
 
                   <div className={styles.label}>{item.bestSellerStatus}</div>
