@@ -13,6 +13,11 @@ import { useContext } from 'react';
 import AdminPanel from './routes/AdminPanel/AdminPanel';
 import { UserContext } from './contexts/user.context';
 import ScrollToTopBtn from './components/ScrollToTopBtn/ScrollToTopBtn';
+import Orders from './routes/Orders/Orders';
+import Clients from './routes/Clients/Clients';
+import Products from './routes/Products/Products';
+import AddNewProduct from './routes/AddNewProduct/AddNewProduct';
+import EditProduct from './routes/EditProduct/EditProduct';
 
 
 function App() {
@@ -34,7 +39,13 @@ function App() {
           {/* {userContext.user === null ? (<></>) : ()}*/}
           <Route path='/shopping-cart' element={<ShoppingCart />} />
           {userContext.user !== null && userContext.user.role === 'admin' && (
-            <Route path='/admin-panel' element={<AdminPanel />} />
+            <Route path='/admin-panel' element={<AdminPanel />} >
+              <Route path='orders' Component={Orders} />
+              <Route path='products' Component={Products} />
+              <Route path='addProducts' Component={AddNewProduct} />
+              <Route path='editProducts' Component={EditProduct} />
+              <Route path='clients' Component={Clients} />
+            </Route>
           )}
           <Route path='*' element={<>Page not found</>}></Route>
         </Routes>

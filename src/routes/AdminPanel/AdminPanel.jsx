@@ -10,12 +10,13 @@ import Products from '../Products/Products';
 import AddNewProduct from '../AddNewProduct/AddNewProduct';
 import EditProduct from '../EditProduct/EditProduct';
 import Clients from '../Clients/Clients';
+import { Link, Outlet } from 'react-router-dom';
 
 function AdminPanel() {
     const [ordersLength, setOrdersLength] = useState(null);
     const [productsLength, setProductsLength] = useState(null);
 
-    useEffect (() => {
+    useEffect(() => {
         const orders = fetchOrders();
         const products = getProducts();
 
@@ -24,7 +25,20 @@ function AdminPanel() {
     }, [])
     return (
         <div className={styles.adminPanelContainer}>
-            <Tabs
+
+            <nav>
+                <ul>
+                    <li><Link to="orders">Orders</Link></li>
+                    <li><Link to="products">Products</Link></li>
+                    <li><Link to="addProducts">addProducts</Link></li>
+                    <li><Link to="editProducts">editProducts</Link></li>
+                    <li><Link to="clients">Clients</Link></li>
+                </ul>
+            </nav>
+
+            <Outlet />
+
+            {/* <Tabs
                 defaultActiveKey="tabs"
                 id="uncontrolled-tab-example"
                 className="mb-3" >
@@ -47,7 +61,7 @@ function AdminPanel() {
                 <Tab eventKey="clients" title="Clients">
                     <Clients />
                 </Tab>
-            </Tabs>
+            </Tabs> */}
         </div>
     );
 }
