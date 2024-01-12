@@ -31,7 +31,6 @@ function AdminPanel() {
                     <li><Link to="orders">Orders</Link></li>
                     <li><Link to="products">Products</Link></li>
                     <li><Link to="addProducts">addProducts</Link></li>
-                    <li><Link to="editProducts">editProducts</Link></li>
                     <li><Link to="clients">Clients</Link></li>
                 </ul>
             </nav>

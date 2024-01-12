@@ -43,7 +43,7 @@ function App() {
               <Route path='orders' Component={Orders} />
               <Route path='products' Component={Products} />
               <Route path='addProducts' Component={AddNewProduct} />
-              <Route path='editProducts' Component={EditProduct} />
+              <Route path='editProducts/:id' Component={EditProduct} />
               <Route path='clients' Component={Clients} />
             </Route>
           )}

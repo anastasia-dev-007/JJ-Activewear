@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { deleteProduct, getProducts } from "../../products.service";
+import { Link } from "react-router-dom";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
 
-//din baza de date noi luam obligatoriu in urmatorul mod:
+    //din baza de date noi luam obligatoriu in urmatorul mod:
     useEffect(() => {
         const data = getProducts(); //tinem valorile din baza de date
         setProducts(data); //actualizam datele care vin din ace service
@@ -43,32 +44,33 @@ export default function Products() {
             </thead>
             <tbody>
                 {products.map(item => (
-                        <tr key={item.id}>
-                            <th scope="row">{item.id}</th>
-                            <td>{item.imgs[0]}</td>
-                            <td>{item.imgs}</td>
-                            <td>{item.title}</td>
-                            <td>{item.titleCode}</td>
-                            <td>{item.color}</td>
-                            <td>{item.category}</td>
-                            <td>{item.subcategory}</td>
-                            <td>{item.subcategoryCode}</td>
-                            <td>{item.size.S}</td>
-                            <td>{item.size.M}</td>
-                            <td>{item.size.L}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.bestSellerStatus}</td>
-                            <td>{item.newArrival}</td>
-                            <td>{item.currency}</td>
-                            <td>{item.price}</td>
-                            <td>{item.promo}</td>
-                            <td>{item.promoPrice}</td>
-                            <td>{item.productDescription}</td>
-                            <td>
-                                <button onClick={() => handleDeleteProduct(item.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))
+                    <tr key={item.id}>
+                        <th scope="row">{item.id}</th>
+                        <td>{item.imgs[0]}</td>
+                        <td>{item.imgs}</td>
+                        <td>{item.title}</td>
+                        <td>{item.titleCode}</td>
+                        <td>{item.color}</td>
+                        <td>{item.category}</td>
+                        <td>{item.subcategory}</td>
+                        <td>{item.subcategoryCode}</td>
+                        <td>{item.size.S}</td>
+                        <td>{item.size.M}</td>
+                        <td>{item.size.L}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.bestSellerStatus}</td>
+                        <td>{item.newArrival}</td>
+                        <td>{item.currency}</td>
+                        <td>{item.price}</td>
+                        <td>{item.promo}</td>
+                        <td>{item.promoPrice}</td>
+                        <td>{item.productDescription}</td>
+                        <td>
+                            <button><Link to={"/admin-panel/editProducts/" + item.id}>Edit</Link></button>
+                            <button onClick={() => handleDeleteProduct(item.id)}>Delete</button>
+                        </td>
+                    </tr>
+                ))
                 }
             </tbody>
         </table>
