@@ -45,3 +45,6 @@ export const saveOrder = (order) => {
     }
 };
   
+export const fetchOrders = () => {
+  return orders;
+}

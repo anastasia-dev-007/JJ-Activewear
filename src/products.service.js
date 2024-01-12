@@ -674,7 +674,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Corsets',
         subcategoryCode: 'corsets',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -692,7 +692,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -710,7 +710,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -728,7 +728,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -746,7 +746,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -764,7 +764,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Sport Bags',
         subcategoryCode: 'sport_bags',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -782,7 +782,7 @@ export const products = [
         category: 'Accessories',
         subcategory: 'Resistance Bands',
         subcategoryCode: 'resistance_bands',
-        size: {nosize: 15},
+        size: { nosize: 15 },
         bestSellerStatus: '',
         newArrival: 'N', //'Y' and 'N' 
         currency: '$',
@@ -792,6 +792,29 @@ export const products = [
         productDescription: '',
     },
 ];
+
+export const emptyProduct = {
+    id: '',
+    imgs: [],
+    title: '',
+    titleCode: '',
+    color: '',
+    category: '',
+    subcategory: '',
+    subcategoryCode: '',
+    size: {
+        S: '',
+        M: '',
+        L: '',
+    },
+    newArrival: '',
+    bestSellerStatus: '',
+    currency: '',
+    price: '',
+    promo: '',
+    promoPrice: '',
+    productDescription: '',
+};
 
 export const getProducts = () => {
     return products;
@@ -863,9 +886,9 @@ export const editProduct = (productId, editedProductData) => {
         };
 
         saveProduct(existingProducts);
-        return true; 
+        return true;
     }
-    return ('Product not found'); 
+    return ('Product not found');
 };
 
 //aceatsa functie va gasi indexul produsului si il va sterge prin splice -anume item de pe acel index
@@ -914,38 +937,37 @@ export const updateProductByReducing = (id, size, quantity) => {
 
 export const updateProductByIncreasing = (id, size, quantity) => {
     const index = products.findIndex((item) => item.id === id);
-  
+
     if (index !== -1) {
-      // Check if the size exists for the product
-      if (products[index].size && products[index].size[size] !== undefined) {
-        // Check if the quantity is non-negative
-        if (quantity >= 0) {
-          // Add the quantity to the specified size
-          products[index].size[size] += quantity;
-  
-          // Return the updated product
-          return products[index];
+        // Check if the size exists for the product
+        if (products[index].size && products[index].size[size] !== undefined) {
+            // Check if the quantity is non-negative
+            if (quantity >= 0) {
+                // Add the quantity to the specified size
+                products[index].size[size] += quantity;
+
+                // Return the updated product
+                return products[index];
+            } else {
+                return 'Invalid quantity. Quantity must be non-negative.';
+            }
         } else {
-          return 'Invalid quantity. Quantity must be non-negative.';
+            return 'Size not found for the product';
         }
-      } else {
-        return 'Size not found for the product';
-      }
     }
-  
+
     return 'Product not found';
-  };
+};
 
 export const checkIfProductIsAvailable = (id, size, quantity) => {
     const index = products.findIndex(item => item.id === id);//gasim acest index
 
     if (index !== -1) { //verificam daca indexul exista
-           return products[index].size[size] >= quantity; //returnam daca disponibilitatea lui este mai mare decat cantitatea
-        } else {
-            return false;
-        }
-    };
-
+        return products[index].size[size] >= quantity; //returnam daca disponibilitatea lui este mai mare decat cantitatea
+    } else {
+        return false;
+    }
+};
 
 // products.service.js
 

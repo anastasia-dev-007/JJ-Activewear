@@ -16,7 +16,7 @@ export const users = [
         birthDate: new Date(),
         email: 'test@test.com',
         password: 'test',
-    },  
+    },
 ];
 
 //Functia findUserByEmailAndPassword trebuie sa fie apelata cand dam click pe Login, ea ne gaseste acest user in baza de date
@@ -31,8 +31,8 @@ export const saveUser = (user) => {
     const userExists = users.some(item => item.email === user.email)//verificam daca cel putin un utilizator cu asa username/email exista
 
     if (userExists) {
-    //    alert('User exists');//aceatsa va fi o errore
-    return null;
+        //    alert('User exists');//aceatsa va fi o errore
+        return null;
     } else {
         users.push(user);
         return user;
@@ -58,3 +58,7 @@ export const loginUser = (email, password, users, setUser) => {
 export const logoutUser = (setUser) => {
     setUser(null);
 };
+
+export const getUsers = () => {
+    return users;
+}
