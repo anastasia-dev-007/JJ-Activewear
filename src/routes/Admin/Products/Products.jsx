@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteProduct, getProducts } from "../../products.service";
+import { deleteProduct, getProducts } from "../../../products.service";
 import { Link } from "react-router-dom";
 
 export default function Products() {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteOrder, fetchOrders } from "../../orders.service";
+import { deleteOrder, fetchOrders } from "../../../orders.service";
 import styles from '../AdminPanel/AdminPanel.module.css';
 import Form from 'react-bootstrap/Form';//for Modal;
 

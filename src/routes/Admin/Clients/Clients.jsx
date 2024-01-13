@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../../users.service";
+import { getUsers } from "../../../users.service";
 
 export default function Clients() {
     //sa memorez ca pentru a chema datele din baza de date de pe service trebuie sa creez in acel service o functie like:

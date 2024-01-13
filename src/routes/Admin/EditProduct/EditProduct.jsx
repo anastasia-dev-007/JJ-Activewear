@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useEffect, useState } from 'react';
-import { emptyProduct, getProductById, saveProduct } from '../../products.service';
+import { emptyProduct, getProductById, saveProduct } from '../../../products.service';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProduct() {

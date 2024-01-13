@@ -1,15 +1,10 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import styles from './AdminPanel.module.css'
-import { getProducts } from '../../products.service';
+import styles from '../AdminPanel/AdminPanel.module.css'
+import { getProducts } from '../../../products.service';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { fetchOrders } from '../../orders.service';
-import Orders from '../Orders/Orders';
-import Products from '../Products/Products';
-import AddNewProduct from '../AddNewProduct/AddNewProduct';
-import EditProduct from '../EditProduct/EditProduct';
-import Clients from '../Clients/Clients';
+import { fetchOrders } from '../../../orders.service';
 import { Link, Outlet } from 'react-router-dom';
 
 function AdminPanel() {
@@ -23,7 +18,7 @@ function AdminPanel() {
         setOrdersLength(orders.length);
         setProductsLength(products.length);
     }, []);
-    
+
     return (
         <div className={styles.adminPanelContainer}>
 

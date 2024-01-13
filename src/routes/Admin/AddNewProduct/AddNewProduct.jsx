@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useEffect, useRef, useState } from 'react';
-import { emptyProduct, getProducts, saveProduct } from '../../products.service';
+import { emptyProduct, getProducts, saveProduct } from '../../../products.service';
 
 export default function AddNewProduct() {
     const [newProduct, setNewProduct] = useState(emptyProduct);

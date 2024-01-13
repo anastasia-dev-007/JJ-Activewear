@@ -10,14 +10,14 @@ import Checkout from './routes/Checkout/Checkout';
 import OrderConfirmation from './routes/OrderConfirmation/OrderConfirmation';
 import Favorites from './routes/Favorites/Favorites';
 import { useContext } from 'react';
-import AdminPanel from './routes/AdminPanel/AdminPanel';
+import AdminPanel from './routes/Admin/AdminPanel/AdminPanel';
 import { UserContext } from './contexts/user.context';
 import ScrollToTopBtn from './components/ScrollToTopBtn/ScrollToTopBtn';
-import Orders from './routes/Orders/Orders';
-import Clients from './routes/Clients/Clients';
-import Products from './routes/Products/Products';
-import AddNewProduct from './routes/AddNewProduct/AddNewProduct';
-import EditProduct from './routes/EditProduct/EditProduct';
+import Orders from './routes/Admin/Orders/Orders';
+import Clients from './routes/Admin/Clients/Clients';
+import Products from './routes/Admin/Products/Products';
+import AddNewProduct from './routes/Admin/AddNewProduct/AddNewProduct';
+import EditProduct from './routes/Admin/EditProduct/EditProduct';
 
 
 function App() {
