@@ -1,10 +1,16 @@
 import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useRef, useState } from 'react';
-import { emptyProduct, saveProduct } from '../../products.service';
+import { useEffect, useRef, useState } from 'react';
+import { emptyProduct, getProducts, saveProduct } from '../../products.service';
 
 export default function AddNewProduct() {
-       const [newProduct, setNewProduct] = useState(emptyProduct);
+    const [newProduct, setNewProduct] = useState(emptyProduct);
+    const [productsLength, setProductsLength] = useState(null);
+
+    useEffect(() => {
+        const products = getProducts();
+        setProductsLength(products.length);
+    }, []);
 
     const fileInputRef = useRef(null);
 
@@ -15,16 +21,17 @@ export default function AddNewProduct() {
 
     const handleAddNewProduct = () => {
         saveProduct(newProduct);//salvez in baza de date
+        alert('Product added successfully!')
         setNewProduct(emptyProduct); //resetez formularul
         //spoate de adaugat mesaj de succes sau eroare
     };
 
     return (
         <div>
-            {/* <div>
+            <div>
                 <span>Product ID</span>
-                <input type="text" disabled value={products.length + 1} />
-            </div> */}
+                <input type="text" disabled value={productsLength + 1} />
+            </div>
 
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Upload your photos</Form.Label>

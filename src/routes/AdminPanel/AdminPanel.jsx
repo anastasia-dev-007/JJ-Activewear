@@ -22,15 +22,15 @@ function AdminPanel() {
 
         setOrdersLength(orders.length);
         setProductsLength(products.length);
-    }, [])
+    }, []);
+    
     return (
         <div className={styles.adminPanelContainer}>
 
             <nav>
                 <ul>
-                    <li><Link to="orders">Orders</Link></li>
-                    <li><Link to="products">Products</Link></li>
-                    <li><Link to="addProducts">addProducts</Link></li>
+                    <li><Link to="orders">Orders {ordersLength}</Link></li>
+                    <li><Link to="products">Products {productsLength}</Link></li>
                     <li><Link to="clients">Clients</Link></li>
                 </ul>
             </nav>

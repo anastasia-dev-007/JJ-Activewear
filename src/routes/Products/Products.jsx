@@ -17,7 +17,10 @@ export default function Products() {
     };
 
     return (
-        <table class="table">
+      <div>
+<button><Link to="/admin-panel/addProducts">Add new item</Link></button>
+
+          <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Product ID</th>
@@ -74,5 +77,6 @@ export default function Products() {
                 }
             </tbody>
         </table>
+      </div>
     );
 }

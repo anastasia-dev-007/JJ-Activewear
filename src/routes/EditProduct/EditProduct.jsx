@@ -2,11 +2,12 @@ import Form from 'react-bootstrap/Form';//for Modal
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useEffect, useState } from 'react';
 import { emptyProduct, getProductById, saveProduct } from '../../products.service';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProduct() {
     const [editedProduct, setEditedProduct] = useState(emptyProduct);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const foundProduct = getProductById(+id);
@@ -32,16 +33,35 @@ export default function EditProduct() {
     const saveEditedProduct = () => {
         // Save the edited product data to your service
         saveProduct(editedProduct);
-
+        alert('Product saved successfully!');
+        navigate("/admin-panel/products");
         // Reset the editedProduct state
         setEditedProduct(emptyProduct);
 
         //de adaugat mesaj de eraore sau succes
     };
 
+    const handleProductSizeChange = (size, value) => {
+        setEditedProduct(prevProduct => ({
+            ...prevProduct,
+            size: {
+                ...prevProduct.size,
+                [size]: value,
+            },
+        }));
+    };
+
     return (
         <div>
-
+            <FloatingLabel
+                controlId="floatingTitle"
+                label="Product ID"
+                className="mb-3">
+                <Form.Control type="text" placeholder="Enter product ID..."
+                    value={editedProduct.id}
+                    onChange={(e) => handleEditProductChange('id', e.target.value)}
+                />
+            </FloatingLabel>
 
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Upload your photos</Form.Label>
@@ -99,19 +119,19 @@ export default function EditProduct() {
                 <FloatingLabel controlId="floatingSize" label="SizeS">
                     <Form.Control type="text" placeholder=""
                         value={editedProduct.size.S}
-                        onChange={(e) => handleEditProductChange('S', e.target.value)} />
+                        onChange={(e) => handleProductSizeChange('S', e.target.value)} />
                 </FloatingLabel>
 
                 <FloatingLabel controlId="floatingSize" label="SizeM">
                     <Form.Control type="text" placeholder=""
                         value={editedProduct.size.M}
-                        onChange={(e) => handleEditProductChange('M', e.target.value)} />
+                        onChange={(e) => handleProductSizeChange('M', e.target.value)} />
                 </FloatingLabel>
 
                 <FloatingLabel controlId="floatingSize" label="SizeL">
                     <Form.Control type="text" placeholder=""
                         value={editedProduct.size.L}
-                        onChange={(e) => handleEditProductChange('size.L', e.target.value)} />
+                        onChange={(e) => handleProductSizeChange('L', e.target.value)} />
                 </FloatingLabel>
             </div>
 
