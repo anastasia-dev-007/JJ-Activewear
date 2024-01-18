@@ -271,24 +271,6 @@ const ProductListing = () => {
                 </Accordion.Item>
               ))}
 
-              {/**Size Filter */}
-              {/* <Accordion.Item eventKey="sizeFilter">
-                <Accordion.Header>Size</Accordion.Header>
-                <Accordion.Body >
-                  {SizesAccordionData.map((item) => (
-                    <div key={item.id}>
-                      <input
-                        type='checkbox'
-                        // checked={filters.size === item.size}
-                        checked={filters.size && filters.size.split(',').includes(item.size)}
-                        onChange={() => handleSizeSelection(item.size)}
-                      />
-                      <span>{item.size}</span>
-                    </div>
-                  ))}
-                </Accordion.Body>
-              </Accordion.Item> */}
-
               {/**Color Filter */}
               <Accordion.Item eventKey="colorFilter">
                 <Accordion.Header>Color</Accordion.Header>
@@ -381,11 +363,6 @@ const ProductListing = () => {
       </div>
 
       <button className={styles.BtnMore}>More</button>
-
-      <div className='recentlyViewed'>
-        <h3>Recently Viewed Products</h3>
-        <div className='fiveCards'></div>
-      </div>
     </div>
   )
 }

@@ -234,18 +234,6 @@ const ProductDetails = () => {
                 </div>
               )}
 
-              {/* <div className={styles.colors}>
-                <header>Color</header>
-                <div className={styles.colorCircles}>
-                  {
-                    colors.map(
-                      item => (
-                        <button key={item.id} style={{ backgroundColor: item.title }}></button>
-                      ))
-                  }
-                </div>
-              </div> */}
-
               <div className={styles.quantity}>
                 <header>Quantity</header>
                 <div className={styles.quantityPanel}>
@@ -270,13 +258,6 @@ const ProductDetails = () => {
               )}
 
               <div className={styles.addToCartBtnAndFavorites}>
-
-                {/* <Button variant="primary" onClick={handleShow}>
-                  <button className={styles.addToCartBtn}
-                    onClick={() => addToCart(product)}
-                  >Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                </Button> */}
-
 
                 <div variant="primary" onClick={handleShow}>
                   <button disabled={quantity === 0 || !selectedSize} className={styles.addToCartBtn}
@@ -389,14 +370,12 @@ const ProductDetails = () => {
                   </Accordion.Item>
                 </Accordion>
               ))}
-
-
             </div>
           </div>
         )
       }
 
-        <PopularProducts />
+      <PopularProducts />
 
       <WhyChooseJJ />
     </div>

@@ -818,7 +818,7 @@ export const emptyProduct = {
 
 export const getProducts = () => {
     return products;
-}
+};
 
 //cream structura generala pentru a adauga aici produse noi
 export const getProductById = (id) => {

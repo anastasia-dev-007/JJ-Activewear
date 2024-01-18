@@ -12,12 +12,6 @@ export default function AddNewProduct() {
         setProductsLength(products.length);
     }, []);
 
-    const fileInputRef = useRef(null);
-
-    const handleFileChange = (e) => {
-        const files = Array.from(e.target.files);
-        setNewProduct({ ...newProduct, imgs: files });
-    };
 
     const handleAddNewProduct = () => {
         saveProduct(newProduct);//salvez in baza de date
@@ -32,15 +26,6 @@ export default function AddNewProduct() {
                 <span>Product ID</span>
                 <input type="text" disabled value={productsLength + 1} />
             </div>
-
-            <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Upload your photos</Form.Label>
-                <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-                <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-                <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-                <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-                <Form.Control type="file" ref={fileInputRef} onChange={handleFileChange} multiple />
-            </Form.Group>
 
             <FloatingLabel
                 controlId="floatingTitle"
