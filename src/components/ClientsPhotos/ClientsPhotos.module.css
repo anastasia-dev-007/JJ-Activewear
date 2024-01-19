@@ -43,3 +43,15 @@ hr {
     cursor: pointer;
 }
 
+.instagramLogo {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.instagramLogo img {
+    width: 3%;
+    height: 3%;
+}
+

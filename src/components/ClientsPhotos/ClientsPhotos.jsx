@@ -10,7 +10,10 @@ const ClientsPhotos = () => {
                 <h2 className={styles.header}>Bought our products? Share your picture on our web-page!</h2>
                 <hr />
 
-                <p>Mention us on Instagram @jj.activewear</p>
+                <div className={styles.instagramLogo}>
+                    <img src="/assets/instagram/Instagram_icon.png" alt="" />
+                    <p>Mention us on Instagram <a href='https://www.instagram.com/jj.activewear/'>@jj.activewear</a></p>
+                </div>
 
                 <div className={styles.photosContainer}>
                     <div><img src="/assets/instagram/Screenshot_1.png" alt="" /></div>
@@ -31,11 +34,11 @@ const ClientsPhotos = () => {
                     <div><img src="/assets/instagram/Screenshot_8.png" alt="" /></div>
                     <div><img src="/assets/instagram/Screenshot_9.png" alt="" /></div>
                     <div className={styles.upload}>
-                        <i style={{ fontSize: "40px"}} className="fa-solid fa-arrow-up-from-bracket"></i>
-                    <Form.Group controlId="formFile" >
-                    <Form.Label>Upload your photo here</Form.Label>
-                    <Form.Control type="file" />
-                </Form.Group></div>
+                        <i style={{ fontSize: "40px" }} className="fa-solid fa-arrow-up-from-bracket"></i>
+                        <Form.Group controlId="formFile" >
+                            <Form.Label>Upload your photo here</Form.Label>
+                            <Form.Control type="file" />
+                        </Form.Group></div>
                 </div>
             </header>
         </div>
