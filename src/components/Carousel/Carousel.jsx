@@ -3,7 +3,6 @@ import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './Carousel.module.css';
 import { Link } from 'react-router-dom';
-import UncontrolledExample from '../UncontrolledExample/UncontrolledExample';
 
 const MyCarousel = () => {
   const [index, setIndex] = useState(0);

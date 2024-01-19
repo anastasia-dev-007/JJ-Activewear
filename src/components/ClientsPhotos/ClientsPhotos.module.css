@@ -1,0 +1,45 @@
+.header {
+    font-size: 21px;
+    margin-top: 30px;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.instagramContainer {
+    padding: 20px;
+}
+
+.photosContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.photosContainer div {
+    width: 100%;
+    position: relative;
+}
+
+.photosContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.192);
+    margin: 0px;
+    padding: 30px;
+    cursor: pointer;
+}
+
