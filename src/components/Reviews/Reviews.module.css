@@ -1,8 +1,8 @@
 .reviewsContainer {
-padding: 20px;
-display: flex;
-flex-direction: column;
-justify-content: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .reviewsHeader {
@@ -24,7 +24,8 @@ justify-content: center;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust the alpha value for transparency */
     z-index: 2;
 }
 
@@ -40,19 +41,25 @@ justify-content: center;
 }
 
 .reviewCards img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .reviewCards {
     display: flex;
-    justify-content: center;
-    gap: 40px;
+    justify-content: space-between;
+    font-size: 11px;
 }
 
 .reviewCard {
-    width: 25%;
+    width: 30%;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    background-color: rgba(18, 16, 16, 0.051);
+    text-align: justify;
+
 }
 
 .arrows {
@@ -60,3 +67,49 @@ justify-content: center;
     color: rgb(183, 180, 180);
     align-self: center;
 }
+
+.header {
+    font-size: 21px;
+    margin-top: 30px;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.headerReviewCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stars {
+    font-size: 14px;
+}
+
+.name {
+    font-size: 14px;
+}
+
+.leaveReviewButton {
+    width: 30%;
+    align-self: center;
+    font-weight: 900;
+    font-size: 18px;
+    border: 1px solid rgb(54, 52, 52);
+    padding: 0 20px;
+    transition: font-size 0.7s, background-color 0.7s, border 0.3s, padding 0.3s;
+    line-height: 40px; /* Adaugand aceasta prop textul nu va sari on hover*/
+  
+  }
+  
+  .leaveReviewButton:hover {
+    font-weight: 900;
+    font-size: 24px;
+    border: 1px solid rgb(54, 52, 52);
+    padding: 0 20px;
+  }

@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { getProductById, products, updateProduct } from '../../products.service';
+import { getProductById } from '../../products.service';
 import styles from '../ProductDetails/ProductDetails.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import WhyChooseJJ from '../../components/WhyChooseJJ/WhyChooseJJ';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
-import MightLikeProducts from '../../components/Recommendations/Recommendations';
 import { CartContext } from '../../contexts/cart.context';
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FavoritesContext } from '../../contexts/favorites.context';
 import { UserContext } from '../../contexts/user.context';
@@ -24,8 +22,6 @@ const ProductDetails = () => {
   const [quantityError, setQuantityError] = useState(false);
 
   const [openAccordions, setOpenAccordions] = useState([]); //openAccordions is an array that keeps track of the accordion items that are currently open.
-  // const [selectedSize, setSelectedSize] = useState(null);
-  // const [selectedColor, setSelectedColor] = useState(null);
 
   const [show, setShow] = useState(false); //for offCanvas
   const handleClose = () => setShow(false);//for offCanvas

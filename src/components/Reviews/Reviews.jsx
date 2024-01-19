@@ -24,38 +24,43 @@ const Reviews = () => {
   return (
     <div className={styles.reviewsContainer}>
       <header className={styles.reviewsHeader}>
-        <p>Ultimate Workout Experience</p>
-        <p>Reviews</p>
-        <p>Everything to love about JJ Activewear</p>
+        <p style={{ letterSpacing: '5px' }}>Ultimate Workout Experience</p>
+        <p style={{ fontSize: '54px', letterSpacing: '10px' }}> Reviews</p>
+        <p style={{ fontSize: '10px', letterSpacing: '2px' }}>Everything to love about JJ Activewear</p>
       </header>
 
-      <h1>What are our customers saying?</h1>
+      <p className={styles.header}>What are our customers saying?</p>
+      <hr />
 
       <div className={styles.reviewCards}>
-        <div className={styles.arrows}> <i class="fa-solid fa-chevron-left" ></i></div>
-       
+        {/* <div className={styles.arrows}> <i class="fa-solid fa-chevron-left" ></i></div> */}
 
         {reviewsData.map(item => (
           <div key={item.id} className={styles.reviewCard}>
             <div>
-              <img src={item.img} alt="" />
-              <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
+              <header className={styles.headerReviewCard}>
+                <img src={item.img} alt="" />
+                <div>
+                  <div className={styles.name}>Alisa Anderson</div>
+                  <div className={styles.stars}>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+              </header>
 
               <p>{item.reviewText}</p>
             </div>
           </div>
         ))}
 
-<div className={styles.arrows}> <i class="fa-solid fa-chevron-right" ></i></div>
+        {/* <div className={styles.arrows}> <i class="fa-solid fa-chevron-right" ></i></div> */}
       </div>
-      
-      <button>Leave a Review</button>
+
+      <button className={styles.leaveReviewButton}>Leave a Review</button>
     </div>
   )
 }
