@@ -29,3 +29,33 @@
 .cardChooseJJ {
     width: 25%;
 }
+
+.header {
+    font-size: 21px;
+    margin-top: 30px;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.content {
+    font-size: 14px;
+    text-align: justify;
+}
+
+.itemPicture {
+width: 28px;
+margin-bottom: 15px;
+}
+
+.itemTitle {
+    font-size: 16px;
+    margin-bottom: 25px;
+
+}
+
+.itemDescription {
+    text-align: justify;
+}

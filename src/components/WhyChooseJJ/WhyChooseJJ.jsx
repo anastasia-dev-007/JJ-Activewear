@@ -18,7 +18,7 @@ const WhyChooseJJ = () => {
         {
             id: 3,
             icon: "/assets/sculpt.png",
-            title: 'Enhanced Push-Up Effect',
+            title: 'Push-Up Effect',
             description: 'Our leggings are designed with special contouring to provide a flattering push-up effect, giving you a more defined and lifted appearance.',
         },
         {
@@ -32,17 +32,19 @@ const WhyChooseJJ = () => {
     return (
         <div className={styles.chooseJJContainer}>
             <header>
-                <h1>Why to choose JJ Activewear?</h1>
+                <p className={styles.header}>Why to choose JJ Activewear?</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <hr />
+
+                <p className={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </header>
 
             <div className={styles.cardsChooseJJ}>
                 {reasonsToChooseJJ.map(item => (
                     <div key={item.id} className={styles.cardChooseJJ}>
-                        <img width='40px' src={item.icon} alt="card1" />
-                        <h3>{item.title}</h3>
-                        <p>{item.description}</p>
+                        <img className={styles.itemPicture} width='40px' src={item.icon} alt="card1" />
+                        <h3 className={styles.itemTitle}>{item.title}</h3>
+                        <p className={styles.itemDescription}>{item.description}</p>
                     </div>
                 ))}
             </div>
