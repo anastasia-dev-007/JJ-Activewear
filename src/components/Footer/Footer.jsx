@@ -17,7 +17,7 @@ const Footer = () => {
     return (
         <footer className={styles.footerContainer}>
             <div className={styles.mainFooterContainer}>
-                <div className={styles.footerColumn}>
+                <div className={styles.footerColumnLogo}>
                     <Link to='/' onClick={handleLogoClick}><img width='100px' src="/assets/logo1wh.png" alt="logo3" /></Link>
                     <p>ACTIVEWEAR</p>
                 </div>

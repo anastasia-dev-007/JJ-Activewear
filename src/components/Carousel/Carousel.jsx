@@ -40,7 +40,7 @@ const MyCarousel = () => {
             </p>
           </div>
           
-          <Link to="/product-list">
+          <Link to="/products-list">
             <a href='#' className={styles.shopButton}>SHOP NOW</a>
           </Link>
         </div>
