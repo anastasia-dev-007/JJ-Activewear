@@ -33,6 +33,8 @@ const ProductDetails = () => {
   const { user } = useContext(UserContext);
   const { addToCart } = useContext(CartContext);
   const { decrementCartItem } = useContext(CartContext);
+  const { removeFromCart } = useContext(CartContext);
+
 
   useEffect(() => {
     setProduct(getProductById(+id)); //transmitem id in form numerica de asta punem "+"
@@ -267,6 +269,8 @@ const ProductDetails = () => {
                     <Offcanvas.Title> Shopping Cart</Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
+                    <div className={styles.OffcanvasContainer}>
+                    <div>
                     {
                       cartContext.cartItems.map(item => (
                         <div key={item.id} className={styles.cartItem}>
@@ -279,6 +283,7 @@ const ProductDetails = () => {
                                 /></Link>
                             </div>
                           </div>
+                          
                           <div className={styles.infoPriceAndBtnContainer}>
                             <div className={styles.productInfoAndPrice}>
                               <div className={styles.productInfo}>
@@ -289,13 +294,11 @@ const ProductDetails = () => {
                                 <div>Size: {item.selectedSize}</div>
                                 <div>Color: {item.color}</div>
                               </div>
-
-                              <div className={styles.price}> Price: {item.currency} {parseFloat(item.price).toFixed(2)}</div>
                             </div>
 
-                            <div className={styles.quantity}>
+                            <div className={styles.quantityOffcanvas}>
                               <header>Quantity</header>
-                              <div className={styles.quantityPanel}>
+                              <div className={styles.quantityPanelOffcanvas}>
                                 <button
                                   disabled={product[selectedSize] === 0} // Update here
                                   onClick={() => decrementCartItem(item, item.selectedSize, quantity)}
@@ -310,15 +313,20 @@ const ProductDetails = () => {
                                   +
                                 </button>
                               </div>
+                              
                             </div>
+                            <div className={styles.priceOffcanvas}> Price: {item.currency} {parseFloat(item.price).toFixed(2)}</div>
 
-                            {/* <div className={styles.removeBtn}>
-                              <button>Remove</button>
-                            </div> */}
+
+                            <div className={styles.removeBtn}>
+                              <button onClick={() => removeFromCart(item.id, item.selectedSize)}
+                                >Remove</button>
+                            </div>
                           </div >
                         </div>
                       ))
                     }
+                    </div>
 
                     <div className={styles.total}>
                       <div className={styles.subTotalLine}>
@@ -338,6 +346,7 @@ const ProductDetails = () => {
                           </button>
                         </Link>
                       </div>
+                    </div>
                     </div>
                   </Offcanvas.Body>
                 </Offcanvas>

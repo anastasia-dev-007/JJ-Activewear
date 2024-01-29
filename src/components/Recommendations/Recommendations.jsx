@@ -36,7 +36,8 @@ const Recommendations = () => {
 
     return (
         <div className={styles.popularProductsWrapper}>
-        <h3>Recommendations for you</h3>
+        <h3 className={styles.header}>Recommendations for you</h3>
+        <hr />
        <div className={styles.popularProductsContainer}>
        {/* <i class="fa-solid fa-chevron-left" ></i> */}
         {randomProducts.map(item => (
