@@ -221,13 +221,16 @@ const ProductListing = () => {
   return (
     <div className={styles.productListingContainer}>
       <header>
-        <div className='path'>
-          <p><Link to='/#'>Home</Link> |
+        <div className={styles.path}>
+          <div><Link to='/#'>Home</Link> |
             <Link to={'/products-list/'}>All products</Link> |
-            <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> </p>
+            <Link to={`/products-list?category=${filters.category || ''}`}>{filters.category || ''}</Link> 
+            </div>
         </div>
 
-        <div className='title'>
+        <hr />
+
+        <div className={styles.title}>
           <p> {filters.category || 'All products'} ({products.length}) </p>
         </div>
       </header>
@@ -307,7 +310,7 @@ const ProductListing = () => {
             </Accordion>
           </div>
 
-          <button onClick={resetFilters}>Reset Filters</button>
+          <button className={styles.resetBtn} onClick={resetFilters}>Reset Filters</button>
 
         </div>
 
@@ -362,7 +365,7 @@ const ProductListing = () => {
         </div>
       </div>
 
-      <button className={styles.BtnMore}>More</button>
+      {/* <button className={styles.BtnMore}>More</button> */}
     </div>
   )
 }

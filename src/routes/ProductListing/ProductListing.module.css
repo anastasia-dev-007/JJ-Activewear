@@ -104,6 +104,13 @@
     width: 99.7%;
     text-align: right;
     margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.sortByPrice select {
+    border-top: none;
+    border-right: none;
+    border-left: none;
 }
 
 .sortByPrice label {
@@ -160,4 +167,24 @@
 .cardItemPrice {
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+.path a {
+    text-decoration: none;
+    color: black;
+    /* font-style: italic; */
+    font-size: 14px;
+    margin-left: 3px;
+}
+
+.title {
+    font-size: 14px;
+}
+
+.Accordions {
+margin-bottom: 30px;
+}
+
+.resetBtn {
+    width: 100%;
 }
