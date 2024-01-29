@@ -195,11 +195,18 @@
 
 .loginDropDownBtn button:active,
 .loginDropDownBtn button:hover,
-.loginDropDownBtn button:focus {
+.loginDropDownBtn button:focus,
+.loginDropDownBtn button:focus-within,
+.loginDropDownBtn button:focus-visible,
+.loginDropDownBtn button:target,
+.loginDropDownBtn button:visited,
+.loginDropDownBtn button {
     background-color: transparent;
     color: inherit;
     border: none;
 }
+
+
 /* 
 .loginDropDownBtn {
    width: 20px;
@@ -211,3 +218,12 @@
     background-color: #ffffff00;
     
 } */
+
+.select {
+    border: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-left: 5px;
+    color: grey;
+
+}

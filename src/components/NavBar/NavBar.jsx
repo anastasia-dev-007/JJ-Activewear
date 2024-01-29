@@ -114,7 +114,7 @@ const NavBar = () => {
                             )
                         } */}
 
-                        <select id="language">
+                        <select className={styles.select} id="language">
                             <option value="EN">EN</option> {/**flag is not displayed((( */}
                             <option value="RO">RO</option>{/**flag is not displayed((( */}
                         </select>
