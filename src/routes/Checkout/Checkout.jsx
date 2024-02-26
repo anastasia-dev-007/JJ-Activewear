@@ -31,6 +31,8 @@ const Checkout = () => {
 
   const { cartItems } = useContext(CartContext);
 
+  const subtotalPrice = cartContext.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
   const handleOrderSave = () => {
     const totalAmount = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
@@ -79,7 +81,7 @@ const Checkout = () => {
         </Modal.Header>
         <Modal.Body>
           <div className={styles.checkoutBody}>
-            <div>
+            <div className={styles.forms}>
               <h3>Billing details</h3>
               <>
                 <Form.Floating>
@@ -107,6 +109,7 @@ const Checkout = () => {
                 <Form.Select aria-label="Default select example"
                   value={country}
                   onChange={(event) => setCountry(event.target.value)}
+                  style={{fontSize: '14px'}}
                 >
                   <option>Select country</option>
                   <option value="1">Moldova</option>
@@ -164,6 +167,23 @@ const Checkout = () => {
 
                 ))
               }
+
+              <div>
+            <div className={styles.subTotalLine}>
+                <div className={styles.subTotal}>Subtotal</div>
+                <div className={styles.subTotalPrice}>$ {subtotalPrice.toFixed(2)}</div>
+              </div>
+              
+              <div className={styles.deliveryLine}>
+                <div className={styles.delivery}>Delivery</div>
+                <div className={styles.deliveryPrice}>$ 10</div>
+              </div>
+              <hr></hr>
+              <div style={{fontWeight: '900'}} className={styles.deliveryLine}>
+                <div className={styles.delivery}>Total</div>
+                <div className={styles.deliveryPrice}>$ {subtotalPrice + 10}</div>
+              </div>
+            </div>
             </div>
             <div>
 
