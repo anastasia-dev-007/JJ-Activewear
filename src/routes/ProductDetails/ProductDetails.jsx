@@ -208,6 +208,7 @@ const ProductDetails = () => {
 
               <div className={styles.itemCode}>Item code: {product.id}</div>
 
+
               <h3 className={styles.price}>$ {parseFloat(product.price).toFixed(2)}</h3>
 
               {product.category === 'Accessories' ? (
@@ -250,6 +251,8 @@ const ProductDetails = () => {
                   </button>
                 </div>
               </div>
+
+              <div className={styles.itemCode}>Color: {product.color}</div>
 
               {sizeError && (
                 <p style={{ color: 'red', fontSize: '10px' }}>Please select a size before.</p>
