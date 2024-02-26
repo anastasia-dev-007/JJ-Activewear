@@ -41,13 +41,11 @@ const ShoppingCart = () => {
         ) : (
           <div className={styles.shoppingCartContainer}>
             <div className={styles.cartContent}>
-
-
               {
                 cartContext.cartItems.length < 1 ? (
                   <></>
                 ) : (
-                  <div>Shopping Cart: {cartContext.cartItems.reduce((total, item) => total + item.quantity, 0)}</div>)
+                  <div style={{marginBottom: '20px'}}>Shopping Cart: {cartContext.cartItems.reduce((total, item) => total + item.quantity, 0)}</div>)
               }
 
               {/**Info will be rendered from the constant of cart array */}
@@ -66,7 +64,7 @@ const ShoppingCart = () => {
                     <div className={styles.infoPriceAndBtnContainer}>
                       <div className={styles.productInfoAndPrice}>
                         <div className={styles.productInfo}>
-                          <div>{item.title}</div>
+                          <div style={{fontWeight: '900'}}>{item.title}</div>
                           <div>Item ID: {item.id}</div>
                           <div>{item.category} | {item.subcategory}</div>
                           <div>Quantity: {item.quantity}</div>
@@ -93,7 +91,7 @@ const ShoppingCart = () => {
                           </div>
                         </div>
 
-                        <div className={styles.price}>
+                        <div style={{fontWeight: '900'}} className={styles.price}>
                         {item.currency} {parseFloat(item.quantity * item.price).toFixed(2)}
                           </div>
                       </div>
@@ -114,9 +112,15 @@ const ShoppingCart = () => {
                 <div className={styles.subTotal}>Subtotal</div>
                 <div className={styles.subTotalPrice}>$ {subtotalPrice.toFixed(2)}</div>
               </div>
+              
               <div className={styles.deliveryLine}>
                 <div className={styles.delivery}>Delivery</div>
                 <div className={styles.deliveryPrice}>$ 10</div>
+              </div>
+              <hr></hr>
+              <div style={{fontWeight: '900'}} className={styles.deliveryLine}>
+                <div className={styles.delivery}>Total</div>
+                <div className={styles.deliveryPrice}>$ {subtotalPrice + 10}</div>
               </div>
 
               <div className={styles.buyBtn}>
